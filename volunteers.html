@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Youth for Children - VOLUNTEERS</title>
+  <link rel="shortcut icon" href="images/logo.png">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #009ffd;
+      --secondary-color: #2a2a72;
+      --accent-color: #ffa500;
+      --text-dark: #1a1a2e;
+      --text-light: #6b7280;
+      --bg-light: #f9fafb;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-container img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.3rem;
+      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-menu a:hover {
+      color: var(--primary-color);
+    }
+
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      transition: width 0.3s ease;
+    }
+
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+
+    .donate-btn {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white !important;
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .donate-btn::after {
+      display: none;
+    }
+
+    .donate-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 159, 253, 0.3);
+    }
+
+    .mobile-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      margin-top: 80px;
+      min-height: 60vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,122.7C1248,107,1344,85,1392,74.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+      background-size: cover;
+      animation: wave 15s ease-in-out infinite;
+    }
+
+    @keyframes wave {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(-50px); }
+    }
+
+    .hero-content {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      padding: 2rem;
+      max-width: 800px;
+    }
+
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      color: white;
+      margin-bottom: 1rem;
+      animation: fadeInUp 1s ease;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.95);
+      animation: fadeInUp 1s ease 0.2s both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Volunteers Section */
+    .volunteers-section {
+      padding: 5rem 2rem;
+      background: var(--bg-light);
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 4rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+    }
+
+    .section-header p {
+      font-size: 1.1rem;
+      color: var(--text-light);
+    }
+
+    .volunteers-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .volunteer-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .volunteer-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .volunteer-image {
+      position: relative;
+      height: 350px;
+      overflow: hidden;
+    }
+
+    .volunteer-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .volunteer-card:hover .volunteer-image img {
+      transform: scale(1.1);
+    }
+
+    .volunteer-image::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    }
+
+    .volunteer-details {
+      padding: 2rem;
+    }
+
+    .volunteer-details h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    .volunteer-quote {
+      color: var(--text-light);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+      position: relative;
+      padding-left: 1rem;
+      border-left: 3px solid var(--primary-color);
+    }
+
+    .volunteer-location {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+
+    .volunteer-location i {
+      color: var(--primary-color);
+      font-size: 1.1rem;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+    }
+
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+    }
+
+    .cta-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    .cta-content p {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.95);
+      margin-bottom: 2rem;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: white;
+      color: var(--primary-color);
+      padding: 1.2rem 3rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      background: var(--accent-color);
+      color: white;
+    }
+
+    /* Benefits Section */
+    .benefits-section {
+      padding: 5rem 2rem;
+      background: white;
+    }
+
+    .benefits-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .benefit-item {
+      text-align: center;
+      padding: 2rem;
+      border-radius: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .benefit-item:hover {
+      background: var(--bg-light);
+      transform: translateY(-5px);
+    }
+
+    .benefit-icon {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 1.5rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: white;
+    }
+
+    .benefit-item h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      color: var(--text-dark);
+    }
+
+    .benefit-item p {
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--text-dark);
+      color: white;
+      padding: 4rem 2rem 2rem;
+    }
+
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-about img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    .footer-about p {
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 1rem;
+      line-height: 1.8;
+    }
+
+    .footer h4 {
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+    }
+
+    .footer ul {
+      list-style: none;
+    }
+
+    .footer ul li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer ul li a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer ul li a:hover {
+      color: var(--primary-color);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background: var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 80px;
+        flex-direction: column;
+        background: white;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        padding: 2rem 0;
+      }
+
+      .nav-menu.active {
+        left: 0;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+
+      .volunteers-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo-container">
+        <img src="images/logo.png" alt="YFC Logo">
+        <span class="logo-text">Youth for Children</span>
+      </div>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="volunteers.html">Volunteers</a></li>
+        <li><a href="projects.html">Programs</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="contactus.html">Contact</a></li>
+        <li><a href="donation.html" class="donate-btn">Donate</a></li>
+      </ul>
+      <div class="mobile-toggle" id="mobileToggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Our Volunteers</h1>
+      <p>Meet the passionate individuals making a difference in children's lives every day</p>
+    </div>
+  </section>
+
+  <!-- Volunteers Section -->
+  <section class="volunteers-section">
+    <div class="section-header">
+      <h2>Meet Our Amazing Team</h2>
+      <p>Dedicated volunteers committed to empowering youth and protecting children across Kenya</p>
+    </div>
+    <div class="volunteers-grid">
+      <div class="volunteer-card">
+        <div class="volunteer-image">
+          <img src="images/man1.jpeg" alt="Sebastian Lucky">
+        </div>
+        <div class="volunteer-details">
+          <h3>Sebastian Lucky</h3>
+          <p class="volunteer-quote">"I love to see smiles on people's faces. And that is my motto. I love to do this job and see people smile."</p>
+          <div class="volunteer-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Nairobi, Kenya</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="volunteer-card">
+        <div class="volunteer-image">
+          <img src="images/man2.jpeg" alt="Maxi Daniels">
+        </div>
+        <div class="volunteer-details">
+          <h3>Maxi Daniels</h3>
+          <p class="volunteer-quote">"It is kind of my hobby to help those in need. And Youth for Children is providing me with a great platform to work for those in need."</p>
+          <div class="volunteer-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Kisumu, Kenya</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="volunteer-card">
+        <div class="volunteer-image">
+          <img src="images/women1.jpeg" alt="Kennedy Shitawa">
+        </div>
+        <div class="volunteer-details">
+          <h3>Kennedy Shitawa</h3>
+          <p class="volunteer-quote">"It is my honour to work for this organization. It provides great relief when we see the smiles on the faces of the people whom we helped."</p>
+          <div class="volunteer-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Mombasa, Kenya</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="volunteer-card">
+        <div class="volunteer-image">
+          <img src="images/man1.jpeg" alt="Mark Wela">
+        </div>
+        <div class="volunteer-details">
+          <h3>Mark Wela</h3>
+          <p class="volunteer-quote">"Empowering children and youth is not just a calling, it's a responsibility. Every child deserves a safe space to grow and thrive."</p>
+          <div class="volunteer-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Eldoret, Kenya</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="benefits-section">
+    <div class="section-header">
+      <h2>Why Volunteer With Us?</h2>
+      <p>Join our community and make a lasting impact while growing personally and professionally</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-item">
+        <div class="benefit-icon">
+          <i class="fas fa-heart"></i>
+        </div>
+        <h4>Make Real Impact</h4>
+        <p>Directly contribute to improving children's lives and creating lasting change in communities</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <h4>Build Community</h4>
+        <p>Connect with like-minded individuals passionate about youth empowerment and child protection</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">
+          <i class="fas fa-trophy"></i>
+        </div>
+        <h4>Develop Skills</h4>
+        <p>Gain valuable experience in leadership, communication, and community development</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">
+          <i class="fas fa-smile"></i>
+        </div>
+        <h4>Personal Growth</h4>
+        <p>Experience personal fulfillment and growth while serving others</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2>Ready to Make a Difference?</h2>
+      <p>Join our community of passionate volunteers and help us empower the next generation of leaders</p>
+      <a href="volunteersForm.html" class="cta-btn">
+        <span>Join Our Community</span>
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-about">
+        <img src="images/logo.png" alt="YFC Logo">
+        <h3>Youth for Children</h3>
+        <p>Empowering youth to empower children. Building a just and flourishing society through inclusive education and child protection.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/pg/shreegurujambheswarsevasansthan/photos/?ref=page_internal" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com/guru_sansthan" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/sgjss_29/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/in/shree-guru-jambeshwar-sewa-sansthan-1106651b3/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://api.whatsapp.com/send/?phone=919414334192&text&app_absent=0" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="projects.html">Programs</a></li>
+          <li><a href="events.html">Events</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Get Involved</h4>
+        <ul>
+          <li><a href="volunteers.html">Volunteer</a></li>
+          <li><a href="donation.html">Donate</a></li>
+          <li><a href="contactus.html">Contact Us</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="photos.html">Photo Gallery</a></li>
+          <li><a href="videos.html">Videos</a></li>
+          <li><a href="corona.html">COVID-19 Response</a></li>
+          <li><a href="http://sgjss.co.in/" target="_blank">Sgjss.co.in</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Youth for Children (YFC) | All rights reserved</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      const icon = mobileToggle.querySelector('i');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+
+    // Scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.volunteer-card, .benefit-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'all 0.6s ease';
+      observer.observe(el);
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
+      } else {
+        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+      }
+    });
+  </script>
+</body>
+</html>

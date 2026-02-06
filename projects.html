@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Youth for Children - Our Programs</title>
+  <link rel="shortcut icon" href="images/logo.png">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #009ffd;
+      --secondary-color: #2a2a72;
+      --accent-color: #ffa500;
+      --text-dark: #1a1a2e;
+      --text-light: #6b7280;
+      --bg-light: #f9fafb;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-container img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.3rem;
+      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-menu a:hover {
+      color: var(--primary-color);
+    }
+
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      transition: width 0.3s ease;
+    }
+
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+
+    .donate-btn {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white !important;
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .donate-btn::after {
+      display: none;
+    }
+
+    .donate-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 159, 253, 0.3);
+    }
+
+    .mobile-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Page Header */
+    .page-header {
+      margin-top: 80px;
+      padding: 5rem 2rem 3rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,122.7C1248,107,1344,85,1392,74.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+      background-size: cover;
+    }
+
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: white;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-header p {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .breadcrumb {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .breadcrumb a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .breadcrumb a:hover {
+      color: white;
+    }
+
+    .breadcrumb span {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Programs Section */
+    .programs-section {
+      padding: 5rem 2rem;
+      background: var(--bg-light);
+    }
+
+    .programs-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 4rem;
+    }
+
+    .section-intro h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+    }
+
+    .section-intro p {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 5rem;
+    }
+
+    .program-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .program-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .program-image {
+      position: relative;
+      height: 280px;
+      overflow: hidden;
+    }
+
+    .program-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .program-card:hover .program-image img {
+      transform: scale(1.1);
+    }
+
+    .program-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .program-content {
+      padding: 2rem;
+    }
+
+    .program-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: white;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 25px rgba(0, 159, 253, 0.3);
+    }
+
+    .program-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    .program-content p {
+      color: var(--text-light);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .program-meta {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .meta-item i {
+      color: var(--primary-color);
+    }
+
+    .read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: gap 0.3s ease;
+    }
+
+    .read-more:hover {
+      gap: 1rem;
+    }
+
+    .read-more i {
+      transition: transform 0.3s ease;
+    }
+
+    .read-more:hover i {
+      transform: translateX(5px);
+    }
+
+    /* Impact Stats */
+    .impact-stats {
+      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+      padding: 4rem 2rem;
+      margin: 5rem 0;
+    }
+
+    .stats-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      text-align: center;
+    }
+
+    .stat-card {
+      color: white;
+    }
+
+    .stat-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 1.5rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 5rem 2rem;
+      background: white;
+    }
+
+    .cta-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 4rem 3rem;
+      border-radius: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-container::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    .cta-content p {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-cta {
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .btn-cta.primary {
+      background: white;
+      color: var(--primary-color);
+    }
+
+    .btn-cta.primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-cta.secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-cta.secondary:hover {
+      background: white;
+      color: var(--primary-color);
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--text-dark);
+      color: white;
+      padding: 4rem 2rem 2rem;
+    }
+
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-about img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    .footer-about p {
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 1rem;
+      line-height: 1.8;
+    }
+
+    .footer h4 {
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+    }
+
+    .footer ul {
+      list-style: none;
+    }
+
+    .footer ul li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer ul li a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer ul li a:hover {
+      color: var(--primary-color);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background: var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 80px;
+        flex-direction: column;
+        background: white;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        padding: 2rem 0;
+      }
+
+      .nav-menu.active {
+        left: 0;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      .page-header h1 {
+        font-size: 2rem;
+      }
+
+      .programs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-container {
+        padding: 3rem 2rem;
+      }
+
+      .cta-content h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo-container">
+        <img src="images/logo.png" alt="YFC Logo">
+        <span class="logo-text">Youth for Children</span>
+      </div>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="volunteers.html">Volunteers</a></li>
+        <li><a href="projects.html">Programs</a></li>
+        <li><a href="contactus.html">Contact</a></li>
+        <li><a href="donation.html" class="donate-btn">Donate</a></li>
+      </ul>
+      <div class="mobile-toggle" id="mobileToggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <h1>Our Programs</h1>
+    <p>Youth-led initiatives creating lasting impact in child protection, education, and empowerment</p>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <span>Programs</span>
+    </div>
+  </section>
+
+  <!-- Programs Section -->
+  <section class="programs-section">
+    <div class="programs-container">
+      <div class="section-intro">
+        <h2>Transforming Lives Through Action</h2>
+        <p>Our comprehensive programs are designed to empower children and youth, creating safe environments where they can thrive, learn, and become agents of change in their communities.</p>
+      </div>
+
+      <div class="programs-grid">
+        <!-- Program 1 -->
+        <div class="program-card">
+          <div class="program-image">
+            <img src="images/23.jpg" alt="Child Protection">
+            <div class="program-badge">Flagship Program</div>
+          </div>
+          <div class="program-content">
+            <div class="program-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Child Protection & Safeguarding (CPAS)</h3>
+            <p>Our flagship CPAS curriculum empowers children to know themselves, use their voices, and advocate for their rights. Successfully implemented across 5 schools in multiple counties.</p>
+            <div class="program-meta">
+              <div class="meta-item">
+                <i class="fas fa-users"></i>
+                <span>255+ Children</span>
+              </div>
+              <div class="meta-item">
+                <i class="fas fa-school"></i>
+                <span>5 Schools</span>
+              </div>
+            </div>
+            <a href="#" class="read-more">
+              Learn More <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Program 2 -->
+        <div class="program-card">
+          <div class="program-image">
+            <img src="images/24.jpg" alt="Youth Leadership">
+            <div class="program-badge">Active</div>
+          </div>
+          <div class="program-content">
+            <div class="program-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3>Empowering the Future</h3>
+            <p>A virtual youth development program that nurtures leadership and public speaking skills. 18 youth leaders trained by 2025, creating a ripple effect of positive change.</p>
+            <div class="program-meta">
+              <div class="meta-item">
+                <i class="fas fa-user-graduate"></i>
+                <span>18 Leaders</span>
+              </div>
+              <div class="meta-item">
+                <i class="fas fa-video"></i>
+                <span>Virtual</span>
+              </div>
+            </div>
+            <a href="#" class="read-more">
+              Learn More <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Program 3 -->
+        <div class="program-card">
+          <div class="program-image">
+            <img src="images/36.jpg" alt="Climate Action">
+            <div class="program-badge">Featured</div>
+          </div>
+          <div class="program-content">
+            <div class="program-icon">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <h3>Climate Action Tales</h3>
+            <p>A storytelling-based program instilling environmental conservation skills in children. Funded by Bevisioneers Mercedes-Benz Fellowship, making environmental education engaging and memorable.</p>
+            <div class="program-meta">
+              <div class="meta-item">
+                <i class="fas fa-book"></i>
+                <span>Storytelling</span>
+              </div>
+              <div class="meta-item">
+                <i class="fas fa-award"></i>
+                <span>Fellowship</span>
+              </div>
+            </div>
+            <a href="#" class="read-more">
+              Learn More <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Program 4 -->
+        <div class="program-card">
+          <div class="program-image">
+            <img src="images/11.jpg" alt="Children Rights">
+            <div class="program-badge">Expanding</div>
+          </div>
+          <div class="program-content">
+            <div class="program-icon">
+              <i class="fas fa-hand-holding-heart"></i>
+            </div>
+            <h3>Children Rights Clubs</h3>
+            <p>Establishing Children Rights Clubs in schools where none previously existed, giving children a platform for their voices across Kisumu, Nairobi, Machakos, and Kilifi.</p>
+            <div class="program-meta">
+              <div class="meta-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>4 Counties</span>
+              </div>
+              <div class="meta-item">
+                <i class="fas fa-comments"></i>
+                <span>Voice Platform</span>
+              </div>
+            </div>
+            <a href="#" class="read-more">
+              Learn More <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Program 5 -->
+        <div class="program-card">
+          <div class="program-image">
+            <img src="images/14.jpg" alt="Education Support">
+            <div class="program-badge">Ongoing</div>
+          </div>
+          <div class="program-content">
+            <div class="program-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3>KEPSEA Fund Drive</h3>
+            <p>Supporting needy learners through fundraising initiatives. Raised KES 5,500 to provide 7 learners with examination materials, ensuring no child is left behind.</p>
+            <div class="program-meta">
+              <div class="meta-item">
+                <i class="fas fa-donate"></i>
+                <span>KES 5,500</span>
+              </div>
+              <div class="meta-item">
+                <i class="fas fa-child"></i>
+                <span>7 Learners</span>
+              </div>
+            </div>
+            <a href="#" class="read-more">
+              Learn More <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Program 6 -->
+        <div class="program-card">
+          <div class="program-image">
+            <img src="images/26.jpg" alt="Partnerships">
+            <div class="program-badge">Collaborative</div>
+          </div>
+          <div class="program-content">
+            <div class="program-icon">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <h3>Partnership Programs</h3>
+            <p>Collaborating with Teach for Kenya and Pacemaker International to expand our reach and impact across multiple counties, leveraging collective expertise for maximum effect.</p>
+            <div class="program-meta">
+              <div class="meta-item">
+                <i class="fas fa-link"></i>
+                <span>2+ Partners</span>
+              </div>
+              <div class="meta-item">
+                <i class="fas fa-expand"></i>
+                <span>Multi-County</span>
+              </div>
+            </div>
+            <a href="#" class="read-more">
+              Learn More <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Stats -->
+  <section class="impact-stats">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="stat-number">255+</div>
+        <div class="stat-label">Children Empowered</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-school"></i>
+        </div>
+        <div class="stat-number">5</div>
+        <div class="stat-label">Schools Reached</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-map-marked-alt"></i>
+        </div>
+        <div class="stat-number">4</div>
+        <div class="stat-label">Counties Covered</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-award"></i>
+        </div>
+        <div class="stat-number">18</div>
+        <div class="stat-label">Youth Leaders Trained</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-container">
+      <div class="cta-content">
+        <h2>Join Us in Making a Difference</h2>
+        <p>Your support can help us reach more children and create lasting positive change in communities across Kenya.</p>
+        <div class="cta-buttons">
+          <a href="donation.html" class="btn-cta primary">
+            <span>Support Our Programs</span>
+            <i class="fas fa-heart"></i>
+          </a>
+          <a href="volunteers.html" class="btn-cta secondary">
+            <span>Become a Volunteer</span>
+            <i class="fas fa-hands-helping"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-about">
+        <img src="images/logo.png" alt="YFC Logo">
+        <h3>Youth for Children</h3>
+        <p>Empowering youth to empower children. Building a just and flourishing society through inclusive education and child protection.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="projects.html
