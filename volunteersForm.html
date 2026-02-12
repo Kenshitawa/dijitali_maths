@@ -1,240 +1,838 @@
-<html>
-    <head>
-        <title>VOLUNTEER FORM</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="volunteer.css">
-        <link rel="icon" href="images/logo.png">
-      
-      
-        <!--PLUGIN-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-      
-      
-        <!--FONT AWESOME-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-      
-        <!--GOOGLE FONTS-->
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link
-          href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Fredoka+One&family=Kanit:wght@300&display=swap"
-          rel="stylesheet">
-      </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WeCare CBO | Volunteer Form</title>
+  <link rel="shortcut icon" href="images/logo.png" />
 
-     
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+
+    :root{
+      --primary:#0EA5E9;
+      --secondary:#6366F1;
+      --text:#0F172A;
+      --muted:#334155;
+      --subtle:#64748B;
+      --bg:#FFFFFF;
+      --soft:#F8FAFC;
+      --border: rgba(2,6,23,0.08);
+
+      --shadow-1: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-2: 0 10px 30px rgba(0,0,0,0.12);
+
+      --grad-brand: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      --grad-hero: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+
+      --radius: 22px;
+      --radius-sm: 14px;
+    }
+
+    body{
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container{width:min(1200px, calc(100% - 3rem)); margin:0 auto;}
+
+    /* NAV */
+    .navbar{
+      position: fixed; top:0; left:0; right:0;
+      z-index:1000;
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(2,6,23,0.06);
+      transition: box-shadow 0.25s ease, background 0.25s ease;
+    }
+    .navbar.scrolled{ background: rgba(255,255,255,0.94); box-shadow: var(--shadow-1); }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 0.85rem 0;
+      gap: 1rem;
+    }
+    .brand{
+      display:flex; align-items:center; gap:0.85rem;
+      text-decoration:none;
+      min-width: 220px;
+    }
+    .brand img{
+      height:46px; width:auto;
+      border-radius:12px;
+      background:#fff;
+      padding:6px;
+      box-shadow: var(--shadow-1);
+      object-fit: contain;
+    }
+    .brand .name{
+      font-family:"Space Grotesk", sans-serif;
+      font-weight: 900;
+      font-size: 1.12rem;
+      letter-spacing: -0.4px;
+      background: var(--grad-brand);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      white-space: nowrap;
+    }
+
+    .nav-menu{
+      list-style:none;
+      display:flex;
+      gap: 1.25rem;
+      align-items:center;
+    }
+    .nav-menu a{
+      text-decoration:none;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 0.35rem 0;
+      transition: color 0.2s ease;
+      position: relative;
+      white-space: nowrap;
+    }
+    .nav-menu a:hover{color:var(--primary);}
+    .nav-menu a.active{color:var(--primary);}
+    .nav-menu a.active::after{
+      content:"";
+      position:absolute; left:0; right:0; bottom:-6px;
+      height:2px; border-radius:999px;
+      background: var(--grad-brand);
+    }
+    .donate{
+      display:inline-flex;
+      align-items:center;
+      gap:0.55rem;
+      padding:0.65rem 1.2rem;
+      border-radius:999px;
+      background: var(--grad-brand);
+      color:#fff !important;
+      box-shadow: 0 10px 24px rgba(14,165,233,0.25);
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .donate:hover{transform: translateY(-2px); box-shadow: 0 16px 34px rgba(14,165,233,0.32);}
+
+    .mobile-toggle{
+      display:none;
+      width:44px;height:44px;
+      border-radius:14px;
+      border:1px solid rgba(2,6,23,0.08);
+      background: rgba(255,255,255,0.75);
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      color: var(--text);
+    }
+
+    /* HERO */
+    header.hero{
+      padding-top: 86px;
+      min-height: 42vh;
+      position:relative;
+      overflow:hidden;
+      display:grid;
+      place-items:center;
+      color:#fff;
+      background: var(--grad-hero);
+    }
+    header.hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(circle at 18% 40%, rgba(255,255,255,0.16), transparent 55%),
+        radial-gradient(circle at 82% 70%, rgba(255,255,255,0.16), transparent 55%);
+      pointer-events:none;
+    }
+    .hero .inner{
+      position:relative; z-index:1;
+      padding: 2.4rem 0 2.8rem;
+      text-align:center;
+      max-width: 900px;
+    }
+    .hero h1{
+      font-family:"Space Grotesk", sans-serif;
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.05;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      margin-bottom: 0.8rem;
+    }
+    .hero p{
+      color: rgba(255,255,255,0.92);
+      font-size: 1.05rem;
+      line-height: 1.9;
+        font-weight: 650;
+      margin: 0 auto;
+      max-width: 75ch;
+    }
+
+    /* SECTION */
+    .section{ padding: clamp(2.2rem, 5vw, 3.8rem) 0; background: var(--soft); }
+
+    .card{
+      background:#fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-2);
+      overflow:hidden;
+    }
+
+    .cardHead{
+      padding: 1.4rem 1.6rem;
+      border-bottom: 1px solid rgba(2,6,23,0.06);
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 1rem;
+    }
+    .cardHead h2{
+      font-family:"Space Grotesk", sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      font-size: 1.4rem;
+      margin:0;
+    }
+    .cardHead p{
+      margin:0.35rem 0 0;
+      color: var(--subtle);
+      font-weight: 650;
+      font-size: 0.98rem;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:0.55rem;
+      padding: 0.55rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(14,165,233,0.10);
+      border: 1px solid rgba(14,165,233,0.20);
+      color: #0369A1;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    form{ padding: 1.6rem; }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap: 0.45rem;
+    }
+
+    .field.full{ grid-column: 1 / -1; }
+
+    label{
+      font-weight: 850;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .req{
+      color: #ef4444;
+      font-weight: 900;
+      margin-left: 0.25rem;
+    }
+
+    .input{
+      position:relative;
+    }
+    .input i{
+      position:absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--subtle);
+      font-size: 1rem;
+      pointer-events:none;
+    }
+
+    input, select, textarea{
+      width:100%;
+      border: 1px solid rgba(2,6,23,0.12);
+      background:#fff;
+      border-radius: 16px;
+      padding: 0.9rem 1rem 0.9rem 2.6rem;
+      font-size: 0.98rem;
+      color: var(--text);
+      font-weight: 650;
+      outline: none;
+      transition: box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+    textarea{
+      min-height: 120px;
+      padding-left: 1rem;
+    }
+    textarea + .hint{ margin-top: -0.2rem; }
+
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(14,165,233,0.55);
+      box-shadow: 0 0 0 4px rgba(14,165,233,0.18);
+    }
+
+    .hint{
+      color: var(--subtle);
+      font-size: 0.9rem;
+      font-weight: 650;
+    }
+
+    .actions{
+      display:flex;
+      justify-content:space-between;
+      gap: 1rem;
+      align-items:center;
+      flex-wrap: wrap;
+      margin-top: 1.2rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(2,6,23,0.06);
+    }
+
+    .btn{
+      border:none;
+      cursor:pointer;
+      font-weight: 950;
+      border-radius: 16px;
+      padding: 0.95rem 1.15rem;
+      display:inline-flex;
+      align-items:center;
+      gap: 0.6rem;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+      white-space: nowrap;
+      text-decoration:none;
+      font-size: 0.98rem;
+    }
+    .btn.primary{
+      background: var(--grad-brand);
+      color:#fff;
+      box-shadow: 0 14px 34px rgba(14,165,233,0.22);
+    }
+    .btn.primary:hover{ transform: translateY(-2px); box-shadow: 0 18px 42px rgba(14,165,233,0.28); }
+    .btn.ghost{
+      background:#fff;
+      color: var(--text);
+      border: 1px solid rgba(2,6,23,0.12);
+      box-shadow: var(--shadow-1);
+    }
+    .btn.ghost:hover{ transform: translateY(-2px); box-shadow: var(--shadow-2); }
+
+    .btn:disabled{
+      opacity: 0.65;
+      cursor:not-allowed;
+      transform:none !important;
+      box-shadow:none !important;
+    }
+
+    .note{
+      color: var(--subtle);
+      font-weight: 700;
+      font-size: 0.93rem;
+      max-width: 60ch;
+    }
+
+    .alert{
+      display:none;
+      margin-bottom: 1rem;
+      padding: 0.95rem 1rem;
+      border-radius: 16px;
+      font-weight: 800;
+      border: 1px solid rgba(2,6,23,0.08);
+      background: #fff;
+    }
+    .alert.success{
+      display:none;
+      border-color: rgba(34,197,94,0.25);
+      background: rgba(34,197,94,0.08);
+      color: #166534;
+    }
+    .alert.error{
+      display:none;
+      border-color: rgba(239,68,68,0.25);
+      background: rgba(239,68,68,0.08);
+      color: #7f1d1d;
+    }
+
+    /* FOOTER */
+    footer.footer{
+      background:#0B1220;
+      color:#fff;
+      padding: 3.5rem 0 2rem;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+    .footer .brand-mini{display:flex;align-items:center;gap:0.85rem;margin-bottom:1rem;}
+    .footer .brand-mini img{
+      height:56px;width:auto;background:#fff;padding:8px;border-radius:14px;object-fit:contain;
+    }
+    .footer h4{
+      font-family:"Space Grotesk", sans-serif;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      letter-spacing: -0.2px;
+    }
+    .footer p,.footer li{
+      color: rgba(255,255,255,0.72);
+      line-height: 1.85;
+      font-size: 0.95rem;
+      font-weight: 650;
+    }
+    .footer ul{list-style:none;}
+    .footer a{
+      color: rgba(255,255,255,0.72);
+      text-decoration:none;
+      transition: color 0.2s ease, transform 0.2s ease;
+      display:inline-flex;
+      align-items:center;
+      gap: 0.55rem;
+      padding: 0.25rem 0;
+      font-weight: 850;
+    }
+    .footer a:hover{ color:#fff; transform: translateX(3px); }
+    .social{
+      display:flex; gap:0.75rem; margin-top: 1rem; flex-wrap: wrap;
+    }
+    .social a{
+      width:44px; height:44px; border-radius: 14px;
+      display:grid; place-items:center;
+      background: rgba(255,255,255,0.08);
+      color:#fff;
+    }
+    .social a:hover{ background: rgba(255,255,255,0.14); transform: translateY(-2px); }
+    .footer-bottom{
+      text-align:center;
+      padding-top: 1.4rem;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.95rem;
+      font-weight: 650;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .mobile-toggle{ display:grid; }
+      .nav-menu{
+        position: fixed;
+        top: 76px;
+        left: 0; right: 0;
+        background: rgba(255,255,255,0.98);
+        border-bottom: 1px solid rgba(2,6,23,0.08);
+        box-shadow: var(--shadow-2);
+        padding: 1.25rem 1rem;
+        display: grid;
+        gap: 0.85rem;
+        transform: translateY(-130%);
+        transition: transform 0.24s ease;
+        text-align:center;
+      }
+      .nav-menu.active{ transform: translateY(0); }
+      .grid{ grid-template-columns: 1fr; }
+      .footer-grid{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px){
+      .container{ width: calc(100% - 2.2rem); }
+      form{ padding: 1.25rem; }
+      .cardHead{ padding: 1.2rem 1.25rem; }
+      .badge{ display:none; }
+    }
+
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
+      outline: 3px solid rgba(14,165,233,0.75);
+      outline-offset: 3px;
+      border-radius: 12px;
+    }
+  </style>
+</head>
 
 <body>
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="index.html" aria-label="WeCare home">
+          <img src="images/logo.png" alt="WeCare Logo" />
+          <span class="name">WeCare CBO</span>
+        </a>
 
+        <ul class="nav-menu" id="navMenu" role="menubar">
+          <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+          <li role="none"><a href="aboutus.html" role="menuitem">About Us</a></li>
+          <li role="none"><a class="active" href="volunteersForm.html" role="menuitem">Volunteer</a></li>
+          <li role="none"><a href="projects.html" role="menuitem">Programs</a></li>
+          <li role="none"><a href="photos.html" role="menuitem">Gallery</a></li>
+          <li role="none"><a href="contactus.html" role="menuitem">Contact</a></li>
+          <li role="none"><a class="donate" href="donation.html" role="menuitem"><i class="fas fa-heart"></i><span>Donate</span></a></li>
+        </ul>
 
-    <nav class="navbar navbar-default navbar-fixed-top " style="background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);     padding-top:15px;padding-bottom:15px;">
-        <div class="container-fluid">
-          <div class="navbar-header" style="height:50px; width:auto;">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>     
-            </button>
-            <a class="navbar-brand" href="#"></a>
-            <img src="images/logo.png" height=50px width=auto style="border-radius: 50%;">
-          </div>
-          <div class="collapse navbar-collapse navbar-right" id="myNavbar" >
-          <ul class="nav navbar-nav navbar-right ">
-            <li><a href="index.html" style="color:white; font-family: 'Quicksand', sans-serif;font-size: 18px; font-weight: 250; padding: 15px 15px 15px 15px;"><b>HOME</b></a></li>
-            <li><a href="aboutus.html" style="color:white; font-family: 'Quicksand', sans-serif;font-size: 18px; font-weight: 250; padding: 15px 15px 15px 15px;"><b>ABOUT US</b></a></li>
-            <li><a href="volunteers.html" style="color:white; font-family: 'Quicksand', sans-serif;font-size: 18px; font-weight: 250; padding: 15px 15px 15px 15px;"><b>VOLUNTEERS</b></a></li>
-      
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:white;  font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 15px 15px 15px 15px;"><b>GALLERY</b><span class="caret"></span></a>
-              <ul class="dropdown-menu" style="background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%); ">
-                <li><a href="photos.html" style="color:white; background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);  font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 5px 50px 5px 50px;"><b>PHOTOS</b></a></li>
-                <li><a href="videos.html" style="color:white; background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);  font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 5px 50px 5px 50px;"><b>VIDEOS</b></a></li>
-              </ul>
-            </li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:white;  font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 15px 15px 15px 15px;"><b>WHAT WE DO?</b><span class="caret"></span></a>
-                <ul class="dropdown-menu" style="background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%); ">
-                  <li><a href="events.html" style="color:white; background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);  font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 5px 50px 5px 50px;"><b>EVENTS</b></a></li>
-                  <li><a href="projects.html" style="color:white; background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);  font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 5px 50px 5px 50px;"><b>PROJECTS</b></a></li>
-                </ul>
-              </li>
-            <li><a href="contactus.html" style="color:white; font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 15px 15px 15px 15px;"><b>CONTACT US</b></a></li>
-            <li><a href="donation.html" style="color:white; font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 15px 35px 15px 15px;"><b>DONATE</b></a></li>
-          </ul>
-          </div>
-        </div>
-      </nav>
-      
-      <br><br><br><br> 
-
-
-<h1>VOLUNTEER FORM</h1>
-
-  <form action="javascript:sendmail()" method="post">
-
-    <div class="contentform">
-      <div id="sendmessage"> Your message has been sent successfully. Thank you. </div>
-
-
-      <div class="leftcontact">
-        
-
-        <div class="form-group">
-          <p>Name <span>*</span></p>
-          <span class="icon-case"><i class="fa fa-user" style="font-size: 25px; padding-top: 20%;"></i></span>
-          <input type="text" name="prenom" id="Name" data-rule="required"
-            data-msg="Vérifiez votre saisie sur les champs : Le champ 'Prénom' doit être renseigné." />
-          <div class="validation"></div>
-        </div>
-
-        <div class="form-group">
-          <p>E-mail <span>*</span></p>
-          <span class="icon-case"><i class="fas fa-envelope" style="font-size: 25px; padding-top: 20%;"></i></span>
-          <input type="email" name="email" id="email" data-rule="email"
-            data-msg="Vérifiez votre saisie sur les champs : Le champ 'E-mail' est obligatoire." />
-          <div class="validation"></div>
-        </div>
-
-
-        <div class="form-group">
-          <p>Address <span>*</span></p>
-          <span class="icon-case"><i class="fa fa-location-arrow" style="font-size: 25px; padding-top: 20%;"></i></span>
-          <input type="text" name="adresse" id="address" data-rule="required"
-            data-msg="Vérifiez votre saisie sur les champs : Le champ 'Adresse' doit être renseigné." />
-          <div class="validation"></div>
-        </div>
-
-        <div class="form-group">
-          <p>Tell us about Yourself..<span>*</span></p>
-          <span class="icon-case"><i class="fas fa-user-edit" style="font-size: 25px; padding-top: 20%;"></i></span>
-          <textarea type="text" name="postal" id="data1" data-rule="required"></textarea>
-          <div class="validation"></div>
-        </div>
-
-
-
-      </div>
-
-      <div class="rightcontact">
-
-
-        <div class="form-group">
-          <p>Phone number <span>*</span></p>
-          <span class="icon-case"><i class="fa fa-phone" style="font-size: 25px; padding-top: 20%;"></i></span>
-          <input type="text" name="phone" id="number" data-rule="maxlen:10"
-            data-msg="Vérifiez votre saisie sur les champs : Le champ 'Téléphone' doit être renseigné. Minimum 10 chiffres" />
-          <div class="validation"></div>
-        </div>
-
-
-        <div class="form-group">
-          <p>What skills can you bring to SGJSS?<span>*</span></p>
-          <span class="icon-case"><i class="fas fa-comment" style="font-size: 25px; padding-top: 20%;"></i></span>
-          <textarea type="text" name="sujet" id="skills" data-rule="required"></textarea>
-          <div class="validation"></div>
-        </div>
-
-        <div class="form-group">
-          <p>What You Can do for us?<span>*</span></p>
-          <span class="icon-case"><i class="fas fa-comments" style="font-size: 25px; padding-top: 20%;"></i></span>
-          <textarea id="data2" name="message" rows="14" data-rule="required"></textarea>
-          <div class="validation"></div>
-        </div>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
       </div>
     </div>
-    <button type="submit" class="bouton-contact" style="background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);">Send</button>
+  </nav>
 
-   
-  </form>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="inner">
+        <h1>Volunteer With WeCare</h1>
+        <p>Give your time, skills, and heart. Fill the form below and we’ll reach out with next steps.</p>
+      </div>
+    </div>
+  </header>
 
-  <script
-  src="https://code.jquery.com/jquery-2.2.4.min.js"
-  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-  crossorigin="anonymous"></script>
-<script src="https://smtpjs.com/v3/smtp.js"></script>
- 
-<script>  
+  <section class="section">
+    <div class="container">
+      <div class="card">
+        <div class="cardHead">
+          <div>
+            <h2>Volunteer Application</h2>
+            <p>Tell us who you are and how you’d like to support our work.</p>
+          </div>
+          <div class="badge"><i class="fas fa-shield-heart"></i> Safe & confidential</div>
+        </div>
 
-     function sendmail(){
-    
-			var name = $('#Name').val();
-			var email = $('#email').val();
-			var number = $('#number').val();
-            var skills = $('#skills').val();
-            var address = $('#address').val();
-            var data1 = $('#data1').val();
-            var data2 = $('#data2').val();
+        <form id="volunteerForm" novalidate>
+          <div class="alert success" id="successMsg">
+            <i class="fas fa-circle-check"></i> Submitted! Thank you for volunteering. We’ll contact you soon.
+          </div>
+          <div class="alert error" id="errorMsg">
+            <i class="fas fa-triangle-exclamation"></i> Something went wrong while sending. Please try again.
+          </div>
 
+          <!-- Honeypot anti-spam (keep hidden) -->
+          <div style="position:absolute; left:-9999px; top:-9999px;" aria-hidden="true">
+            <label>Website</label>
+            <input type="text" id="website" tabindex="-1" autocomplete="off" />
+          </div>
 
-			var Body='Name: '+' '+name+'<br>Email: '+' '+email+'<br>Contact No.: '+' '+number+'<br>Skills: '+' '+skills+'<br>Address: '+' '+address+'<br>Tell us About Yourself: '+' '+data1+'<br>What you can do for us?: '+' '+data2;
-
-			Email.send({
-        SecureToken:"fbf31702-bb7f-4a4e-9c1c-4ccf17ee777f",
-				To: 'maheshdbabar9340@gmail.com',
-				From: email,
-				Subject: "New message on Volunteers from "+name,
-				Body: Body
-			}).then(
-				message =>{
-					
-					if(message=='OK'){
-					alert('Your form has been submitted. Thank you for contacting us.');
-					}
-					else{
-						console.error (message);
-						alert('There is error at sending message. ')
-						
-					}
-
-				}
-			);
-
-
-
-		}
-
- </script>
-
-
-    <!-- Site footer -->
-    <footer class="site-footer">
-      <div class="container">
-
-          <div class="grid-container">
-              <div class="grid-item">
-
-                  <img src="images/logo.png" class="logo-img" style="border-radius: 50%;">
-
+          <div class="grid">
+            <div class="field">
+              <label for="fullName">Full Name <span class="req">*</span></label>
+              <div class="input">
+                <i class="fas fa-user"></i>
+                <input id="fullName" name="fullName" type="text" placeholder="e.g. Kennedy Otieno" required />
               </div>
-
-              <div class="grid-item inner-grid-container">
-
-                <div class="grid-item"><a href="index.html">Home</a></div>
-                <div class="grid-item"><a href="projects.html">Our Projects</a></div>
-                <div class="grid-item"><a href="http://sgjss.co.in/">Sgjss.co.in</a></div><br>
-                <div class="grid-item"><a href="privacy.html">Privacy Policy</a></div>
-                <div class="grid-item"><a href="volunteersForm.html">Join Us</a></div>
-                <div class="grid-item"><a href="contactus.html">Contact Us</a></div>
+              <div class="hint">Use your official name.</div>
             </div>
 
-               <div class="grid-item">
-              <div class = "social-buttons" style="float:left;">
-                  <a href= "https://www.instagram.com/sgjss_29/" target="_blank"><i class="fab fa-instagram circle-icon"></i></a>
-                  <a href= "https://www.facebook.com/pg/shreegurujambheswarsevasansthan/photos/?ref=page_internal" target="_blank"><i class="fab fa-facebook circle-icon"></i></a>
-                  <a href= "https://api.whatsapp.com/send/?phone=919414334192&text&app_absent=0" target="_blank"><i class="fab fa-whatsapp circle-icon"></i></a><br>
-                  <a href= "https://www.linkedin.com/in/shree-guru-jambeshwar-sewa-sansthan-1106651b3/" target="_blank"><i class="fab fa-linkedin-in circle-icon"></i></a>
-                  <a href= "https://twitter.com/guru_sansthan" target="_blank"><i class="fab fa-twitter circle-icon"></i></a>
+            <div class="field">
+              <label for="email">Email <span class="req">*</span></label>
+              <div class="input">
+                <i class="fas fa-envelope"></i>
+                <input id="email" name="email" type="email" placeholder="e.g. you@example.com" required />
               </div>
-          </div>  
+              <div class="hint">We’ll reply to this email.</div>
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone Number <span class="req">*</span></label>
+              <div class="input">
+                <i class="fas fa-phone"></i>
+                <input id="phone" name="phone" type="tel" placeholder="e.g. +254 7XX XXX XXX" required
+                       pattern="^[0-9+()\\s-]{7,20}$" />
+              </div>
+              <div class="hint">Include country code if possible.</div>
+            </div>
+
+            <div class="field">
+              <label for="location">Location / Address <span class="req">*</span></label>
+              <div class="input">
+                <i class="fas fa-location-dot"></i>
+                <input id="location" name="location" type="text" placeholder="e.g. Kisumu, Kenya" required />
+              </div>
+              <div class="hint">City, county, and country.</div>
+            </div>
+
+            <div class="field">
+              <label for="interest">Area You Want to Volunteer <span class="req">*</span></label>
+              <div class="input">
+                <i class="fas fa-hand-holding-heart"></i>
+                <select id="interest" name="interest" required>
+                  <option value="" selected disabled>Choose one</option>
+                  <option>Community Forums</option>
+                  <option>Training & Facilitation</option>
+                  <option>Monitoring & Evaluation</option>
+                  <option>Communications & Media</option>
+                  <option>Fundraising & Partnerships</option>
+                  <option>Administration</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="hint">Pick what fits you best.</div>
+            </div>
+
+            <div class="field">
+              <label for="availability">Availability <span class="req">*</span></label>
+              <div class="input">
+                <i class="fas fa-calendar-check"></i>
+                <select id="availability" name="availability" required>
+                  <option value="" selected disabled>Choose one</option>
+                  <option>Weekdays</option>
+                  <option>Weekends</option>
+                  <option>Flexible</option>
+                  <option>Remote only</option>
+                </select>
+              </div>
+              <div class="hint">We’ll match you to the right schedule.</div>
+            </div>
+
+            <div class="field full">
+              <label for="about">Tell Us About Yourself <span class="req">*</span></label>
+              <textarea id="about" name="about" placeholder="A short intro: your background, motivation, and experience." required></textarea>
+              <div class="hint">Keep it real and simple. 3 to 6 lines is enough.</div>
+            </div>
+
+            <div class="field full">
+              <label for="skills">Skills You Bring <span class="req">*</span></label>
+              <textarea id="skills" name="skills" placeholder="e.g. facilitation, data collection, writing, photography, finance, community mobilization..." required></textarea>
+              <div class="hint">List skills, tools, languages, or certifications.</div>
+            </div>
+
+            <div class="field full">
+              <label for="support">What Can You Do for WeCare? <span class="req">*</span></label>
+              <textarea id="support" name="support" placeholder="Tell us what you can help with and the impact you want to create." required></textarea>
+              <div class="hint">Be specific: what, where, and how often.</div>
+            </div>
           </div>
-          <hr>
 
-          <p style="text-align: center;">Copyright © 2021 SGJSS | All rights reserved</p>
-
+          <div class="actions">
+            <div class="note">
+              By submitting, you agree that WeCare may contact you about volunteering opportunities.
+            </div>
+            <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+              <button class="btn ghost" type="reset" id="resetBtn">
+                <i class="fas fa-rotate-left"></i> Reset
+              </button>
+              <button class="btn primary" type="submit" id="submitBtn">
+                <i class="fas fa-paper-plane"></i> Submit Application
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-mini">
+            <img src="images/logo.png" alt="WeCare Logo" loading="lazy" />
+            <div>
+              <h4 style="margin:0;">WeCare CBO</h4>
+              <p style="margin:0; color:rgba(255,255,255,0.72);">Transparent governance, powered by citizens.</p>
+            </div>
+          </div>
+
+          <p>WeCare strengthens citizen participation, social accountability, and policy advocacy for transparent governance.</p>
+
+          <div class="social" aria-label="Social links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html"><i class="fas fa-angle-right"></i> Home</a></li>
+            <li><a href="aboutus.html"><i class="fas fa-angle-right"></i> About Us</a></li>
+            <li><a href="projects.html"><i class="fas fa-angle-right"></i> Programs</a></li>
+            <li><a href="impact.html"><i class="fas fa-angle-right"></i> Impact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Get Involved</h4>
+          <ul>
+            <li><a href="volunteersForm.html"><i class="fas fa-angle-right"></i> Volunteer</a></li>
+            <li><a href="donation.html"><i class="fas fa-angle-right"></i> Donate</a></li>
+            <li><a href="contactus.html"><i class="fas fa-angle-right"></i> Contact</a></li>
+            <li><a href="privacy.html"><i class="fas fa-angle-right"></i> Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><i class="fas fa-envelope"></i> wecare518@gmail.com</li>
+            <li><i class="fas fa-phone"></i> +254 797 680921 / +254 792 594021</li>
+            <li><i class="fas fa-map-marker-alt"></i> Kisumu, Kenya</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 WeCare CBO | All rights reserved</p>
+      </div>
+    </div>
   </footer>
 
+  <!-- SMTPJS -->
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+  <script>
+    // ====== CONFIG: change these two lines ======
+    const TO_EMAIL = "wecare518@gmail.com"; // where submissions go
+    const SECURE_TOKEN = "REPLACE_WITH_YOUR_SMTPJS_SECURE_TOKEN"; // paste your SMTPJS SecureToken
+    // ===========================================
+
+    // Navbar scroll + mobile nav
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 40) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    }, {passive:true});
+
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+    function toggleMenu(){
+      const isActive = navMenu.classList.toggle('active');
+      mobileToggle.setAttribute('aria-expanded', isActive);
+      const icon = mobileToggle.querySelector('i');
+      if(icon){
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+      }
+    }
+    mobileToggle.addEventListener('click', toggleMenu);
+    document.addEventListener('click', (e) => {
+      if(!navMenu.contains(e.target) && !mobileToggle.contains(e.target) && navMenu.classList.contains('active')){
+        toggleMenu();
+      }
+    });
+
+    // Form send
+    const form = document.getElementById("volunteerForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const successMsg = document.getElementById("successMsg");
+    const errorMsg = document.getElementById("errorMsg");
+
+    function show(el){
+      el.style.display = "block";
+      el.scrollIntoView({behavior:"smooth", block:"start"});
+    }
+    function hide(el){ el.style.display = "none"; }
+
+    function esc(s){
+      return String(s || "").replace(/[&<>"']/g, (m) => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+      }[m]));
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      hide(successMsg); hide(errorMsg);
+
+      // Honeypot
+      const website = document.getElementById("website").value.trim();
+      if(website) return; // bot detected
+
+      // Browser validation
+      if(!form.checkValidity()){
+        form.reportValidity();
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Sending...`;
+
+      const fullName = document.getElementById("fullName").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const location = document.getElementById("location").value.trim();
+      const interest = document.getElementById("interest").value;
+      const availability = document.getElementById("availability").value;
+      const about = document.getElementById("about").value.trim();
+      const skills = document.getElementById("skills").value.trim();
+      const support = document.getElementById("support").value.trim();
+
+      const subject = `New Volunteer Application: ${fullName}`;
+      const body = `
+        <div style="font-family:Arial, sans-serif; line-height:1.6;">
+          <h2 style="margin:0 0 10px;">New Volunteer Application</h2>
+          <p style="margin:0 0 10px; color:#333;">
+            <b>Name:</b> ${esc(fullName)}<br/>
+            <b>Email:</b> ${esc(email)}<br/>
+            <b>Phone:</b> ${esc(phone)}<br/>
+            <b>Location:</b> ${esc(location)}<br/>
+            <b>Interest:</b> ${esc(interest)}<br/>
+            <b>Availability:</b> ${esc(availability)}
+          </p>
+
+          <h3 style="margin:16px 0 8px;">About</h3>
+          <p style="margin:0; color:#333;">${esc(about).replace(/\n/g,"<br/>")}</p>
+
+          <h3 style="margin:16px 0 8px;">Skills</h3>
+          <p style="margin:0; color:#333;">${esc(skills).replace(/\n/g,"<br/>")}</p>
+
+          <h3 style="margin:16px 0 8px;">Support</h3>
+          <p style="margin:0; color:#333;">${esc(support).replace(/\n/g,"<br/>")}</p>
+
+          <hr style="margin:18px 0; border:none; border-top:1px solid #eee;" />
+          <p style="margin:0; color:#777; font-size:12px;">
+            Sent from WeCare CBO volunteer form.
+          </p>
+        </div>
+      `;
+
+      try{
+        if(!SECURE_TOKEN || SECURE_TOKEN.includes("REPLACE_WITH")){
+          throw new Error("Missing SMTPJS SecureToken");
+        }
+
+        const result = await Email.send({
+          SecureToken: SECURE_TOKEN,
+          To: TO_EMAIL,
+          From: TO_EMAIL, // safer for deliverability than using the user's email as From
+          ReplyFrom: email, // user email becomes reply-to
+          Subject: subject,
+          Body: body
+        });
+
+        if(String(result).toUpperCase() === "OK"){
+          show(successMsg);
+          form.reset();
+        } else {
+          console.error("SMTPJS:", result);
+          show(errorMsg);
+        }
+      }catch(err){
+        console.error(err);
+        show(errorMsg);
+      }finally{
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `<i class="fas fa-paper-plane"></i> Submit Application`;
+      }
+    });
+  </script>
 </body>
 </html>

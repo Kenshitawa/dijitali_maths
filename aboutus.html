@@ -1,688 +1,968 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Youth for Children - ABOUT US</title>
-  <link rel="shortcut icon" href="images/logo.png">
-  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WeCare CBO | About Us</title>
+  <meta name="description" content="WeCare CBO strengthens citizen participation, social accountability, and policy advocacy for transparent governance in Kenya." />
+  <link rel="icon" href="images/logo.png" />
+
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet" />
+
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- External CSS -->
-  <link rel="stylesheet" href="style.css">
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+
+    :root{
+      --primary:#0EA5E9;
+      --secondary:#6366F1;
+      --accent:#F59E0B;
+
+      --text:#0F172A;
+      --muted:#334155;
+      --subtle:#64748B;
+
+      --bg:#FFFFFF;
+      --soft:#F8FAFC;
+
+      --border: rgba(2, 6, 23, 0.08);
+      --shadow-1: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-2: 0 10px 30px rgba(0,0,0,0.12);
+      --shadow-3: 0 18px 50px rgba(0,0,0,0.16);
+
+      --grad-brand: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      --grad-hero: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+
+      --radius: 20px;
+      --radius-sm: 14px;
     }
 
-    :root {
-      --primary-color: #009ffd;
-      --secondary-color: #2a2a72;
-      --text-dark: #1a1a2e;
-      --text-light: #6b7280;
-      --bg-light: #f9fafb;
-      --white: #ffffff;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      color: var(--text-dark);
-      line-height: 1.6;
+    body{
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.65;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Navigation - Same as index */
-    .navbar {
+    .container{
+      width:min(1200px, calc(100% - 3rem));
+      margin:0 auto;
+    }
+
+    /* NAV */
+    .navbar{
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
       z-index: 1000;
-      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(2, 6, 23, 0.06);
+      transition: box-shadow 0.25s ease, background 0.25s ease;
     }
-
-    .nav-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .navbar.scrolled{
+      background: rgba(255,255,255,0.94);
+      box-shadow: var(--shadow-1);
     }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 0.85rem 0;
       gap: 1rem;
     }
-
-    .logo-container img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:0.85rem;
+      text-decoration:none;
+      min-width: 220px;
     }
-
-    .logo-text {
-      font-weight: 700;
-      font-size: 1.3rem;
-      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    .brand img{
+      height:46px;
+      width:auto;
+      border-radius:12px;
+      background:#fff;
+      padding:6px;
+      box-shadow: var(--shadow-1);
+      object-fit: contain;
+    }
+    .brand .name{
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 900;
+      font-size: 1.12rem;
+      letter-spacing: -0.4px;
+      background: var(--grad-brand);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
+      white-space: nowrap;
     }
 
-    .nav-menu {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-      align-items: center;
+    .nav-menu{
+      list-style:none;
+      display:flex;
+      gap: 1.8rem;
+      align-items:center;
     }
-
-    .nav-menu a {
-      text-decoration: none;
-      color: var(--text-dark);
-      font-weight: 500;
-      transition: color 0.3s ease;
+    .nav-menu a{
+      text-decoration:none;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 0.35rem 0;
+      transition: color 0.2s ease;
       position: relative;
     }
-
-    .nav-menu a:hover {
-      color: var(--primary-color);
+    .nav-menu a:hover{ color: var(--primary); }
+    .nav-menu a.active{
+      color: var(--primary);
+    }
+    .nav-menu a.active::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:-6px;
+      height:2px;
+      border-radius:999px;
+      background: var(--grad-brand);
     }
 
-    .nav-menu a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--primary-color);
-      transition: width 0.3s ease;
+    .donate{
+      display:inline-flex;
+      align-items:center;
+      gap:0.55rem;
+      padding:0.65rem 1.25rem;
+      border-radius:999px;
+      background: var(--grad-brand);
+      color:#fff !important;
+      box-shadow: 0 10px 24px rgba(14,165,233,0.25);
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      white-space: nowrap;
     }
-
-    .nav-menu a:hover::after {
-      width: 100%;
-    }
-
-    .donate-btn {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      color: white !important;
-      padding: 0.7rem 1.5rem;
-      border-radius: 50px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .donate-btn::after {
-      display: none;
-    }
-
-    .donate-btn:hover {
+    .donate:hover{
       transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(0, 159, 253, 0.3);
+      box-shadow: 0 16px 34px rgba(14,165,233,0.32);
     }
 
-    .mobile-toggle {
-      display: none;
-      font-size: 1.5rem;
-      cursor: pointer;
+    .mobile-toggle{
+      display:none;
+      width:44px;height:44px;
+      border-radius:14px;
+      border:1px solid rgba(2,6,23,0.08);
+      background: rgba(255,255,255,0.75);
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
+      color: var(--text);
     }
 
-    /* Page Header */
-    .page-header {
-      margin-top: 80px;
-      padding: 5rem 2rem 3rem;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      text-align: center;
-      color: white;
+    /* HERO */
+    .hero{
+      padding-top: 86px;
+      min-height: 58vh;
+      background: var(--grad-hero);
       position: relative;
       overflow: hidden;
-    }
-
-    .page-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,122.7C1248,107,1344,85,1392,74.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-      background-size: cover;
-    }
-
-    .page-header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .page-header p {
-      font-size: 1.2rem;
-      opacity: 0.95;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Our Story Section */
-    .story-section {
-      padding: 5rem 2rem;
-      background: white;
-    }
-
-    .story-container {
-      max-width: 1400px;
-      margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
+      place-items: center;
+      text-align:center;
+    }
+    .hero::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 18% 40%, rgba(255,255,255,0.14), transparent 55%),
+        radial-gradient(circle at 82% 70%, rgba(255,255,255,0.14), transparent 55%);
+      pointer-events:none;
+    }
+    .hero .inner{
+      position: relative;
+      z-index: 1;
+      padding: 3rem 0;
+      max-width: 960px;
+    }
+    .hero h1{
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -1px;
+      line-height: 1.05;
+      font-size: clamp(2.1rem, 4vw, 3.4rem);
+      margin-bottom: 0.85rem;
+    }
+    .hero p{
+      color: rgba(255,255,255,0.92);
+      font-size: clamp(1rem, 1.4vw, 1.15rem);
+      line-height: 1.85;
+      margin: 0 auto;
+      max-width: 78ch;
+    }
+    .badges{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap: 0.6rem;
+      margin-top: 1.25rem;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:0.5rem;
+      padding: 0.6rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      color: rgba(255,255,255,0.96);
+      font-weight: 900;
+      font-size: 0.9rem;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
-    .story-image img {
-      width: 100%;
-      border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    /* SECTIONS */
+    .section{
+      padding: clamp(3.5rem, 5vw, 6rem) 0;
+      background: var(--soft);
+    }
+    .section.white{ background: #fff; }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 1.35rem;
+      align-items: start;
     }
 
-    .story-content h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-      color: var(--text-dark);
+    .card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-1);
+      padding: 2rem;
     }
 
-    .story-content h4 {
-      color: var(--primary-color);
-      font-weight: 600;
-      margin-bottom: 1rem;
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:0.55rem;
+      font-weight: 900;
+      letter-spacing: 0.6px;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 0.9rem;
+      font-size: 0.82rem;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
     }
-
-    .story-content p {
-      color: var(--text-light);
-      margin-bottom: 1.5rem;
-      line-height: 1.8;
-      font-size: 1rem;
+    .card h2{
+      font-family:"Space Grotesk", sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.6px;
+      font-size: 1.85rem;
+      margin-bottom: 0.6rem;
     }
-
-    /* VMV Section */
-    .vmv-section {
-      padding: 5rem 2rem;
-      background: var(--bg-light);
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .section-title h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      color: var(--text-dark);
-    }
-
-    .vmv-grid {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
-    }
-
-    .vmv-card {
-      background: white;
-      padding: 3rem;
-      border-radius: 20px;
-      text-align: center;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    }
-
-    .vmv-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    }
-
-    .vmv-icon {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto 1.5rem;
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      color: white;
-      transition: all 0.3s ease;
-    }
-
-    .vmv-card:hover .vmv-icon {
-      transform: scale(1.1) rotate(5deg);
-    }
-
-    .vmv-card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: var(--text-dark);
-    }
-
-    .vmv-card p {
-      color: var(--text-light);
-      line-height: 1.8;
-    }
-
-    /* Core Values Section */
-    .values-section {
-      padding: 5rem 2rem;
-      background: white;
-    }
-
-    .values-grid {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-
-    .value-card {
-      background: var(--bg-light);
-      padding: 2.5rem;
-      border-radius: 15px;
-      text-align: center;
-      transition: all 0.3s ease;
-      border: 2px solid transparent;
-    }
-
-    .value-card:hover {
-      border-color: var(--primary-color);
-      transform: translateY(-5px);
-      background: white;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
-
-    .value-icon {
-      width: 60px;
-      height: 60px;
-      margin: 0 auto 1rem;
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: white;
-    }
-
-    .value-card h4 {
-      font-size: 1.1rem;
-      margin-bottom: 0.8rem;
-      color: var(--text-dark);
-    }
-
-    .value-card p {
-      color: var(--text-light);
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-
-    /* Footer - Same as index */
-    .footer {
-      background: var(--text-dark);
-      color: white;
-      padding: 4rem 2rem 2rem;
-    }
-
-    .footer-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 3rem;
-      margin-bottom: 3rem;
-    }
-
-    .footer-about img {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
+    .card p{
+      color: var(--subtle);
+      line-height: 1.9;
+      font-size: 1.03rem;
       margin-bottom: 1rem;
     }
 
-    .footer-about p {
-      color: rgba(255, 255, 255, 0.7);
-      margin-top: 1rem;
-      line-height: 1.8;
+    .media{
+      border-radius: var(--radius);
+      overflow:hidden;
+      border: 1px solid rgba(2,6,23,0.08);
+      box-shadow: var(--shadow-2);
+      background: rgba(2,6,23,0.02);
+      min-height: 420px;
+      display:grid;
+      place-items:center;
+      position: relative;
+    }
+    .media img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+    }
+    .media .overlay{
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.55));
+      pointer-events:none;
+    }
+    .media .caption{
+      position:absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      color: rgba(255,255,255,0.96);
+      font-weight: 900;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 16px;
+      padding: 0.9rem 1rem;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
-    .footer h4 {
-      margin-bottom: 1.5rem;
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.25rem;
+      padding: 1.25rem;
+      background: rgba(2,6,23,0.02);
+      border: 1px solid rgba(2,6,23,0.06);
+      border-radius: 18px;
+    }
+    .stat{
+      text-align:center;
+      padding: 0.85rem 0.75rem;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid rgba(2,6,23,0.06);
+    }
+    .stat .n{
+      font-family:"Space Grotesk", sans-serif;
+      font-weight: 900;
+      font-size: 1.65rem;
+      letter-spacing: -0.6px;
+      background: var(--grad-brand);
+      -webkit-background-clip: text;
+      background-clip:text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.2rem;
+    }
+    .stat .t{
+      color: var(--subtle);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom: 2.25rem;
+    }
+    .section-title h2{
+      font-family:"Space Grotesk", sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.7px;
+      font-size: clamp(1.8rem, 3vw, 2.55rem);
+      margin-bottom: 0.6rem;
+    }
+    .section-title p{
+      color: var(--subtle);
+      max-width: 78ch;
+      margin: 0 auto;
+      line-height: 1.85;
+      font-size: 1.05rem;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .mini{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.55rem;
+      box-shadow: var(--shadow-1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow:hidden;
+    }
+    .mini:hover{
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-2);
+    }
+    .mini .icon{
+      width: 54px; height: 54px;
+      border-radius: 16px;
+      background: var(--grad-brand);
+      color:#fff;
+      display:grid;
+      place-items:center;
+      font-size: 1.2rem;
+      box-shadow: 0 12px 28px rgba(14,165,233,0.18);
+      margin-bottom: 0.85rem;
+    }
+    .mini h3{
+      font-family:"Space Grotesk", sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.4px;
+      margin-bottom: 0.35rem;
       font-size: 1.2rem;
     }
-
-    .footer ul {
-      list-style: none;
+    .mini p{
+      color: var(--subtle);
+      font-size: 0.98rem;
+      line-height: 1.75;
     }
 
-    .footer ul li {
-      margin-bottom: 0.8rem;
-    }
-
-    .footer ul li a {
-      color: rgba(255, 255, 255, 0.7);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .footer ul li a:hover {
-      color: var(--primary-color);
-    }
-
-    .social-links {
-      display: flex;
+    .values{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 1rem;
-      margin-top: 1rem;
     }
-
-    .social-links a {
-      width: 40px;
-      height: 40px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      transition: all 0.3s ease;
+    .value{
+      background: rgba(2,6,23,0.02);
+      border: 1px solid rgba(2,6,23,0.06);
+      border-radius: 18px;
+      padding: 1.35rem;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     }
-
-    .social-links a:hover {
-      background: var(--primary-color);
+    .value:hover{
       transform: translateY(-3px);
+      background: #fff;
+      border-color: rgba(14,165,233,0.18);
+      box-shadow: var(--shadow-1);
+    }
+    .value .top{
+      display:flex;
+      align-items:center;
+      gap: 0.7rem;
+      margin-bottom: 0.65rem;
+    }
+    .value i{
+      width: 42px;height:42px;
+      border-radius: 14px;
+      background: var(--grad-brand);
+      color:#fff;
+      display:grid;
+      place-items:center;
+    }
+    .value strong{
+      font-family:"Space Grotesk", sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.3px;
+      font-size: 1.05rem;
+    }
+    .value p{
+      color: var(--subtle);
+      font-size: 0.95rem;
+      line-height: 1.7;
     }
 
-    .footer-bottom {
-      text-align: center;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      color: rgba(255, 255, 255, 0.5);
+    .cta{
+      background: var(--grad-brand);
+      color:#fff;
+      border-radius: var(--radius);
+      padding: 2.25rem;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 1rem;
+      box-shadow: 0 18px 50px rgba(14,165,233,0.18);
+      border: 1px solid rgba(255,255,255,0.16);
     }
+    .cta h3{
+      font-family:"Space Grotesk", sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      font-size: 1.6rem;
+      margin-bottom: 0.35rem;
+    }
+    .cta p{
+      color: rgba(255,255,255,0.92);
+      line-height: 1.8;
+      max-width: 70ch;
+    }
+    .cta-actions{
+      display:flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 0.65rem;
+      padding: 0.9rem 1.15rem;
+      border-radius: 16px;
+      font-weight: 900;
+      text-decoration:none;
+      border: 1px solid rgba(255,255,255,0.22);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn.white{
+      background:#fff;
+      color: var(--primary);
+      border-color: rgba(255,255,255,0.0);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.14);
+    }
+    .btn.white:hover{ transform: translateY(-2px); }
+    .btn.glass{
+      background: rgba(255,255,255,0.14);
+      color:#fff;
+    }
+    .btn.glass:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.18);
+    }
+
+    /* FOOTER */
+    .footer{
+      background:#0B1220;
+      color:#fff;
+      padding: 4.5rem 0 2rem;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
+      padding-bottom: 2.2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+    .footer .brand-mini{
+      display:flex;
+      align-items:center;
+      gap:0.85rem;
+      margin-bottom: 1rem;
+    }
+    .footer .brand-mini img{
+      height:56px;
+      width:auto;
+      background:#fff;
+      padding:8px;
+      border-radius: 14px;
+      object-fit: contain;
+    }
+    .footer h4{
+      font-family:"Space Grotesk", sans-serif;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      letter-spacing: -0.2px;
+    }
+    .footer p, .footer li{
+      color: rgba(255,255,255,0.72);
+      line-height: 1.85;
+      font-size: 0.95rem;
+    }
+    .footer ul{list-style:none;}
+    .footer a{
+      color: rgba(255,255,255,0.72);
+      text-decoration:none;
+      transition: color 0.2s ease, transform 0.2s ease;
+      display:inline-flex;
+      align-items:center;
+      gap: 0.55rem;
+      padding: 0.25rem 0;
+    }
+    .footer a:hover{ color:#fff; transform: translateX(3px); }
+    .social{
+      display:flex;
+      gap:0.75rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .social a{
+      width:44px; height:44px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
+      background: rgba(255,255,255,0.08);
+      color:#fff;
+    }
+    .social a:hover{ background: rgba(255,255,255,0.14); transform: translateY(-2px); }
+    .footer-bottom{
+      text-align:center;
+      padding-top: 1.6rem;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.95rem;
+    }
+
+    /* WhatsApp Floating */
+    .wa-fab{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 1200;
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      background: #25D366;
+      color: #fff;
+      display: grid;
+      place-items: center;
+      text-decoration: none;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+      transition: transform 0.2s ease;
+    }
+    .wa-fab:hover{ transform: translateY(-2px); }
 
     /* Responsive */
-    @media (max-width: 968px) {
-      .nav-menu {
+    @media (max-width: 980px){
+      .mobile-toggle{ display:inline-flex; }
+      .nav-menu{
         position: fixed;
-        left: -100%;
-        top: 80px;
-        flex-direction: column;
-        background: white;
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-        padding: 2rem 0;
-      }
-
-      .nav-menu.active {
+        top: 76px;
         left: 0;
+        right: 0;
+        background: rgba(255,255,255,0.98);
+        border-bottom: 1px solid rgba(2,6,23,0.08);
+        box-shadow: var(--shadow-2);
+        padding: 1.25rem 1rem;
+        display: grid;
+        gap: 0.85rem;
+        transform: translateY(-130%);
+        transition: transform 0.24s ease;
       }
+      .nav-menu.active{ transform: translateY(0); }
+      .nav-menu li{ text-align:center; }
+      .grid{ grid-template-columns: 1fr; }
+      .cards{ grid-template-columns: 1fr; }
+      .values{ grid-template-columns: 1fr; }
+      .stats{ grid-template-columns: 1fr; }
+      .footer-grid{ grid-template-columns: 1fr; }
+      .cta{ flex-direction: column; align-items:flex-start; }
+      .cta-actions{ justify-content:flex-start; }
+    }
 
-      .mobile-toggle {
-        display: block;
-      }
+    a:focus-visible, button:focus-visible{
+      outline: 3px solid rgba(14,165,233,0.8);
+      outline-offset: 3px;
+      border-radius: 10px;
+    }
 
-      .story-container {
-        grid-template-columns: 1fr;
-      }
-
-      .page-header h1 {
-        font-size: 2.5rem;
-      }
-
-      .footer-container {
-        grid-template-columns: 1fr;
-      }
-
-      .vmv-grid,
-      .values-grid {
-        grid-template-columns: 1fr;
-      }
+    @media (prefers-reduced-motion: reduce){
+      *{ transition:none !important; scroll-behavior:auto !important; }
     }
   </style>
 </head>
+
 <body>
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <div class="logo-container">
-        <img src="images/logo.png" alt="YFC Logo">
-        <span class="logo-text">Youth for Children</span>
-      </div>
-      <ul class="nav-menu" id="navMenu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="aboutus.html">About Us</a></li>
-        <li><a href="volunteers.html">Volunteers</a></li>
-        <li><a href="projects.html">Programs</a></li>
-        <li><a href="contactus.html">Contact</a></li>
-        <li><a href="donation.html" class="donate-btn">Donate</a></li>
-      </ul>
-      <div class="mobile-toggle" id="mobileToggle">
-        <i class="fas fa-bars"></i>
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="index.html" aria-label="WeCare CBO home">
+          <img src="images/logo.png" alt="WeCare CBO Logo" loading="eager" />
+        </a>
+
+        <ul class="nav-menu" id="navMenu" role="menubar">
+          <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+          <li role="none"><a class="active" href="aboutus.html" role="menuitem">About Us</a></li>
+          <li role="none"><a href="projects.html" role="menuitem">Programs</a></li>
+          <li role="none"><a href="volunteers.html" role="menuitem">Get Involved</a></li>
+          <li role="none"><a href="photos.html" role="menuitem">Gallery</a></li>
+          <li role="none"><a href="contactus.html" role="menuitem">Contact</a></li>
+          <li role="none">
+            <a href="donation.html" class="donate" role="menuitem"><i class="fas fa-heart"></i><span>Donate</span></a>
+          </li>
+        </ul>
+
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
       </div>
     </div>
   </nav>
 
-  <!-- Page Header -->
-  <section class="page-header">
-    <h1>About Youth for Children</h1>
-    <p>Empowering youth to create lasting change in children's lives</p>
-  </section>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="inner">
+        <h1>About WeCare CBO</h1>
+        <p>
+          A youth-led organization strengthening accountability, transparency, and citizen participation
+          through social accountability, policy advocacy, and public contract monitoring.
+        </p>
+        <div class="badges">
+          <span class="badge"><i class="fas fa-users" aria-hidden="true"></i> Civic Engagement</span>
+          <span class="badge"><i class="fas fa-file-contract" aria-hidden="true"></i> Contracts Monitoring</span>
+          <span class="badge"><i class="fas fa-scale-balanced" aria-hidden="true"></i> Policy Advocacy</span>
+          <span class="badge"><i class="fas fa-wifi" aria-hidden="true"></i> Digital Rights</span>
+        </div>
+      </div>
+    </div>
+  </header>
 
-  <!-- Our Story Section -->
-  <section class="story-section">
-    <div class="story-container">
-      <div class="story-image">
-        <img src="images/Certificate.jpg" alt="YFC Story">
-      </div>
-      <div class="story-content">
-        <h4>Our Story</h4>
-        <h2>From Vision to Impact</h2>
-        <p>Youth for Children (YFC) was founded in 2023 by Stephen Okoth and Joy Tadayo, who began as teaching assistants through Pacemaker International at Magadi Primary School. As part of their fellowship, they designed a capstone project addressing inequalities that hinder children from accessing quality education.</p>
-        <p>Through close interactions with learners, they discovered that many were facing different forms of abuse. This inspired the creation of a Child Protection and Safeguarding curriculum (CPAS), designed to empower children to know themselves, use their voices, and advocate for their rights.</p>
-        <p>The program successfully impacted 88 learners (40 boys and 46 girls aged 10–12). However, this also revealed the widespread prevalence of abuse and the urgent need for sustainable action. In response, YFC was born with a unique approach: empowering youth with the skills to directly empower children.</p>
-        <p>YFC believes that young people, having experienced and overcome systemic challenges, are well-placed to cushion the pathway for children and ensure safer, more inclusive learning environments. Since then, YFC has expanded its reach across Kisumu, Nairobi, Machakos, and Kilifi, reaching 255 children in 2025.</p>
-      </div>
-    </div>
-  </section>
+  <!-- STORY -->
+  <section class="section white">
+    <div class="container">
+      <div class="grid">
+        <div class="card">
+          <div class="eyebrow"><i class="fas fa-book-open" aria-hidden="true"></i> Our Story</div>
+          <h2>From Vision to Impact</h2>
 
-  <!-- Vision Mission Values -->
-  <section class="vmv-section">
-    <div class="section-title">
-      <h2>Our Foundation</h2>
-    </div>
-    <div class="vmv-grid">
-      <div class="vmv-card">
-        <div class="vmv-icon">
-          <i class="fas fa-eye"></i>
-        </div>
-        <h3>Our Vision</h3>
-        <p>A just and flourishing society where children are empowered to be agents of their own meaningful change, inspired by the leadership of youth.</p>
-      </div>
-      <div class="vmv-card">
-        <div class="vmv-icon">
-          <i class="fas fa-bullseye"></i>
-        </div>
-        <h3>Our Mission</h3>
-        <p>To build a just and flourishing society through youth-led programs that strengthen inclusive education and empower children to respond to contemporary issues, including child abuse and climate change.</p>
-      </div>
-      <div class="vmv-card">
-        <div class="vmv-icon">
-          <i class="fas fa-users"></i>
-        </div>
-        <h3>Our Approach</h3>
-        <p>YFC believes in collective impact and works closely with teachers, schools, and fellows from organizations such as Teach for Kenya and Pacemaker International to create sustainable change.</p>
-      </div>
-    </div>
-  </section>
+          <p>
+            WeCare Community Based Organization (WeCare CBO) was founded in 2021 with one clear mission:
+            to strengthen accountability, promote public participation, and monitor public contracts to ensure
+            transparency and integrity in governance.
+          </p>
 
-  <!-- Core Values -->
-  <section class="values-section">
-    <div class="section-title">
-      <h2>Our Core Values</h2>
-    </div>
-    <div class="values-grid">
-      <div class="value-card">
-        <div class="value-icon">
-          <i class="fas fa-check-circle"></i>
+          <p>
+            Born from youth leaders who recognized gaps in citizen engagement, WeCare has grown into a practical,
+            community-rooted force for democratic participation across Kenya.
+          </p>
+
+          <p>
+            Operating primarily in Western Kenya (including Kisumu, Siaya, and Kakamega) with extended scope to Nairobi,
+            we prioritize inclusive participation of youth, women, and persons with disabilities.
+          </p>
+
+          <div class="stats" aria-label="Highlights">
+            <div class="stat">
+              <div class="n">2021</div>
+              <div class="t">Founded</div>
+            </div>
+            <div class="stat">
+              <div class="n">4</div>
+              <div class="t">Counties Reached</div>
+            </div>
+            <div class="stat">
+              <div class="n">5,000+</div>
+              <div class="t">Youth Engaged</div>
+            </div>
+          </div>
         </div>
-        <h4>Integrity</h4>
-        <p>Upholding honesty and transparency in all our actions</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">
-          <i class="fas fa-child"></i>
+
+        <div class="media" aria-label="WeCare image">
+          <img src="images/ngo2.jpg" alt="WeCare CBO community engagement" onerror="this.style.display='none';" />
+          <div class="overlay"></div>
+          <div class="caption">Youth leadership + citizen voice = stronger governance.</div>
         </div>
-        <h4>Child-Centeredness</h4>
-        <p>Placing children's voices at the heart of everything we do</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">
-          <i class="fas fa-hands-helping"></i>
-        </div>
-        <h4>Collaboration</h4>
-        <p>Building strong partnerships for collective impact</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">
-          <i class="fas fa-lightbulb"></i>
-        </div>
-        <h4>Innovation</h4>
-        <p>Developing fresh, impactful, context-driven solutions</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">
-          <i class="fas fa-balance-scale"></i>
-        </div>
-        <h4>Accountability</h4>
-        <p>Being answerable to children, youth, and communities we serve</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">
-          <i class="fas fa-globe"></i>
-        </div>
-        <h4>Inclusivity</h4>
-        <p>Embracing diversity and ensuring equal opportunities for all</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">
-          <i class="fas fa-users-cog"></i>
-        </div>
-        <h4>Empowerment</h4>
-        <p>Equipping children and youth with confidence and agency</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">
-          <i class="fas fa-seedling"></i>
-        </div>
-        <h4>Sustainability</h4>
-        <p>Designing programs that create long-term, lasting change</p>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- FOUNDATION -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Foundation</h2>
+        <p>
+          The principles guiding our work toward transparent, accountable, and inclusive governance.
+        </p>
+      </div>
+
+      <div class="cards">
+        <div class="mini">
+          <div class="icon"><i class="fas fa-eye" aria-hidden="true"></i></div>
+          <h3>Vision</h3>
+          <p>
+            A society inclusively involved in sustainable, transparent democratic and governance processes where every citizen has a voice.
+          </p>
+        </div>
+
+        <div class="mini">
+          <div class="icon"><i class="fas fa-bullseye" aria-hidden="true"></i></div>
+          <h3>Mission</h3>
+          <p>
+            Strengthen the capacity of citizens, especially youth, women, and persons with disabilities, to participate meaningfully in governance and democracy.
+          </p>
+        </div>
+
+        <div class="mini">
+          <div class="icon"><i class="fas fa-people-group" aria-hidden="true"></i></div>
+          <h3>Approach</h3>
+          <p>
+            We collaborate with citizens, civil society, government agencies, and partners to deliver practical accountability and integrity solutions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section white">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Core Values</h2>
+        <p>
+          The values that shape our work with communities and partners.
+        </p>
+      </div>
+
+      <div class="values">
+        <div class="value">
+          <div class="top"><i class="fas fa-shield-halved" aria-hidden="true"></i><strong>Integrity</strong></div>
+          <p>Honesty, transparency, and ethical conduct in all we do.</p>
+        </div>
+
+        <div class="value">
+          <div class="top"><i class="fas fa-users" aria-hidden="true"></i><strong>Citizen-Centered</strong></div>
+          <p>Citizens’ needs and voices guide our priorities and actions.</p>
+        </div>
+
+        <div class="value">
+          <div class="top"><i class="fas fa-handshake" aria-hidden="true"></i><strong>Collaboration</strong></div>
+          <p>Partnerships that create real, measurable collective impact.</p>
+        </div>
+
+        <div class="value">
+          <div class="top"><i class="fas fa-lightbulb" aria-hidden="true"></i><strong>Innovation</strong></div>
+          <p>Youth-led, context-driven solutions to governance challenges.</p>
+        </div>
+
+        <div class="value">
+          <div class="top"><i class="fas fa-balance-scale" aria-hidden="true"></i><strong>Accountability</strong></div>
+          <p>We remain answerable to communities and stakeholders we serve.</p>
+        </div>
+
+        <div class="value">
+          <div class="top"><i class="fas fa-globe" aria-hidden="true"></i><strong>Inclusivity</strong></div>
+          <p>Equal opportunities and participation for all, without barriers.</p>
+        </div>
+
+        <div class="value">
+          <div class="top"><i class="fas fa-fist-raised" aria-hidden="true"></i><strong>Empowerment</strong></div>
+          <p>Knowledge and tools that help citizens demand accountability.</p>
+        </div>
+
+        <div class="value">
+          <div class="top"><i class="fas fa-seedling" aria-hidden="true"></i><strong>Sustainability</strong></div>
+          <p>Programs designed to last and improve systems over time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <h3>Work with WeCare CBO</h3>
+          <p>
+            Partner with us for community dialogues, social accountability forums, policy engagement,
+            and monitoring public contracts for transparent service delivery.
+          </p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn white" href="projects.html"><i class="fas fa-layer-group" aria-hidden="true"></i> View Programs</a>
+          <a class="btn glass" href="contactus.html"><i class="fas fa-envelope" aria-hidden="true"></i> Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-about">
-        <img src="images/logo.png" alt="YFC Logo">
-        <h3>Youth for Children</h3>
-        <p>Empowering youth to empower children. Building a just and flourishing society through inclusive education and child protection.</p>
-        <div class="social-links">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#"><i class="fab fa-whatsapp"></i></a>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-mini">
+            <img src="images/logo.png" alt="WeCare CBO Logo" loading="lazy" />
+            <div>
+              <h4 style="margin:0;">WeCare CBO</h4>
+              <div style="color: rgba(255,255,255,0.7); font-weight: 700; margin-top: 0.25rem;">
+                Engage • Influence • Empower
+              </div>
+            </div>
+          </div>
+          <p>
+            Strengthening accountability, promoting public participation, and monitoring public contracts
+            to ensure transparency and integrity in governance.
+          </p>
+
+          <div class="social" aria-label="Social links">
+            <a href="#" aria-label="Facebook" title="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="X" title="X"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+            <a href="https://wa.me/254797680921" aria-label="WhatsApp" title="WhatsApp" target="_blank" rel="noopener">
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html"><i class="fas fa-angle-right"></i> Home</a></li>
+            <li><a href="aboutus.html"><i class="fas fa-angle-right"></i> About Us</a></li>
+            <li><a href="projects.html"><i class="fas fa-angle-right"></i> Programs</a></li>
+            <li><a href="photos.html"><i class="fas fa-angle-right"></i> Gallery</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Get Involved</h4>
+          <ul>
+            <li><a href="volunteers.html"><i class="fas fa-angle-right"></i> Volunteer</a></li>
+            <li><a href="donation.html"><i class="fas fa-angle-right"></i> Donate</a></li>
+            <li><a href="contactus.html"><i class="fas fa-angle-right"></i> Contact</a></li>
+            <li><a href="privacy.html"><i class="fas fa-angle-right"></i> Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><i class="fas fa-envelope"></i> wecare518@gmail.com</li>
+            <li><i class="fas fa-phone"></i> +254 797 680921 / +254 792 594021</li>
+            <li><i class="fas fa-map-marker-alt"></i> Kisumu, Kenya</li>
+          </ul>
         </div>
       </div>
-      <div class="footer-links">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="aboutus.html">About Us</a></li>
-          <li><a href="projects.html">Programs</a></li>
-          <li><a href="impact.html">Our Impact</a></li>
-        </ul>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> WeCare Youth-Based Organization (WeCare CBO) | All rights reserved</p>
       </div>
-      <div class="footer-links">
-        <h4>Get Involved</h4>
-        <ul>
-          <li><a href="volunteers.html">Volunteer</a></li>
-          <li><a href="donation.html">Donate</a></li>
-          <li><a href="contactus.html">Contact Us</a></li>
-          <li><a href="privacy.html">Privacy Policy</a></li>
-        </ul>
-      </div>
-      <div class="footer-links">
-        <h4>Contact</h4>
-        <ul>
-          <li><i class="fas fa-envelope"></i> info@yfc.org</li>
-          <li><i class="fas fa-phone"></i> +254 XXX XXX XXX</li>
-          <li><i class="fas fa-map-marker-alt"></i> Kisumu, Kenya</li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 Youth for Children (YFC) | All rights reserved</p>
     </div>
   </footer>
 
+  <!-- WhatsApp Floating -->
+  <a class="wa-fab" href="https://wa.me/254797680921?text=Hello%20WeCare%20CBO%2C%20I%20would%20like%20to%20inquire%20about..." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
   <script>
-    // Mobile menu toggle
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Navbar scroll style
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 30);
+    }, { passive: true });
+
+    // Mobile menu
     const mobileToggle = document.getElementById('mobileToggle');
     const navMenu = document.getElementById('navMenu');
 
-    mobileToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
+    function setExpanded(val){
+      mobileToggle.setAttribute('aria-expanded', String(val));
       const icon = mobileToggle.querySelector('i');
-      icon.classList.toggle('fa-bars');
-      icon.classList.toggle('fa-times');
+      icon.classList.toggle('fa-bars', !val);
+      icon.classList.toggle('fa-times', val);
+    }
+    function openMenu(){ navMenu.classList.add('active'); setExpanded(true); }
+    function closeMenu(){ navMenu.classList.remove('active'); setExpanded(false); }
+    function toggleMenu(){ navMenu.classList.contains('active') ? closeMenu() : openMenu(); }
+
+    mobileToggle.addEventListener('click', toggleMenu);
+
+    navMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        if (window.innerWidth <= 980) closeMenu();
+      });
     });
 
-    // Scroll animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navMenu.classList.contains('active')) closeMenu();
+    });
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.vmv-card, .value-card').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'all 0.6s ease';
-      observer.observe(el);
+    document.addEventListener('click', (e) => {
+      if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target) && navMenu.classList.contains('active')) {
+        closeMenu();
+      }
     });
   </script>
 </body>

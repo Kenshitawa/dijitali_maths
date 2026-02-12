@@ -1,132 +1,806 @@
-<html>
-    <head>
-        <title>VIDEOS</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="style.css">
-        <link rel="icon" href="images/logo.png">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WeCare CBO | Videos</title>
+  <link rel="shortcut icon" href="images/logo.png" />
 
-      
-        <!--PLUGIN-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-      
-      
-        <!--FONT AWESOME-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-      
-        <!--GOOGLE FONTS-->
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link
-          href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Fredoka+One&family=Kanit:wght@300&display=swap"
-          rel="stylesheet">
-      </head>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+
+    :root{
+      --primary:#0EA5E9;
+      --secondary:#6366F1;
+      --text:#0F172A;
+      --muted:#334155;
+      --subtle:#64748B;
+      --bg:#FFFFFF;
+      --soft:#F8FAFC;
+      --border: rgba(2,6,23,0.08);
+
+      --shadow-1: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-2: 0 10px 30px rgba(0,0,0,0.12);
+      --shadow-3: 0 18px 55px rgba(0,0,0,0.16);
+
+      --grad-brand: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      --grad-hero: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+
+      --radius: 22px;
+      --radius-sm: 14px;
+    }
+
+    body{
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container{width:min(1250px, calc(100% - 3rem)); margin:0 auto;}
+    .muted{color:var(--subtle);}
+
+    /* NAV */
+    .navbar{
+      position: fixed; top:0; left:0; right:0;
+      z-index:1000;
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(2,6,23,0.06);
+      transition: box-shadow 0.25s ease, background 0.25s ease;
+    }
+    .navbar.scrolled{ background: rgba(255,255,255,0.94); box-shadow: var(--shadow-1); }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 0.85rem 0;
+      gap: 1rem;
+    }
+    .brand{
+      display:flex; align-items:center; gap:0.85rem;
+      text-decoration:none;
+      min-width: 220px;
+    }
+    .brand img{
+      height:46px; width:auto;
+      border-radius:12px;
+      background:#fff;
+      padding:6px;
+      box-shadow: var(--shadow-1);
+      object-fit: contain;
+    }
+    .brand .name{
+      font-family:"Space Grotesk", sans-serif;
+      font-weight: 900;
+      font-size: 1.12rem;
+      letter-spacing: -0.4px;
+      background: var(--grad-brand);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      white-space: nowrap;
+    }
+    .nav-menu{
+      list-style:none;
+      display:flex;
+      gap: 1.25rem;
+      align-items:center;
+    }
+    .nav-menu a{
+      text-decoration:none;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 0.35rem 0;
+      transition: color 0.2s ease;
+      position: relative;
+      white-space: nowrap;
+    }
+    .nav-menu a:hover{color:var(--primary);}
+    .nav-menu a.active{color:var(--primary);}
+    .nav-menu a.active::after{
+      content:"";
+      position:absolute; left:0; right:0; bottom:-6px;
+      height:2px; border-radius:999px;
+      background: var(--grad-brand);
+    }
+    .donate{
+      display:inline-flex;
+      align-items:center;
+      gap:0.55rem;
+      padding:0.65rem 1.2rem;
+      border-radius:999px;
+      background: var(--grad-brand);
+      color:#fff !important;
+      box-shadow: 0 10px 24px rgba(14,165,233,0.25);
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .donate:hover{transform: translateY(-2px); box-shadow: 0 16px 34px rgba(14,165,233,0.32);}
+
+    .mobile-toggle{
+      display:none;
+      width:44px;height:44px;
+      border-radius:14px;
+      border:1px solid rgba(2,6,23,0.08);
+      background: rgba(255,255,255,0.75);
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      color: var(--text);
+    }
+
+    /* HERO */
+    header.hero{
+      padding-top: 86px;
+      min-height: 42vh;
+      position:relative;
+      overflow:hidden;
+      display:grid;
+      place-items:center;
+      color:#fff;
+      background: var(--grad-hero);
+    }
+    header.hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(circle at 18% 40%, rgba(255,255,255,0.16), transparent 55%),
+        radial-gradient(circle at 82% 70%, rgba(255,255,255,0.16), transparent 55%);
+      pointer-events:none;
+    }
+    .hero .inner{
+      position:relative; z-index:1;
+      padding: 2.4rem 0 2.8rem;
+      text-align:center;
+      max-width: 900px;
+    }
+    .hero h1{
+      font-family:"Space Grotesk", sans-serif;
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.05;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      margin-bottom: 0.8rem;
+    }
+    .hero p{
+      color: rgba(255,255,255,0.92);
+      font-size: 1.05rem;
+      line-height: 1.9;
+      font-weight: 650;
+      margin: 0 auto;
+      max-width: 75ch;
+    }
+
+    /* SECTION */
+    .section{ padding: clamp(2.2rem, 5vw, 3.8rem) 0; background: var(--soft); }
+
+    /* TOOLBAR */
+    .toolbar{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0.4rem 0 1.2rem;
+    }
+    .search{
+      flex: 1;
+      min-width: 240px;
+      display:flex;
+      gap: 0.7rem;
+      align-items:center;
+      padding: 0.85rem 1rem;
+      border-radius: 18px;
+      background:#fff;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-1);
+    }
+    .search i{ color: var(--subtle); }
+    .search input{
+      border:none; outline:none;
+      width: 100%;
+      font-size: 0.98rem;
+      font-weight: 650;
+      color: var(--text);
+      background: transparent;
+    }
+
+    .chips{
+      display:flex; gap: 0.6rem; flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+    .chip{
+      border: 1px solid var(--border);
+      background:#fff;
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      font-weight: 900;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap: 0.55rem;
+      box-shadow: var(--shadow-1);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .chip:hover{ transform: translateY(-2px); box-shadow: var(--shadow-2); }
+    .chip.active{
+      background: var(--grad-brand);
+      color:#fff;
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    /* GRID */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 0.8rem;
+    }
+
+    .vcard{
+      background:#fff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow:hidden;
+      box-shadow: var(--shadow-1);
+      cursor:pointer;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .vcard:hover{ transform: translateY(-6px); box-shadow: var(--shadow-3); }
+
+    .thumb{
+      position: relative;
+      width:100%;
+      padding-bottom: 56.25%; /* 16:9 */
+      background: #0B1220;
+      overflow:hidden;
+    }
+    .thumb img{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit: cover;
+      transform: scale(1.03);
+      transition: transform .35s ease, opacity .35s ease;
+      opacity: 0.92;
+    }
+    .vcard:hover .thumb img{ transform: scale(1.08); opacity: 1; }
+
+    .play{
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.35));
+    }
+    .play span{
+      width:64px; height:64px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.88);
+      color:#0B1220;
+      display:grid; place-items:center;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+      transition: transform 0.2s ease;
+      font-size: 1.25rem;
+    }
+    .vcard:hover .play span{ transform: scale(1.06); }
+
+    .meta{
+      padding: 1rem 1rem 1.1rem;
+      display:flex;
+      flex-direction:column;
+      gap: 0.35rem;
+    }
+    .title{
+      font-weight: 950;
+      letter-spacing: -0.2px;
+      color: var(--text);
+      line-height: 1.2;
+    }
+    .sub{
+      display:flex;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+      align-items:center;
+      color: var(--subtle);
+      font-weight: 750;
+      font-size: 0.92rem;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:0.45rem;
+      padding: 0.35rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(14,165,233,0.10);
+      border: 1px solid rgba(14,165,233,0.18);
+      color: #0369A1;
+      font-weight: 900;
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+
+    .empty{
+      text-align:center;
+      padding: 2rem 1rem;
+      color: var(--subtle);
+      font-weight: 850;
+      display:none;
+    }
+
+    /* LIGHTBOX PLAYER */
+    .lightbox{
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index: 2000;
+      background: rgba(0,0,0,0.92);
+      justify-content:center;
+      align-items:center;
+      padding: 1.2rem;
+    }
+    .lightbox.active{ display:flex; }
+    .lb-inner{
+      width: min(1100px, 96vw);
+      position:relative;
+    }
+
+    .lb-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap: 1rem;
+      color: rgba(255,255,255,0.92);
+      margin-bottom: 0.75rem;
+    }
+    .lb-top h3{
+      margin:0;
+      font-family:"Space Grotesk", sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.4px;
+      font-size: 1.2rem;
+      line-height: 1.2;
+    }
+    .lb-top .small{
+      margin-top:0.25rem;
+      color: rgba(255,255,255,0.72);
+      font-weight: 750;
+      font-size: 0.95rem;
+    }
+
+    .lb-close{
+      border:none;
+      cursor:pointer;
+      width:44px;height:44px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.92);
+      color: #0B1220;
+      display:grid;
+      place-items:center;
+      transition: transform 0.2s ease, background 0.2s ease;
+      flex: 0 0 auto;
+    }
+    .lb-close:hover{ background:#fff; transform: scale(1.03); }
+
+    .player{
+      position:relative;
+      width:100%;
+      padding-bottom: 56.25%;
+      border-radius: 16px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+    }
+    .player iframe{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      border:0;
+    }
+
+    /* FOOTER */
+    footer.footer{
+      background:#0B1220;
+      color:#fff;
+      padding: 4rem 0 2rem;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+    .footer .brand-mini{display:flex;align-items:center;gap:0.85rem;margin-bottom:1rem;}
+    .footer .brand-mini img{
+      height:56px;width:auto;background:#fff;padding:8px;border-radius:14px;object-fit:contain;
+    }
+    .footer h4{
+      font-family:"Space Grotesk", sans-serif;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      letter-spacing: -0.2px;
+    }
+    .footer p,.footer li{
+      color: rgba(255,255,255,0.72);
+      line-height: 1.85;
+      font-size: 0.95rem;
+      font-weight: 650;
+    }
+    .footer ul{list-style:none;}
+    .footer a{
+      color: rgba(255,255,255,0.72);
+      text-decoration:none;
+      transition: color 0.2s ease, transform 0.2s ease;
+      display:inline-flex;
+      align-items:center;
+      gap: 0.55rem;
+      padding: 0.25rem 0;
+      font-weight: 850;
+    }
+    .footer a:hover{ color:#fff; transform: translateX(3px); }
+    .social{
+      display:flex; gap:0.75rem; margin-top: 1rem; flex-wrap: wrap;
+    }
+    .social a{
+      width:44px; height:44px; border-radius: 14px;
+      display:grid; place-items:center;
+      background: rgba(255,255,255,0.08);
+      color:#fff;
+    }
+    .social a:hover{ background: rgba(255,255,255,0.14); transform: translateY(-2px); }
+    .footer-bottom{
+      text-align:center;
+      padding-top: 1.4rem;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.95rem;
+      font-weight: 650;
+    }
+
+    /* Responsive */
+    @media (max-width: 1050px){
+      .grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 980px){
+      .mobile-toggle{ display:grid; }
+      .nav-menu{
+        position: fixed;
+        top: 76px;
+        left: 0; right: 0;
+        background: rgba(255,255,255,0.98);
+        border-bottom: 1px solid rgba(2,6,23,0.08);
+        box-shadow: var(--shadow-2);
+        padding: 1.25rem 1rem;
+        display: grid;
+        gap: 0.85rem;
+        transform: translateY(-130%);
+        transition: transform 0.24s ease;
+        text-align:center;
+      }
+      .nav-menu.active{ transform: translateY(0); }
+    }
+    @media (max-width: 640px){
+      .container{ width: calc(100% - 2.2rem); }
+      .grid{ grid-template-columns: 1fr; }
+      .lb-top{ flex-direction:column; }
+      .lb-close{ align-self:flex-end; }
+    }
+
+    a:focus-visible, button:focus-visible, input:focus-visible{
+      outline: 3px solid rgba(14,165,233,0.75);
+      outline-offset: 3px;
+      border-radius: 12px;
+    }
+  </style>
+</head>
 
 <body>
-<br><br><br>
-
-
-<nav class="navbar navbar-default navbar-fixed-top " style="background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);     padding-top:15px;padding-bottom:15px;">
-  <div class="container-fluid">
-    <div class="navbar-header" style="height:50px; width:auto;">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>     
-      </button>
-      <a class="navbar-brand" href="#"></a>
-      <img src="images/logo.png" height=50px width=auto style="border-radius: 50%;">
-    </div>
-    <div class="collapse navbar-collapse navbar-right" id="myNavbar" >
-    <ul class="nav navbar-nav navbar-right ">
-      <li><a href="index.html" style="color:white; font-family: 'Quicksand', sans-serif;font-size: 18px; font-weight: 250; padding: 15px 15px 15px 15px;"><b>HOME</b></a></li>
-      <li><a href="aboutus.html" style="color:white; font-family: 'Quicksand', sans-serif;font-size: 18px; font-weight: 250; padding: 15px 15px 15px 15px;"><b>ABOUT US</b></a></li>
-      <li><a href="volunteers.html" style="color:white; font-family: 'Quicksand', sans-serif;font-size: 18px; font-weight: 250; padding: 15px 15px 15px 15px;"><b>VOLUNTEERS</b></a></li>
-
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:white;  font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 15px 15px 15px 15px;"><b>GALLERY</b><span class="caret"></span></a>
-        <ul class="dropdown-menu" style="background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%); ">
-          <li><a href="photos.html" style="color:white; background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);  font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 5px 50px 5px 50px;"><b>PHOTOS</b></a></li>
-          <li><a href="videos.html" style="color:white; background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);  font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 5px 50px 5px 50px;"><b>VIDEOS</b></a></li>
-        </ul>
-      </li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:white;  font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 15px 15px 15px 15px;"><b>WHAT WE DO?</b><span class="caret"></span></a>
-          <ul class="dropdown-menu" style="background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%); ">
-            <li><a href="events.html" style="color:white; background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);  font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 5px 50px 5px 50px;"><b>EVENTS</b></a></li>
-            <li><a href="projects.html" style="color:white; background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);  font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 5px 50px 5px 50px;"><b>PROJECTS</b></a></li>
-            <li><a href="corona.html" style="color:white; background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);  font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 5px 50px 5px 50px;"><b> COVID 19</b></a></li>
-          </ul>
-        </li>
-      <li><a href="contactus.html" style="color:white; font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 15px 15px 15px 15px;"><b>CONTACT US</b></a></li>
-      <li><a href="donation.html" style="color:white; font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 15px 35px 15px 15px;"><b>DONATE</b></a></li>
-    </ul>
-    </div>
-  </div>
-</nav>
-
-<section class="">
-    <h1 style="padding-top: 2%; color: blue;">
-        Our Videos
-    </h1>
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
     <div class="container">
-        <div class="row">
-          <div class="col-md-6" style="padding-bottom: 5%;">
-            <iframe width="350" height="350" src="https://www.youtube.com/embed/P7w76Cem8lg">
-            </iframe>
-           
-          </div>
-          <div class="col-md-6" style="padding-bottom: 5%;">
-            <iframe width="350" height="350" src="https://www.youtube.com/embed/Naqww-zTa20">
-            </iframe>
-        
-          </div>
+      <div class="nav-inner">
+        <a class="brand" href="index.html" aria-label="WeCare home">
+          <img src="images/logo.png" alt="WeCare Logo" />
+        </a>
 
+        <ul class="nav-menu" id="navMenu" role="menubar">
+          <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+          <li role="none"><a href="aboutus.html" role="menuitem">About Us</a></li>
+          <li role="none"><a href="projects.html" role="menuitem">Programs</a></li>
+          <li role="none"><a href="photos.html" role="menuitem">Gallery</a></li>
+          <li role="none"><a class="active" href="videos.html" role="menuitem">Videos</a></li>
+          <li role="none"><a href="events.html" role="menuitem">Events</a></li>
+          <li role="none"><a href="contactus.html" role="menuitem">Contact</a></li>
+          <li role="none"><a class="donate" href="donation.html" role="menuitem"><i class="fas fa-heart"></i><span>Donate</span></a></li>
+        </ul>
+
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="inner">
+        <h1>Our Videos</h1>
+        <p>Short documentaries, community forums, trainings, and field outreach moments from WeCare’s work across Kenya.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- VIDEOS -->
+  <section class="section">
+    <div class="container">
+      <div class="toolbar">
+        <div class="search" role="search">
+          <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+          <input id="searchInput" type="text" placeholder="Search videos (e.g. training, forum, Kisumu)..." />
+        </div>
+
+        <div class="chips" aria-label="Video filters">
+          <button class="chip active" data-cat="all" type="button"><i class="fas fa-layer-group"></i> All</button>
+          <button class="chip" data-cat="trainings" type="button"><i class="fas fa-chalkboard-teacher"></i> Trainings</button>
+          <button class="chip" data-cat="forums" type="button"><i class="fas fa-users"></i> Forums</button>
+          <button class="chip" data-cat="outreach" type="button"><i class="fas fa-handshake"></i> Outreach</button>
+          <button class="chip" data-cat="events" type="button"><i class="fas fa-calendar"></i> Events</button>
         </div>
       </div>
-      
-</section>
 
+      <div class="grid" id="grid"></div>
+      <div class="empty" id="emptyState">No videos match your search/filter. Try another keyword.</div>
+    </div>
+  </section>
 
-
-    <!-- Site footer -->
-    <footer class="site-footer">
-      <div class="container">
-
-          <div class="grid-container">
-              <div class="grid-item">
-
-                  <img src="images/logo.png" class="logo-img" style="border-radius: 50%;">
-
-              </div>
-
-              <div class="grid-item inner-grid-container">
-
-                <div class="grid-item"><a href="index.html">Home</a></div>
-                <div class="grid-item"><a href="projects.html">Our Projects</a></div>
-                <div class="grid-item"><a href="http://sgjss.co.in/">Sgjss.co.in</a></div><br>
-                <div class="grid-item"><a href="privacy.html">Privacy Policy</a></div>
-                <div class="grid-item"><a href="volunteersForm.html">Join Us</a></div>
-                <div class="grid-item"><a href="contactus.html">Contact Us</a></div>
-            </div>
-
-               <div class="grid-item">
-              <div class = "social-buttons" style="float:left;">
-                  <a href= "https://www.instagram.com/sgjss_29/" target="_blank"><i class="fab fa-instagram circle-icon"></i></a>
-                  <a href= "https://www.facebook.com/pg/shreegurujambheswarsevasansthan/photos/?ref=page_internal" target="_blank"><i class="fab fa-facebook circle-icon"></i></a>
-                  <a href= "https://api.whatsapp.com/send/?phone=919414334192&text&app_absent=0" target="_blank"><i class="fab fa-whatsapp circle-icon"></i></a><br>
-                  <a href= "https://www.linkedin.com/in/shree-guru-jambeshwar-sewa-sansthan-1106651b3/" target="_blank"><i class="fab fa-linkedin-in circle-icon"></i></a>
-                  <a href= "https://twitter.com/guru_sansthan" target="_blank"><i class="fab fa-twitter circle-icon"></i></a>
-              </div>
-          </div>  
-          </div>
-          <hr>
-
-          <p style="text-align: center;">Copyright © 2021 SGJSS | All rights reserved</p>
-
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lb-inner">
+      <div class="lb-top">
+        <div>
+          <h3 id="lbTitle">Video Title</h3>
+          <div class="small" id="lbMeta">Category • WeCare CBO</div>
+        </div>
+        <button class="lb-close" id="lbClose" aria-label="Close">
+          <i class="fas fa-times"></i>
+        </button>
       </div>
+
+      <div class="player">
+        <iframe id="lbFrame"
+          src=""
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-mini">
+            <img src="images/logo.png" alt="WeCare Logo" loading="lazy" />
+            <div>
+              <h4 style="margin:0;">WeCare CBO</h4>
+              <p style="margin:0; color:rgba(255,255,255,0.72);">Transparent governance, powered by citizens.</p>
+            </div>
+          </div>
+
+          <p>WeCare strengthens citizen participation, social accountability, and policy advocacy for transparent governance.</p>
+
+          <div class="social" aria-label="Social links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html"><i class="fas fa-angle-right"></i> Home</a></li>
+            <li><a href="aboutus.html"><i class="fas fa-angle-right"></i> About Us</a></li>
+            <li><a href="projects.html"><i class="fas fa-angle-right"></i> Programs</a></li>
+            <li><a href="impact.html"><i class="fas fa-angle-right"></i> Impact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Gallery</h4>
+          <ul>
+            <li><a href="photos.html"><i class="fas fa-angle-right"></i> Photos</a></li>
+            <li><a href="videos.html"><i class="fas fa-angle-right"></i> Videos</a></li>
+            <li><a href="events.html"><i class="fas fa-angle-right"></i> Events</a></li>
+            <li><a href="volunteersForm.html"><i class="fas fa-angle-right"></i> Get Involved</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><i class="fas fa-envelope"></i> wecare518@gmail.com</li>
+            <li><i class="fas fa-phone"></i> +254 797 680921 / +254 792 594021</li>
+            <li><i class="fas fa-map-marker-alt"></i> Kisumu, Kenya</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 WeCare CBO | All rights reserved</p>
+      </div>
+    </div>
   </footer>
 
+  <script>
+    // ----------------------------
+    // EDIT YOUR VIDEOS HERE ✅
+    // id: YouTube video ID (from https://www.youtube.com/watch?v=VIDEO_ID)
+    // cat: trainings | forums | outreach | events
+    // title: shown on card & lightbox
+    // ----------------------------
+    const videos = [
+      { id: "P7w76Cem8lg", cat: "events",    title: "Community Engagement Highlights" },
+      { id: "Naqww-zTa20", cat: "trainings", title: "Training Session: Citizen Participation" }
+    ];
+
+    const grid = document.getElementById("grid");
+    const emptyState = document.getElementById("emptyState");
+    const searchInput = document.getElementById("searchInput");
+    const chips = Array.from(document.querySelectorAll(".chip"));
+    let activeCat = "all";
+
+    // Lightbox
+    const lightbox = document.getElementById("lightbox");
+    const lbClose = document.getElementById("lbClose");
+    const lbFrame = document.getElementById("lbFrame");
+    const lbTitle = document.getElementById("lbTitle");
+    const lbMeta = document.getElementById("lbMeta");
+
+    function labelCat(c){
+      const map = { trainings:"Trainings", forums:"Forums", outreach:"Outreach", events:"Events" };
+      return map[c] || "Videos";
+    }
+
+    function matchesQuery(v, q){
+      if(!q) return true;
+      const hay = (v.title + " " + v.cat + " " + v.id).toLowerCase();
+      return hay.includes(q.toLowerCase());
+    }
+
+    function videoThumb(id){
+      // Try maxres first; browser will fallback if unavailable (still OK visually).
+      return `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+    }
+
+    function cardTemplate(v){
+      return `
+        <div class="vcard" role="button" tabindex="0" aria-label="Play: ${v.title}">
+          <div class="thumb">
+            <img src="${videoThumb(v.id)}" alt="${v.title}" loading="lazy" />
+            <div class="play"><span><i class="fas fa-play"></i></span></div>
+          </div>
+          <div class="meta">
+            <div class="title">${v.title}</div>
+            <div class="sub">
+              <span class="pill"><i class="fas fa-folder-open"></i> ${labelCat(v.cat)}</span>
+              <span><i class="fas fa-circle" style="font-size:6px;opacity:.6;"></i></span>
+              <span><i class="fab fa-youtube"></i> YouTube</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    let filtered = [];
+
+    function render(){
+      const q = searchInput.value.trim();
+      filtered = videos
+        .filter(v => activeCat === "all" ? true : v.cat === activeCat)
+        .filter(v => matchesQuery(v, q));
+
+      grid.innerHTML = "";
+      emptyState.style.display = filtered.length ? "none" : "block";
+
+      filtered.forEach((v, idx) => {
+        const wrap = document.createElement("div");
+        wrap.innerHTML = cardTemplate(v);
+        const card = wrap.firstElementChild;
+
+        card.addEventListener("click", () => openLightbox(idx));
+        card.addEventListener("keydown", (e) => {
+          if(e.key === "Enter" || e.key === " ") openLightbox(idx);
+        });
+
+        grid.appendChild(card);
+      });
+    }
+
+    function openLightbox(idx){
+      const v = filtered[idx];
+      lbTitle.textContent = v.title;
+      lbMeta.textContent = `${labelCat(v.cat)} • WeCare CBO`;
+
+      // Autoplay, clean controls
+      lbFrame.src = `https://www.youtube.com/embed/${v.id}?autoplay=1&rel=0&modestbranding=1`;
+      lightbox.classList.add("active");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox(){
+      lightbox.classList.remove("active");
+      lightbox.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "auto";
+      lbFrame.src = ""; // stop video
+    }
+
+    lbClose.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (e) => {
+      if(e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener("keydown", (e) => {
+      if(!lightbox.classList.contains("active")) return;
+      if(e.key === "Escape") closeLightbox();
+    });
+
+    // Chips
+    chips.forEach(chip => {
+      chip.addEventListener("click", () => {
+        chips.forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+        activeCat = chip.dataset.cat;
+        render();
+      });
+    });
+
+    // Search
+    searchInput.addEventListener("input", render);
+
+    // Navbar scroll + mobile nav
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 40) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    }, {passive:true});
+
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+    function toggleMenu(){
+      const isActive = navMenu.classList.toggle('active');
+      mobileToggle.setAttribute('aria-expanded', isActive);
+      const icon = mobileToggle.querySelector('i');
+      if(icon){
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+      }
+    }
+    mobileToggle.addEventListener('click', toggleMenu);
+    document.addEventListener('click', (e) => {
+      if(!navMenu.contains(e.target) && !mobileToggle.contains(e.target) && navMenu.classList.contains('active')){
+        toggleMenu();
+      }
+    });
+
+    // Initial render
+    render();
+  </script>
 </body>
 </html>

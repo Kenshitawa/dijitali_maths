@@ -1,363 +1,732 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title> PRIVACY POLICY</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="images/logo.png">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WeCare CBO | Privacy Policy</title>
+  <meta name="description" content="WeCare CBO privacy policy: how we collect, use, store and protect personal information, cookies, and third-party services." />
+  <link rel="icon" href="images/logo.png" />
 
-    <!-- <link rel="stylesheet" href="bootstrap.min.css"> -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet" />
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-    <!--PLUGIN-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    :root{
+      --primary:#0EA5E9;
+      --primary-dark:#0284C7;
+      --secondary:#6366F1;
+      --accent:#F59E0B;
+      --success:#10B981;
 
+      --text:#0F172A;
+      --muted:#334155;
+      --subtle:#64748B;
 
-    <!--FONT AWESOME-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+      --bg:#FFFFFF;
+      --soft:#F8FAFC;
 
-    <!--GOOGLE FONTS-->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Fredoka+One&family=Kanit:wght@300&display=swap"
-        rel="stylesheet">
+      --border: rgba(2,6,23,0.08);
+      --shadow-1: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-2: 0 10px 30px rgba(0,0,0,0.12);
+      --shadow-3: 0 18px 50px rgba(0,0,0,0.16);
+
+      --grad-brand: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      --grad-hero: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+
+      --radius: 22px;
+      --radius-sm: 14px;
+    }
+
+    body{
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container{width:min(1150px, calc(100% - 3rem)); margin:0 auto;}
+    .muted{color:var(--subtle);}
+
+    /* NAV */
+    .navbar{
+      position: fixed;
+      top:0; left:0; right:0;
+      z-index:1000;
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(2,6,23,0.06);
+      transition: box-shadow 0.25s ease, background 0.25s ease;
+    }
+    .navbar.scrolled{
+      background: rgba(255,255,255,0.94);
+      box-shadow: var(--shadow-1);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 0.85rem 0;
+      gap: 1rem;
+    }
+    .brand{
+      display:flex; align-items:center; gap:0.85rem;
+      text-decoration:none;
+      min-width: 220px;
+    }
+    .brand img{
+      height:46px;
+      width:auto;
+      border-radius:12px;
+      background:#fff;
+      padding:6px;
+      box-shadow: var(--shadow-1);
+      object-fit: contain;
+    }
+    .brand .name{
+      font-family:"Space Grotesk", sans-serif;
+      font-weight: 900;
+      font-size: 1.12rem;
+      letter-spacing: -0.4px;
+      background: var(--grad-brand);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      white-space: nowrap;
+    }
+
+    .nav-menu{
+      list-style:none;
+      display:flex;
+      gap: 1.25rem;
+      align-items:center;
+    }
+    .nav-menu a{
+      text-decoration:none;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 0.35rem 0;
+      transition: color 0.2s ease;
+      position: relative;
+      white-space: nowrap;
+    }
+    .nav-menu a:hover{color:var(--primary);}
+    .nav-menu a.active{color:var(--primary);}
+    .nav-menu a.active::after{
+      content:"";
+      position:absolute; left:0; right:0; bottom:-6px;
+      height:2px; border-radius:999px;
+      background: var(--grad-brand);
+    }
+
+    .donate{
+      display:inline-flex;
+      align-items:center;
+      gap:0.55rem;
+      padding:0.65rem 1.2rem;
+      border-radius:999px;
+      background: var(--grad-brand);
+      color:#fff !important;
+      box-shadow: 0 10px 24px rgba(14,165,233,0.25);
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .donate:hover{transform: translateY(-2px); box-shadow: 0 16px 34px rgba(14,165,233,0.32);}
+
+    .mobile-toggle{
+      display:none;
+      width:44px;height:44px;
+      border-radius:14px;
+      border:1px solid rgba(2,6,23,0.08);
+      background: rgba(255,255,255,0.75);
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      color: var(--text);
+    }
+
+    /* HERO */
+    header.hero{
+      padding-top: 86px;
+      min-height: 42vh;
+      position:relative;
+      overflow:hidden;
+      display:grid;
+      place-items:center;
+      color:#fff;
+      background: var(--grad-hero);
+      text-align:center;
+    }
+    header.hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(circle at 18% 40%, rgba(255,255,255,0.16), transparent 55%),
+        radial-gradient(circle at 82% 70%, rgba(255,255,255,0.16), transparent 55%);
+      pointer-events:none;
+    }
+    .hero .inner{
+      position:relative;
+      z-index:1;
+      padding: 2.6rem 0 3rem;
+      max-width: 980px;
+    }
+    .hero h1{
+      font-family:"Space Grotesk", sans-serif;
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.05;
+      font-size: clamp(2rem, 3.6vw, 3rem);
+      margin-bottom: 0.8rem;
+    }
+    .hero p{
+      color: rgba(255,255,255,0.92);
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin: 0 auto;
+      max-width: 90ch;
+      font-weight: 650;
+    }
+
+    /* CONTENT */
+    main{
+      background: var(--soft);
+      padding: clamp(3rem, 5vw, 4.5rem) 0;
+    }
+    .paper{
+      background:#fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-2);
+      overflow:hidden;
+    }
+
+    .paper-top{
+      padding: 1.3rem 1.5rem;
+      border-bottom: 1px solid rgba(2,6,23,0.06);
+      display:flex;
+      gap: 1rem;
+      align-items:flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .updated{
+      display:inline-flex;
+      align-items:center;
+      gap:0.55rem;
+      background: rgba(14,165,233,0.10);
+      border: 1px solid rgba(14,165,233,0.18);
+      color: var(--primary-dark);
+      padding: 0.45rem 0.7rem;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .content{
+      padding: 1.6rem 1.5rem 2rem;
+      display:grid;
+      grid-template-columns: 300px 1fr;
+      gap: 1.2rem;
+    }
+
+    /* TOC */
+    .toc{
+      position: sticky;
+      top: 96px;
+      align-self: start;
+      border: 1px solid rgba(2,6,23,0.08);
+      border-radius: 18px;
+      background: rgba(2,6,23,0.02);
+      padding: 1rem;
+    }
+    .toc h3{
+      font-family:"Space Grotesk", sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.3px;
+      margin-bottom: 0.65rem;
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+    .toc a{
+      display:flex;
+      align-items:center;
+      gap:0.55rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: 14px;
+      text-decoration:none;
+      color: var(--muted);
+      font-weight: 850;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+    .toc a:hover{
+      background: rgba(14,165,233,0.10);
+      color: var(--primary-dark);
+      transform: translateX(2px);
+    }
+    .toc i{ width: 18px; text-align:center; }
+
+    /* SECTIONS */
+    section.policy{
+      padding: 0.6rem 0;
+    }
+    .block{
+      border: 1px solid rgba(2,6,23,0.06);
+      border-radius: 18px;
+      padding: 1.2rem 1.1rem;
+      margin-bottom: 1rem;
+      background: #fff;
+    }
+    .block h2{
+      font-family:"Space Grotesk", sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      font-size: 1.45rem;
+      margin-bottom: 0.4rem;
+    }
+    .block p{
+      color: var(--muted);
+      font-weight: 650;
+      line-height: 1.85;
+      margin: 0.55rem 0;
+    }
+    .block ul{
+      margin-top: 0.5rem;
+      padding-left: 1.05rem;
+    }
+    .block li{
+      color: var(--muted);
+      font-weight: 650;
+      margin: 0.45rem 0;
+    }
+
+    .callout{
+      display:flex;
+      gap: 0.85rem;
+      align-items:flex-start;
+      padding: 1rem;
+      border-radius: 18px;
+      border: 1px solid rgba(16,185,129,0.22);
+      background: rgba(16,185,129,0.08);
+      color: #065F46;
+      font-weight: 800;
+      line-height: 1.75;
+      margin-top: 0.75rem;
+    }
+    .callout i{ margin-top: 0.15rem; }
+
+    /* FOOTER */
+    footer.footer{
+      background:#0B1220;
+      color:#fff;
+      padding: 4rem 0 2rem;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+    .footer .brand-mini{
+      display:flex;
+      align-items:center;
+      gap:0.85rem;
+      margin-bottom: 1rem;
+    }
+    .footer .brand-mini img{
+      height:56px;
+      width:auto;
+      background:#fff;
+      padding:8px;
+      border-radius: 14px;
+      object-fit: contain;
+    }
+    .footer h4{
+      font-family:"Space Grotesk", sans-serif;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      letter-spacing: -0.2px;
+    }
+    .footer p, .footer li{
+      color: rgba(255,255,255,0.72);
+      line-height: 1.85;
+      font-size: 0.95rem;
+      font-weight: 650;
+    }
+    .footer ul{list-style:none;}
+    .footer a{
+      color: rgba(255,255,255,0.72);
+      text-decoration:none;
+      transition: color 0.2s ease, transform 0.2s ease;
+      display:inline-flex;
+      align-items:center;
+      gap: 0.55rem;
+      padding: 0.25rem 0;
+      font-weight: 800;
+    }
+    .footer a:hover{ color:#fff; transform: translateX(3px); }
+
+    .social{
+      display:flex;
+      gap:0.75rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .social a{
+      width:44px; height:44px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
+      background: rgba(255,255,255,0.08);
+      color:#fff;
+    }
+    .social a:hover{ background: rgba(255,255,255,0.14); transform: translateY(-2px); }
+
+    .footer-bottom{
+      text-align:center;
+      padding-top: 1.4rem;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.95rem;
+      font-weight: 650;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .mobile-toggle{ display:grid; }
+      .nav-menu{
+        position: fixed;
+        top: 76px;
+        left: 0; right: 0;
+        background: rgba(255,255,255,0.98);
+        border-bottom: 1px solid rgba(2,6,23,0.08);
+        box-shadow: var(--shadow-2);
+        padding: 1.25rem 1rem;
+        display: grid;
+        gap: 0.85rem;
+        transform: translateY(-130%);
+        transition: transform 0.24s ease;
+        text-align:center;
+      }
+      .nav-menu.active{ transform: translateY(0); }
+      .content{ grid-template-columns: 1fr; }
+      .toc{ position: relative; top: 0; }
+      .footer-grid{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px){
+      .container{ width: calc(100% - 2.2rem); }
+    }
+
+    a:focus-visible, button:focus-visible{
+      outline: 3px solid rgba(14,165,233,0.8);
+      outline-offset: 3px;
+      border-radius: 10px;
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{ transition:none !important; scroll-behavior:auto !important; }
+    }
+  </style>
 </head>
-<style>
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        color: #2c3145;
-    }
 
-    a,
-    a:hover,
-    a:focus,
-    a:active {
-        text-decoration: none;
-        outline: none;
-    }
+<body>
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="index.html" aria-label="WeCare CBO home">
+          <img src="images/logo.png" alt="WeCare CBO Logo" loading="eager" />
+          <span class="name">WeCare CBO</span>
+        </a>
 
-    ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-    }
-
-    .section_all {
-        position: relative;
-        padding-top: 80px;
-        padding-bottom: 80px;
-        min-height: 100vh;
-    }
-
-    .section-title {
-        font-weight: 700;
-        text-transform: capitalize;
-        letter-spacing: 1px;
-    }
-
-    .section-subtitle {
-        letter-spacing: 0.4px;
-        line-height: 28px;
-        max-width: 550px;
-    }
-
-    .section-title-border {
-        background-color: #000;
-        height: 1 3px;
-        width: 44px;
-    }
-
-    .section-title-border-white {
-        background-color: #fff;
-        height: 2px;
-        width: 100px;
-    }
-
-    .text_custom {
-        color: blue;
-    }
-
-    .about_icon i {
-        font-size: 22px;
-        height: 65px;
-        width: 65px;
-        line-height: 65px;
-        display: inline-block;
-        background: #fff;
-        border-radius: 35px;
-        color: blue;
-        box-shadow: 0 8px 20px -2px rgba(158, 152, 153, 0.5);
-    }
-
-    .about_header_main .about_heading {
-        max-width: 450px;
-        font-size: 24px;
-    }
-
-    .about_icon span {
-        position: relative;
-        top: -10px;
-    }
-
-    .about_content_box_all {
-        padding: 28px;
-    }
-
-    @-webkit-keyframes fade {
-        0% {
-            opacity: 0;
-        }
-
-        100% {
-            opacity: 1
-        }
-    }
-
-    .caption,
-    .well,
-    .jumbotron {
-        -webkit-animation: fade;
-        -webkit-animation-duration: 5s;
-    }
-
-    .container h3,h1{
-        background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
-        color: #fff;
-        text-align: center;
-    }
-    .container h4{
-        color: #1261A0;
-    }
-    .container p, ul li{
-        color: #1261A0;
-    }
-
-</style>
-
-<body style="background-color:#eaeaf0;">
-
-
-    <nav class="navbar navbar-default navbar-fixed-top " style="background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);     padding-top:15px;padding-bottom:15px;">
-        <div class="container-fluid">
-          <div class="navbar-header" style="height:50px; width:auto;">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>     
-            </button>
-            <a class="navbar-brand" href="#"></a>
-            <img src="images/logo.png" height=50px width=auto style="border-radius: 50%;">
-          </div>
-          <div class="collapse navbar-collapse navbar-right" id="myNavbar" >
-          <ul class="nav navbar-nav navbar-right ">
-            <li><a href="index.html" style="color:white; font-family: 'Quicksand', sans-serif;font-size: 18px; font-weight: 250; padding: 15px 15px 15px 15px;"><b>HOME</b></a></li>
-            <li><a href="aboutus.html" style="color:white; font-family: 'Quicksand', sans-serif;font-size: 18px; font-weight: 250; padding: 15px 15px 15px 15px;"><b>ABOUT US</b></a></li>
-            <li><a href="volunteers.html" style="color:white; font-family: 'Quicksand', sans-serif;font-size: 18px; font-weight: 250; padding: 15px 15px 15px 15px;"><b>VOLUNTEERS</b></a></li>
-      
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:white;  font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 15px 15px 15px 15px;"><b>GALLERY</b><span class="caret"></span></a>
-              <ul class="dropdown-menu" style="background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%); ">
-                <li><a href="photos.html" style="color:white; background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);  font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 5px 50px 5px 50px;"><b>PHOTOS</b></a></li>
-                <li><a href="videos.html" style="color:white; background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);  font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 5px 50px 5px 50px;"><b>VIDEOS</b></a></li>
-              </ul>
-            </li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:white;  font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 15px 15px 15px 15px;"><b>WHAT WE DO?</b><span class="caret"></span></a>
-                <ul class="dropdown-menu" style="background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%); ">
-                  <li><a href="events.html" style="color:white; background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);  font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 5px 50px 5px 50px;"><b>EVENTS</b></a></li>
-                  <li><a href="projects.html" style="color:white; background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);  font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 5px 50px 5px 50px;"><b>PROJECTS</b></a></li>
-                  <li><a href="corona.html" style="color:white; background-color: #2a2a72;background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);  font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 5px 50px 5px 50px;"><b> COVID 19</b></a></li>
-                </ul>
-              </li>
-            <li><a href="contactus.html" style="color:white; font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 15px 15px 15px 15px;"><b>CONTACT US</b></a></li>
-            <li><a href="donation.html" style="color:white; font-family: 'Quicksand', sans-serif;font-size: 18px;font-weight: 250; padding: 15px 35px 15px 15px;"><b>DONATE</b></a></li>
-          </ul>
-          </div>
-        </div>
-      </nav>
-
-
-      <br><br><br> <br>
-    <div class="container" style="text-align: left;">
-        <h1>Privacy Policy</h1>
-        <h4 >1. Sgjss collects information from the users in a number of ways, for example when the user:</h4>
-        <ul>
-            <li>  • Makes a donation </li>
-            <li>  • Signs up for a campaign</li>
-            <li> •  Signs up to stay updated</li>
+        <ul class="nav-menu" id="navMenu" role="menubar">
+          <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+          <li role="none"><a href="aboutus.html" role="menuitem">About Us</a></li>
+          <li role="none"><a href="projects.html" role="menuitem">Programs</a></li>
+          <li role="none"><a href="impact.html" role="menuitem">Impact</a></li>
+          <li role="none"><a href="volunteers.html" role="menuitem">Get Involved</a></li>
+          <li role="none"><a href="contactus.html" role="menuitem">Contact</a></li>
+          <li role="none"><a class="donate" href="donation.html" role="menuitem"><i class="fas fa-heart"></i><span>Donate</span></a></li>
+          <li role="none"><a class="active" href="privacy.html" role="menuitem">Privacy</a></li>
         </ul>
 
-        <h4>2. While forwarding a donation for Sgjss the well-wishers have to submit some personal information as it would help us ensuring genuine contributions:</h4>
-        <ul >
-            <li> •  Your name</li>
-            <li>  •  Your email and mailing address</li>
-            <li>  •  Your telephone number</li>
-            <li> • Your payment processing details</li>
-            <li> •  Any other data as required</li>
-        </ul> 
-
-        <h4>3. Sgjss does not collect or record the user’s personal information unless he/she chooses to provide it.</h4>
-
-        <h3 > Use of Personal Information</h3>
-
-        <h4>1. General browsing of Sgjss website is anonymous and it does not register the user’spersonal information except the time, date and place of visits and the name of internet service provider. This data is used only for statistics and diagnosis.</h4>
-        <h4>2. By signing up for various services offered by Sgjss, the user explicitly authorizes us to collect information based on the user’s usage. The information is used to help provide a better experience to the user and is used as per the user’s specified instructions.</h4>
-        <h4>3. Sgjss keeps the user information strictly confidential and this information is secured safely. All relevant information collected through Sgjss website is handled and used by internal and authorized officials only. It is never shared with any external agencies or third party individuals.</h4>
-        <h4>4. Sgjss uses the information given to it in the following ways:</h4>
-        <ul>
-            <li>  • To keep an accurate record of all the donations received</li>
-            <li>  • To update users about its happenings and developments through bulletins and newsletters, with an option of not to subscribe for the same</li>
-            <li> •   To make sure the user is receiving the most appropriate and relevant information</li>
-            <li>•To find out more about the people who are visiting the Sgjss website, donating, or joining its campaigns </li>
-        </ul>
-        <h4>5. Usually, Sgjss does not store user data. In case of specific sign-ups, the data is stored as per user request. The user can opt to delete all the information he/she has provided by simply requesting such by mail. All information, without exception, will be deleted in two working days.</h4>
-
-
-
-
-        <h3>Privacy of e-mail lists</h3>
-        <h4>Individuals who join Sgjss mailing lists via its website or through its campaigning engagements are added to its email database. Sgjss does not sell, rent, loan, trade, or lease the addresses on our lists to anyone.</h4>
-    <br>
-        
-        <h3>Cookie Policy</h3>
-        <h4>1. Cookies are pieces of electronic information which will be sent by Sgjss when a user visits the website. These will be placed in the hard disk of the user’s computer and enable Sgjss to recognise the user when he/she visits the website again.</h4>
-        <h4>2. The user can configure his/her browser so that it responds to cookies the way he/she deems fit. For example, you make want to accept all cookies, reject them all or get notified when a cookie is sent. The users may check their browser’s settings to modify cookie behaviour as per individual behaviour.</h4>
-        <h4>3. If a user disables the use of cookies on the web browser, or removes or rejects specific cookies from sgjss’s website or linked sites then he/she may not be able to use the website as it is intended.</h4>
-        <br>
-    
-        <h3>Payment Gateway</h3>
-        <h4>1.Sgjss uses well-recognised and proven technology for payments. Payment information is transferred by the use of an SSL connection which offers the highest degree of security that the donor’s browser is able to support.</h4>
-        <h4>2. Several layers of built-in security, including an advanced firewall system, encryption of credit card numbers, and use of passwords, protect the collected information.</h4>
-        <br>
-    
-        <h3>External Web Services</h3>
-        <h4>1. Sgjss uses a number of external web services on its site to display content within its web pages. For example, to display video it uses YouTube. As with the social media buttons, Sgjss cannot prevent these sites, or external domains, from collecting information on the user’s consumption of the content embedded on its site.</h4>
-        <h4>2. The Sgjss website contains links to other websites for the benefit of its visitors. This Privacy Policy does not apply to such other websites.</h4>
-        <h4>3. Sgjssis not expressly or impliedly responsible for, or liable to any loss or damage caused to a user by the collection, use and retention of Personal Information by such website in any manner whatsoever. It is important that the users review the privacy policies of all websites they visit before disclosing any information to such websites.</h4>
-        <br>
-    
-        <h3>Changes to Privacy Policy</h3>
-        <h4>1. As and when the need arises, Sgjss may alter its privacy policy in accordance with the latest technology and trends. It will provide you with timely notice of these changes. The users may reach out to Sgjss if they have any queries about any changes made to its practices.</h4>
-        <h4>2. If you have any questions at all about sgjss’s privacy policy, please write to us at: sgjss@gmail.com</h4>
-
-
-
-        <h3>Changes to Privacy Policy</h3>
-    <ul>
-        <li>  • As and when the need arises, Sgjss may alter its privacy policy in accordance with the latest technology and
-            trends. It will provide you with timely notice of these changes. The users may reach out to Sgjss if they
-            have any queries about any changes made to its practices.</li>
-        <li> • If you have any questions at all about sgjss’s privacy policy, please write to us at: sgjss@gmail.com</li>
-    </ul>
-    <h3>Refund and Cancellation Policy</h3>
-    <h4>Welcome to this web-site of SHREE GURU JAMBESHWAR SEWA SANSTHAN. We make public our policy on refund and
-        cancellation of donations received for the social cause on payment gateway as under:-</h4>
-    <ul>
-        <li>  • No refund/cancellation for the donated amount by any donor will not be entertained, the online donations
-            through the online payment gateway.</li>
-        <li> • No cash or refund of money will be allowed.</li>
-        <li> • If any in-kind support received by the donor from any where the material will be reached to the poorest of
-            the poorer communities.</li>
-        <li> • Once received the donation for a cause will not be refunded to the donor. No cancellation to be made. The
-            donation will be used for the community development, children education or women’s empowerment</li>
-    </ul>
-    <h3>Terms and Conditions</h3>
-    <h4>Use of this site is provided by SGJSS subject to the following Terms and Conditions:</h4>
-    <p>SGJSS reserves the rights to change these terms and conditions at any time by posting changes online. Your
-        continued use of this site after changes are posted constitutes your acceptance of this agreement as modified.
-        You agree to use this site only for lawful purposes, and in a manner which does not infringe the rights, or
-        restrict, or inhibit the use and enjoyment of the site by any third party.
-
-        This site and the information, names, images, pictures, logos regarding or relating to SGJSS are provided “as
-        is” without any representation or endorsement made and without warranty of any kind whether express or implied.
-        In no event will SGJSS be liable for any damages including, without limitation, indirect or consequential
-        damages, or any damages whatsoever arising from the use or in connection with such use or loss of use of the
-        site, whether in contract or in negligence.
-
-        SGJSS does not warrant that the functions contained in the material contained in this site will be uninterrupted
-        or error free, that defects will be corrected, or that this site or the server that makes it available are free
-        of viruses or bugs or represents the full functionality, accuracy and reliability of the materials.</p>
-    <h3>Copyright restrictions:</h3>
-    <p>Commercial use or publication of all or any item displayed is strictly prohibited without prior authorization
-        from SGJSS. Nothing contained herein shall be construed as conferring any license by SGJSS to use any item
-        displayed.
-
-        Documents may be copied for personal use only on the condition that copyright and source indications are also
-        copied, no modifications are made and the document is copied entirely. However, some documents and photos have
-        been published on this site with the permission of the relevant copyright owners. All rights are reserved on
-        these documents and permission to copy them must be requested from the copyright owners (the sources are
-        indicated within these documents/photographs).
-
-        SGJSS takes no responsibility for the content of external Internet sites. Other websites that we link to are
-        owned and operated by third parties and SGJSS has no control over them. The fact that we include links to other
-        websites does not mean that SGJSS approves of or endorses any other third party website or the content of that
-        website. We accept no liability for any statements, information, products or services that are published on or
-        are accessible through any websites owned or operated by third parties.
-
-        Any communication or material that you transmit to, or post on, any public area of the site including any data,
-        questions, comments, suggestions, or the like, is, and will be treated as, non-confidential and non proprietary
-        information. If there is any conflict between these terms and conditions and rules and/or specific terms of use
-        appearing on this site relating to specific material then the latter shall prevail.
-
-        These terms and conditions shall be governed and construed in accordance with the laws of India.
-
-        If these terms and conditions are not accepted in full, the use of this site must be terminated immediately.
-        SGJSS for Social Welfare Service is a registered at:</p>
-    <h3>2/69 Apple residency, Chitrakoot, Vaishali Nagar, jaipur Raj. 302021 <br>
-        Jaipur (raj)<br>
-        Phone : +919414334192</h3>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
     </div>
-    
+  </nav>
 
-    <!-- Site footer -->
-    <footer class="site-footer">
-        <div class="container">
-  
-            <div class="grid-container">
-                <div class="grid-item">
-  
-                    <img src="images/logo.png" class="logo-img" style="border-radius: 50%;">
-  
-                </div>
-  
-                <div class="grid-item inner-grid-container">
-  
-                  <div class="grid-item"><a href="index.html">Home</a></div>
-                  <div class="grid-item"><a href="projects.html">Our Projects</a></div>
-                  <div class="grid-item"><a href="http://sgjss.co.in/">Sgjss.co.in</a></div><br>
-                  <div class="grid-item"><a href="privacy.html">Privacy Policy</a></div>
-                  <div class="grid-item"><a href="volunteersForm.html">Join Us</a></div>
-                  <div class="grid-item"><a href="contactus.html">Contact Us</a></div>
-              </div>
-  
-                 <div class="grid-item">
-                <div class = "social-buttons" style="float:left;">
-                    <a href= "https://www.instagram.com/sgjss_29/" target="_blank"><i class="fab fa-instagram circle-icon"></i></a>
-                    <a href= "https://www.facebook.com/pg/shreegurujambheswarsevasansthan/photos/?ref=page_internal" target="_blank"><i class="fab fa-facebook circle-icon"></i></a>
-                    <a href= "https://api.whatsapp.com/send/?phone=919414334192&text&app_absent=0" target="_blank"><i class="fab fa-whatsapp circle-icon"></i></a><br>
-                    <a href= "https://www.linkedin.com/in/shree-guru-jambeshwar-sewa-sansthan-1106651b3/" target="_blank"><i class="fab fa-linkedin-in circle-icon"></i></a>
-                    <a href= "https://twitter.com/guru_sansthan" target="_blank"><i class="fab fa-twitter circle-icon"></i></a>
-                </div>
-            </div>  
-            </div>
-            <hr>
-  
-            <p style="text-align: center;">Copyright © 2021 SGJSS | All rights reserved</p>
-  
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="inner">
+        <h1>Privacy Policy</h1>
+        <p>
+          WeCare CBO respects your privacy. This policy explains what we collect, why we collect it,
+          and how we protect it when you use our website or support our work.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <div class="container">
+      <article class="paper" aria-label="Privacy policy content">
+        <div class="paper-top">
+          <div>
+            <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:900;letter-spacing:-0.6px;margin:0;">WeCare CBO Privacy Policy</h2>
+            <p class="muted" style="margin:0.35rem 0 0;">
+              Applies to our website, donation channels, and volunteer/community sign-ups.
+            </p>
+          </div>
+          <div class="updated"><i class="fas fa-calendar-check"></i> Last updated: Feb 2026</div>
         </div>
-    </footer>
 
+        <div class="content">
+          <!-- TOC -->
+          <aside class="toc" aria-label="Table of contents">
+            <h3>On this page</h3>
+            <a href="#info"><i class="fas fa-database"></i> Information We Collect</a>
+            <a href="#use"><i class="fas fa-gear"></i> How We Use It</a>
+            <a href="#share"><i class="fas fa-user-shield"></i> Sharing & Disclosure</a>
+            <a href="#cookies"><i class="fas fa-cookie-bite"></i> Cookies</a>
+            <a href="#payments"><i class="fas fa-credit-card"></i> Payments</a>
+            <a href="#third"><i class="fas fa-globe"></i> Third-Party Services</a>
+            <a href="#rights"><i class="fas fa-id-card"></i> Your Rights</a>
+            <a href="#changes"><i class="fas fa-rotate"></i> Updates to This Policy</a>
+            <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+          </aside>
 
+          <!-- POLICY -->
+          <section class="policy">
+            <div class="block" id="info">
+              <h2>1) Information We Collect</h2>
+              <p>We may collect information when you:</p>
+              <ul>
+                <li>Make a donation or support our activities</li>
+                <li>Register as a volunteer or apply for an internship</li>
+                <li>Submit a contact form or request information</li>
+                <li>Subscribe to updates or join a campaign</li>
+              </ul>
 
+              <p>Depending on what you do on the site, we may collect:</p>
+              <ul>
+                <li>Your name and contact details (email, phone)</li>
+                <li>Optional profile details you submit (e.g., skills, county, interests)</li>
+                <li>Donation references (e.g., M-Pesa code or bank transfer reference)</li>
+                <li>Basic technical data (IP address, device type, browser) for security and analytics</li>
+              </ul>
+
+              <div class="callout">
+                <i class="fas fa-circle-check"></i>
+                <div>We do not collect sensitive personal information unless you choose to provide it for a clear purpose.</div>
+              </div>
+            </div>
+
+            <div class="block" id="use">
+              <h2>2) How We Use Personal Information</h2>
+              <p>We use your information to:</p>
+              <ul>
+                <li>Process and confirm donations and keep accurate records</li>
+                <li>Respond to inquiries and provide requested support or information</li>
+                <li>Send updates/newsletters (you can opt out anytime)</li>
+                <li>Improve our website performance, security, and user experience</li>
+                <li>Understand general engagement trends (aggregated, not personal profiling)</li>
+              </ul>
+              <p>
+                General browsing of our website is mostly anonymous. We may log basic visit details for
+                diagnostics and security (for example, date/time and general location derived from IP).
+              </p>
+            </div>
+
+            <div class="block" id="share">
+              <h2>3) Sharing & Disclosure</h2>
+              <p>
+                WeCare CBO treats your information as confidential. We do not sell, rent, or trade your personal data.
+              </p>
+              <p>We may share data only when necessary:</p>
+              <ul>
+                <li>With payment providers to complete a transaction</li>
+                <li>With trusted service providers supporting our website operations (hosting, email delivery)</li>
+                <li>If required by law or to protect our rights, safety, and community</li>
+              </ul>
+              <p>Access to personal data is limited to authorized staff/partners who need it for official work.</p>
+            </div>
+
+            <div class="block" id="cookies">
+              <h2>4) Cookie Policy</h2>
+              <p>
+                Cookies are small files stored on your device. They help websites remember your preferences and improve
+                performance.
+              </p>
+              <ul>
+                <li>You can accept, reject, or delete cookies through your browser settings</li>
+                <li>Disabling cookies may affect how some site features work</li>
+              </ul>
+            </div>
+
+            <div class="block" id="payments">
+              <h2>5) Payments & Security</h2>
+              <p>
+                We use recognized payment channels and security practices. Where online payments are used, your data is
+                transmitted securely (e.g., SSL/TLS).
+              </p>
+              <ul>
+                <li>We do not store full card details on our servers</li>
+                <li>Transaction references (like M-Pesa codes) may be stored for verification and accounting</li>
+                <li>We apply reasonable technical and organizational safeguards to protect information</li>
+              </ul>
+            </div>
+
+            <div class="block" id="third">
+              <h2>6) Third-Party Services</h2>
+              <p>
+                Our website may embed or link to third-party services (e.g., YouTube, Google Maps, social media).
+                These services may collect usage data according to their own policies.
+              </p>
+              <p>
+                WeCare CBO is not responsible for third-party privacy practices. Please review their policies before
+                providing personal information on external sites.
+              </p>
+            </div>
+
+            <div class="block" id="rights">
+              <h2>7) Your Rights & Data Requests</h2>
+              <p>You may request to:</p>
+              <ul>
+                <li>Access your personal information we hold</li>
+                <li>Correct inaccurate information</li>
+                <li>Delete information where applicable</li>
+                <li>Unsubscribe from newsletters or updates</li>
+              </ul>
+              <p>
+                To make a request, contact us using the details below. We aim to respond within a reasonable time.
+              </p>
+            </div>
+
+            <div class="block" id="changes">
+              <h2>8) Updates to This Policy</h2>
+              <p>
+                We may update this policy to reflect changes in our practices, services, or legal requirements.
+                When we do, we will update the “Last updated” date on this page.
+              </p>
+            </div>
+
+            <div class="block" id="contact">
+              <h2>9) Contact</h2>
+              <p>If you have questions about this policy, please contact:</p>
+              <ul>
+                <li><b>Email:</b> wecare518@gmail.com</li>
+                <li><b>Phone:</b> +254 797 680921 / +254 792 594021</li>
+                <li><b>Location:</b> Kisumu, Kenya</li>
+              </ul>
+            </div>
+
+          </section>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-mini">
+            <img src="images/logo.png" alt="WeCare CBO Logo" loading="lazy" />
+            <div>
+              <h4 style="margin:0;">WeCare CBO</h4>
+              <p style="margin:0; color:rgba(255,255,255,0.72);">Transparent governance, powered by citizens.</p>
+            </div>
+          </div>
+
+          <p>
+            Strengthening accountability, promoting public participation, and monitoring public contracts
+            to ensure transparency and integrity in governance.
+          </p>
+
+          <div class="social" aria-label="Social media links">
+            <a href="#" aria-label="Facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="X (Twitter)" title="X"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="WhatsApp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html"><i class="fas fa-angle-right"></i> Home</a></li>
+            <li><a href="aboutus.html"><i class="fas fa-angle-right"></i> About Us</a></li>
+            <li><a href="projects.html"><i class="fas fa-angle-right"></i> Programs</a></li>
+            <li><a href="impact.html"><i class="fas fa-angle-right"></i> Impact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Get Involved</h4>
+          <ul>
+            <li><a href="volunteers.html"><i class="fas fa-angle-right"></i> Volunteer</a></li>
+            <li><a href="donation.html"><i class="fas fa-angle-right"></i> Donate</a></li>
+            <li><a href="contactus.html"><i class="fas fa-angle-right"></i> Contact</a></li>
+            <li><a href="privacy.html"><i class="fas fa-angle-right"></i> Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><i class="fas fa-envelope"></i> wecare518@gmail.com</li>
+            <li><i class="fas fa-phone"></i> +254 797 680921 / +254 792 594021</li>
+            <li><i class="fas fa-map-marker-alt"></i> Kisumu, Kenya</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 WeCare Youth-Based Organization (WeCare CBO) | All rights reserved</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+    function toggleMenu(){
+      const isActive = navMenu.classList.toggle('active');
+      mobileToggle.setAttribute('aria-expanded', isActive);
+      const icon = mobileToggle.querySelector('i');
+      if(icon){
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+      }
+    }
+    mobileToggle.addEventListener('click', toggleMenu);
+
+    document.addEventListener('click', (e) => {
+      if(!navMenu.contains(e.target) && !mobileToggle.contains(e.target) && navMenu.classList.contains('active')){
+        toggleMenu();
+      }
+    });
+
+    // Navbar shadow on scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 40) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    }, {passive:true});
+  </script>
 </body>
-
 </html>
