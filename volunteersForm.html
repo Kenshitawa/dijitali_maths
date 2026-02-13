@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WeCare CBO | Volunteer Form</title>
-  <link rel="shortcut icon" href="images/logo.png" />
+  <title>Volunteer - WeCare CBO | Join Our Work</title>
+  <meta name="description" content="Volunteer with WeCare CBO. Share your details and skills and we will contact you with the next steps." />
+  <link rel="icon" href="images/logo.png" />
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -17,23 +18,31 @@
     html{scroll-behavior:smooth;}
 
     :root{
-      --primary:#0EA5E9;
-      --secondary:#6366F1;
-      --text:#0F172A;
-      --muted:#334155;
-      --subtle:#64748B;
-      --bg:#FFFFFF;
-      --soft:#F8FAFC;
-      --border: rgba(2,6,23,0.08);
+      --primary:#1e3a8a;
+      --primary-light:#3b82f6;
+      --primary-dark:#1e40af;
+      --accent:#f59e0b;
+      --success:#10b981;
+      --danger:#ef4444;
 
-      --shadow-1: 0 1px 3px rgba(0,0,0,0.08);
-      --shadow-2: 0 10px 30px rgba(0,0,0,0.12);
+      --text:#0f172a;
+      --text-light:#334155;
+      --text-muted:#64748b;
 
-      --grad-brand: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      --grad-hero: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+      --bg:#ffffff;
+      --bg-soft:#f8fafc;
+      --border:rgba(15,23,42,0.08);
 
-      --radius: 22px;
-      --radius-sm: 14px;
+      --shadow-sm:0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md:0 6px 18px rgba(0,0,0,0.12);
+      --shadow-lg:0 14px 34px rgba(0,0,0,0.12);
+      --shadow-xl:0 22px 55px rgba(0,0,0,0.16);
+
+      --radius:16px;
+      --radius-lg:24px;
+
+      --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+      --grad-brand: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
     }
 
     body{
@@ -41,187 +50,287 @@
       color: var(--text);
       background: var(--bg);
       line-height: 1.7;
-      overflow-x: hidden;
+      overflow-x:hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
-    .container{width:min(1200px, calc(100% - 3rem)); margin:0 auto;}
+    .container{ width:min(1200px, calc(100% - 3rem)); margin:0 auto; }
 
-    /* NAV */
-    .navbar{
-      position: fixed; top:0; left:0; right:0;
-      z-index:1000;
-      background: rgba(255,255,255,0.86);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(2,6,23,0.06);
-      transition: box-shadow 0.25s ease, background 0.25s ease;
+    /* TOP BAR */
+    .top-bar{
+      background: var(--primary-dark);
+      color:#fff;
+      font-size: 0.875rem;
+      padding: 0.65rem 0;
     }
-    .navbar.scrolled{ background: rgba(255,255,255,0.94); box-shadow: var(--shadow-1); }
-    .nav-inner{
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 0.85rem 0;
-      gap: 1rem;
+    .top-bar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 1.2rem;
     }
-    .brand{
-      display:flex; align-items:center; gap:0.85rem;
+    .top-bar-links{
+      display:flex;
+      gap: 1.35rem;
+      list-style:none;
+      flex-wrap: wrap;
+    }
+    .top-bar-links a{
+      color: rgba(255,255,255,0.9);
       text-decoration:none;
-      min-width: 220px;
+      font-weight: 600;
+      transition: var(--transition);
     }
-    .brand img{
-      height:46px; width:auto;
-      border-radius:12px;
+    .top-bar-links a:hover{ color:#fff; }
+
+    .top-bar-actions{
+      display:flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+    .top-btn{
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      text-decoration:none;
+      font-weight: 800;
+      font-size: 0.875rem;
+      transition: var(--transition);
+      display:inline-flex;
+      align-items:center;
+      gap: 0.55rem;
+      white-space: nowrap;
+    }
+    .top-btn.report{
+      background: var(--accent);
+      color:#fff;
+    }
+    .top-btn.report:hover{ transform: translateY(-1px); filter: brightness(0.98); }
+    .top-btn.donate{
       background:#fff;
-      padding:6px;
-      box-shadow: var(--shadow-1);
-      object-fit: contain;
+      color: var(--primary);
     }
-    .brand .name{
-      font-family:"Space Grotesk", sans-serif;
-      font-weight: 900;
-      font-size: 1.12rem;
-      letter-spacing: -0.4px;
-      background: var(--grad-brand);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .top-btn.donate:hover{ transform: translateY(-1px); background: #f1f5f9; }
+
+    /* NAVBAR */
+    .navbar{
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background:#fff;
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .navbar.scrolled{ box-shadow: var(--shadow-md); }
+
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 1rem 0;
+      gap: 2rem;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 0.85rem;
+      text-decoration:none;
+    }
+    .brand img{ height: 50px; width:auto; object-fit:contain; }
+    .brand-text p{
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-top: 0.1rem;
       white-space: nowrap;
     }
 
     .nav-menu{
       list-style:none;
       display:flex;
-      gap: 1.25rem;
       align-items:center;
+      gap: 0.25rem;
     }
     .nav-menu a{
       text-decoration:none;
-      color: var(--muted);
+      color: var(--text-light);
       font-weight: 800;
       font-size: 0.95rem;
-      padding: 0.35rem 0;
-      transition: color 0.2s ease;
-      position: relative;
+      padding: 0.75rem 1.15rem;
+      border-radius: 10px;
+      transition: var(--transition);
       white-space: nowrap;
     }
-    .nav-menu a:hover{color:var(--primary);}
-    .nav-menu a.active{color:var(--primary);}
-    .nav-menu a.active::after{
-      content:"";
-      position:absolute; left:0; right:0; bottom:-6px;
-      height:2px; border-radius:999px;
-      background: var(--grad-brand);
+    .nav-menu a:hover{
+      color: var(--primary);
+      background: rgba(30,58,138,0.06);
     }
-    .donate{
-      display:inline-flex;
-      align-items:center;
-      gap:0.55rem;
-      padding:0.65rem 1.2rem;
-      border-radius:999px;
-      background: var(--grad-brand);
-      color:#fff !important;
-      box-shadow: 0 10px 24px rgba(14,165,233,0.25);
-      border: 1px solid rgba(255,255,255,0.12);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    .nav-menu a.active{
+      color: var(--primary);
+      background: rgba(30,58,138,0.10);
     }
-    .donate:hover{transform: translateY(-2px); box-shadow: 0 16px 34px rgba(14,165,233,0.32);}
 
     .mobile-toggle{
       display:none;
       width:44px;height:44px;
-      border-radius:14px;
-      border:1px solid rgba(2,6,23,0.08);
-      background: rgba(255,255,255,0.75);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background:#fff;
       cursor:pointer;
-      display:grid;
-      place-items:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       color: var(--text);
+      transition: var(--transition);
+    }
+    .mobile-toggle:hover{
+      background: var(--bg-soft);
+      border-color: rgba(30,58,138,0.25);
     }
 
-    /* HERO */
-    header.hero{
-      padding-top: 86px;
-      min-height: 42vh;
+    /* PAGE HERO */
+    .page-hero{
+      padding: 7.5rem 0 5rem;
       position:relative;
       overflow:hidden;
-      display:grid;
-      place-items:center;
-      color:#fff;
-      background: var(--grad-hero);
+      min-height: 440px;
     }
-    header.hero::before{
-      content:"";
-      position:absolute; inset:0;
+    .page-hero-bg{
+      position:absolute;
+      inset:0;
+      background-image: url('images/ngo.jpg');
+      background-size: cover;
+      background-position: center;
+      z-index:0;
+      transform: scale(1.02);
+    }
+    .page-hero-overlay{
+      position:absolute;
+      inset:0;
+      background: linear-gradient(135deg,
+        rgba(30, 58, 138, 0.92) 0%,
+        rgba(30, 64, 175, 0.88) 55%,
+        rgba(59, 130, 246, 0.84) 100%);
+      z-index:1;
+    }
+    .page-hero-overlay::before{
+      content:'';
+      position:absolute;
+      inset:0;
       background:
-        radial-gradient(circle at 18% 40%, rgba(255,255,255,0.16), transparent 55%),
-        radial-gradient(circle at 82% 70%, rgba(255,255,255,0.16), transparent 55%);
-      pointer-events:none;
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.10), transparent 55%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.08), transparent 55%);
     }
-    .hero .inner{
-      position:relative; z-index:1;
-      padding: 2.4rem 0 2.8rem;
+
+    .page-hero-content{
+      position:relative;
+      z-index:2;
       text-align:center;
-      max-width: 900px;
+      max-width: 920px;
+      margin:0 auto;
     }
-    .hero h1{
-      font-family:"Space Grotesk", sans-serif;
+    .page-hero h1{
+      font-family: Montserrat, sans-serif;
       font-weight: 900;
+      color:#fff;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      line-height: 1.1;
       letter-spacing: -1px;
-      line-height: 1.05;
-      font-size: clamp(2rem, 4vw, 3.1rem);
-      margin-bottom: 0.8rem;
+      margin-bottom: 1.1rem;
+      opacity:0;
+      transform: translateY(22px);
+      animation: fadeUp 0.8s ease-out forwards;
     }
-    .hero p{
-      color: rgba(255,255,255,0.92);
-      font-size: 1.05rem;
-      line-height: 1.9;
-        font-weight: 650;
+    .page-hero p{
+      color: rgba(255,255,255,0.95);
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      line-height: 1.75;
+      max-width: 780px;
       margin: 0 auto;
-      max-width: 75ch;
+      opacity:0;
+      transform: translateY(22px);
+      animation: fadeUp 0.8s ease-out 0.15s forwards;
+    }
+
+    .hero-badges{
+      display:flex;
+      justify-content:center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 1.6rem;
+      opacity:0;
+      transform: translateY(22px);
+      animation: fadeUp 0.8s ease-out 0.3s forwards;
+    }
+    .badge-hero{
+      display:inline-flex;
+      align-items:center;
+      gap: 0.55rem;
+      padding: 0.65rem 1rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      color:#fff;
+      font-weight: 900;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      white-space: nowrap;
+    }
+
+    @keyframes fadeUp{
+      from{ opacity:0; transform: translateY(22px); }
+      to{ opacity:1; transform: translateY(0); }
     }
 
     /* SECTION */
-    .section{ padding: clamp(2.2rem, 5vw, 3.8rem) 0; background: var(--soft); }
+    .section{ padding: clamp(3.5rem, 7vw, 5.5rem) 0; background: var(--bg-soft); }
 
     .card{
       background:#fff;
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-2);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
       overflow:hidden;
     }
 
     .cardHead{
       padding: 1.4rem 1.6rem;
-      border-bottom: 1px solid rgba(2,6,23,0.06);
+      border-bottom: 1px solid rgba(15,23,42,0.06);
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
       gap: 1rem;
+      flex-wrap: wrap;
     }
+
     .cardHead h2{
-      font-family:"Space Grotesk", sans-serif;
+      font-family: Montserrat, sans-serif;
       font-weight: 900;
-      letter-spacing: -0.5px;
-      font-size: 1.4rem;
+      letter-spacing: -0.6px;
+      font-size: 1.5rem;
       margin:0;
+      color: var(--text);
     }
     .cardHead p{
       margin:0.35rem 0 0;
-      color: var(--subtle);
+      color: var(--text-muted);
       font-weight: 650;
-      font-size: 0.98rem;
+      font-size: 1rem;
     }
-    .badge{
+
+    .pill{
       display:inline-flex;
       align-items:center;
       gap:0.55rem;
-      padding: 0.55rem 0.8rem;
+      padding: 0.55rem 0.85rem;
       border-radius: 999px;
-      background: rgba(14,165,233,0.10);
-      border: 1px solid rgba(14,165,233,0.20);
-      color: #0369A1;
+      background: rgba(59,130,246,0.10);
+      border: 1px solid rgba(59,130,246,0.22);
+      color: var(--primary-dark);
       font-weight: 900;
       white-space: nowrap;
     }
@@ -234,64 +343,52 @@
       gap: 1rem;
     }
 
-    .field{
-      display:flex;
-      flex-direction:column;
-      gap: 0.45rem;
-    }
-
+    .field{ display:flex; flex-direction:column; gap: 0.45rem; }
     .field.full{ grid-column: 1 / -1; }
 
     label{
       font-weight: 850;
-      color: var(--muted);
+      color: var(--text-light);
       font-size: 0.95rem;
     }
+    .req{ color: var(--danger); font-weight: 900; margin-left: 0.25rem; }
 
-    .req{
-      color: #ef4444;
-      font-weight: 900;
-      margin-left: 0.25rem;
-    }
-
-    .input{
-      position:relative;
-    }
+    .input{ position:relative; }
     .input i{
       position:absolute;
       left: 14px;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--subtle);
+      color: var(--text-muted);
       font-size: 1rem;
       pointer-events:none;
     }
 
     input, select, textarea{
       width:100%;
-      border: 1px solid rgba(2,6,23,0.12);
+      border: 1px solid rgba(15,23,42,0.14);
       background:#fff;
       border-radius: 16px;
-      padding: 0.9rem 1rem 0.9rem 2.6rem;
+      padding: 0.95rem 1rem 0.95rem 2.6rem;
       font-size: 0.98rem;
       color: var(--text);
       font-weight: 650;
-      outline: none;
+      outline:none;
       transition: box-shadow 0.18s ease, border-color 0.18s ease;
     }
+
     textarea{
       min-height: 120px;
       padding-left: 1rem;
     }
-    textarea + .hint{ margin-top: -0.2rem; }
 
     input:focus, select:focus, textarea:focus{
-      border-color: rgba(14,165,233,0.55);
-      box-shadow: 0 0 0 4px rgba(14,165,233,0.18);
+      border-color: rgba(59,130,246,0.65);
+      box-shadow: 0 0 0 4px rgba(59,130,246,0.18);
     }
 
     .hint{
-      color: var(--subtle);
+      color: var(--text-muted);
       font-size: 0.9rem;
       font-weight: 650;
     }
@@ -302,21 +399,28 @@
       gap: 1rem;
       align-items:center;
       flex-wrap: wrap;
-      margin-top: 1.2rem;
-      padding-top: 1.2rem;
-      border-top: 1px solid rgba(2,6,23,0.06);
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(15,23,42,0.06);
+    }
+
+    .note{
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.93rem;
+      max-width: 62ch;
     }
 
     .btn{
       border:none;
       cursor:pointer;
-      font-weight: 950;
+      font-weight: 900;
       border-radius: 16px;
       padding: 0.95rem 1.15rem;
       display:inline-flex;
       align-items:center;
       gap: 0.6rem;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+      transition: var(--transition);
       white-space: nowrap;
       text-decoration:none;
       font-size: 0.98rem;
@@ -324,29 +428,25 @@
     .btn.primary{
       background: var(--grad-brand);
       color:#fff;
-      box-shadow: 0 14px 34px rgba(14,165,233,0.22);
+      box-shadow: 0 14px 34px rgba(30,58,138,0.22);
     }
-    .btn.primary:hover{ transform: translateY(-2px); box-shadow: 0 18px 42px rgba(14,165,233,0.28); }
+    .btn.primary:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 18px 42px rgba(30,58,138,0.28);
+    }
     .btn.ghost{
       background:#fff;
       color: var(--text);
-      border: 1px solid rgba(2,6,23,0.12);
-      box-shadow: var(--shadow-1);
+      border: 1px solid rgba(15,23,42,0.12);
+      box-shadow: var(--shadow-sm);
     }
-    .btn.ghost:hover{ transform: translateY(-2px); box-shadow: var(--shadow-2); }
+    .btn.ghost:hover{ transform: translateY(-2px); box-shadow: var(--shadow-md); }
 
     .btn:disabled{
-      opacity: 0.65;
+      opacity:0.65;
       cursor:not-allowed;
       transform:none !important;
       box-shadow:none !important;
-    }
-
-    .note{
-      color: var(--subtle);
-      font-weight: 700;
-      font-size: 0.93rem;
-      max-width: 60ch;
     }
 
     .alert{
@@ -354,112 +454,190 @@
       margin-bottom: 1rem;
       padding: 0.95rem 1rem;
       border-radius: 16px;
-      font-weight: 800;
-      border: 1px solid rgba(2,6,23,0.08);
-      background: #fff;
+      font-weight: 850;
+      border: 1px solid rgba(15,23,42,0.10);
+      background:#fff;
+      box-shadow: var(--shadow-sm);
     }
     .alert.success{
-      display:none;
-      border-color: rgba(34,197,94,0.25);
-      background: rgba(34,197,94,0.08);
-      color: #166534;
+      border-color: rgba(16,185,129,0.25);
+      background: rgba(16,185,129,0.10);
+      color: #065f46;
     }
     .alert.error{
-      display:none;
       border-color: rgba(239,68,68,0.25);
-      background: rgba(239,68,68,0.08);
+      background: rgba(239,68,68,0.10);
       color: #7f1d1d;
     }
 
     /* FOOTER */
-    footer.footer{
-      background:#0B1220;
+    .footer{
+      background:#0a1628;
       color:#fff;
-      padding: 3.5rem 0 2rem;
+      padding: 5rem 0 2rem;
     }
     .footer-grid{
       display:grid;
       grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 2rem;
-      padding-bottom: 2rem;
+      gap: 3rem;
+      padding-bottom: 3rem;
       border-bottom: 1px solid rgba(255,255,255,0.10);
     }
-    .footer .brand-mini{display:flex;align-items:center;gap:0.85rem;margin-bottom:1rem;}
-    .footer .brand-mini img{
-      height:56px;width:auto;background:#fff;padding:8px;border-radius:14px;object-fit:contain;
+    .footer-brand{
+      display:flex;
+      align-items:center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
     }
-    .footer h4{
-      font-family:"Space Grotesk", sans-serif;
-      font-weight: 900;
-      margin-bottom: 1rem;
-      letter-spacing: -0.2px;
+    .footer-brand img{
+      height: 60px;
+      width:auto;
+      background:#fff;
+      padding:10px;
+      border-radius: 12px;
+      object-fit:contain;
     }
-    .footer p,.footer li{
+    .footer-brand-text h4{
+      font-family: Montserrat, sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      margin:0 0 0.25rem;
+    }
+    .footer-brand-text p{
+      margin:0;
       color: rgba(255,255,255,0.72);
+      font-weight: 650;
+      font-size: 0.95rem;
+    }
+
+    .footer p, .footer li{
+      color: rgba(255,255,255,0.75);
       line-height: 1.85;
       font-size: 0.95rem;
       font-weight: 650;
     }
-    .footer ul{list-style:none;}
+    .footer h5{
+      font-family: Montserrat, sans-serif;
+      font-weight: 800;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.2px;
+      font-size: 1.1rem;
+    }
+    .footer ul{ list-style:none; }
     .footer a{
-      color: rgba(255,255,255,0.72);
+      color: rgba(255,255,255,0.75);
       text-decoration:none;
-      transition: color 0.2s ease, transform 0.2s ease;
+      transition: var(--transition);
       display:inline-flex;
       align-items:center;
       gap: 0.55rem;
       padding: 0.25rem 0;
-      font-weight: 850;
+      font-weight: 800;
     }
     .footer a:hover{ color:#fff; transform: translateX(3px); }
-    .social{
-      display:flex; gap:0.75rem; margin-top: 1rem; flex-wrap: wrap;
+
+    .social-links{
+      display:flex;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+      flex-wrap: wrap;
     }
-    .social a{
-      width:44px; height:44px; border-radius: 14px;
-      display:grid; place-items:center;
-      background: rgba(255,255,255,0.08);
+    .social-links a{
+      width:44px;height:44px;
+      border-radius: 10px;
+      display:grid;
+      place-items:center;
+      background: rgba(255,255,255,0.10);
       color:#fff;
+      transition: var(--transition);
     }
-    .social a:hover{ background: rgba(255,255,255,0.14); transform: translateY(-2px); }
+    .social-links a:hover{
+      background: var(--primary-light);
+      transform: translateY(-3px);
+    }
+
+    .footer-contact li{
+      display:flex;
+      align-items:flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .footer-contact i{
+      margin-top: 0.25rem;
+      color: var(--primary-light);
+    }
+
     .footer-bottom{
       text-align:center;
-      padding-top: 1.4rem;
-      color: rgba(255,255,255,0.55);
+      padding-top: 2rem;
+      color: rgba(255,255,255,0.60);
       font-size: 0.95rem;
       font-weight: 650;
     }
 
+    /* WhatsApp FAB */
+    .wa-fab{
+      position: fixed;
+      right: 1.5rem;
+      bottom: 1.5rem;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 1.8rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      z-index: 999;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    .wa-fab:hover{
+      transform: scale(1.08);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.30);
+    }
+
     /* Responsive */
-    @media (max-width: 980px){
-      .mobile-toggle{ display:grid; }
+    @media (max-width: 1024px){
+      .top-bar{ display:none; }
+      .mobile-toggle{ display:flex; }
       .nav-menu{
         position: fixed;
-        top: 76px;
+        top: 85px;
         left: 0; right: 0;
-        background: rgba(255,255,255,0.98);
-        border-bottom: 1px solid rgba(2,6,23,0.08);
-        box-shadow: var(--shadow-2);
-        padding: 1.25rem 1rem;
-        display: grid;
-        gap: 0.85rem;
-        transform: translateY(-130%);
-        transition: transform 0.24s ease;
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow-lg);
+        padding: 1.5rem 1rem;
+        display:flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        transform: translateY(-150%);
+        transition: var(--transition);
         text-align:center;
       }
       .nav-menu.active{ transform: translateY(0); }
-      .grid{ grid-template-columns: 1fr; }
-      .footer-grid{ grid-template-columns: 1fr; }
+      .nav-menu a{ width:100%; }
     }
+
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; }
+      .footer-grid{ grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
     @media (max-width: 640px){
       .container{ width: calc(100% - 2.2rem); }
       form{ padding: 1.25rem; }
       .cardHead{ padding: 1.2rem 1.25rem; }
-      .badge{ display:none; }
+      .pill{ display:none; }
+      .actions{ flex-direction: column; align-items: stretch; }
+      .actions > div:last-child{ justify-content: stretch; }
+      .actions button{ width:100%; justify-content:center; }
     }
 
     a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
-      outline: 3px solid rgba(14,165,233,0.75);
+      outline: 3px solid rgba(59,130,246,0.75);
       outline-offset: 3px;
       border-radius: 12px;
     }
@@ -467,23 +645,41 @@
 </head>
 
 <body>
-  <!-- NAV -->
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-inner">
+        <ul class="top-bar-links">
+          <li><a href="contactus.html">Contact Us</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="aboutus.html#faqs">FAQs</a></li>
+        </ul>
+        <div class="top-bar-actions">
+          <a href="contactus.html#report" class="top-btn report"><i class="fas fa-exclamation-triangle"></i> Report Corruption</a>
+          <a href="donation.html" class="top-btn donate"><i class="fas fa-heart"></i> Support Our Work</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
     <div class="container">
       <div class="nav-inner">
         <a class="brand" href="index.html" aria-label="WeCare home">
-          <img src="images/logo.png" alt="WeCare Logo" />
-          <span class="name">WeCare CBO</span>
+          <img src="images/logo.png" alt="WeCare CBO Logo" />
+          <div class="brand-text">
+            <p>ENGAGE • INFLUENCE • EMPOWER</p>
+          </div>
         </a>
 
         <ul class="nav-menu" id="navMenu" role="menubar">
           <li role="none"><a href="index.html" role="menuitem">Home</a></li>
-          <li role="none"><a href="aboutus.html" role="menuitem">About Us</a></li>
+          <li role="none"><a href="aboutus.html" role="menuitem">Who We Are</a></li>
+          <li role="none"><a href="projects.html" role="menuitem">Our Work</a></li>
           <li role="none"><a class="active" href="volunteersForm.html" role="menuitem">Volunteer</a></li>
-          <li role="none"><a href="projects.html" role="menuitem">Programs</a></li>
           <li role="none"><a href="photos.html" role="menuitem">Gallery</a></li>
           <li role="none"><a href="contactus.html" role="menuitem">Contact</a></li>
-          <li role="none"><a class="donate" href="donation.html" role="menuitem"><i class="fas fa-heart"></i><span>Donate</span></a></li>
         </ul>
 
         <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
@@ -494,29 +690,39 @@
   </nav>
 
   <!-- HERO -->
-  <header class="hero">
+  <section class="page-hero">
+    <div class="page-hero-bg" aria-hidden="true"></div>
+    <div class="page-hero-overlay" aria-hidden="true"></div>
+
     <div class="container">
-      <div class="inner">
+      <div class="page-hero-content">
         <h1>Volunteer With WeCare</h1>
-        <p>Give your time, skills, and heart. Fill the form below and we’ll reach out with next steps.</p>
+        <p>Give your time, skills, and heart. Fill the form below and we will reach out with next steps.</p>
+
+        <div class="hero-badges">
+          <span class="badge-hero"><i class="fas fa-shield-heart"></i> Safe & confidential</span>
+          <span class="badge-hero"><i class="fas fa-users"></i> Community-led</span>
+          <span class="badge-hero"><i class="fas fa-hands-helping"></i> Meaningful impact</span>
+        </div>
       </div>
     </div>
-  </header>
+  </section>
 
+  <!-- FORM SECTION -->
   <section class="section">
     <div class="container">
       <div class="card">
         <div class="cardHead">
           <div>
             <h2>Volunteer Application</h2>
-            <p>Tell us who you are and how you’d like to support our work.</p>
+            <p>Tell us who you are and how you would like to support our work.</p>
           </div>
-          <div class="badge"><i class="fas fa-shield-heart"></i> Safe & confidential</div>
+          <div class="pill"><i class="fas fa-lock"></i> Private submission</div>
         </div>
 
         <form id="volunteerForm" novalidate>
           <div class="alert success" id="successMsg">
-            <i class="fas fa-circle-check"></i> Submitted! Thank you for volunteering. We’ll contact you soon.
+            <i class="fas fa-circle-check"></i> Submitted! Thank you for volunteering. We will contact you soon.
           </div>
           <div class="alert error" id="errorMsg">
             <i class="fas fa-triangle-exclamation"></i> Something went wrong while sending. Please try again.
@@ -544,7 +750,7 @@
                 <i class="fas fa-envelope"></i>
                 <input id="email" name="email" type="email" placeholder="e.g. you@example.com" required />
               </div>
-              <div class="hint">We’ll reply to this email.</div>
+              <div class="hint">We will reply to this email.</div>
             </div>
 
             <div class="field">
@@ -596,13 +802,13 @@
                   <option>Remote only</option>
                 </select>
               </div>
-              <div class="hint">We’ll match you to the right schedule.</div>
+              <div class="hint">We will match you to the right schedule.</div>
             </div>
 
             <div class="field full">
               <label for="about">Tell Us About Yourself <span class="req">*</span></label>
               <textarea id="about" name="about" placeholder="A short intro: your background, motivation, and experience." required></textarea>
-              <div class="hint">Keep it real and simple. 3 to 6 lines is enough.</div>
+              <div class="hint">Keep it short and clear. 3 to 6 lines is enough.</div>
             </div>
 
             <div class="field full">
@@ -641,27 +847,31 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <div class="brand-mini">
-            <img src="images/logo.png" alt="WeCare Logo" loading="lazy" />
-            <div>
-              <h4 style="margin:0;">WeCare CBO</h4>
-              <p style="margin:0; color:rgba(255,255,255,0.72);">Transparent governance, powered by citizens.</p>
+          <div class="footer-brand">
+            <img src="images/logo.png" alt="WeCare CBO" />
+            <div class="footer-brand-text">
+              <h4>WeCare CBO</h4>
+              <p>Transparent governance, powered by citizens.</p>
             </div>
           </div>
+          <p>
+            Strengthening accountability, promoting public participation, and monitoring public contracts
+            to ensure transparency and integrity in governance.
+          </p>
 
-          <p>WeCare strengthens citizen participation, social accountability, and policy advocacy for transparent governance.</p>
-
-          <div class="social" aria-label="Social links">
+          <div class="social-links" aria-label="Social links">
             <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
             <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
             <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://wa.me/254797680921" aria-label="WhatsApp" target="_blank" rel="noopener">
+              <i class="fab fa-whatsapp"></i>
+            </a>
           </div>
         </div>
 
         <div>
-          <h4>Quick Links</h4>
+          <h5>Quick Links</h5>
           <ul>
             <li><a href="index.html"><i class="fas fa-angle-right"></i> Home</a></li>
             <li><a href="aboutus.html"><i class="fas fa-angle-right"></i> About Us</a></li>
@@ -671,7 +881,7 @@
         </div>
 
         <div>
-          <h4>Get Involved</h4>
+          <h5>Get Involved</h5>
           <ul>
             <li><a href="volunteersForm.html"><i class="fas fa-angle-right"></i> Volunteer</a></li>
             <li><a href="donation.html"><i class="fas fa-angle-right"></i> Donate</a></li>
@@ -681,52 +891,66 @@
         </div>
 
         <div>
-          <h4>Contact</h4>
-          <ul>
-            <li><i class="fas fa-envelope"></i> wecare518@gmail.com</li>
-            <li><i class="fas fa-phone"></i> +254 797 680921 / +254 792 594021</li>
-            <li><i class="fas fa-map-marker-alt"></i> Kisumu, Kenya</li>
+          <h5>Contact</h5>
+          <ul class="footer-contact">
+            <li><i class="fas fa-envelope"></i> <span>wecare518@gmail.com</span></li>
+            <li><i class="fas fa-phone"></i> <span>+254 797 680921<br/>+254 792 594021</span></li>
+            <li><i class="fas fa-map-marker-alt"></i> <span>Kisumu, Kenya</span></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 WeCare CBO | All rights reserved</p>
+        <p>&copy; <span id="year"></span> WeCare Youth-Based Organization (WeCare CBO). All rights reserved.</p>
       </div>
     </div>
   </footer>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/254797680921?text=Hello%20WeCare%20CBO%2C%20I%20would%20like%20to%20volunteer."
+     class="wa-fab"
+     target="_blank"
+     rel="noopener"
+     aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
   <!-- SMTPJS -->
   <script src="https://smtpjs.com/v3/smtp.js"></script>
 
   <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
     // ====== CONFIG: change these two lines ======
     const TO_EMAIL = "wecare518@gmail.com"; // where submissions go
     const SECURE_TOKEN = "REPLACE_WITH_YOUR_SMTPJS_SECURE_TOKEN"; // paste your SMTPJS SecureToken
     // ===========================================
 
-    // Navbar scroll + mobile nav
+    // Navbar shadow + mobile nav
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
-      if(window.scrollY > 40) navbar.classList.add('scrolled');
-      else navbar.classList.remove('scrolled');
-    }, {passive:true});
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive:true });
 
     const mobileToggle = document.getElementById('mobileToggle');
     const navMenu = document.getElementById('navMenu');
-    function toggleMenu(){
-      const isActive = navMenu.classList.toggle('active');
-      mobileToggle.setAttribute('aria-expanded', isActive);
+
+    mobileToggle.addEventListener('click', () => {
+      const open = navMenu.classList.toggle('active');
+      mobileToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       const icon = mobileToggle.querySelector('i');
-      if(icon){
-        icon.classList.toggle('fa-bars');
-        icon.classList.toggle('fa-times');
-      }
-    }
-    mobileToggle.addEventListener('click', toggleMenu);
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+
     document.addEventListener('click', (e) => {
       if(!navMenu.contains(e.target) && !mobileToggle.contains(e.target) && navMenu.classList.contains('active')){
-        toggleMenu();
+        navMenu.classList.remove('active');
+        const icon = mobileToggle.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+        mobileToggle.setAttribute('aria-expanded', 'false');
       }
     });
 
@@ -754,7 +978,7 @@
 
       // Honeypot
       const website = document.getElementById("website").value.trim();
-      if(website) return; // bot detected
+      if(website) return;
 
       // Browser validation
       if(!form.checkValidity()){
@@ -789,13 +1013,13 @@
           </p>
 
           <h3 style="margin:16px 0 8px;">About</h3>
-          <p style="margin:0; color:#333;">${esc(about).replace(/\n/g,"<br/>")}</p>
+          <p style="margin:0; color:#333;">${esc(about).replace(/\\n/g,"<br/>")}</p>
 
           <h3 style="margin:16px 0 8px;">Skills</h3>
-          <p style="margin:0; color:#333;">${esc(skills).replace(/\n/g,"<br/>")}</p>
+          <p style="margin:0; color:#333;">${esc(skills).replace(/\\n/g,"<br/>")}</p>
 
           <h3 style="margin:16px 0 8px;">Support</h3>
-          <p style="margin:0; color:#333;">${esc(support).replace(/\n/g,"<br/>")}</p>
+          <p style="margin:0; color:#333;">${esc(support).replace(/\\n/g,"<br/>")}</p>
 
           <hr style="margin:18px 0; border:none; border-top:1px solid #eee;" />
           <p style="margin:0; color:#777; font-size:12px;">
@@ -812,8 +1036,8 @@
         const result = await Email.send({
           SecureToken: SECURE_TOKEN,
           To: TO_EMAIL,
-          From: TO_EMAIL, // safer for deliverability than using the user's email as From
-          ReplyFrom: email, // user email becomes reply-to
+          From: TO_EMAIL,
+          ReplyFrom: email,
           Subject: subject,
           Body: body
         });

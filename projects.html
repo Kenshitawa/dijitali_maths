@@ -3,837 +3,1050 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WeCare CBO | Our Programs</title>
+  <title>Our Programs - WeCare CBO | Transforming Governance</title>
   <meta name="description" content="Explore WeCare CBO programs in civic engagement, social accountability, public contracts monitoring, and policy advocacy for transparent governance." />
   <link rel="icon" href="images/logo.png" />
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
-    *{margin:0;padding:0;box-sizing:border-box;}
-    html{scroll-behavior:smooth;}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-    :root{
-      --primary:#0EA5E9;
-      --secondary:#6366F1;
-      --accent:#F59E0B;
+    :root {
+      /* Royal Blue Theme */
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --primary-dark: #1e40af;
+      --secondary: #1e40af;
+      --accent: #f59e0b;
+      --success: #10b981;
 
-      --text:#0F172A;
-      --muted:#334155;
-      --subtle:#64748B;
+      --text: #0f172a;
+      --text-light: #334155;
+      --text-muted: #64748b;
 
-      --bg:#FFFFFF;
-      --soft:#F8FAFC;
+      --bg: #ffffff;
+      --bg-soft: #f8fafc;
+      --bg-light: #f1f5f9;
 
-      --border: rgba(2, 6, 23, 0.08);
-      --shadow-1: 0 1px 3px rgba(0,0,0,0.08);
-      --shadow-2: 0 10px 30px rgba(0,0,0,0.12);
-      --shadow-3: 0 18px 50px rgba(0,0,0,0.16);
+      --border: rgba(15, 23, 42, 0.08);
+      --border-light: rgba(15, 23, 42, 0.05);
 
-      --grad-brand: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      --grad-hero: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
+      --shadow-xl: 0 20px 50px rgba(0,0,0,0.15);
 
-      --radius: 20px;
-      --radius-sm: 14px;
+      --radius: 16px;
+      --radius-lg: 24px;
+
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    body{
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       color: var(--text);
+      line-height: 1.6;
       background: var(--bg);
-      line-height: 1.65;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
-    .container{
-      width:min(1200px, calc(100% - 3rem));
-      margin:0 auto;
+    .container {
+      width: min(1280px, calc(100% - 3rem));
+      margin: 0 auto;
     }
 
-    /* NAV */
-    .navbar{
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(255,255,255,0.86);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(2, 6, 23, 0.06);
-      transition: box-shadow 0.25s ease, background 0.25s ease;
+    /* TOP BAR */
+    .top-bar {
+      background: var(--primary-dark);
+      color: white;
+      font-size: 0.875rem;
+      padding: 0.65rem 0;
     }
-    .navbar.scrolled{
-      background: rgba(255,255,255,0.94);
-      box-shadow: var(--shadow-1);
+
+    .top-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
     }
-    .nav-inner{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding: 0.85rem 0;
+
+    .top-bar-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .top-bar-links a {
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      transition: var(--transition);
+      font-weight: 500;
+    }
+
+    .top-bar-links a:hover { color: white; }
+
+    .top-bar-actions {
+      display: flex;
       gap: 1rem;
     }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:0.85rem;
-      text-decoration:none;
-      min-width: 220px;
+
+    .top-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.875rem;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
     }
-    .brand img{
-      height:46px;
-      width:auto;
-      border-radius:12px;
-      background:#fff;
-      padding:6px;
-      box-shadow: var(--shadow-1);
+
+    .top-btn.report { background: var(--accent); color: white; }
+    .top-btn.report:hover { background: #ea580c; transform: translateY(-1px); }
+
+    .top-btn.donate { background: white; color: var(--primary); }
+    .top-btn.donate:hover { background: var(--bg-soft); transform: translateY(-1px); }
+
+    /* NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .navbar.scrolled { box-shadow: var(--shadow-md); }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+      gap: 2rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+    }
+
+    .brand img {
+      height: 50px;
+      width: auto;
       object-fit: contain;
     }
-    .brand .name{
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 900;
-      font-size: 1.12rem;
-      letter-spacing: -0.4px;
-      background: var(--grad-brand);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      white-space: nowrap;
-    }
 
-    .nav-menu{
-      list-style:none;
-      display:flex;
-      gap: 1.6rem;
-      align-items:center;
-    }
-    .nav-menu a{
-      text-decoration:none;
-      color: var(--muted);
+    .brand-text p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
       font-weight: 800;
+      letter-spacing: 0.6px;
+      line-height: 1.1;
+    }
+
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 700;
       font-size: 0.95rem;
-      padding: 0.35rem 0;
-      transition: color 0.2s ease;
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      transition: var(--transition);
       position: relative;
-      white-space: nowrap;
     }
-    .nav-menu a:hover{ color: var(--primary); }
-    .nav-menu a.active{
+
+    .nav-menu a:hover {
       color: var(--primary);
-    }
-    .nav-menu a.active::after{
-      content:"";
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:-6px;
-      height:2px;
-      border-radius:999px;
-      background: var(--grad-brand);
+      background: rgba(30, 58, 138, 0.05);
     }
 
-    .donate{
-      display:inline-flex;
-      align-items:center;
-      gap:0.55rem;
-      padding:0.65rem 1.25rem;
-      border-radius:999px;
-      background: var(--grad-brand);
-      color:#fff !important;
-      box-shadow: 0 10px 24px rgba(14,165,233,0.25);
-      border: 1px solid rgba(255,255,255,0.12);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .donate:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 16px 34px rgba(14,165,233,0.32);
+    .nav-menu a.active {
+      color: var(--primary);
+      background: rgba(30, 58, 138, 0.08);
     }
 
-    .mobile-toggle{
-      display:none;
-      width:44px;height:44px;
-      border-radius:14px;
-      border:1px solid rgba(2,6,23,0.08);
-      background: rgba(255,255,255,0.75);
-      cursor:pointer;
-      display:grid;
-      place-items:center;
+    .mobile-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: white;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
       color: var(--text);
+      transition: var(--transition);
     }
 
-    /* HERO */
-    .hero{
-      padding-top: 86px;
-      min-height: 52vh;
-      background: var(--grad-hero);
+    .mobile-toggle:hover {
+      background: var(--bg-soft);
+      border-color: var(--primary);
+    }
+
+    /* PAGE HERO */
+    .page-hero {
+      padding: 8rem 0 5rem;
       position: relative;
       overflow: hidden;
-      display:grid;
-      place-items:center;
-      text-align:center;
-      color:#fff;
+      min-height: 450px;
     }
-    .hero::before{
-      content:'';
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 18% 40%, rgba(255,255,255,0.14), transparent 55%),
-        radial-gradient(circle at 82% 70%, rgba(255,255,255,0.14), transparent 55%);
-      pointer-events:none;
+
+    /* Background Slideshow */
+    .page-hero-slideshow {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
     }
-    .hero .inner{
-      position: relative;
+
+    .page-hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      /* make images feel more alive */
+      filter: contrast(1.05) saturate(1.12) brightness(1.05);
+    }
+
+    .page-hero-slide.active { opacity: 1; }
+
+    /* UPDATED: lighter overlay so images show ~50% */
+    .page-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(30, 58, 138, 0.55) 0%,
+        rgba(30, 64, 175, 0.50) 50%,
+        rgba(59, 130, 246, 0.45) 100%
+      );
       z-index: 1;
-      padding: 3rem 0;
-      max-width: 980px;
     }
-    .hero h1{
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 900;
-      letter-spacing: -1px;
-      line-height: 1.05;
-      font-size: clamp(2.1rem, 4vw, 3.3rem);
-      margin-bottom: 0.9rem;
+
+    .page-hero-overlay::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08), transparent 55%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.06), transparent 55%);
+      pointer-events: none;
     }
-    .hero p{
-      color: rgba(255,255,255,0.92);
-      font-size: clamp(1rem, 1.4vw, 1.15rem);
-      line-height: 1.85;
+
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 900px;
       margin: 0 auto;
-      max-width: 85ch;
     }
-    .crumb{
-      display:flex;
-      gap: 0.6rem;
-      justify-content:center;
-      margin-top: 1.25rem;
-      font-weight: 800;
-      color: rgba(255,255,255,0.85);
+
+    .page-hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      color: white;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 12px 28px rgba(0,0,0,0.22);
+    }
+
+    .page-hero p {
+      color: rgba(255,255,255,0.95);
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      line-height: 1.7;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      text-shadow: 0 12px 28px rgba(0,0,0,0.18);
+    }
+
+    .breadcrumb {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      align-items: center;
       flex-wrap: wrap;
-    }
-    .crumb a{
       color: rgba(255,255,255,0.9);
-      text-decoration:none;
-      border-bottom: 1px solid rgba(255,255,255,0.25);
+      font-weight: 700;
+      font-size: 0.95rem;
     }
-    .crumb span{ opacity: 0.8; }
 
-    /* SECTION */
-    .section{
-      padding: clamp(3.5rem, 5vw, 6rem) 0;
-      background: var(--soft);
+    .breadcrumb a {
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      transition: var(--transition);
     }
-    .section.white{ background:#fff; }
 
-    .section-title{
-      text-align:center;
-      margin-bottom: 2rem;
+    .breadcrumb a:hover {
+      color: white;
+      border-bottom-color: white;
     }
-    .section-title h2{
-      font-family:"Space Grotesk", sans-serif;
+
+    .breadcrumb span { opacity: 0.75; }
+
+    /* SECTIONS */
+    .section { padding: clamp(4rem, 8vw, 6rem) 0; }
+    .section.soft { background: var(--bg-soft); }
+
+    .section-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Montserrat', sans-serif;
       font-weight: 900;
-      letter-spacing: -0.7px;
-      font-size: clamp(1.8rem, 3vw, 2.55rem);
-      margin-bottom: 0.6rem;
+      font-size: clamp(2rem, 4vw, 3rem);
       color: var(--text);
+      line-height: 1.2;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
     }
-    .section-title p{
-      color: var(--subtle);
-      max-width: 85ch;
-      margin: 0 auto;
-      line-height: 1.85;
-      font-size: 1.05rem;
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      line-height: 1.8;
     }
 
     /* FILTERS */
-    .filters{
-      display:flex;
+    .filters {
+      display: flex;
       gap: 0.75rem;
       flex-wrap: wrap;
-      justify-content:center;
-      margin: 1.75rem auto 2.5rem;
+      justify-content: center;
+      margin-bottom: 3rem;
     }
-    .chip{
-      border: 1px solid rgba(2,6,23,0.10);
-      background: #fff;
-      color: var(--muted);
-      padding: 0.65rem 1rem;
+
+    .filter-chip {
+      padding: 0.75rem 1.5rem;
       border-radius: 999px;
-      font-weight: 900;
+      border: 2px solid var(--border);
+      background: white;
+      color: var(--text-light);
+      font-weight: 800;
+      font-size: 0.95rem;
       cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-      box-shadow: var(--shadow-1);
+      transition: var(--transition);
+      white-space: nowrap;
     }
-    .chip:hover{ transform: translateY(-1px); }
-    .chip.active{
-      border-color: rgba(14,165,233,0.35);
-      box-shadow: 0 14px 30px rgba(14,165,233,0.12);
-      background: rgba(14,165,233,0.07);
-      color: var(--text);
+
+    .filter-chip:hover {
+      border-color: var(--primary-light);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .filter-chip.active {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 8px 20px rgba(30, 58, 138, 0.25);
     }
 
     /* PROGRAM GRID */
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-    }
-
-    .program{
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow:hidden;
-      box-shadow: var(--shadow-1);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-      opacity: 0;
-      transform: translateY(18px);
-    }
-    .program.show{
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .program:hover{
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-2);
-      border-color: rgba(14,165,233,0.18);
-    }
-
-    .media{
-      position: relative;
-      height: 210px;
-      background: var(--grad-brand);
-      overflow:hidden;
-    }
-    .media img{
-      width:100%; height:100%;
-      object-fit: cover;
-      display:block;
-      opacity: 0.95;
-      transform: scale(1.01);
-      transition: transform 0.45s ease, opacity 0.45s ease;
-    }
-    .program:hover .media img{
-      transform: scale(1.07);
-      opacity: 1;
-    }
-
-    .tag{
-      position:absolute;
-      top: 14px;
-      left: 14px;
-      background: rgba(255,255,255,0.94);
-      border: 1px solid rgba(2,6,23,0.08);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      padding: 0.45rem 0.8rem;
-      border-radius: 999px;
-      font-weight: 900;
-      font-size: 0.78rem;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-    }
-
-    .body{
-      padding: 1.55rem;
-    }
-
-    .icon{
-      width: 52px;
-      height: 52px;
-      border-radius: 16px;
-      background: var(--grad-brand);
-      color:#fff;
-      display:grid;
-      place-items:center;
-      font-size: 1.2rem;
-      box-shadow: 0 12px 28px rgba(14,165,233,0.18);
-      margin-bottom: 0.85rem;
-    }
-
-    .body h3{
-      font-family:"Space Grotesk", sans-serif;
-      font-weight: 900;
-      letter-spacing: -0.4px;
-      font-size: 1.25rem;
-      margin-bottom: 0.55rem;
-    }
-    .body p{
-      color: var(--subtle);
-      font-size: 0.98rem;
-      line-height: 1.75;
-      margin-bottom: 1.1rem;
-    }
-
-    .meta{
-      display:flex;
-      gap: 0.9rem;
-      flex-wrap: wrap;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(2,6,23,0.06);
-      color: var(--subtle);
-      font-weight: 700;
-      font-size: 0.92rem;
-    }
-    .meta span{
-      display:inline-flex;
-      align-items:center;
-      gap: 0.55rem;
-      background: rgba(2,6,23,0.03);
-      border: 1px solid rgba(2,6,23,0.06);
-      padding: 0.45rem 0.7rem;
-      border-radius: 999px;
-    }
-    .meta i{ color: var(--primary); }
-
-    .link{
-      display:inline-flex;
-      align-items:center;
-      gap: 0.55rem;
-      text-decoration:none;
-      font-weight: 900;
-      color: var(--primary);
-      margin-top: 1rem;
-      transition: transform 0.15s ease, color 0.15s ease;
-    }
-    .link:hover{
-      transform: translateX(2px);
-      color: #0284C7;
-    }
-
-    /* IMPACT */
-    .impact{
-      padding: 4.75rem 0;
-      background: var(--grad-brand);
-      color:#fff;
-      position: relative;
-      overflow:hidden;
-    }
-    .impact::before{
-      content:'';
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.12) 0%, transparent 55%),
-        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.12) 0%, transparent 55%);
-      pointer-events:none;
-    }
-    .stats{
-      position: relative;
-      z-index: 1;
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      text-align:center;
-      margin-top: 1.75rem;
-    }
-    .stat{
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 18px;
-      padding: 1.35rem 1rem;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      transition: transform 0.2s ease, background 0.2s ease;
-    }
-    .stat:hover{ transform: translateY(-3px); background: rgba(255,255,255,0.16); }
-    .stat .n{
-      font-family:"Space Grotesk", sans-serif;
-      font-weight: 900;
-      font-size: 2.25rem;
-      letter-spacing: -0.8px;
-      margin-bottom: 0.25rem;
-    }
-    .stat .t{ opacity: 0.92; font-weight: 800; }
-
-    /* CTA */
-    .cta{
-      padding: 5rem 0;
-      background: #fff;
-    }
-    .cta-box{
-      background: var(--grad-hero);
-      border-radius: 28px;
-      padding: 3rem 2rem;
-      text-align:center;
-      color:#fff;
-      position: relative;
-      overflow:hidden;
-      box-shadow: var(--shadow-2);
-      border: 1px solid rgba(255,255,255,0.12);
-    }
-    .cta-box::before{
-      content:'';
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.16) 0%, transparent 60%),
-        radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.16) 0%, transparent 60%);
-      pointer-events:none;
-    }
-    .cta-box .inner{ position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
-    .cta-box h2{
-      font-family:"Space Grotesk", sans-serif;
-      font-weight: 900;
-      letter-spacing: -0.8px;
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      margin-bottom: 0.75rem;
-    }
-    .cta-box p{
-      color: rgba(255,255,255,0.92);
-      line-height: 1.85;
-      margin: 0 auto 1.75rem;
-      max-width: 75ch;
-      font-weight: 600;
-    }
-    .btns{
-      display:flex;
-      gap: 0.85rem;
-      justify-content:center;
-      flex-wrap: wrap;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap: 0.65rem;
-      padding: 0.95rem 1.25rem;
-      border-radius: 16px;
-      font-weight: 900;
-      text-decoration:none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-      white-space: nowrap;
-    }
-    .btn.primary{
-      background:#fff;
-      color: var(--primary);
-      box-shadow: 0 14px 30px rgba(0,0,0,0.18);
-    }
-    .btn.primary:hover{ transform: translateY(-2px); }
-    .btn.ghost{
-      background: rgba(255,255,255,0.14);
-      border: 1px solid rgba(255,255,255,0.22);
-      color:#fff;
-    }
-    .btn.ghost:hover{ transform: translateY(-2px); background: rgba(255,255,255,0.18); }
-
-    /* FOOTER */
-    .footer{
-      background:#0B1220;
-      color:#fff;
-      padding: 4.5rem 0 2rem;
-    }
-    .footer-grid{
-      display:grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
       gap: 2rem;
-      padding-bottom: 2.2rem;
-      border-bottom: 1px solid rgba(255,255,255,0.10);
-    }
-    .footer .brand-mini{
-      display:flex;
-      align-items:center;
-      gap:0.85rem;
-      margin-bottom: 1rem;
-    }
-    .footer .brand-mini img{
-      height:56px;
-      width:auto;
-      background:#fff;
-      padding:8px;
-      border-radius: 14px;
-      object-fit: contain;
-    }
-    .footer h4{
-      font-family:"Space Grotesk", sans-serif;
-      font-weight: 900;
-      margin-bottom: 1rem;
-      letter-spacing: -0.2px;
-    }
-    .footer p, .footer li{
-      color: rgba(255,255,255,0.72);
-      line-height: 1.85;
-      font-size: 0.95rem;
-    }
-    .footer ul{list-style:none;}
-    .footer a{
-      color: rgba(255,255,255,0.72);
-      text-decoration:none;
-      transition: color 0.2s ease, transform 0.2s ease;
-      display:inline-flex;
-      align-items:center;
-      gap: 0.55rem;
-      padding: 0.25rem 0;
-    }
-    .footer a:hover{ color:#fff; transform: translateX(3px); }
-    .social{
-      display:flex;
-      gap:0.75rem;
-      margin-top: 1rem;
-      flex-wrap: wrap;
-    }
-    .social a{
-      width:44px; height:44px;
-      border-radius: 14px;
-      display:grid;
-      place-items:center;
-      background: rgba(255,255,255,0.08);
-      color:#fff;
-    }
-    .social a:hover{ background: rgba(255,255,255,0.14); transform: translateY(-2px); }
-    .footer-bottom{
-      text-align:center;
-      padding-top: 1.6rem;
-      color: rgba(255,255,255,0.55);
-      font-size: 0.95rem;
     }
 
-    /* WhatsApp Floating */
-    .wa-fab{
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      z-index: 1200;
-      width: 54px;
-      height: 54px;
-      border-radius: 18px;
-      background: #25D366;
-      color: #fff;
+    .program-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+
+      /* animation baseline */
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .program-card.show { opacity: 1; transform: translateY(0); }
+
+    .program-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(30, 58, 138, 0.2);
+    }
+
+    .program-image {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    }
+
+    .program-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .program-card:hover .program-image img { transform: scale(1.08); }
+
+    .program-tag {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      font-weight: 900;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--primary);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .program-content { padding: 2rem; }
+
+    .program-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
       display: grid;
       place-items: center;
-      text-decoration: none;
-      box-shadow: 0 18px 40px rgba(0,0,0,0.25);
-      transition: transform 0.2s ease;
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 8px 20px rgba(30, 58, 138, 0.25);
     }
-    .wa-fab:hover{ transform: translateY(-2px); }
 
-    /* Responsive */
-    @media (max-width: 980px){
-      .mobile-toggle{ display:grid; }
-      .nav-menu{
+    .program-content h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.35rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+      letter-spacing: -0.3px;
+    }
+
+    .program-content p {
+      color: var(--text-muted);
+      line-height: 1.75;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .program-meta {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      margin-bottom: 1.25rem;
+    }
+
+    .meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.85rem;
+      border-radius: 999px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--text-light);
+    }
+
+    .meta-item i { color: var(--primary); }
+
+    .program-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+
+    .program-link:hover { gap: 0.75rem; color: var(--primary-dark); }
+
+    /* IMPACT SECTION */
+    .impact-section {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      padding: 5rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .impact-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1), transparent 40%),
+        radial-gradient(circle at 80% 50%, rgba(255,255,255,0.08), transparent 40%);
+    }
+
+    .impact-content { position: relative; z-index: 1; }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .impact-stat {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: var(--transition);
+    }
+
+    .impact-stat:hover { background: rgba(255,255,255,0.18); transform: translateY(-5px); }
+
+    .impact-stat-number {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      color: white;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .impact-stat-label {
+      color: rgba(255,255,255,0.95);
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    /* CTA SECTION */
+    .cta-section { background: white; padding: 5rem 0; }
+
+    .cta-box {
+      background: linear-gradient(135deg, #667EEA 0%, #4b4fa2 100%);
+      border-radius: var(--radius-lg);
+      padding: 4rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 50%, rgba(255,255,255,0.15), transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(255,255,255,0.12), transparent 50%);
+    }
+
+    .cta-box-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+
+    .cta-box h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-box p {
+      color: rgba(255,255,255,0.95);
+      font-size: 1.15rem;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      padding: 1rem 2rem;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      text-decoration: none;
+      transition: var(--transition);
+      white-space: nowrap;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn.primary {
+      background: white;
+      color: var(--primary);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .btn.primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0,0,0,0.25); }
+
+    .btn.ghost {
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.3);
+      color: white;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .btn.ghost:hover {
+      background: rgba(255,255,255,0.25);
+      border-color: rgba(255,255,255,0.5);
+      transform: translateY(-3px);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #0a1628;
+      color: white;
+      padding: 5rem 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-brand img {
+      height: 60px;
+      width: auto;
+      background: white;
+      padding: 10px;
+      border-radius: 12px;
+    }
+
+    .footer-brand-text h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 1.25rem;
+      color: white;
+      margin-bottom: 0.25rem;
+    }
+
+    .footer-brand-text p {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.7);
+      font-weight: 700;
+    }
+
+    .footer-desc { color: rgba(255,255,255,0.8); line-height: 1.8; margin-bottom: 1.5rem; }
+
+    .footer h5 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: white;
+    }
+
+    .footer ul { list-style: none; }
+    .footer ul li { margin-bottom: 0.75rem; }
+
+    .footer a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer a:hover { color: white; transform: translateX(3px); }
+
+    .footer-contact li {
+      display: flex;
+      align-items: start;
+      gap: 0.75rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 1rem;
+    }
+
+    .footer-contact i { color: var(--primary-light); margin-top: 0.25rem; }
+
+    .social-links { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+
+    .social-links a {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.1);
+      display: grid;
+      place-items: center;
+      color: white;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover { background: var(--primary-light); transform: translateY(-3px); }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.95rem;
+    }
+
+    /* WhatsApp FAB */
+    .wa-fab {
+      position: fixed;
+      right: 1.5rem;
+      bottom: 1.5rem;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 1.8rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      z-index: 999;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .wa-fab:hover { transform: scale(1.1); box-shadow: 0 12px 32px rgba(0,0,0,0.3); }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .top-bar { display: none; }
+      .mobile-toggle { display: inline-flex; }
+
+      .nav-menu {
         position: fixed;
-        top: 76px;
+        top: 85px;
         left: 0;
         right: 0;
-        background: rgba(255,255,255,0.98);
-        border-bottom: 1px solid rgba(2,6,23,0.08);
-        box-shadow: var(--shadow-2);
-        padding: 1.25rem 1rem;
-        display: grid;
-        gap: 0.85rem;
-        transform: translateY(-130%);
-        transition: transform 0.24s ease;
+        background: white;
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow-lg);
+        padding: 1.5rem 1rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        transform: translateY(-150%);
+        transition: var(--transition);
       }
-      .nav-menu.active{ transform: translateY(0); }
-      .nav-menu li{ text-align:center; }
-      .grid{ grid-template-columns: 1fr; }
-      .stats{ grid-template-columns: 1fr; }
-      .footer-grid{ grid-template-columns: 1fr; }
+
+      .nav-menu.active { transform: translateY(0); }
+      .nav-menu a { width: 100%; text-align: center; }
+
+      .program-grid { grid-template-columns: 1fr; }
+      .impact-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     }
 
-    a:focus-visible, button:focus-visible{
-      outline: 3px solid rgba(14,165,233,0.8);
-      outline-offset: 3px;
-      border-radius: 10px;
+    @media (max-width: 640px) {
+      .impact-grid { grid-template-columns: 1fr; }
+      .cta-buttons { flex-direction: column; width: 100%; }
+      .btn { width: 100%; }
+
+      .filters { gap: 0.5rem; }
+      .filter-chip { padding: 0.65rem 1.25rem; font-size: 0.875rem; }
     }
-    @media (prefers-reduced-motion: reduce){
-      *{ transition:none !important; scroll-behavior:auto !important; }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+
+    /* ACCESSIBILITY */
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--primary-light);
+      outline-offset: 3px;
+      border-radius: 6px;
     }
   </style>
 </head>
 
 <body>
-  <!-- NAV -->
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-inner">
+        <ul class="top-bar-links">
+          <li><a href="contactus.html">Contact Us</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="aboutus.html#faqs">FAQs</a></li>
+        </ul>
+        <div class="top-bar-actions">
+          <a href="contactus.html#report" class="top-btn report">
+            <i class="fas fa-exclamation-triangle"></i>
+            Report Corruption
+          </a>
+          <a href="donation.html" class="top-btn donate">
+            <i class="fas fa-heart"></i>
+            Support Our Work
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
     <div class="container">
       <div class="nav-inner">
-        <a class="brand" href="index.html" aria-label="WeCare CBO home">
-          <img src="images/logo.png" alt="WeCare CBO Logo" loading="eager" />
+        <a class="brand" href="index.html">
+          <img src="images/logo.png" alt="WeCare CBO Logo" />
+          <div class="brand-text">
+            <p>ENGAGE • INFLUENCE • EMPOWER</p>
+          </div>
         </a>
 
-        <ul class="nav-menu" id="navMenu" role="menubar">
-          <li role="none"><a href="index.html" role="menuitem">Home</a></li>
-          <li role="none"><a href="aboutus.html" role="menuitem">About Us</a></li>
-          <li role="none"><a class="active" href="projects.html" role="menuitem">Programs</a></li>
-          <li role="none"><a href="volunteers.html" role="menuitem">Get Involved</a></li>
-          <li role="none"><a href="photos.html" role="menuitem">Gallery</a></li>
-          <li role="none"><a href="contactus.html" role="menuitem">Contact</a></li>
-          <li role="none"><a href="donation.html" class="donate" role="menuitem"><i class="fas fa-heart"></i><span>Donate</span></a></li>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="aboutus.html">Who We Are</a></li>
+          <li><a href="projects.html" class="active">Our Work</a></li>
+          <li><a href="volunteers.html">Get Involved</a></li>
+          <li><a href="contactus.html">Contact</a></li>
         </ul>
 
-        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
-          <i class="fas fa-bars" aria-hidden="true"></i>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
         </button>
       </div>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <header class="hero">
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <!-- Background Slideshow -->
+    <div class="page-hero-slideshow">
+      <div class="page-hero-slide active" style="background-image: url('images/24.jpg');"></div>
+      <div class="page-hero-slide" style="background-image: url('images/18.JPG');"></div>
+      <div class="page-hero-slide" style="background-image: url('images/16.jpg');"></div>
+    </div>
+
+    <!-- Overlay for text readability -->
+    <div class="page-hero-overlay"></div>
+
     <div class="container">
-      <div class="inner">
+      <div class="page-hero-content">
         <h1>Our Programs</h1>
         <p>
-          Youth-led initiatives strengthening accountability, transparency, and citizen participation for better governance
-          across Kenya, with focus in Western Kenya and Nairobi.
+          Youth-led initiatives strengthening accountability, transparency, and citizen participation
+          for better governance across Kenya, with focus in Western Kenya and Nairobi.
         </p>
-        <div class="crumb" aria-label="Breadcrumb">
+        <div class="breadcrumb">
           <a href="index.html">Home</a>
           <span>•</span>
           <span>Programs</span>
         </div>
       </div>
     </div>
-  </header>
+  </section>
 
   <!-- PROGRAMS -->
-  <section class="section">
+  <section class="section soft">
     <div class="container">
-      <div class="section-title">
+      <div class="section-header">
         <h2>Transforming Governance Through Action</h2>
         <p>
-          Our programs empower citizens, especially youth, women, and persons with disabilities, to hold governments accountable and participate meaningfully in democratic processes.
+          Our programs empower citizens, especially youth, women, and persons with disabilities,
+          to hold governments accountable and participate meaningfully in democratic processes.
         </p>
       </div>
 
       <!-- Filters -->
-      <div class="filters" role="tablist" aria-label="Program filters">
-        <button class="chip active" data-filter="all" type="button">All</button>
-        <button class="chip" data-filter="civic" type="button">Civic Engagement</button>
-        <button class="chip" data-filter="accountability" type="button">Accountability</button>
-        <button class="chip" data-filter="contracts" type="button">Contracts Monitoring</button>
-        <button class="chip" data-filter="policy" type="button">Policy Advocacy</button>
-        <button class="chip" data-filter="digital" type="button">Digital Rights</button>
-        <button class="chip" data-filter="inclusion" type="button">Inclusion</button>
+      <div class="filters">
+        <button class="filter-chip active" data-filter="all">All Programs</button>
+        <button class="filter-chip" data-filter="civic">Civic Engagement</button>
+        <button class="filter-chip" data-filter="accountability">Accountability</button>
+        <button class="filter-chip" data-filter="contracts">Contracts</button>
+        <button class="filter-chip" data-filter="policy">Policy Advocacy</button>
+        <button class="filter-chip" data-filter="digital">Digital Rights</button>
+        <button class="filter-chip" data-filter="inclusion">Inclusion</button>
       </div>
 
-      <div class="grid" id="programGrid">
-        <!-- 1 -->
-        <article class="program" data-category="civic">
-          <div class="media">
-            <img src="images/24.jpg" alt="Youth-led civic engagement" loading="lazy" />
-            <div class="tag">Flagship</div>
+      <div class="program-grid" id="programGrid">
+        <!-- Program 1 -->
+        <article class="program-card" data-category="civic">
+          <div class="program-image">
+            <img src="images/24.jpg" alt="Youth-led civic engagement" />
+            <div class="program-tag">Flagship</div>
           </div>
-          <div class="body">
-            <div class="icon"><i class="fas fa-users" aria-hidden="true"></i></div>
+          <div class="program-content">
+            <div class="program-icon"><i class="fas fa-users"></i></div>
             <h3>Youth-Led Civic Engagement</h3>
             <p>
-              Building youth leadership capacity and facilitating meaningful participation in county and national decision-making spaces through trainings, forums, and advocacy platforms.
+              Building youth leadership capacity and facilitating meaningful participation in county
+              and national decision-making spaces through trainings, forums, and advocacy platforms.
             </p>
-            <div class="meta">
-              <span><i class="fas fa-user-graduate"></i> 5,000+ youth</span>
-              <span><i class="fas fa-map-marker-alt"></i> 4 counties</span>
+            <div class="program-meta">
+              <span class="meta-item"><i class="fas fa-user-graduate"></i> 5,000+ youth</span>
+              <span class="meta-item"><i class="fas fa-map-marker-alt"></i> 4 counties</span>
             </div>
-            <a class="link" href="contactus.html">Partner with us <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            <a href="contactus.html" class="program-link">
+              Partner with us <i class="fas fa-arrow-right"></i>
+            </a>
           </div>
         </article>
 
-        <!-- 2 -->
-        <article class="program" data-category="accountability">
-          <div class="media">
-            <img src="images/18.JPG" alt="Social accountability and anti-corruption" loading="lazy" />
-            <div class="tag">Active</div>
+        <!-- Program 2 -->
+        <article class="program-card" data-category="accountability">
+          <div class="program-image">
+            <img src="images/18.JPG" alt="Social accountability" />
+            <div class="program-tag">Active</div>
           </div>
-          <div class="body">
-            <div class="icon"><i class="fas fa-shield-halved" aria-hidden="true"></i></div>
+          <div class="program-content">
+            <div class="program-icon"><i class="fas fa-shield-halved"></i></div>
             <h3>Social Accountability & Anti-Corruption</h3>
             <p>
-              Promoting citizen oversight through community scorecards, budget tracking, and social audits to strengthen transparency and integrity in service delivery.
+              Promoting citizen oversight through community scorecards, budget tracking, and social
+              audits to strengthen transparency and integrity in service delivery.
             </p>
-            <div class="meta">
-              <span><i class="fas fa-clipboard-check"></i> social audits</span>
-              <span><i class="fas fa-chart-line"></i> budget tracking</span>
+            <div class="program-meta">
+              <span class="meta-item"><i class="fas fa-clipboard-check"></i> Social audits</span>
+              <span class="meta-item"><i class="fas fa-chart-line"></i> Budget tracking</span>
             </div>
-            <a class="link" href="contactus.html">Work with us <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            <a href="contactus.html" class="program-link">
+              Work with us <i class="fas fa-arrow-right"></i>
+            </a>
           </div>
         </article>
 
-        <!-- 3 -->
-        <article class="program" data-category="contracts">
-          <div class="media">
-            <img src="images/16.jpg" alt="Public contracts monitoring" loading="lazy" />
-            <div class="tag">Featured</div>
+        <!-- Program 3 -->
+        <article class="program-card" data-category="contracts">
+          <div class="program-image">
+            <img src="images/16.jpg" alt="Public contracts monitoring" />
+            <div class="program-tag">Featured</div>
           </div>
-          <div class="body">
-            <div class="icon"><i class="fas fa-file-contract" aria-hidden="true"></i></div>
+          <div class="program-content">
+            <div class="program-icon"><i class="fas fa-file-contract"></i></div>
             <h3>Public Contracts Monitoring</h3>
             <p>
-              Tracking public projects and procurement processes to promote openness, value for money, and accountability in the use of public resources.
+              Tracking public projects and procurement processes to promote openness, value for money,
+              and accountability in the use of public resources.
             </p>
-            <div class="meta">
-              <span><i class="fas fa-tasks"></i> project tracking</span>
-              <span><i class="fas fa-money-bill-wave"></i> budget review</span>
+            <div class="program-meta">
+              <span class="meta-item"><i class="fas fa-tasks"></i> Project tracking</span>
+              <span class="meta-item"><i class="fas fa-money-bill-wave"></i> Budget review</span>
             </div>
-            <a class="link" href="contactus.html">Request monitoring support <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            <a href="contactus.html" class="program-link">
+              Request support <i class="fas fa-arrow-right"></i>
+            </a>
           </div>
         </article>
 
-        <!-- 4 -->
-        <article class="program" data-category="policy">
-          <div class="media">
-            <img src="images/12.jpg" alt="Policy advocacy and reforms" loading="lazy" />
-            <div class="tag">Expanding</div>
+        <!-- Program 4 -->
+        <article class="program-card" data-category="policy">
+          <div class="program-image">
+            <img src="images/12.jpg" alt="Policy advocacy" />
+            <div class="program-tag">Expanding</div>
           </div>
-          <div class="body">
-            <div class="icon"><i class="fas fa-scale-balanced" aria-hidden="true"></i></div>
+          <div class="program-content">
+            <div class="program-icon"><i class="fas fa-balance-scale"></i></div>
             <h3>Policy Advocacy & Reforms</h3>
             <p>
-              Engaging stakeholders through policy dialogues, memoranda, and evidence-based advocacy to advance reforms that strengthen governance and integrity.
+              Engaging stakeholders through policy dialogues, memoranda, and evidence-based advocacy
+              to advance reforms that strengthen governance and integrity.
             </p>
-            <div class="meta">
-              <span><i class="fas fa-comments"></i> dialogues</span>
-              <span><i class="fas fa-file-lines"></i> position papers</span>
+            <div class="program-meta">
+              <span class="meta-item"><i class="fas fa-comments"></i> Dialogues</span>
+              <span class="meta-item"><i class="fas fa-file-lines"></i> Position papers</span>
             </div>
-            <a class="link" href="contactus.html">Start a dialogue <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            <a href="contactus.html" class="program-link">
+              Start a dialogue <i class="fas fa-arrow-right"></i>
+            </a>
           </div>
         </article>
 
-        <!-- 5 -->
-        <article class="program" data-category="digital">
-          <div class="media">
-            <img src="images/7.jpg" alt="Digital rights and access to information" loading="lazy" />
-            <div class="tag">Ongoing</div>
+        <!-- Program 5 -->
+        <article class="program-card" data-category="digital">
+          <div class="program-image">
+            <img src="images/7.jpg" alt="Digital rights" />
+            <div class="program-tag">Ongoing</div>
           </div>
-          <div class="body">
-            <div class="icon"><i class="fas fa-wifi" aria-hidden="true"></i></div>
+          <div class="program-content">
+            <div class="program-icon"><i class="fas fa-wifi"></i></div>
             <h3>Digital Rights & Access to Information</h3>
             <p>
-              Championing access to information, protecting digital rights, and supporting civic tech that improves citizen reporting and government responsiveness.
+              Championing access to information, protecting digital rights, and supporting civic tech
+              that improves citizen reporting and government responsiveness.
             </p>
-            <div class="meta">
-              <span><i class="fas fa-laptop-code"></i> civic tech</span>
-              <span><i class="fas fa-database"></i> open data</span>
+            <div class="program-meta">
+              <span class="meta-item"><i class="fas fa-laptop-code"></i> Civic tech</span>
+              <span class="meta-item"><i class="fas fa-database"></i> Open data</span>
             </div>
-            <a class="link" href="contactus.html">Collaborate <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            <a href="contactus.html" class="program-link">
+              Collaborate <i class="fas fa-arrow-right"></i>
+            </a>
           </div>
         </article>
 
-        <!-- 6 -->
-        <article class="program" data-category="inclusion">
-          <div class="media">
-            <img src="images/ngo2.jpg" alt="Inclusive governance and rights protection" loading="lazy" />
-            <div class="tag">Priority</div>
+        <!-- Program 6 -->
+        <article class="program-card" data-category="inclusion">
+          <div class="program-image">
+            <img src="images/ngo2.jpg" alt="Inclusive governance" />
+            <div class="program-tag">Priority</div>
           </div>
-          <div class="body">
-            <div class="icon"><i class="fas fa-hand-holding-heart" aria-hidden="true"></i></div>
+          <div class="program-content">
+            <div class="program-icon"><i class="fas fa-hand-holding-heart"></i></div>
             <h3>Inclusive Governance & Rights Protection</h3>
             <p>
-              Advancing inclusion of marginalized groups, youth, women, and persons with disabilities, in civic spaces through advocacy, mentorship, and capacity building.
+              Advancing inclusion of marginalized groups, youth, women, and persons with disabilities
+              in civic spaces through advocacy, mentorship, and capacity building.
             </p>
-            <div class="meta">
-              <span><i class="fas fa-universal-access"></i> inclusion focus</span>
-              <span><i class="fas fa-people-carry-box"></i> capacity building</span>
+            <div class="program-meta">
+              <span class="meta-item"><i class="fas fa-universal-access"></i> Inclusion focus</span>
+              <span class="meta-item"><i class="fas fa-people-carry-box"></i> Capacity building</span>
             </div>
-            <a class="link" href="contactus.html">Support inclusion work <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            <a href="contactus.html" class="program-link">
+              Support this work <i class="fas fa-arrow-right"></i>
+            </a>
           </div>
         </article>
       </div>
@@ -841,36 +1054,51 @@
   </section>
 
   <!-- IMPACT -->
-  <section class="impact">
+  <section class="impact-section">
     <div class="container">
-      <div class="section-title" style="margin-bottom: 0;">
-        <h2 style="color:#fff;">Impact at a Glance</h2>
-        <p style="color: rgba(255,255,255,0.92);">
-          Measurable outcomes powered by community voices and youth leadership.
-        </p>
-      </div>
+      <div class="impact-content">
+        <div class="section-header">
+          <h2 style="color: white;">Impact at a Glance</h2>
+          <p style="color: rgba(255,255,255,0.95);">
+            Measurable outcomes powered by community voices and youth leadership.
+          </p>
+        </div>
 
-      <div class="stats" aria-label="Impact statistics">
-        <div class="stat"><div class="n">5,000+</div><div class="t">Citizens engaged</div></div>
-        <div class="stat"><div class="n">4</div><div class="t">Counties reached</div></div>
-        <div class="stat"><div class="n">50+</div><div class="t">Projects monitored</div></div>
-        <div class="stat"><div class="n">15+</div><div class="t">Partnerships</div></div>
+        <div class="impact-grid">
+          <div class="impact-stat">
+            <div class="impact-stat-number">5,000+</div>
+            <div class="impact-stat-label">Citizens Engaged</div>
+          </div>
+          <div class="impact-stat">
+            <div class="impact-stat-number">4</div>
+            <div class="impact-stat-label">Counties Reached</div>
+          </div>
+          <div class="impact-stat">
+            <div class="impact-stat-number">50+</div>
+            <div class="impact-stat-label">Projects Monitored</div>
+          </div>
+          <div class="impact-stat">
+            <div class="impact-stat-number">15+</div>
+            <div class="impact-stat-label">Active Partnerships</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="cta">
+  <section class="cta-section">
     <div class="container">
       <div class="cta-box">
-        <div class="inner">
+        <div class="cta-box-content">
           <h2>Join Us in Strengthening Governance</h2>
           <p>
-            Your support and participation help expand our reach and create lasting positive change in democratic processes across Kenya.
+            Your support and participation help expand our reach and create lasting positive
+            change in democratic processes across Kenya.
           </p>
-          <div class="btns">
-            <a class="btn primary" href="donation.html"><i class="fas fa-heart" aria-hidden="true"></i> Support Our Work</a>
-            <a class="btn ghost" href="volunteers.html"><i class="fas fa-hands-helping" aria-hidden="true"></i> Get Involved</a>
+          <div class="cta-buttons">
+            <a href="donation.html" class="btn primary"><i class="fas fa-heart"></i> Support Our Work</a>
+            <a href="volunteers.html" class="btn ghost"><i class="fas fa-hands-helping"></i> Get Involved</a>
           </div>
         </div>
       </div>
@@ -882,148 +1110,173 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <div class="brand-mini">
-            <img src="images/logo.png" alt="WeCare CBO Logo" loading="lazy" />
-            <div>
-              <h4 style="margin:0;">WeCare CBO</h4>
-              <div style="color: rgba(255,255,255,0.7); font-weight: 800; margin-top: 0.25rem;">
-                Engage • Influence • Empower
-              </div>
+          <div class="footer-brand">
+            <img src="images/logo.png" alt="WeCare CBO" />
+            <div class="footer-brand-text">
+              <h4>WeCare CBO</h4>
+              <p>Engage • Influence • Empower</p>
             </div>
           </div>
-          <p>
-            Strengthening accountability, promoting public participation, and monitoring public contracts
-            to ensure transparency and integrity in governance.
+          <p class="footer-desc">
+            Strengthening accountability, promoting public participation, and monitoring
+            public contracts to ensure transparency and integrity in governance across Kenya.
           </p>
-
-          <div class="social" aria-label="Social links">
-            <a href="#" aria-label="Facebook" title="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-            <a href="#" aria-label="X" title="X"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
-            <a href="#" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-            <a href="#" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-            <a href="https://wa.me/254797680921" aria-label="WhatsApp" title="WhatsApp" target="_blank" rel="noopener">
-              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://wa.me/254797680921" aria-label="WhatsApp" target="_blank" rel="noopener">
+              <i class="fab fa-whatsapp"></i>
             </a>
           </div>
         </div>
 
         <div>
-          <h4>Quick Links</h4>
+          <h5>Quick Links</h5>
           <ul>
             <li><a href="index.html"><i class="fas fa-angle-right"></i> Home</a></li>
             <li><a href="aboutus.html"><i class="fas fa-angle-right"></i> About Us</a></li>
-            <li><a href="projects.html"><i class="fas fa-angle-right"></i> Programs</a></li>
-            <li><a href="photos.html"><i class="fas fa-angle-right"></i> Gallery</a></li>
+            <li><a href="projects.html"><i class="fas fa-angle-right"></i> Our Work</a></li>
+            <li><a href="volunteers.html"><i class="fas fa-angle-right"></i> Get Involved</a></li>
+            <li><a href="contactus.html"><i class="fas fa-angle-right"></i> Contact</a></li>
           </ul>
         </div>
 
         <div>
-          <h4>Get Involved</h4>
+          <h5>Resources</h5>
           <ul>
+            <li><a href="projects.html"><i class="fas fa-angle-right"></i> Our Projects</a></li>
             <li><a href="volunteers.html"><i class="fas fa-angle-right"></i> Volunteer</a></li>
             <li><a href="donation.html"><i class="fas fa-angle-right"></i> Donate</a></li>
-            <li><a href="contactus.html"><i class="fas fa-angle-right"></i> Contact</a></li>
             <li><a href="privacy.html"><i class="fas fa-angle-right"></i> Privacy Policy</a></li>
           </ul>
         </div>
 
         <div>
-          <h4>Contact</h4>
-          <ul>
-            <li><i class="fas fa-envelope"></i> wecare518@gmail.com</li>
-            <li><i class="fas fa-phone"></i> +254 797 680921 / +254 792 594021</li>
-            <li><i class="fas fa-map-marker-alt"></i> Kisumu, Kenya</li>
+          <h5>Contact</h5>
+          <ul class="footer-contact">
+            <li><i class="fas fa-envelope"></i><span>wecare518@gmail.com</span></li>
+            <li><i class="fas fa-phone"></i><span>+254 797 680921<br>+254 792 594021</span></li>
+            <li><i class="fas fa-map-marker-alt"></i><span>Kisumu, Kenya</span></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; <span id="year"></span> WeCare Youth-Based Organization (WeCare CBO) | All rights reserved</p>
+        <p>&copy; <span id="year"></span> WeCare Youth-Based Organization (WeCare CBO). All Rights Reserved.</p>
       </div>
     </div>
   </footer>
 
-  <!-- WhatsApp Floating -->
-  <a class="wa-fab" href="https://wa.me/254797680921?text=Hello%20WeCare%20CBO%2C%20I%20would%20like%20to%20learn%20more%20about%20your%20programs..." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/254797680921?text=Hello%20WeCare%20CBO,%20I%20would%20like%20to%20learn%20more%20about%20your%20programs..."
+     class="wa-fab"
+     target="_blank"
+     rel="noopener"
+     aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
   </a>
 
   <script>
-    // Year
+    // Set current year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Navbar scroll
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 30);
-    }, { passive: true });
+    // Background Slideshow
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.page-hero-slide');
+    const slideCount = slides.length;
 
-    // Mobile menu
+    function nextSlide() {
+      if (slideCount <= 1) return;
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slideCount;
+      slides[currentSlide].classList.add('active');
+    }
+
+    if (slideCount > 1) setInterval(nextSlide, 5000);
+
+    // Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobileToggle');
     const navMenu = document.getElementById('navMenu');
+    const navbar = document.getElementById('navbar');
 
-    function setExpanded(val){
-      mobileToggle.setAttribute('aria-expanded', String(val));
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
       const icon = mobileToggle.querySelector('i');
-      icon.classList.toggle('fa-bars', !val);
-      icon.classList.toggle('fa-times', val);
-    }
-    function openMenu(){ navMenu.classList.add('active'); setExpanded(true); }
-    function closeMenu(){ navMenu.classList.remove('active'); setExpanded(false); }
-    function toggleMenu(){ navMenu.classList.contains('active') ? closeMenu() : openMenu(); }
-
-    mobileToggle.addEventListener('click', toggleMenu);
-
-    navMenu.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        if (window.innerWidth <= 980) closeMenu();
-      });
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
     });
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && navMenu.classList.contains('active')) closeMenu();
-    });
-
+    // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-      if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target) && navMenu.classList.contains('active')) {
-        closeMenu();
+      if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+        navMenu.classList.remove('active');
+        const icon = mobileToggle.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
       }
     });
 
-    // Filter programs
-    const chips = document.querySelectorAll('.chip');
-    const programs = document.querySelectorAll('.program');
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
 
-    function showWithAnimation(list){
-      list.forEach((el, i) => {
-        el.classList.remove('show');
-        el.style.display = 'block';
-        setTimeout(() => el.classList.add('show'), 40 + i * 70);
+    // Close menu on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+        const icon = mobileToggle.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
+
+    // Program Filtering
+    const filterChips = document.querySelectorAll('.filter-chip');
+    const programCards = document.querySelectorAll('.program-card');
+
+    function showWithAnimation(cards) {
+      cards.forEach((card, index) => {
+        card.classList.remove('show');
+        card.style.display = 'block';
+        setTimeout(() => {
+          card.classList.add('show');
+        }, 50 + (index * 100));
       });
     }
 
-    function applyFilter(filter){
-      programs.forEach(p => {
-        const cat = p.getAttribute('data-category');
-        const match = filter === 'all' || cat === filter;
-        p.style.display = match ? 'block' : 'none';
-        p.classList.remove('show');
+    function filterPrograms(category) {
+      programCards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        const shouldShow = category === 'all' || cardCategory === category;
+
+        if (!shouldShow) {
+          card.classList.remove('show');
+          card.style.display = 'none';
+        }
       });
 
-      const visible = Array.from(programs).filter(p => p.style.display !== 'none');
-      showWithAnimation(visible);
+      const visibleCards = Array.from(programCards).filter(card => {
+        const cardCategory = card.getAttribute('data-category');
+        return category === 'all' || cardCategory === category;
+      });
+
+      showWithAnimation(visibleCards);
     }
 
-    chips.forEach(btn => {
-      btn.addEventListener('click', () => {
-        chips.forEach(c => c.classList.remove('active'));
-        btn.classList.add('active');
-        applyFilter(btn.getAttribute('data-filter'));
+    filterChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        filterChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        const category = chip.getAttribute('data-filter');
+        filterPrograms(category);
       });
     });
 
-    // initial reveal
-    applyFilter('all');
+    // Initial load animation
+    filterPrograms('all');
   </script>
 </body>
 </html>

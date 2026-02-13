@@ -3,513 +3,807 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WeCare CBO | Privacy Policy</title>
+  <title>Privacy Policy - WeCare CBO | Your Data & Privacy</title>
   <meta name="description" content="WeCare CBO privacy policy: how we collect, use, store and protect personal information, cookies, and third-party services." />
   <link rel="icon" href="images/logo.png" />
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
-    *{margin:0;padding:0;box-sizing:border-box;}
-    html{scroll-behavior:smooth;}
-    :root{
-      --primary:#0EA5E9;
-      --primary-dark:#0284C7;
-      --secondary:#6366F1;
-      --accent:#F59E0B;
-      --success:#10B981;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-      --text:#0F172A;
-      --muted:#334155;
-      --subtle:#64748B;
+    :root {
+      /* Same Royal Blue Theme as other pages */
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --primary-dark: #1e40af;
+      --secondary: #1e40af;
+      --accent: #f59e0b;
+      --success: #10b981;
 
-      --bg:#FFFFFF;
-      --soft:#F8FAFC;
+      --text: #0f172a;
+      --text-light: #334155;
+      --text-muted: #64748b;
 
-      --border: rgba(2,6,23,0.08);
-      --shadow-1: 0 1px 3px rgba(0,0,0,0.08);
-      --shadow-2: 0 10px 30px rgba(0,0,0,0.12);
-      --shadow-3: 0 18px 50px rgba(0,0,0,0.16);
+      --bg: #ffffff;
+      --bg-soft: #f8fafc;
+      --bg-light: #f1f5f9;
 
-      --grad-brand: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      --grad-hero: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+      --border: rgba(15, 23, 42, 0.08);
+      --border-light: rgba(15, 23, 42, 0.05);
 
-      --radius: 22px;
-      --radius-sm: 14px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
+      --shadow-xl: 0 20px 50px rgba(0,0,0,0.15);
+
+      --radius: 16px;
+      --radius-lg: 24px;
+
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    body{
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       color: var(--text);
+      line-height: 1.6;
       background: var(--bg);
-      line-height: 1.7;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
-    .container{width:min(1150px, calc(100% - 3rem)); margin:0 auto;}
-    .muted{color:var(--subtle);}
+    .container {
+      width: min(1280px, calc(100% - 3rem));
+      margin: 0 auto;
+    }
 
-    /* NAV */
-    .navbar{
-      position: fixed;
-      top:0; left:0; right:0;
-      z-index:1000;
-      background: rgba(255,255,255,0.86);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(2,6,23,0.06);
-      transition: box-shadow 0.25s ease, background 0.25s ease;
+    /* TOP BAR */
+    .top-bar {
+      background: var(--primary-dark);
+      color: white;
+      font-size: 0.875rem;
+      padding: 0.65rem 0;
     }
-    .navbar.scrolled{
-      background: rgba(255,255,255,0.94);
-      box-shadow: var(--shadow-1);
+
+    .top-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
     }
-    .nav-inner{
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 0.85rem 0;
-      gap: 1rem;
+
+    .top-bar-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
     }
-    .brand{
-      display:flex; align-items:center; gap:0.85rem;
-      text-decoration:none;
-      min-width: 220px;
+
+    .top-bar-links a {
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      transition: var(--transition);
+      font-weight: 500;
     }
-    .brand img{
-      height:46px;
-      width:auto;
-      border-radius:12px;
-      background:#fff;
-      padding:6px;
-      box-shadow: var(--shadow-1);
+
+    .top-bar-links a:hover { color: white; }
+
+    .top-bar-actions { display: flex; gap: 1rem; }
+
+    .top-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.875rem;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+
+    .top-btn.report {
+      background: var(--accent);
+      color: white;
+    }
+    .top-btn.report:hover {
+      background: #ea580c;
+      transform: translateY(-1px);
+    }
+
+    .top-btn.donate {
+      background: white;
+      color: var(--primary);
+    }
+    .top-btn.donate:hover {
+      background: var(--bg-soft);
+      transform: translateY(-1px);
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .navbar.scrolled { box-shadow: var(--shadow-md); }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+      gap: 2rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+    }
+
+    .brand img {
+      height: 50px;
+      width: auto;
       object-fit: contain;
     }
-    .brand .name{
-      font-family:"Space Grotesk", sans-serif;
-      font-weight: 900;
-      font-size: 1.12rem;
-      letter-spacing: -0.4px;
-      background: var(--grad-brand);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      white-space: nowrap;
+
+    .brand-text p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-top: 0.1rem;
     }
 
-    .nav-menu{
-      list-style:none;
-      display:flex;
-      gap: 1.25rem;
-      align-items:center;
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
     }
-    .nav-menu a{
-      text-decoration:none;
-      color: var(--muted);
+
+    .nav-menu a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-menu a:hover {
+      color: var(--primary);
+      background: rgba(30, 58, 138, 0.05);
+    }
+
+    .nav-menu a.active {
+      color: var(--primary);
+      background: rgba(30, 58, 138, 0.08);
+    }
+
+    .mobile-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: white;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      transition: var(--transition);
+    }
+
+    .mobile-toggle:hover {
+      background: var(--bg-soft);
+      border-color: var(--primary);
+    }
+
+    /* PAGE HERO */
+    .page-hero {
+      padding: 8rem 0 5rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 460px;
+    }
+
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/ngo.jpg');
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+      transform: scale(1.02);
+    }
+
+    .page-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg,
+        rgba(30, 58, 138, 0.92) 0%,
+        rgba(30, 64, 175, 0.88) 50%,
+        rgba(59, 130, 246, 0.85) 100%);
+      z-index: 1;
+    }
+
+    .page-hero-overlay::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1), transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.08), transparent 50%);
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .page-hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      color: white;
+      font-size: clamp(2.3rem, 5vw, 3.3rem);
+      line-height: 1.1;
+      letter-spacing: -1.2px;
+      margin-bottom: 1.25rem;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .page-hero p {
+      color: rgba(255,255,255,0.95);
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      line-height: 1.7;
+      max-width: 780px;
+      margin: 0 auto;
+      animation: fadeInUp 0.8s ease-out 0.15s both;
+    }
+
+    .hero-badges {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 1.75rem;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.65rem 1rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: white;
       font-weight: 800;
       font-size: 0.95rem;
-      padding: 0.35rem 0;
-      transition: color 0.2s ease;
-      position: relative;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       white-space: nowrap;
     }
-    .nav-menu a:hover{color:var(--primary);}
-    .nav-menu a.active{color:var(--primary);}
-    .nav-menu a.active::after{
-      content:"";
-      position:absolute; left:0; right:0; bottom:-6px;
-      height:2px; border-radius:999px;
-      background: var(--grad-brand);
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .donate{
-      display:inline-flex;
-      align-items:center;
-      gap:0.55rem;
-      padding:0.65rem 1.2rem;
-      border-radius:999px;
-      background: var(--grad-brand);
-      color:#fff !important;
-      box-shadow: 0 10px 24px rgba(14,165,233,0.25);
-      border: 1px solid rgba(255,255,255,0.12);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* SECTIONS */
+    .section {
+      padding: clamp(4rem, 8vw, 6rem) 0;
     }
-    .donate:hover{transform: translateY(-2px); box-shadow: 0 16px 34px rgba(14,165,233,0.32);}
+    .section.soft { background: var(--bg-soft); }
 
-    .mobile-toggle{
-      display:none;
-      width:44px;height:44px;
-      border-radius:14px;
-      border:1px solid rgba(2,6,23,0.08);
-      background: rgba(255,255,255,0.75);
-      cursor:pointer;
-      display:grid;
-      place-items:center;
+    .section-header {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 3rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--text);
+      line-height: 1.2;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: clamp(1rem, 2vw, 1.1rem);
+      line-height: 1.8;
+    }
+
+    /* CONTENT LAYOUT */
+    .policy-layout{
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    /* TOC */
+    .toc {
+      position: sticky;
+      top: 110px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: 1.25rem;
+      overflow: hidden;
+    }
+
+    .toc h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      margin-bottom: 0.9rem;
+      letter-spacing: -0.3px;
       color: var(--text);
     }
 
-    /* HERO */
-    header.hero{
-      padding-top: 86px;
-      min-height: 42vh;
-      position:relative;
-      overflow:hidden;
-      display:grid;
-      place-items:center;
-      color:#fff;
-      background: var(--grad-hero);
-      text-align:center;
-    }
-    header.hero::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(circle at 18% 40%, rgba(255,255,255,0.16), transparent 55%),
-        radial-gradient(circle at 82% 70%, rgba(255,255,255,0.16), transparent 55%);
-      pointer-events:none;
-    }
-    .hero .inner{
-      position:relative;
-      z-index:1;
-      padding: 2.6rem 0 3rem;
-      max-width: 980px;
-    }
-    .hero h1{
-      font-family:"Space Grotesk", sans-serif;
-      font-weight: 900;
-      letter-spacing: -1px;
-      line-height: 1.05;
-      font-size: clamp(2rem, 3.6vw, 3rem);
-      margin-bottom: 0.8rem;
-    }
-    .hero p{
-      color: rgba(255,255,255,0.92);
-      font-size: 1.05rem;
-      line-height: 1.85;
-      margin: 0 auto;
-      max-width: 90ch;
-      font-weight: 650;
+    .toc a {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.75rem 0.85rem;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 800;
+      transition: var(--transition);
+      font-size: 0.95rem;
     }
 
-    /* CONTENT */
-    main{
-      background: var(--soft);
-      padding: clamp(3rem, 5vw, 4.5rem) 0;
+    .toc a:hover {
+      background: rgba(30, 58, 138, 0.06);
+      color: var(--primary);
+      transform: translateX(2px);
     }
-    .paper{
-      background:#fff;
+
+    .toc a i { width: 18px; text-align: center; color: var(--primary); }
+
+    /* CARDS */
+    .policy-card {
+      background: white;
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-2);
-      overflow:hidden;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
     }
 
-    .paper-top{
-      padding: 1.3rem 1.5rem;
-      border-bottom: 1px solid rgba(2,6,23,0.06);
-      display:flex;
-      gap: 1rem;
-      align-items:flex-start;
+    .policy-top {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      align-items: start;
       justify-content: space-between;
+      gap: 1rem;
       flex-wrap: wrap;
     }
-    .updated{
-      display:inline-flex;
-      align-items:center;
-      gap:0.55rem;
-      background: rgba(14,165,233,0.10);
-      border: 1px solid rgba(14,165,233,0.18);
-      color: var(--primary-dark);
-      padding: 0.45rem 0.7rem;
+
+    .policy-top h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      font-size: 1.2rem;
+      margin: 0;
+      color: var(--text);
+    }
+
+    .policy-top p {
+      margin-top: 0.35rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .updated {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.18);
+      color: var(--primary);
+      padding: 0.5rem 0.85rem;
       border-radius: 999px;
       font-weight: 900;
       font-size: 0.9rem;
       white-space: nowrap;
     }
 
-    .content{
-      padding: 1.6rem 1.5rem 2rem;
-      display:grid;
-      grid-template-columns: 300px 1fr;
-      gap: 1.2rem;
-    }
+    .policy-body { padding: 1.5rem; }
 
-    /* TOC */
-    .toc{
-      position: sticky;
-      top: 96px;
-      align-self: start;
-      border: 1px solid rgba(2,6,23,0.08);
+    .block {
+      border: 1px solid var(--border-light);
       border-radius: 18px;
-      background: rgba(2,6,23,0.02);
-      padding: 1rem;
-    }
-    .toc h3{
-      font-family:"Space Grotesk", sans-serif;
-      font-weight: 900;
-      letter-spacing: -0.3px;
-      margin-bottom: 0.65rem;
-      font-size: 1.1rem;
-      color: var(--text);
-    }
-    .toc a{
-      display:flex;
-      align-items:center;
-      gap:0.55rem;
-      padding: 0.55rem 0.65rem;
-      border-radius: 14px;
-      text-decoration:none;
-      color: var(--muted);
-      font-weight: 850;
-      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
-    }
-    .toc a:hover{
-      background: rgba(14,165,233,0.10);
-      color: var(--primary-dark);
-      transform: translateX(2px);
-    }
-    .toc i{ width: 18px; text-align:center; }
-
-    /* SECTIONS */
-    section.policy{
-      padding: 0.6rem 0;
-    }
-    .block{
-      border: 1px solid rgba(2,6,23,0.06);
-      border-radius: 18px;
-      padding: 1.2rem 1.1rem;
+      padding: 1.25rem 1.15rem;
       margin-bottom: 1rem;
       background: #fff;
-    }
-    .block h2{
-      font-family:"Space Grotesk", sans-serif;
-      font-weight: 900;
-      letter-spacing: -0.5px;
-      font-size: 1.45rem;
-      margin-bottom: 0.4rem;
-    }
-    .block p{
-      color: var(--muted);
-      font-weight: 650;
-      line-height: 1.85;
-      margin: 0.55rem 0;
-    }
-    .block ul{
-      margin-top: 0.5rem;
-      padding-left: 1.05rem;
-    }
-    .block li{
-      color: var(--muted);
-      font-weight: 650;
-      margin: 0.45rem 0;
+      scroll-margin-top: 110px;
+      transition: var(--transition);
     }
 
-    .callout{
-      display:flex;
+    .block:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(30, 58, 138, 0.18);
+    }
+
+    .block h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.4px;
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .block p {
+      color: var(--text-muted);
+      font-weight: 600;
+      line-height: 1.85;
+      margin: 0.6rem 0;
+    }
+
+    .block ul { padding-left: 1.05rem; margin-top: 0.4rem; }
+    .block li {
+      color: var(--text-muted);
+      font-weight: 600;
+      margin: 0.45rem 0;
+      line-height: 1.7;
+    }
+
+    .callout {
+      display: flex;
       gap: 0.85rem;
-      align-items:flex-start;
+      align-items: flex-start;
       padding: 1rem;
       border-radius: 18px;
       border: 1px solid rgba(16,185,129,0.22);
       background: rgba(16,185,129,0.08);
-      color: #065F46;
+      color: #065f46;
       font-weight: 800;
       line-height: 1.75;
       margin-top: 0.75rem;
     }
-    .callout i{ margin-top: 0.15rem; }
+
+    .callout i { margin-top: 0.15rem; color: var(--success); }
 
     /* FOOTER */
-    footer.footer{
-      background:#0B1220;
-      color:#fff;
-      padding: 4rem 0 2rem;
+    .footer {
+      background: #0a1628;
+      color: white;
+      padding: 5rem 0 2rem;
     }
-    .footer-grid{
-      display:grid;
+
+    .footer-grid {
+      display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 2rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid rgba(255,255,255,0.10);
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-    .footer .brand-mini{
-      display:flex;
-      align-items:center;
-      gap:0.85rem;
-      margin-bottom: 1rem;
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
     }
-    .footer .brand-mini img{
-      height:56px;
-      width:auto;
-      background:#fff;
-      padding:8px;
-      border-radius: 14px;
-      object-fit: contain;
+
+    .footer-brand img {
+      height: 60px;
+      width: auto;
+      background: white;
+      padding: 10px;
+      border-radius: 12px;
     }
-    .footer h4{
-      font-family:"Space Grotesk", sans-serif;
-      font-weight: 900;
-      margin-bottom: 1rem;
-      letter-spacing: -0.2px;
-    }
-    .footer p, .footer li{
-      color: rgba(255,255,255,0.72);
-      line-height: 1.85;
-      font-size: 0.95rem;
-      font-weight: 650;
-    }
-    .footer ul{list-style:none;}
-    .footer a{
-      color: rgba(255,255,255,0.72);
-      text-decoration:none;
-      transition: color 0.2s ease, transform 0.2s ease;
-      display:inline-flex;
-      align-items:center;
-      gap: 0.55rem;
-      padding: 0.25rem 0;
+
+    .footer-brand-text h4 {
+      font-family: 'Montserrat', sans-serif;
       font-weight: 800;
-    }
-    .footer a:hover{ color:#fff; transform: translateX(3px); }
-
-    .social{
-      display:flex;
-      gap:0.75rem;
-      margin-top: 1rem;
-      flex-wrap: wrap;
-    }
-    .social a{
-      width:44px; height:44px;
-      border-radius: 14px;
-      display:grid;
-      place-items:center;
-      background: rgba(255,255,255,0.08);
-      color:#fff;
-    }
-    .social a:hover{ background: rgba(255,255,255,0.14); transform: translateY(-2px); }
-
-    .footer-bottom{
-      text-align:center;
-      padding-top: 1.4rem;
-      color: rgba(255,255,255,0.55);
-      font-size: 0.95rem;
-      font-weight: 650;
+      font-size: 1.25rem;
+      color: white;
+      margin-bottom: 0.25rem;
     }
 
-    /* Responsive */
-    @media (max-width: 980px){
-      .mobile-toggle{ display:grid; }
-      .nav-menu{
-        position: fixed;
-        top: 76px;
-        left: 0; right: 0;
-        background: rgba(255,255,255,0.98);
-        border-bottom: 1px solid rgba(2,6,23,0.08);
-        box-shadow: var(--shadow-2);
-        padding: 1.25rem 1rem;
-        display: grid;
-        gap: 0.85rem;
-        transform: translateY(-130%);
-        transition: transform 0.24s ease;
-        text-align:center;
-      }
-      .nav-menu.active{ transform: translateY(0); }
-      .content{ grid-template-columns: 1fr; }
-      .toc{ position: relative; top: 0; }
-      .footer-grid{ grid-template-columns: 1fr; }
-    }
-    @media (max-width: 560px){
-      .container{ width: calc(100% - 2.2rem); }
+    .footer-brand-text p {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.7);
+      font-weight: 600;
     }
 
-    a:focus-visible, button:focus-visible{
-      outline: 3px solid rgba(14,165,233,0.8);
-      outline-offset: 3px;
+    .footer-desc {
+      color: rgba(255,255,255,0.8);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer h5 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: white;
+    }
+
+    .footer ul { list-style: none; }
+
+    .footer ul li { margin-bottom: 0.75rem; }
+
+    .footer a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer a:hover {
+      color: white;
+      transform: translateX(3px);
+    }
+
+    .footer-contact li {
+      display: flex;
+      align-items: start;
+      gap: 0.75rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 1rem;
+    }
+
+    .footer-contact i {
+      color: var(--primary-light);
+      margin-top: 0.25rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-links a {
+      width: 44px;
+      height: 44px;
       border-radius: 10px;
+      background: rgba(255,255,255,0.1);
+      display: grid;
+      place-items: center;
+      color: white;
+      transition: var(--transition);
     }
-    @media (prefers-reduced-motion: reduce){
-      *{ transition:none !important; scroll-behavior:auto !important; }
+
+    .social-links a:hover {
+      background: var(--primary-light);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.95rem;
+    }
+
+    /* WhatsApp FAB */
+    .wa-fab {
+      position: fixed;
+      right: 1.5rem;
+      bottom: 1.5rem;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 1.8rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      z-index: 999;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .wa-fab:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+    }
+
+    /* REVEAL ANIMATIONS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .top-bar { display: none; }
+      .mobile-toggle { display: inline-flex; }
+
+      .nav-menu {
+        position: fixed;
+        top: 85px;
+        left: 0;
+        right: 0;
+        background: white;
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow-lg);
+        padding: 1.5rem 1rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        transform: translateY(-150%);
+        transition: var(--transition);
+      }
+
+      .nav-menu.active { transform: translateY(0); }
+      .nav-menu a { width: 100%; text-align: center; }
+
+      .policy-layout { grid-template-columns: 1fr; }
+      .toc { position: relative; top: 0; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+
+    /* ACCESSIBILITY */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--primary-light);
+      outline-offset: 3px;
+      border-radius: 6px;
     }
   </style>
 </head>
 
 <body>
-  <!-- NAV -->
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-inner">
+        <ul class="top-bar-links">
+          <li><a href="contactus.html">Contact Us</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="aboutus.html#faqs">FAQs</a></li>
+        </ul>
+        <div class="top-bar-actions">
+          <a href="contactus.html#report" class="top-btn report">
+            <i class="fas fa-exclamation-triangle"></i>
+            Report Corruption
+          </a>
+          <a href="donation.html" class="top-btn donate">
+            <i class="fas fa-heart"></i>
+            Support Our Work
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
     <div class="container">
       <div class="nav-inner">
-        <a class="brand" href="index.html" aria-label="WeCare CBO home">
-          <img src="images/logo.png" alt="WeCare CBO Logo" loading="eager" />
-          <span class="name">WeCare CBO</span>
+        <a class="brand" href="index.html">
+          <img src="images/logo.png" alt="WeCare CBO Logo" />
+          <div class="brand-text">
+            <p>ENGAGE • INFLUENCE • EMPOWER</p>
+          </div>
         </a>
 
-        <ul class="nav-menu" id="navMenu" role="menubar">
-          <li role="none"><a href="index.html" role="menuitem">Home</a></li>
-          <li role="none"><a href="aboutus.html" role="menuitem">About Us</a></li>
-          <li role="none"><a href="projects.html" role="menuitem">Programs</a></li>
-          <li role="none"><a href="impact.html" role="menuitem">Impact</a></li>
-          <li role="none"><a href="volunteers.html" role="menuitem">Get Involved</a></li>
-          <li role="none"><a href="contactus.html" role="menuitem">Contact</a></li>
-          <li role="none"><a class="donate" href="donation.html" role="menuitem"><i class="fas fa-heart"></i><span>Donate</span></a></li>
-          <li role="none"><a class="active" href="privacy.html" role="menuitem">Privacy</a></li>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="aboutus.html">Who We Are</a></li>
+          <li><a href="projects.html">Our Work</a></li>
+          <li><a href="volunteers.html">Get Involved</a></li>
+          <li><a href="contactus.html">Contact</a></li>
+          <li><a class="active" href="privacy.html">Privacy</a></li>
         </ul>
 
-        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
-          <i class="fas fa-bars" aria-hidden="true"></i>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
         </button>
       </div>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <header class="hero">
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-bg" aria-hidden="true"></div>
+    <div class="page-hero-overlay" aria-hidden="true"></div>
+
     <div class="container">
-      <div class="inner">
+      <div class="page-hero-content">
         <h1>Privacy Policy</h1>
         <p>
           WeCare CBO respects your privacy. This policy explains what we collect, why we collect it,
           and how we protect it when you use our website or support our work.
         </p>
+
+        <div class="hero-badges">
+          <span class="badge"><i class="fas fa-shield-halved"></i> Data Protection</span>
+          <span class="badge"><i class="fas fa-cookie-bite"></i> Cookies</span>
+          <span class="badge"><i class="fas fa-user-shield"></i> Your Rights</span>
+        </div>
       </div>
     </div>
-  </header>
+  </section>
 
-  <!-- MAIN -->
-  <main>
+  <!-- CONTENT -->
+  <section class="section soft">
     <div class="container">
-      <article class="paper" aria-label="Privacy policy content">
-        <div class="paper-top">
-          <div>
-            <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:900;letter-spacing:-0.6px;margin:0;">WeCare CBO Privacy Policy</h2>
-            <p class="muted" style="margin:0.35rem 0 0;">
-              Applies to our website, donation channels, and volunteer/community sign-ups.
-            </p>
+      <div class="section-header reveal">
+        <h2>How We Handle Your Information</h2>
+        <p>
+          This page applies to our website, donation channels, and volunteer or community sign-ups.
+          If you have questions, you can contact us anytime.
+        </p>
+      </div>
+
+      <div class="policy-layout">
+        <!-- TOC -->
+        <aside class="toc reveal" aria-label="Table of contents">
+          <h3>On this page</h3>
+          <a href="#info"><i class="fas fa-database"></i> Information We Collect</a>
+          <a href="#use"><i class="fas fa-gear"></i> How We Use It</a>
+          <a href="#share"><i class="fas fa-user-shield"></i> Sharing & Disclosure</a>
+          <a href="#cookies"><i class="fas fa-cookie-bite"></i> Cookies</a>
+          <a href="#payments"><i class="fas fa-credit-card"></i> Payments</a>
+          <a href="#third"><i class="fas fa-globe"></i> Third-Party Services</a>
+          <a href="#rights"><i class="fas fa-id-card"></i> Your Rights</a>
+          <a href="#changes"><i class="fas fa-rotate"></i> Updates</a>
+          <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+        </aside>
+
+        <!-- POLICY -->
+        <article class="policy-card reveal" aria-label="Privacy policy content">
+          <div class="policy-top">
+            <div>
+              <h3>WeCare CBO Privacy Policy</h3>
+              <p>Clear, practical information about privacy and data use.</p>
+            </div>
+            <div class="updated">
+              <i class="fas fa-calendar-check"></i>
+              Last updated: <span id="lastUpdated">Feb 2026</span>
+            </div>
           </div>
-          <div class="updated"><i class="fas fa-calendar-check"></i> Last updated: Feb 2026</div>
-        </div>
 
-        <div class="content">
-          <!-- TOC -->
-          <aside class="toc" aria-label="Table of contents">
-            <h3>On this page</h3>
-            <a href="#info"><i class="fas fa-database"></i> Information We Collect</a>
-            <a href="#use"><i class="fas fa-gear"></i> How We Use It</a>
-            <a href="#share"><i class="fas fa-user-shield"></i> Sharing & Disclosure</a>
-            <a href="#cookies"><i class="fas fa-cookie-bite"></i> Cookies</a>
-            <a href="#payments"><i class="fas fa-credit-card"></i> Payments</a>
-            <a href="#third"><i class="fas fa-globe"></i> Third-Party Services</a>
-            <a href="#rights"><i class="fas fa-id-card"></i> Your Rights</a>
-            <a href="#changes"><i class="fas fa-rotate"></i> Updates to This Policy</a>
-            <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
-          </aside>
-
-          <!-- POLICY -->
-          <section class="policy">
-            <div class="block" id="info">
-              <h2>1) Information We Collect</h2>
+          <div class="policy-body">
+            <div class="block reveal" id="info">
+              <h4>1) Information We Collect</h4>
               <p>We may collect information when you:</p>
               <ul>
                 <li>Make a donation or support our activities</li>
@@ -532,24 +826,24 @@
               </div>
             </div>
 
-            <div class="block" id="use">
-              <h2>2) How We Use Personal Information</h2>
+            <div class="block reveal" id="use">
+              <h4>2) How We Use Personal Information</h4>
               <p>We use your information to:</p>
               <ul>
                 <li>Process and confirm donations and keep accurate records</li>
                 <li>Respond to inquiries and provide requested support or information</li>
-                <li>Send updates/newsletters (you can opt out anytime)</li>
-                <li>Improve our website performance, security, and user experience</li>
+                <li>Send updates or newsletters (you can opt out anytime)</li>
+                <li>Improve website performance, security, and user experience</li>
                 <li>Understand general engagement trends (aggregated, not personal profiling)</li>
               </ul>
               <p>
-                General browsing of our website is mostly anonymous. We may log basic visit details for
-                diagnostics and security (for example, date/time and general location derived from IP).
+                General browsing of our website is mostly anonymous. We may log basic visit details for diagnostics
+                and security (for example, date/time and general location derived from IP).
               </p>
             </div>
 
-            <div class="block" id="share">
-              <h2>3) Sharing & Disclosure</h2>
+            <div class="block reveal" id="share">
+              <h4>3) Sharing & Disclosure</h4>
               <p>
                 WeCare CBO treats your information as confidential. We do not sell, rent, or trade your personal data.
               </p>
@@ -559,14 +853,13 @@
                 <li>With trusted service providers supporting our website operations (hosting, email delivery)</li>
                 <li>If required by law or to protect our rights, safety, and community</li>
               </ul>
-              <p>Access to personal data is limited to authorized staff/partners who need it for official work.</p>
+              <p>Access to personal data is limited to authorized staff or partners who need it for official work.</p>
             </div>
 
-            <div class="block" id="cookies">
-              <h2>4) Cookie Policy</h2>
+            <div class="block reveal" id="cookies">
+              <h4>4) Cookie Policy</h4>
               <p>
-                Cookies are small files stored on your device. They help websites remember your preferences and improve
-                performance.
+                Cookies are small files stored on your device. They help websites remember your preferences and improve performance.
               </p>
               <ul>
                 <li>You can accept, reject, or delete cookies through your browser settings</li>
@@ -574,11 +867,10 @@
               </ul>
             </div>
 
-            <div class="block" id="payments">
-              <h2>5) Payments & Security</h2>
+            <div class="block reveal" id="payments">
+              <h4>5) Payments & Security</h4>
               <p>
-                We use recognized payment channels and security practices. Where online payments are used, your data is
-                transmitted securely (e.g., SSL/TLS).
+                We use recognized payment channels and security practices. Where online payments are used, your data is transmitted securely (e.g., SSL/TLS).
               </p>
               <ul>
                 <li>We do not store full card details on our servers</li>
@@ -587,20 +879,19 @@
               </ul>
             </div>
 
-            <div class="block" id="third">
-              <h2>6) Third-Party Services</h2>
+            <div class="block reveal" id="third">
+              <h4>6) Third-Party Services</h4>
               <p>
                 Our website may embed or link to third-party services (e.g., YouTube, Google Maps, social media).
                 These services may collect usage data according to their own policies.
               </p>
               <p>
-                WeCare CBO is not responsible for third-party privacy practices. Please review their policies before
-                providing personal information on external sites.
+                WeCare CBO is not responsible for third-party privacy practices. Please review their policies before providing personal information on external sites.
               </p>
             </div>
 
-            <div class="block" id="rights">
-              <h2>7) Your Rights & Data Requests</h2>
+            <div class="block reveal" id="rights">
+              <h4>7) Your Rights & Data Requests</h4>
               <p>You may request to:</p>
               <ul>
                 <li>Access your personal information we hold</li>
@@ -608,21 +899,19 @@
                 <li>Delete information where applicable</li>
                 <li>Unsubscribe from newsletters or updates</li>
               </ul>
-              <p>
-                To make a request, contact us using the details below. We aim to respond within a reasonable time.
-              </p>
+              <p>To make a request, contact us using the details below. We aim to respond within a reasonable time.</p>
             </div>
 
-            <div class="block" id="changes">
-              <h2>8) Updates to This Policy</h2>
+            <div class="block reveal" id="changes">
+              <h4>8) Updates to This Policy</h4>
               <p>
                 We may update this policy to reflect changes in our practices, services, or legal requirements.
                 When we do, we will update the “Last updated” date on this page.
               </p>
             </div>
 
-            <div class="block" id="contact">
-              <h2>9) Contact</h2>
+            <div class="block reveal" id="contact">
+              <h4>9) Contact</h4>
               <p>If you have questions about this policy, please contact:</p>
               <ul>
                 <li><b>Email:</b> wecare518@gmail.com</li>
@@ -631,53 +920,54 @@
               </ul>
             </div>
 
-          </section>
-        </div>
-      </article>
+          </div>
+        </article>
+      </div>
     </div>
-  </main>
+  </section>
 
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div>
-          <div class="brand-mini">
-            <img src="images/logo.png" alt="WeCare CBO Logo" loading="lazy" />
-            <div>
-              <h4 style="margin:0;">WeCare CBO</h4>
-              <p style="margin:0; color:rgba(255,255,255,0.72);">Transparent governance, powered by citizens.</p>
+          <div class="footer-brand">
+            <img src="images/logo.png" alt="WeCare CBO" />
+            <div class="footer-brand-text">
+              <h4>WeCare CBO</h4>
+              <p>Engage • Influence • Empower</p>
             </div>
           </div>
-
-          <p>
-            Strengthening accountability, promoting public participation, and monitoring public contracts
-            to ensure transparency and integrity in governance.
+          <p class="footer-desc">
+            Strengthening accountability, promoting public participation, and monitoring
+            public contracts to ensure transparency and integrity in governance across Kenya.
           </p>
-
-          <div class="social" aria-label="Social media links">
-            <a href="#" aria-label="Facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" aria-label="X (Twitter)" title="X"><i class="fab fa-x-twitter"></i></a>
-            <a href="#" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" aria-label="WhatsApp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://wa.me/254797680921" aria-label="WhatsApp" target="_blank" rel="noopener">
+              <i class="fab fa-whatsapp"></i>
+            </a>
           </div>
         </div>
 
         <div>
-          <h4>Quick Links</h4>
+          <h5>Quick Links</h5>
           <ul>
             <li><a href="index.html"><i class="fas fa-angle-right"></i> Home</a></li>
             <li><a href="aboutus.html"><i class="fas fa-angle-right"></i> About Us</a></li>
-            <li><a href="projects.html"><i class="fas fa-angle-right"></i> Programs</a></li>
-            <li><a href="impact.html"><i class="fas fa-angle-right"></i> Impact</a></li>
+            <li><a href="projects.html"><i class="fas fa-angle-right"></i> Our Work</a></li>
+            <li><a href="volunteers.html"><i class="fas fa-angle-right"></i> Get Involved</a></li>
+            <li><a href="contactus.html"><i class="fas fa-angle-right"></i> Contact</a></li>
           </ul>
         </div>
 
         <div>
-          <h4>Get Involved</h4>
+          <h5>Get Involved</h5>
           <ul>
-            <li><a href="volunteers.html"><i class="fas fa-angle-right"></i> Volunteer</a></li>
+            <li><a href="volunteersForm.html"><i class="fas fa-angle-right"></i> Volunteer Form</a></li>
             <li><a href="donation.html"><i class="fas fa-angle-right"></i> Donate</a></li>
             <li><a href="contactus.html"><i class="fas fa-angle-right"></i> Contact</a></li>
             <li><a href="privacy.html"><i class="fas fa-angle-right"></i> Privacy Policy</a></li>
@@ -685,48 +975,100 @@
         </div>
 
         <div>
-          <h4>Contact</h4>
-          <ul>
-            <li><i class="fas fa-envelope"></i> wecare518@gmail.com</li>
-            <li><i class="fas fa-phone"></i> +254 797 680921 / +254 792 594021</li>
-            <li><i class="fas fa-map-marker-alt"></i> Kisumu, Kenya</li>
+          <h5>Contact</h5>
+          <ul class="footer-contact">
+            <li>
+              <i class="fas fa-envelope"></i>
+              <span>wecare518@gmail.com</span>
+            </li>
+            <li>
+              <i class="fas fa-phone"></i>
+              <span>+254 797 680921<br>+254 792 594021</span>
+            </li>
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Kisumu, Kenya</span>
+            </li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 WeCare Youth-Based Organization (WeCare CBO) | All rights reserved</p>
+        <p>&copy; <span id="year"></span> WeCare Youth-Based Organization (WeCare CBO). All Rights Reserved.</p>
       </div>
     </div>
   </footer>
 
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/254797680921?text=Hello%20WeCare%20CBO,%20I%20have%20a%20question%20about%20your%20privacy%20policy."
+     class="wa-fab"
+     target="_blank"
+     rel="noopener"
+     aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
   <script>
-    // Mobile nav
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Last updated (month + year)
+    (function () {
+      const d = new Date();
+      const month = d.toLocaleString('en-US', { month: 'short' });
+      document.getElementById('lastUpdated').textContent = `${month} ${d.getFullYear()}`;
+    })();
+
+    // Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobileToggle');
     const navMenu = document.getElementById('navMenu');
-    function toggleMenu(){
-      const isActive = navMenu.classList.toggle('active');
-      mobileToggle.setAttribute('aria-expanded', isActive);
-      const icon = mobileToggle.querySelector('i');
-      if(icon){
-        icon.classList.toggle('fa-bars');
-        icon.classList.toggle('fa-times');
-      }
-    }
-    mobileToggle.addEventListener('click', toggleMenu);
+    const navbar = document.getElementById('navbar');
 
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      const icon = mobileToggle.querySelector('i');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+
+    // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-      if(!navMenu.contains(e.target) && !mobileToggle.contains(e.target) && navMenu.classList.contains('active')){
-        toggleMenu();
+      if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+        navMenu.classList.remove('active');
+        const icon = mobileToggle.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
       }
     });
 
-    // Navbar shadow on scroll
-    const navbar = document.getElementById('navbar');
+    // Navbar scroll effect
     window.addEventListener('scroll', () => {
-      if(window.scrollY > 40) navbar.classList.add('scrolled');
-      else navbar.classList.remove('scrolled');
-    }, {passive:true});
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Close menu on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+        const icon = mobileToggle.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
+
+    // Scroll Reveal Animation
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    revealElements.forEach(el => revealObserver.observe(el));
   </script>
 </body>
 </html>
