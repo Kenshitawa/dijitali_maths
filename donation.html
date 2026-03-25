@@ -31,6 +31,7 @@
       --text-muted: #475569;
       --bg: #ffffff;
       --bg-soft: #f8fafc;
+      --bg-light: #f1f5f9;
       --border: #e2e8f0;
       --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
       --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
@@ -143,7 +144,7 @@
     .footer a:hover { color: white; transform: translateX(3px); }
     .footer-contact li { display: flex; align-items: start; gap: 0.6rem; color: rgba(255,255,255,0.75); margin-bottom: 0.7rem; font-size: 0.85rem; }
     .footer-contact i { color: var(--primary-light); margin-top: 0.15rem; }
-    .social-links { display: flex; gap: 0.8rem; margin-top: 1rem; }
+    .social-links { display: flex; gap: 0.8rem; margin-top: 1rem; flex-wrap: wrap; }
     .social-links a { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); display: grid; place-items: center; color: white; transition: var(--transition); }
     .social-links a:hover { background: var(--primary-light); transform: translateY(-2px); }
     .footer-bottom { text-align: center; padding-top: 1rem; font-size: 0.75rem; border-top: 1px solid rgba(255,255,255,0.08); }
@@ -181,8 +182,15 @@
   <div class="top-bar">
     <div class="container">
       <div class="top-bar-inner">
-        <ul class="top-bar-links"><li><a href="contactus.html">Contact Us</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="aboutus.html#faqs">FAQs</a></li></ul>
-        <div class="top-bar-actions"><a href="https://eacc.go.ke/en/default/report-corruption/" class="top-btn report"><i class="fas fa-exclamation-triangle"></i> Report Corruption</a><a href="donation.html" class="top-btn donate"><i class="fas fa-heart"></i> Support Our Work</a></div>
+        <ul class="top-bar-links">
+          <li><a href="contactus.html">Contact Us</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="aboutus.html#faqs">FAQs</a></li>
+        </ul>
+        <div class="top-bar-actions">
+          <a href="https://eacc.go.ke/en/default/report-corruption/" class="top-btn report"><i class="fas fa-exclamation-triangle"></i> Report Corruption</a>
+          <a href="donation.html" class="top-btn donate"><i class="fas fa-heart"></i> Support Our Work</a>
+        </div>
       </div>
     </div>
   </div>
@@ -190,8 +198,16 @@
   <nav class="navbar" id="navbar">
     <div class="container">
       <div class="nav-inner">
-        <a class="brand" href="index.html"><img src="images/logo.png" alt="WeCare CBO Logo" /><div class="brand-text"><p>ENGAGE • INFLUENCE • EMPOWER</p></div></a>
-        <ul class="nav-menu" id="navMenu"><li><a href="index.html">Home</a></li><li><a href="projects.html">Our Work</a></li><li><a href="volunteers.html">Get Involved</a></li><li><a href="donation.html" class="active">Donate</a></li></ul>
+        <a class="brand" href="index.html">
+          <img src="images/logo.png" alt="WeCare CBO Logo" />
+          <div class="brand-text"><p>ENGAGE • INFLUENCE • EMPOWER</p></div>
+        </a>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Our Work</a></li>
+          <li><a href="volunteers.html">Get Involved</a></li>
+          <li><a href="donation.html" class="active">Donate</a></li>
+        </ul>
         <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
       </div>
     </div>
@@ -203,26 +219,119 @@
       <div class="hero-content">
         <h1>Support Good Governance in Kenya</h1>
         <p>Your contribution helps WeCare CBO strengthen citizen participation, social accountability, and transparency across communities.</p>
-        <div class="hero-cta"><a href="#donate" class="btn primary"><i class="fas fa-hand-holding-heart"></i> Donate Now</a><a href="#impact" class="btn secondary"><i class="fas fa-chart-line"></i> What your gift supports</a></div>
+        <div class="hero-cta">
+          <a href="#donate" class="btn primary"><i class="fas fa-hand-holding-heart"></i> Donate Now</a>
+          <a href="#impact" class="btn secondary"><i class="fas fa-chart-line"></i> What your gift supports</a>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section soft" id="donate">
     <div class="container">
-      <div class="section-header reveal"><h2>Ways to Donate</h2><p>Choose a method that works best for you. For help, contact <b>wecare518@gmail.com</b> or call <b>+254 797 680921</b>.</p></div>
+      <div class="section-header reveal">
+        <h2>Ways to Donate</h2>
+        <p>Choose a method that works best for you. For help, contact <b>wecare518@gmail.com</b> or call <b>+254 797 680921</b>.</p>
+      </div>
+
       <div class="donate-grid">
         <div class="card reveal">
           <h3>Donate via M-Pesa</h3>
           <p class="sub">Fast and convenient. Copy details, donate, then share your reference so we can acknowledge.</p>
-          <div class="method"><div class="method-top"><div class="method-title"><div class="m-icon"><i class="fas fa-mobile-screen-button"></i></div><div><b>M-Pesa Paybill</b><br/><small style="color:var(--text-muted);">Recommended</small></div></div><span class="pill"><i class="fas fa-bolt"></i> Instant</span></div><div class="details" id="mpesaDetails"><div class="row"><span>Paybill Number</span><b id="paybillNo">XXXXXX</b></div><div class="row"><span>Account Number</span><b id="accountNo">WECARE</b></div><div class="row"><span>Account Name</span><b>WeCare CBO</b></div></div><button class="copy-btn" type="button" id="copyMpesa"><i class="fas fa-copy"></i> Copy M-Pesa Details</button><div class="note"><i class="fas fa-circle-info"></i><div>After donating, keep your transaction message (MPESA code). Share it on the form so we can confirm.</div></div></div>
+
+          <div class="method">
+            <div class="method-top">
+              <div class="method-title">
+                <div class="m-icon"><i class="fas fa-mobile-screen-button"></i></div>
+                <div><b>M-Pesa Paybill</b><br/><small style="color:var(--text-muted);">Recommended</small></div>
+              </div>
+              <span class="pill"><i class="fas fa-bolt"></i> Instant</span>
+            </div>
+
+            <div class="details" id="mpesaDetails">
+              <div class="row"><span>Paybill Number</span><b id="paybillNo">XXXXXX</b></div>
+              <div class="row"><span>Account Number</span><b id="accountNo">WECARE</b></div>
+              <div class="row"><span>Account Name</span><b>WeCare CBO</b></div>
+            </div>
+
+            <button class="copy-btn" type="button" id="copyMpesa"><i class="fas fa-copy"></i> Copy M-Pesa Details</button>
+
+            <div class="note">
+              <i class="fas fa-circle-info"></i>
+              <div>After donating, keep your transaction message (MPESA code). Share it on the form so we can confirm.</div>
+            </div>
+          </div>
+
           <h3 style="margin-top:1.2rem;">Bank Transfer</h3>
-          <div class="method"><div class="method-top"><div class="method-title"><div class="m-icon"><i class="fas fa-building-columns"></i></div><div><b>Bank Details</b><br/><small style="color:var(--text-muted);">Secure</small></div></div><span class="pill"><i class="fas fa-shield-halved"></i> Secure</span></div><div class="details" id="bankDetails"><div class="row"><span>Bank Name</span><b>YOUR BANK</b></div><div class="row"><span>Account Name</span><b>WeCare CBO</b></div><div class="row"><span>Account Number</span><b>XXXXXXXXXX</b></div><div class="row"><span>Branch</span><b>XXXXX</b></div></div><button class="copy-btn" type="button" id="copyBank"><i class="fas fa-copy"></i> Copy Bank Details</button></div>
+
+          <div class="method">
+            <div class="method-top">
+              <div class="method-title">
+                <div class="m-icon"><i class="fas fa-building-columns"></i></div>
+                <div><b>Bank Details</b><br/><small style="color:var(--text-muted);">Secure</small></div>
+              </div>
+              <span class="pill"><i class="fas fa-shield-halved"></i> Secure</span>
+            </div>
+
+            <div class="details" id="bankDetails">
+              <div class="row"><span>Bank Name</span><b>YOUR BANK</b></div>
+              <div class="row"><span>Account Name</span><b>WeCare CBO</b></div>
+              <div class="row"><span>Account Number</span><b>XXXXXXXXXX</b></div>
+              <div class="row"><span>Branch</span><b>XXXXX</b></div>
+            </div>
+
+            <button class="copy-btn" type="button" id="copyBank"><i class="fas fa-copy"></i> Copy Bank Details</button>
+          </div>
         </div>
+
         <div class="card reveal">
           <h3>Donation Acknowledgement</h3>
           <p class="sub">Share your details so we can confirm your contribution and send an acknowledgement.</p>
-          <form class="form-grid" id="donationForm"><div class="field"><label for="name">Full Name</label><input id="name" type="text" placeholder="e.g. Jane Achieng" required /></div><div class="field"><label for="email">Email Address</label><input id="email" type="email" placeholder="e.g. jane@email.com" required /></div><div class="field"><label for="phone">Phone Number (optional)</label><input id="phone" type="tel" placeholder="e.g. +254 7xx xxx xxx" /></div><div class="field"><label for="amount">Amount (KES)</label><input id="amount" type="number" min="1" placeholder="e.g. 2000" required /></div><div class="field"><label for="methodSel">Payment Method</label><select id="methodSel" required><option value="">Select…</option><option value="mpesa">M-Pesa</option><option value="bank">Bank Transfer</option><option value="online">Online Link</option></select></div><div class="field"><label for="reference">Reference (MPESA code / bank ref)</label><input id="reference" type="text" placeholder="e.g. QW12AB34CD" /></div><div class="field"><label for="message">Message (optional)</label><textarea id="message" placeholder="Any note or dedication…"></textarea></div><button class="submit" type="submit"><i class="fas fa-paper-plane"></i> Submit Details</button><p style="color:var(--text-muted); font-size:0.75rem; margin-top:0.5rem;">This opens your email app. Press send to complete your submission.</p></form>
+
+          <form class="form-grid" id="donationForm">
+            <div class="field">
+              <label for="name">Full Name</label>
+              <input id="name" type="text" placeholder="e.g. Jane Achieng" required />
+            </div>
+
+            <div class="field">
+              <label for="email">Email Address</label>
+              <input id="email" type="email" placeholder="e.g. jane@email.com" required />
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone Number (optional)</label>
+              <input id="phone" type="tel" placeholder="e.g. +254 7xx xxx xxx" />
+            </div>
+
+            <div class="field">
+              <label for="amount">Amount (KES)</label>
+              <input id="amount" type="number" min="1" placeholder="e.g. 2000" required />
+            </div>
+
+            <div class="field">
+              <label for="methodSel">Payment Method</label>
+              <select id="methodSel" required>
+                <option value="">Select…</option>
+                <option value="mpesa">M-Pesa</option>
+                <option value="bank">Bank Transfer</option>
+                <option value="online">Online Link</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="reference">Reference (MPESA code / bank ref)</label>
+              <input id="reference" type="text" placeholder="e.g. QW12AB34CD" />
+            </div>
+
+            <div class="field">
+              <label for="message">Message (optional)</label>
+              <textarea id="message" placeholder="Any note or dedication…"></textarea>
+            </div>
+
+            <button class="submit" type="submit"><i class="fas fa-paper-plane"></i> Submit Details</button>
+            <p style="color:var(--text-muted); font-size:0.75rem; margin-top:0.5rem;">This opens your email app. Press send to complete your submission.</p>
+          </form>
         </div>
       </div>
     </div>
@@ -230,31 +339,188 @@
 
   <section class="section" id="impact">
     <div class="container">
-      <div class="section-header reveal"><h2>Why Donate</h2><p>Your donation powers action — training youth leaders, facilitating accountability forums, monitoring public projects, and strengthening citizen participation.</p></div>
-      <div class="impact-grid"><div class="impact"><div class="mini"><i class="fas fa-users"></i></div><h4>Civic Engagement</h4><p>Community dialogues and public participation forums that amplify citizen voice.</p></div><div class="impact"><div class="mini"><i class="fas fa-shield-halved"></i></div><h4>Accountability</h4><p>Budget tracking, social audits, and integrity initiatives that promote transparency.</p></div><div class="impact"><div class="mini"><i class="fas fa-file-contract"></i></div><h4>Contracts Monitoring</h4><p>Tracking public projects to strengthen value for money and service delivery.</p></div><div class="impact"><div class="mini"><i class="fas fa-scale-balanced"></i></div><h4>Policy Advocacy</h4><p>Evidence-based engagement with stakeholders to drive reforms.</p></div></div>
+      <div class="section-header reveal">
+        <h2>Why Donate</h2>
+        <p>Your donation powers action — training youth leaders, facilitating accountability forums, monitoring public projects, and strengthening citizen participation.</p>
+      </div>
+
+      <div class="impact-grid">
+        <div class="impact">
+          <div class="mini"><i class="fas fa-users"></i></div>
+          <h4>Civic Engagement</h4>
+          <p>Community dialogues and public participation forums that amplify citizen voice.</p>
+        </div>
+
+        <div class="impact">
+          <div class="mini"><i class="fas fa-shield-halved"></i></div>
+          <h4>Accountability</h4>
+          <p>Budget tracking, social audits, and integrity initiatives that promote transparency.</p>
+        </div>
+
+        <div class="impact">
+          <div class="mini"><i class="fas fa-file-contract"></i></div>
+          <h4>Contracts Monitoring</h4>
+          <p>Tracking public projects to strengthen value for money and service delivery.</p>
+        </div>
+
+        <div class="impact">
+          <div class="mini"><i class="fas fa-scale-balanced"></i></div>
+          <h4>Policy Advocacy</h4>
+          <p>Evidence-based engagement with stakeholders to drive reforms.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <footer class="footer"><div class="container"><div class="footer-grid"><div><div class="footer-brand"><img src="images/logo.png" alt="WeCare CBO" /><div><h5 style="margin:0;">WeCare CBO</h5><p style="font-size:0.75rem;">Engage · Influence · Empower</p></div></div><p style="font-size:0.85rem; line-height:1.6;">Strengthening accountability, promoting public participation, and monitoring public contracts to ensure transparency and integrity in governance across Kenya.</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-x-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="https://wa.me/254797680921" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div><div><h5>Quick Links</h5><ul><li><a href="index.html">Home</a></li><li><a href="aboutus.html">About Us</a></li><li><a href="projects.html">Our Work</a></li></ul></div><div><h5>Resources</h5><ul><li><a href="photos.html">Gallery</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="donation.html">Donate</a></li></ul></div><div><h5>Contact</h5><ul class="footer-contact"><li><i class="fas fa-envelope"></i><span>wecare518@gmail.com</span></li><li><i class="fas fa-phone"></i><span>+254 797 680921<br>+254 792 594021</span></li><li><i class="fas fa-map-marker-alt"></i><span>Kisumu, Kenya</span></li></ul></div></div><div class="footer-bottom"><p>&copy; <span id="year"></span> WeCare Youth-Based Organization (WeCare CBO). All Rights Reserved.</p></div></div></footer>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <img src="images/logo.png" alt="WeCare CBO" />
+            <div class="footer-brand-text">
+              <h4>WeCare CBO</h4>
+              <p>Engage · Influence · Empower</p>
+            </div>
+          </div>
+
+          <p style="font-size:0.85rem; line-height:1.6;">
+            Strengthening accountability, promoting public participation, and monitoring public contracts to ensure transparency and integrity in governance across Kenya.
+          </p>
+
+          <div class="social-links">
+            <a href="https://www.facebook.com/wecareyouthke/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/wecareyouthorg/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://ke.linkedin.com/company/wecare-youth-organization" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://wa.me/254797680921" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="projects.html">Our Work</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="photos.html">Gallery</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="donation.html">Donate</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Contact</h5>
+          <ul class="footer-contact">
+            <li><i class="fas fa-envelope"></i><span>wecare518@gmail.com</span></li>
+            <li><i class="fas fa-phone"></i><span>+254 797 680921<br>+254 792 594021</span></li>
+            <li><i class="fas fa-map-marker-alt"></i><span>Kisumu, Kenya</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> WeCare Youth-Based Organization (WeCare CBO). All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
 
   <div class="toast" id="toast"><i class="fas fa-circle-check"></i><span id="toastText">Copied</span></div>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-    const mobileToggle = document.getElementById('mobileToggle'), navMenu = document.getElementById('navMenu'), navbar = document.getElementById('navbar');
-    mobileToggle.addEventListener('click', () => { navMenu.classList.toggle('active'); const icon = mobileToggle.querySelector('i'); icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-times'); });
-    document.addEventListener('click', (e) => { if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) navMenu.classList.remove('active'); });
+
+    const mobileToggle = document.getElementById('mobileToggle'),
+          navMenu = document.getElementById('navMenu'),
+          navbar = document.getElementById('navbar');
+
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      const icon = mobileToggle.querySelector('i');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+        navMenu.classList.remove('active');
+      }
+    });
+
     window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
 
-    const toast = document.getElementById('toast'), toastText = document.getElementById('toastText');
+    const toast = document.getElementById('toast'),
+          toastText = document.getElementById('toastText');
     let toastTimer = null;
-    function showToast(msg) { toastText.textContent = msg; toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 2000); }
-    async function copyText(text) { try { await navigator.clipboard.writeText(text); showToast("Copied ✓"); } catch { showToast("Copy manually"); } }
-    document.getElementById('copyMpesa').addEventListener('click', () => { const paybill = document.getElementById('paybillNo').innerText, account = document.getElementById('accountNo').innerText; copyText(`WeCare CBO M-Pesa Paybill: ${paybill} | Account: ${account}`); });
-    document.getElementById('copyBank').addEventListener('click', () => { const bankLines = Array.from(document.querySelectorAll('#bankDetails .row')).map(r => r.innerText.replace(/\n/g, ' ').trim()).join(' | '); copyText(`WeCare CBO Bank Details: ${bankLines}`); });
-    document.getElementById('donationForm').addEventListener('submit', (e) => { e.preventDefault(); const name = document.getElementById('name').value, email = document.getElementById('email').value, phone = document.getElementById('phone').value, amount = document.getElementById('amount').value, method = document.getElementById('methodSel').value, reference = document.getElementById('reference').value, message = document.getElementById('message').value; const subject = `Donation Acknowledgement: ${name}`; const body = `Donation Details\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone || '-'}\nAmount: KES ${amount}\nPayment Method: ${method}\nReference: ${reference || '-'}\nMessage: ${message || '-'}\n\nThank you for supporting WeCare CBO!`; window.location.href = `mailto:wecare518@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`; showToast("Opening email client..."); setTimeout(() => { e.target.reset(); }, 1000); });
+
+    function showToast(msg) {
+      toastText.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    async function copyText(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast("Copied ✓");
+      } catch {
+        showToast("Copy manually");
+      }
+    }
+
+    document.getElementById('copyMpesa').addEventListener('click', () => {
+      const paybill = document.getElementById('paybillNo').innerText,
+            account = document.getElementById('accountNo').innerText;
+      copyText(`WeCare CBO M-Pesa Paybill: ${paybill} | Account: ${account}`);
+    });
+
+    document.getElementById('copyBank').addEventListener('click', () => {
+      const bankLines = Array.from(document.querySelectorAll('#bankDetails .row'))
+        .map(r => r.innerText.replace(/\n/g, ' ').trim())
+        .join(' | ');
+      copyText(`WeCare CBO Bank Details: ${bankLines}`);
+    });
+
+    document.getElementById('donationForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value,
+            email = document.getElementById('email').value,
+            phone = document.getElementById('phone').value,
+            amount = document.getElementById('amount').value,
+            method = document.getElementById('methodSel').value,
+            reference = document.getElementById('reference').value,
+            message = document.getElementById('message').value;
+
+      const subject = `Donation Acknowledgement: ${name}`;
+      const body = `Donation Details\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone || '-'}\nAmount: KES ${amount}\nPayment Method: ${method}\nReference: ${reference || '-'}\nMessage: ${message || '-'}\n\nThank you for supporting WeCare CBO!`;
+
+      window.location.href = `mailto:wecare518@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      showToast("Opening email client...");
+      setTimeout(() => { e.target.reset(); }, 1000);
+    });
+
     const revealElements = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }); }, { threshold: 0.1 });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('active');
+      });
+    }, { threshold: 0.1 });
+
     revealElements.forEach(el => observer.observe(el));
   </script>
 </body>

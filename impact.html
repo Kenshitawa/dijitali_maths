@@ -28,6 +28,7 @@
       --text-muted: #475569;
       --bg: #ffffff;
       --bg-soft: #f8fafc;
+      --bg-light: #f1f5f9;
       --border: #e2e8f0;
       --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
       --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
@@ -167,7 +168,7 @@
     .footer a:hover { color: white; transform: translateX(3px); }
     .footer-contact li { display: flex; align-items: start; gap: 0.6rem; color: rgba(255,255,255,0.75); margin-bottom: 0.7rem; font-size: 0.85rem; }
     .footer-contact i { color: var(--primary-light); margin-top: 0.15rem; }
-    .social-links { display: flex; gap: 0.8rem; margin-top: 1rem; }
+    .social-links { display: flex; gap: 0.8rem; margin-top: 1rem; flex-wrap: wrap; }
     .social-links a { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); display: grid; place-items: center; color: white; transition: var(--transition); }
     .social-links a:hover { background: var(--primary-light); transform: translateY(-2px); }
     .footer-bottom { text-align: center; padding-top: 1rem; font-size: 0.75rem; border-top: 1px solid rgba(255,255,255,0.08); }
@@ -244,7 +245,68 @@
     <div class="container"><div class="section-header"><h2>Want to Support This Work?</h2><p>Partner with us, volunteer, or donate to scale accountability and public participation across Kenya.</p></div><div style="display:flex; gap:0.8rem; flex-wrap:wrap; justify-content:center;"><a href="volunteersForm.html" class="btn primary"><i class="fas fa-handshake-angle"></i> Become a Volunteer</a><a href="donation.html" class="btn ghost"><i class="fas fa-heart"></i> Donate</a><a href="contactus.html" class="btn ghost"><i class="fas fa-envelope"></i> Partner With Us</a></div></div>
   </section>
 
-  <footer class="footer"><div class="container"><div class="footer-grid"><div><div class="footer-brand"><img src="images/logo.png" alt="WeCare CBO" /><div><h5 style="margin:0;">WeCare CBO</h5><p style="font-size:0.75rem;">Engage · Influence · Empower</p></div></div><p style="font-size:0.85rem; line-height:1.6;">Strengthening accountability, promoting public participation, and monitoring public contracts to ensure transparency and integrity in governance across Kenya.</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-x-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="https://wa.me/254797680921" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div><div><h5>Quick Links</h5><ul><li><a href="index.html">Home</a></li><li><a href="aboutus.html">About Us</a></li><li><a href="projects.html">Programs</a></li><li><a href="impact.html">Impact</a></li></ul></div><div><h5>Get Involved</h5><ul><li><a href="volunteers.html">Volunteer</a></li><li><a href="donation.html">Donate</a></li><li><a href="contactus.html">Contact</a></li><li><a href="privacy.html">Privacy Policy</a></li></ul></div><div><h5>Contact</h5><ul><li><i class="fas fa-envelope"></i> wecare518@gmail.com</li><li><i class="fas fa-phone"></i> +254 797 680921 / +254 792 594021</li><li><i class="fas fa-map-marker-alt"></i> Kisumu, Kenya</li></ul></div></div><div class="footer-bottom"><p>&copy; <span id="year"></span> WeCare Youth-Based Organization (WeCare CBO) | All rights reserved</p></div></div></footer>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <img src="images/logo.png" alt="WeCare CBO" />
+            <div>
+              <h5 style="margin:0;">WeCare CBO</h5>
+              <p style="font-size:0.75rem;">Engage · Influence · Empower</p>
+            </div>
+          </div>
+          <p style="font-size:0.85rem; line-height:1.6;">Strengthening accountability, promoting public participation, and monitoring public contracts to ensure transparency and integrity in governance across Kenya.</p>
+
+          <div class="social-links">
+            <a href="https://www.facebook.com/wecareyouthke/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/wecareyouthorg/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://ke.linkedin.com/company/wecare-youth-organization" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://wa.me/254797680921" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="projects.html">Programs</a></li>
+            <li><a href="impact.html">Impact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Get Involved</h5>
+          <ul>
+            <li><a href="volunteers.html">Volunteer</a></li>
+            <li><a href="donation.html">Donate</a></li>
+            <li><a href="contactus.html">Contact</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Contact</h5>
+          <ul class="footer-contact">
+            <li><i class="fas fa-envelope"></i><span>wecare518@gmail.com</span></li>
+            <li><i class="fas fa-phone"></i><span>+254 797 680921 / +254 792 594021</span></li>
+            <li><i class="fas fa-map-marker-alt"></i><span>Kisumu, Kenya</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom"><p>&copy; <span id="year"></span> WeCare Youth-Based Organization (WeCare CBO) | All rights reserved</p></div>
+    </div>
+  </footer>
 
   <a href="https://wa.me/254797680921?text=Hello%20WeCare%20CBO" class="wa-fab" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
@@ -265,7 +327,21 @@
     const preloadedStories = [];
 
     const storiesEl = document.getElementById("stories");
-    function renderStories() { storiesEl.innerHTML = participantStories.map(s => `<div class="story"><div class="quote"><i class="fas fa-quote-left"></i></div><p>${escapeHtml(s.quote)}</p><div class="who"><div><strong>${escapeHtml(s.name)}</strong><br/><span class="muted" style="font-size:0.7rem;">${escapeHtml(s.location)}</span></div><span class="pill"><i class="fas fa-tag"></i> ${escapeHtml(s.program)}</span></div></div>`).join(''); }
+    function renderStories() {
+      storiesEl.innerHTML = participantStories.map(s => `
+        <div class="story">
+          <div class="quote"><i class="fas fa-quote-left"></i></div>
+          <p>${escapeHtml(s.quote)}</p>
+          <div class="who">
+            <div>
+              <strong>${escapeHtml(s.name)}</strong><br/>
+              <span class="muted" style="font-size:0.7rem;">${escapeHtml(s.location)}</span>
+            </div>
+            <span class="pill"><i class="fas fa-tag"></i> ${escapeHtml(s.program)}</span>
+          </div>
+        </div>
+      `).join('');
+    }
 
     const libraryEl = document.getElementById('library');
     const searchInput = document.getElementById('searchInput');
@@ -276,24 +352,104 @@
     const closeModalBtn = document.getElementById('closeModal');
     const downloadBtn = document.getElementById('downloadBtn');
 
-    function escapeHtml(str) { return String(str || "").replace(/[&<>"']/g, s => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[s])); }
-    function matchesQuery(story, q) { if (!q) return true; const hay = [story.title, story.county, story.tag, story.date, story.summary].map(s => String(s || "").toLowerCase()).join(" "); return hay.includes(q.toLowerCase()); }
-    function renderLibrary() { const q = searchInput.value.trim(); const items = preloadedStories.filter(s => matchesQuery(s, q)); libraryEl.innerHTML = ""; emptyState.style.display = items.length ? "none" : "block"; items.forEach((s) => { const card = document.createElement('div'); card.className = "card"; card.innerHTML = `<div class="card-top"><div class="pdf-badge"><i class="fas fa-file-pdf"></i></div><div><h3>${escapeHtml(s.title || "Impact Evidence PDF")}</h3><div class="meta">${s.county ? `<span class="tag"><i class="fas fa-map-marker-alt"></i> ${escapeHtml(s.county)}</span>` : ""}${s.tag ? `<span class="tag"><i class="fas fa-hashtag"></i> ${escapeHtml(s.tag)}</span>` : ""}${s.date ? `<span class="tag"><i class="fas fa-calendar"></i> ${escapeHtml(s.date)}</span>` : ""}</div></div></div><p>${escapeHtml(s.summary || "Open to view the full PDF document.")}</p><div class="card-actions"><button class="btn primary view-pdf" data-url="${escapeAttr(s.url)}" data-title="${escapeAttr(s.title)}"><i class="fas fa-eye"></i> View PDF</button><a class="btn ghost" href="${escapeAttr(s.url)}" download><i class="fas fa-download"></i> Download</a></div>`; const viewBtn = card.querySelector('.view-pdf'); viewBtn.addEventListener('click', () => openPdf(s.url, s.title)); libraryEl.appendChild(card); }); }
-    function openPdf(url, title) { modalTitle.textContent = title || "Impact Evidence PDF"; pdfFrame.src = url; downloadBtn.href = url; modal.classList.add('active'); document.body.style.overflow = "hidden"; }
-    function closePdf() { modal.classList.remove('active'); pdfFrame.src = ""; document.body.style.overflow = ""; }
-    closeModalBtn.addEventListener('click', closePdf); modal.addEventListener('click', (e) => { if (e.target === modal) closePdf(); }); document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closePdf(); });
+    function escapeHtml(str) {
+      return String(str || "").replace(/[&<>"']/g, s => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[s]));
+    }
+
+    function escapeAttr(str) {
+      return String(str || "").replace(/"/g, "&quot;");
+    }
+
+    function matchesQuery(story, q) {
+      if (!q) return true;
+      const hay = [story.title, story.county, story.tag, story.date, story.summary]
+        .map(s => String(s || "").toLowerCase())
+        .join(" ");
+      return hay.includes(q.toLowerCase());
+    }
+
+    function renderLibrary() {
+      const q = searchInput.value.trim();
+      const items = preloadedStories.filter(s => matchesQuery(s, q));
+      libraryEl.innerHTML = "";
+      emptyState.style.display = items.length ? "none" : "block";
+
+      items.forEach((s) => {
+        const card = document.createElement('div');
+        card.className = "card";
+        card.innerHTML = `
+          <div class="card-top">
+            <div class="pdf-badge"><i class="fas fa-file-pdf"></i></div>
+            <div>
+              <h3>${escapeHtml(s.title || "Impact Evidence PDF")}</h3>
+              <div class="meta">
+                ${s.county ? `<span class="tag"><i class="fas fa-map-marker-alt"></i> ${escapeHtml(s.county)}</span>` : ""}
+                ${s.tag ? `<span class="tag"><i class="fas fa-hashtag"></i> ${escapeHtml(s.tag)}</span>` : ""}
+                ${s.date ? `<span class="tag"><i class="fas fa-calendar"></i> ${escapeHtml(s.date)}</span>` : ""}
+              </div>
+            </div>
+          </div>
+          <p>${escapeHtml(s.summary || "Open to view the full PDF document.")}</p>
+          <div class="card-actions">
+            <button class="btn primary view-pdf" data-url="${escapeAttr(s.url)}" data-title="${escapeAttr(s.title)}"><i class="fas fa-eye"></i> View PDF</button>
+            <a class="btn ghost" href="${escapeAttr(s.url)}" download><i class="fas fa-download"></i> Download</a>
+          </div>
+        `;
+        const viewBtn = card.querySelector('.view-pdf');
+        viewBtn.addEventListener('click', () => openPdf(s.url, s.title));
+        libraryEl.appendChild(card);
+      });
+    }
+
+    function openPdf(url, title) {
+      modalTitle.textContent = title || "Impact Evidence PDF";
+      pdfFrame.src = url;
+      downloadBtn.href = url;
+      modal.classList.add('active');
+      document.body.style.overflow = "hidden";
+    }
+
+    function closePdf() {
+      modal.classList.remove('active');
+      pdfFrame.src = "";
+      document.body.style.overflow = "";
+    }
+
+    closeModalBtn.addEventListener('click', closePdf);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closePdf(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closePdf(); });
     searchInput.addEventListener('input', renderLibrary);
 
-    const mobileToggle = document.getElementById('mobileToggle'), navMenu = document.getElementById('navMenu'), navbar = document.getElementById('navbar');
-    mobileToggle.addEventListener('click', () => { navMenu.classList.toggle('active'); const icon = mobileToggle.querySelector('i'); icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-times'); });
-    document.addEventListener('click', (e) => { if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) navMenu.classList.remove('active'); });
+    const mobileToggle = document.getElementById('mobileToggle'),
+          navMenu = document.getElementById('navMenu'),
+          navbar = document.getElementById('navbar');
+
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      const icon = mobileToggle.querySelector('i');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+        navMenu.classList.remove('active');
+      }
+    });
+
     window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
-    function escapeAttr(str) { return String(str || "").replace(/"/g, "&quot;"); }
 
     const revealElements = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }); }, { threshold: 0.1 });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('active');
+      });
+    }, { threshold: 0.1 });
+
     revealElements.forEach(el => observer.observe(el));
-    renderStories(); renderLibrary();
+
+    renderStories();
+    renderLibrary();
   </script>
 </body>
 </html>
