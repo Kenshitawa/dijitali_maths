@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Annual Reports — WeCare CBO</title>
+  <meta name="description" content="Browse WeCare annual reports, accountability summaries, and year-by-year organizational documentation." />
+  <link rel="icon" href="images/logo.png" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --primary-dark: #1e40af;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --text: #1e293b;
+      --text-light: #334155;
+      --text-muted: #475569;
+      --bg: #ffffff;
+      --bg-soft: #f8fafc;
+      --border: #e2e8f0;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --radius: 16px;
+      --radius-lg: 24px;
+      --transition: all 0.2s ease;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.5;
+      font-size: 1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      width: min(1280px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    /* Top bar – EACC style */
+    .top-bar {
+      background: var(--primary-dark);
+      color: white;
+      font-size: 0.85rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .top-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .top-bar-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .top-bar-links a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.85rem;
+      transition: var(--transition);
+    }
+
+    .top-bar-links a:hover {
+      color: white;
+    }
+
+    .top-bar-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .top-btn {
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .top-btn.report {
+      background: var(--accent);
+      color: white;
+    }
+
+    .top-btn.report:hover {
+      background: #d35400;
+      transform: translateY(-1px);
+    }
+
+    .top-btn.donate {
+      background: white;
+      color: var(--primary);
+    }
+
+    .top-btn.donate:hover {
+      background: #f1f5f9;
+    }
+
+    /* Navbar – EACC style */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .navbar.scrolled {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 0;
+      gap: 1.5rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .brand img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+    .brand-text p {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: 40px;
+      transition: var(--transition);
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+      background: var(--bg-soft);
+      color: var(--primary);
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--border);
+      padding: 0.6rem;
+      border-radius: 10px;
+      cursor: pointer;
+      background: white;
+    }
+
+    /* Hero – balanced size */
+    .page-hero {
+      padding: 4rem 0 3rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 340px;
+    }
+
+    .page-hero-slideshow {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .page-hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .page-hero-slide.active {
+      opacity: 1;
+    }
+
+    .page-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(11, 28, 45, 0.85) 0%, rgba(31, 64, 104, 0.8) 100%);
+      z-index: 1;
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 1.5rem 0;
+    }
+
+    .page-hero h1 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      color: white;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .page-hero p {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.92);
+      line-height: 1.6;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    /* sections */
+    .section {
+      padding: 3rem 0;
+    }
+
+    .section.soft {
+      background: var(--bg-soft);
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 750px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .section-kicker {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 800;
+      color: var(--primary-light);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    /* stats strip */
+    .stats-strip {
+      background: var(--primary);
+    }
+
+    .stats-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .stat-cell {
+      padding: 1.4rem 1rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .stat-cell:last-child {
+      border-right: none;
+    }
+
+    .stat-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.15);
+      display: grid;
+      place-items: center;
+      color: #fcd34d;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.65);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.2rem;
+    }
+
+    .stat-value {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.6rem;
+      color: white;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    /* year tabs */
+    .year-tabs {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .year-tab {
+      padding: 0.6rem 1.3rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--text-light);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .year-tab.active {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
+    }
+
+    /* search bar */
+    .search-bar-wrap {
+      max-width: 480px;
+      margin: 0 auto 2rem;
+      position: relative;
+    }
+
+    .search-bar-wrap input {
+      width: 100%;
+      padding: 0.9rem 1rem 0.9rem 2.8rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      background: white;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .search-bar-wrap input:focus {
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .search-bar-wrap i {
+      position: absolute;
+      left: 1.1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* toolbar */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .result-count {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .sort-select {
+      padding: 0.6rem 1rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: white;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .view-toggle {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .vt-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: white;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .vt-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    /* report grid */
+    .reports-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .reports-grid.list-mode {
+      grid-template-columns: 1fr;
+    }
+
+    .report-card {
+      background: white;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: var(--transition);
+      cursor: pointer;
+      animation: fadeUp 0.4s ease both;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .report-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(30, 58, 138, 0.2);
+    }
+
+    .report-card-banner {
+      position: relative;
+      height: 180px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .report-year-bg {
+      position: absolute;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 6rem;
+      color: rgba(255, 255, 255, 0.08);
+      letter-spacing: -3px;
+      right: -15px;
+      bottom: -25px;
+      pointer-events: none;
+    }
+
+    .report-file-mock {
+      width: 70px;
+      height: 85px;
+      background: white;
+      border-radius: 10px 10px 5px 5px;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .report-file-mock i {
+      font-size: 1.8rem;
+      color: #e53e3e;
+    }
+
+    .report-file-mock .file-ext {
+      font-size: 0.7rem;
+      font-weight: 600;
+      background: #fff5f5;
+      color: #e53e3e;
+      padding: 0.2rem 0.45rem;
+      border-radius: 4px;
+      margin-top: 0.35rem;
+    }
+
+    .report-badge {
+      position: absolute;
+      top: 0.8rem;
+      left: 0.8rem;
+      z-index: 2;
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      backdrop-filter: blur(8px);
+    }
+
+    .badge-latest {
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid rgba(16, 185, 129, 0.5);
+      color: #d1fae5;
+    }
+
+    .badge-published {
+      background: rgba(59, 130, 246, 0.2);
+      border: 1px solid rgba(59, 130, 246, 0.5);
+      color: #bfdbfe;
+    }
+
+    .badge-coming {
+      background: rgba(245, 158, 11, 0.2);
+      border: 1px solid rgba(245, 158, 11, 0.5);
+      color: #fde68a;
+    }
+
+    .report-hover-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background: rgba(30, 58, 138, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .report-card:hover .report-hover-overlay {
+      opacity: 1;
+    }
+
+    .overlay-action-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: var(--transition);
+    }
+
+    .overlay-action-btn:hover {
+      background: white;
+      color: var(--primary);
+      transform: scale(1.05);
+    }
+
+    .report-body {
+      padding: 1.2rem 1.3rem 1rem;
+    }
+
+    .report-year-tag {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--primary-light);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .report-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      line-height: 1.35;
+      margin-bottom: 0.7rem;
+    }
+
+    .report-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
+      margin-bottom: 0.9rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .report-highlights {
+      margin-bottom: 0.9rem;
+    }
+
+    .report-highlight {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+
+    .report-highlight i {
+      color: var(--success);
+      font-size: 0.75rem;
+    }
+
+    .report-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-light);
+    }
+
+    .report-footer {
+      padding: 0.8rem 1.3rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      background: var(--bg-soft);
+    }
+
+    .report-size {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .r-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.55rem 1rem;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+      transition: var(--transition);
+    }
+
+    .r-btn.primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      box-shadow: 0 2px 8px rgba(30, 58, 138, 0.2);
+    }
+
+    .r-btn.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+    }
+
+    .r-btn.secondary {
+      background: var(--bg-soft);
+      color: var(--text-light);
+      border: 1px solid var(--border);
+    }
+
+    .r-btn.secondary:hover {
+      background: white;
+      border-color: var(--primary-light);
+      color: var(--primary);
+    }
+
+    /* impact section */
+    .impact-section {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      padding: 4rem 0;
+    }
+
+    .impact-section .section-kicker {
+      color: #fcd34d;
+    }
+
+    .impact-section .section-title {
+      color: white;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .impact-stat {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      transition: var(--transition);
+    }
+
+    .impact-stat:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-4px);
+    }
+
+    .impact-stat-number {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    .impact-stat-label {
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* CTA */
+    .cta-section {
+      padding: 3rem 0;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      text-align: center;
+    }
+
+    .cta-box h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 0.8rem;
+    }
+
+    .cta-box p {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 1.2rem;
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      border-radius: 60px;
+      padding: 0.7rem 1.4rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .btn.white {
+      background: white;
+      color: var(--primary);
+    }
+
+    .btn.white:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn.ghost {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: white;
+    }
+
+    .btn.ghost:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* footer */
+    .footer {
+      background: #0a1628;
+      color: white;
+      padding: 3rem 0 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
+      padding-bottom: 1.5rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand img {
+      height: 52px;
+      background: white;
+      padding: 8px;
+      border-radius: 12px;
+    }
+
+    .footer h5 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    .footer ul li {
+      margin-bottom: 0.5rem;
+      list-style: none;
+    }
+
+    .footer a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: var(--transition);
+    }
+
+    .footer a:hover {
+      color: white;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 1rem;
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      background: rgba(10, 15, 35, 0.92);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: white;
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 1000px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-header {
+      padding: 1rem 1.2rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .modal-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.15);
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+    }
+
+    .modal-title-group {
+      flex: 1;
+    }
+
+    .modal-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: white;
+    }
+
+    .modal-sub {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .modal-close {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      border: none;
+      transition: var(--transition);
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .viewer-toolbar {
+      padding: 0.7rem 1rem;
+      background: var(--bg-soft);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .page-info {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .vtb-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: white;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: var(--transition);
+    }
+
+    .vtb-btn:hover {
+      border-color: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .modal-body {
+      flex: 1;
+      overflow: auto;
+      background: #1a1f2e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      min-height: 0;
+    }
+
+    .viewer-canvas-wrap {
+      background: white;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      border-radius: 4px;
+      overflow: auto;
+      max-width: 100%;
+    }
+
+    #pdfCanvas {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* responsive */
+    @media (max-width: 1024px) {
+      .top-bar {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: flex;
+      }
+
+      .nav-menu {
+        position: fixed;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1.2rem;
+        transform: translateY(-150%);
+        transition: 0.25s ease;
+        box-shadow: var(--shadow-lg);
+        border-bottom: 1px solid var(--border);
+        z-index: 999;
+      }
+
+      .nav-menu.active {
+        transform: translateY(0);
+      }
+
+      .stats-inner {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .impact-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .impact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .reports-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-cell {
+        padding: 1rem 0.8rem;
+      }
+
+      .stat-value {
+        font-size: 1.3rem;
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 255, 255, 0.2);
+      border-top-color: var(--accent);
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .viewer-loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-inner">
+        <ul class="top-bar-links"><li><a href="contactus.html">Contact Us</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="#faqs">FAQs</a></li></ul>
+        <div class="top-bar-actions"><a href="contactus.html#report" class="top-btn report"><i class="fas fa-exclamation-triangle"></i> Report Corruption</a><a href="donation.html" class="top-btn donate"><i class="fas fa-heart"></i> Support Our Work</a></div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="index.html"><img src="images/logo.png" alt="WeCare CBO Logo" /><div class="brand-text"><p>ENGAGE • INFLUENCE • EMPOWER</p></div></a>
+        <ul class="nav-menu" id="navMenu"><li><a href="index.html">Home</a></li><li><a href="aboutus.html">Who We Are</a></li><li><a href="projects.html">Our Work</a></li><li><a href="volunteers.html">Get Involved</a></li><li><a href="contactus.html">Contact</a></li></ul>
+        <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="page-hero-slideshow"><div class="page-hero-slide active" style="background-image: url('images/ngo.jpg');"></div><div class="page-hero-slide" style="background-image: url('images/ngo2.jpg');"></div></div>
+    <div class="page-hero-overlay"></div>
+    <div class="container"><div class="page-hero-content"><h1>Annual Reports</h1><p>Explore WeCare's annual reports, accountability summaries, and year-by-year organizational documentation — all viewable and downloadable in one place.</p></div></div>
+  </section>
+
+  <div class="stats-strip">
+    <div class="container" style="padding:0;">
+      <div class="stats-inner">
+        <div class="stat-cell"><div class="stat-icon"><i class="fas fa-file-alt"></i></div><div><div class="stat-label">Total Reports</div><div class="stat-value" id="totalReports">0</div></div></div>
+        <div class="stat-cell"><div class="stat-icon"><i class="fas fa-calendar-check"></i></div><div><div class="stat-label">Years Covered</div><div class="stat-value" id="yearsCovered">0</div></div></div>
+        <div class="stat-cell"><div class="stat-icon"><i class="fas fa-eye"></i></div><div><div class="stat-label">Views</div><div class="stat-value" id="viewCount">0</div></div></div>
+        <div class="stat-cell"><div class="stat-icon"><i class="fas fa-download"></i></div><div><div class="stat-label">Downloads</div><div class="stat-value" id="dlCount">0</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header"><div class="section-kicker"><i class="fas fa-book-open"></i> Reports Library</div><h2 class="section-title">Annual Report Archive</h2></div>
+      <div class="search-bar-wrap"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Search by year, title, or keyword..." autocomplete="off" /></div>
+      <div class="year-tabs" id="yearTabs"></div>
+      <div class="toolbar"><div class="result-count"><strong id="visibleCount">0</strong> report(s) shown</div><select class="sort-select" id="sortSelect"><option value="year-desc">Newest First</option><option value="year-asc">Oldest First</option><option value="title-asc">Title A–Z</option></select><div class="view-toggle"><button class="vt-btn active" id="gridBtn"><i class="fas fa-th-large"></i></button><button class="vt-btn" id="listBtn"><i class="fas fa-list"></i></button></div></div>
+      <div class="reports-grid" id="reportsGrid"></div>
+    </div>
+  </section>
+
+  <section class="impact-section"><div class="container"><div class="section-header"><div class="section-kicker">Our Track Record</div><h2 class="section-title">Impact Over the Years</h2><p style="color: rgba(255,255,255,0.85);">A snapshot of WeCare's cumulative impact across all reported years.</p></div><div class="impact-grid"><div class="impact-stat"><div class="impact-stat-number">5,000+</div><div class="impact-stat-label">Citizens Reached</div></div><div class="impact-stat"><div class="impact-stat-number">120+</div><div class="impact-stat-label">Projects Monitored</div></div><div class="impact-stat"><div class="impact-stat-number">38</div><div class="impact-stat-label">Policy Submissions</div></div><div class="impact-stat"><div class="impact-stat-number">15+</div><div class="impact-stat-label">Partner Organizations</div></div></div></div></section>
+
+  <section class="cta-section"><div class="container"><div class="cta-box reveal"><h3>Support Our Accountability Work</h3><p>Your support helps WeCare continue producing transparent, independent accountability reports that empower communities across Kenya.</p><div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;"><a href="donation.html" class="btn white"><i class="fas fa-heart"></i> Donate Now</a><a href="contactus.html" class="btn ghost"><i class="fas fa-envelope"></i> Contact Us</a></div></div></div></section>
+
+  <footer class="footer"><div class="container"><div class="footer-grid"><div><div class="footer-brand"><img src="images/logo.png" alt="WeCare CBO" /><div><h5 style="margin:0;">WeCare CBO</h5><p style="font-size:0.8rem; color:rgba(255,255,255,0.7);">Engage · Influence · Empower</p></div></div><p style="font-size:0.85rem; line-height:1.6; color:rgba(255,255,255,0.75);">Strengthening accountability, promoting public participation, and monitoring public contracts to ensure transparency and integrity in governance across Kenya.</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-x-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div><div><h5>Quick Links</h5><ul><li><a href="index.html">Home</a></li><li><a href="aboutus.html">About Us</a></li><li><a href="projects.html">Our Work</a></li><li><a href="volunteers.html">Get Involved</a></li></ul></div><div><h5>Resources</h5><ul><li><a href="annual-reports.html">Annual Reports</a></li><li><a href="memoranda.html">Memoranda</a></li><li><a href="donation.html">Donate</a></li><li><a href="privacy.html">Privacy Policy</a></li></ul></div><div><h5>Contact</h5><ul><li><i class="fas fa-envelope"></i> wecare518@gmail.com</li><li><i class="fas fa-phone"></i> +254 797 680921</li><li><i class="fas fa-map-marker-alt"></i> Kisumu, Kenya</li></ul></div></div><div class="footer-bottom"><p>&copy; 2026 WeCare Youth-Based Organization (WeCare CBO). All Rights Reserved.</p></div></div></footer>
+
+  <div class="modal-overlay" id="modalOverlay"><div class="modal"><div class="modal-header"><div class="modal-icon"><i class="fas fa-file-pdf"></i></div><div class="modal-title-group"><div class="modal-title" id="modalTitle"></div><div class="modal-sub" id="modalSub"></div></div><button class="modal-close" id="closeModal"><i class="fas fa-times"></i></button></div><div class="viewer-toolbar"><button class="vtb-btn" id="prevPage"><i class="fas fa-chevron-left"></i></button><span class="page-info" id="pageInfo">Page 1 / 1</span><button class="vtb-btn" id="nextPage"><i class="fas fa-chevron-right"></i></button><div style="width:1px; height:24px; background:var(--border);"></div><button class="vtb-btn" id="zoomOut"><i class="fas fa-search-minus"></i></button><span id="zoomLevel" style="font-size:0.85rem; min-width:50px; text-align:center;">100%</span><button class="vtb-btn" id="zoomIn"><i class="fas fa-search-plus"></i></button><button class="vtb-btn" id="rotateBtn"><i class="fas fa-redo"></i></button></div><div class="modal-body" id="modalBody"><div class="viewer-loading"><div class="spinner"></div><span>Loading PDF…</span></div></div></div></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    let reports = [
+      { id: 1, year: 2026, title: "WeCare Annual Report 2026", desc: "Our most recent organizational report highlighting key milestones, program outcomes, governance updates, and financial accountability for the year 2026.", highlights: ["Youth civic engagement programs expanded to 3 new wards", "120+ public contracts monitored", "38 policy submissions filed"], badge: "coming", pages: 0, size: "—", url: "", demo: true, type: "pdf" },
+      { id: 2, year: 2025, title: "WeCare Annual Report 2025", desc: "A comprehensive account of WeCare's accountability and civic engagement activities in 2025, including financial summaries, project outcomes, and community impact data.", highlights: ["4,200 citizens reached through civic forums", "Partnered with 12 organizations", "Launched digital rights campaign"], badge: "latest", pages: 36, size: "2.8 MB", url: "", demo: true, type: "pdf" },
+      { id: 3, year: 2024, title: "WeCare Annual Report 2024", desc: "Documenting WeCare's third year of operation — covering public participation advocacy, anti-corruption monitoring activities, and strategic partnerships established across Kisumu County.", highlights: ["3,000+ citizens engaged", "15 corruption cases flagged", "First youth policy summit organized"], badge: "published", pages: 28, size: "1.9 MB", url: "", demo: true, type: "pdf" },
+      { id: 4, year: 2023, title: "WeCare Annual Report 2023", desc: "WeCare's second year report covering the foundation of our core programs, initial community outreach, and the establishment of our transparency monitoring framework.", highlights: ["1,800 citizens reached", "Launched accountability helpdesk", "5 ward-level forums held"], badge: "published", pages: 22, size: "1.4 MB", url: "", demo: true, type: "pdf" },
+      { id: 5, year: 2022, title: "WeCare Inaugural Report 2022", desc: "Our founding year report — charting WeCare's establishment, mission definition, initial stakeholder mapping, and the first community accountability activities in Kisumu.", highlights: ["Organization officially registered", "800 citizens reached in pilot phase", "3 memoranda submitted"], badge: "published", pages: 16, size: "980 KB", url: "", demo: true, type: "pdf" }
+    ];
+    let filtered = [], activeYear = 'all', currentSort = 'year-desc', viewCount = parseInt(localStorage.getItem('wc_ar_views') || '0'), dlCount = parseInt(localStorage.getItem('wc_ar_dls') || '0');
+    document.getElementById('viewCount').textContent = viewCount; document.getElementById('dlCount').textContent = dlCount;
+    function getYears() { return [...new Set(reports.map(r => r.year))].sort((a,b)=>b-a); }
+    function renderYearTabs() { const years = getYears(); let html = `<button class="year-tab ${activeYear==='all'?'active':''}" data-year="all">All Years</button>` + years.map(y=>`<button class="year-tab ${activeYear===y?'active':''}" data-year="${y}">${y}</button>`).join(''); document.getElementById('yearTabs').innerHTML = html; document.querySelectorAll('.year-tab').forEach(t=>t.addEventListener('click',()=>{ activeYear = t.dataset.year === 'all' ? 'all' : parseInt(t.dataset.year); renderYearTabs(); applyFilters(); })); }
+    function applyFilters() { const q = document.getElementById('searchInput').value.toLowerCase(); filtered = reports.filter(r => (activeYear === 'all' || r.year === activeYear) && (!q || r.title.toLowerCase().includes(q) || String(r.year).includes(q) || r.desc.toLowerCase().includes(q))); sortReports(); renderReports(); updateStats(); }
+    function sortReports() { filtered.sort((a,b)=>{ if(currentSort === 'year-asc') return a.year - b.year; if(currentSort === 'year-desc') return b.year - a.year; if(currentSort === 'title-asc') return a.title.localeCompare(b.title); return 0; }); }
+    function updateStats() { document.getElementById('totalReports').textContent = reports.length; document.getElementById('yearsCovered').textContent = getYears().length; }
+    const badgeLabel = { latest:'Latest', published:'Published', coming:'Coming Soon' };
+    function renderReports() { const grid = document.getElementById('reportsGrid'); document.getElementById('visibleCount').textContent = filtered.length; if(!filtered.length){ grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-muted);"><i class="fas fa-folder-open" style="font-size:2rem; margin-bottom:1rem; display:block;"></i><h3 style="font-size:1.1rem;">No reports found</h3><p>Try a different year or search term.</p></div>`; return; } grid.innerHTML = filtered.map(r=>`<div class="report-card" data-id="${r.id}"><div class="report-card-banner"><div class="report-year-bg">${r.year}</div><div class="report-file-mock"><i class="fas fa-file-pdf"></i><span class="file-ext">PDF</span></div><div class="report-badge badge-${r.badge}">${badgeLabel[r.badge]}</div>${r.badge !== 'coming' ? `<div class="report-hover-overlay"><button class="overlay-action-btn view-btn" data-id="${r.id}"><i class="fas fa-eye"></i></button><button class="overlay-action-btn dl-btn" data-id="${r.id}"><i class="fas fa-download"></i></button></div>` : ''}</div><div class="report-body"><div class="report-year-tag"><i class="fas fa-calendar-alt"></i> ${r.year} Annual Report</div><h3 class="report-title">${r.title}</h3><p class="report-desc">${r.desc}</p><div class="report-highlights">${r.highlights.map(h=>`<div class="report-highlight"><i class="fas fa-check-circle"></i>${h}</div>`).join('')}</div><div class="report-meta">${r.pages ? `<span class="meta-pill"><i class="fas fa-file-alt"></i>${r.pages} pages</span>` : ''}${r.size !== '—' ? `<span class="meta-pill"><i class="fas fa-hdd"></i>${r.size}</span>` : ''}<span class="meta-pill"><i class="fas fa-building"></i>WeCare CBO</span></div></div><div class="report-footer"><span class="report-size">${r.size}</span><div class="report-actions">${r.badge !== 'coming' ? `<button class="r-btn primary view-btn" data-id="${r.id}"><i class="fas fa-eye"></i> View</button><button class="r-btn secondary dl-btn" data-id="${r.id}"><i class="fas fa-download"></i></button>` : `<button class="r-btn secondary" disabled style="opacity:0.6;"><i class="fas fa-clock"></i> Coming Soon</button>`}</div></div></div>`).join(''); document.querySelectorAll('.view-btn').forEach(b=>b.addEventListener('click',e=>{ e.stopPropagation(); openReport(+b.dataset.id); })); document.querySelectorAll('.dl-btn').forEach(b=>b.addEventListener('click',e=>{ e.stopPropagation(); downloadReport(+b.dataset.id); })); document.querySelectorAll('.report-card').forEach(c=>c.addEventListener('click',()=>openReport(+c.dataset.id))); }
+    function downloadReport(id){ let r = reports.find(x=>x.id===id); if(!r || r.badge==='coming') return; if(r.url) { let a=document.createElement('a'); a.href=r.url; a.download=`wecare-annual-report-${r.year}.pdf`; a.click(); dlCount++; localStorage.setItem('wc_ar_dls', dlCount); document.getElementById('dlCount').textContent = dlCount; alert('Download started.'); } else { alert("Demo document — set url field to enable actual download."); } }
+    let pdfDoc=null, currentPage=1, totalPages=1, zoom=1.0, rotation=0, currentReport=null;
+    function openReport(id){ let r=reports.find(x=>x.id===id); if(!r || r.badge==='coming') return; currentReport=r; viewCount++; localStorage.setItem('wc_ar_views',viewCount); document.getElementById('viewCount').textContent=viewCount; document.getElementById('modalTitle').textContent=r.title; document.getElementById('modalSub').textContent=`${r.year} · ${r.size} · ${r.pages||'—'} pages`; document.getElementById('modalOverlay').classList.add('open'); document.body.style.overflow='hidden'; if(r.url && r.type==='pdf') loadPDF(r.url); else showDemoPlaceholder(r); }
+    function showDemoPlaceholder(r){ document.getElementById('modalBody').innerHTML=`<div style="color:white;text-align:center;max-width:400px;"><i class="fas fa-file-pdf" style="font-size:3rem;opacity:0.6;margin-bottom:1rem;display:block;"></i><h3 style="font-size:1.2rem;margin-bottom:0.5rem;">${r.title}</h3><p style="font-size:0.9rem;">This is a sample entry. Upload your actual PDF to enable the full inline viewer with page navigation, zoom, rotation, and print support.</p><div style="margin-top:1.5rem;padding:1rem;background:rgba(0,0,0,0.3);border-radius:8px;font-family:monospace;font-size:0.8rem;">url: "documents/wecare-annual-report-${r.year}.pdf"</div></div>`; }
+    async function loadPDF(url){ document.getElementById('modalBody').innerHTML=`<div class="viewer-loading"><div class="spinner"></div><span>Loading PDF…</span></div>`; try{ pdfDoc=await pdfjsLib.getDocument(url).promise; totalPages=pdfDoc.numPages; updatePageInfo(); renderPDFPage(1); } catch(e){ document.getElementById('modalBody').innerHTML=`<div style="color:white;text-align:center;"><i class="fas fa-exclamation-triangle" style="font-size:2rem;"></i><p style="margin-top:1rem;">Could not load PDF. Ensure the file path is correct.</p></div>`; } }
+    async function renderPDFPage(num){ if(!pdfDoc) return; let page=await pdfDoc.getPage(num); let viewport=page.getViewport({scale:zoom, rotation}); let canvas=document.createElement('canvas'); canvas.id='pdfCanvas'; let ctx=canvas.getContext('2d'); canvas.height=viewport.height; canvas.width=viewport.width; let wrap=document.createElement('div'); wrap.className='viewer-canvas-wrap'; wrap.appendChild(canvas); document.getElementById('modalBody').innerHTML=''; document.getElementById('modalBody').appendChild(wrap); await page.render({canvasContext:ctx, viewport}).promise; currentPage=num; updatePageInfo(); }
+    function updatePageInfo(){ document.getElementById('pageInfo').textContent=`Page ${currentPage} / ${totalPages}`; document.getElementById('prevPage').disabled=currentPage<=1; document.getElementById('nextPage').disabled=currentPage>=totalPages; }
+    function updateZoomDisplay(){ document.getElementById('zoomLevel').textContent=Math.round(zoom*100)+'%'; }
+    document.getElementById('prevPage').addEventListener('click',()=>{if(currentPage>1) renderPDFPage(currentPage-1);}); document.getElementById('nextPage').addEventListener('click',()=>{if(currentPage<totalPages) renderPDFPage(currentPage+1);}); document.getElementById('zoomIn').addEventListener('click',()=>{zoom=Math.min(zoom+0.25,3); updateZoomDisplay(); if(pdfDoc) renderPDFPage(currentPage);}); document.getElementById('zoomOut').addEventListener('click',()=>{zoom=Math.max(zoom-0.25,0.25); updateZoomDisplay(); if(pdfDoc) renderPDFPage(currentPage);}); document.getElementById('rotateBtn').addEventListener('click',()=>{rotation=(rotation+90)%360; if(pdfDoc) renderPDFPage(currentPage);}); document.getElementById('closeModal').addEventListener('click',()=>{document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow=''; pdfDoc=null;}); document.getElementById('modalOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('modalOverlay')) document.getElementById('closeModal').click();});
+    document.getElementById('searchInput').addEventListener('input', applyFilters); document.getElementById('sortSelect').addEventListener('change',e=>{currentSort=e.target.value; applyFilters();}); document.getElementById('gridBtn').addEventListener('click',()=>{document.getElementById('reportsGrid').classList.remove('list-mode'); document.getElementById('gridBtn').classList.add('active'); document.getElementById('listBtn').classList.remove('active');}); document.getElementById('listBtn').addEventListener('click',()=>{document.getElementById('reportsGrid').classList.add('list-mode'); document.getElementById('listBtn').classList.add('active'); document.getElementById('gridBtn').classList.remove('active');});
+    const mobileToggle=document.getElementById('mobileToggle'), navMenu=document.getElementById('navMenu'); mobileToggle.addEventListener('click',()=>{navMenu.classList.toggle('active'); const icon=mobileToggle.querySelector('i'); icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-times');}); document.addEventListener('click',e=>{if(!navMenu.contains(e.target)&&!mobileToggle.contains(e.target)) navMenu.classList.remove('active');}); window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>30)); let slide=0,heroSlides=document.querySelectorAll('.page-hero-slide'); if(heroSlides.length>1) setInterval(()=>{heroSlides[slide].classList.remove('active'); slide=(slide+1)%heroSlides.length; heroSlides[slide].classList.add('active');},5000);
+    const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('active');});},{threshold:0.1}); document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+    renderYearTabs(); applyFilters();
+  </script>
+</body>
+</html>

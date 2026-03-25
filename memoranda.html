@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Memoranda — WeCare CBO</title>
+  <meta name="description" content="Browse WeCare memoranda, public submissions, and policy engagement documents." />
+  <link rel="icon" href="images/logo.png" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --primary-dark: #1e40af;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --text: #1e293b;
+      --text-light: #334155;
+      --text-muted: #475569;
+      --bg: #ffffff;
+      --bg-soft: #f8fafc;
+      --border: #e2e8f0;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+      --radius: 16px;
+      --radius-lg: 24px;
+      --transition: all 0.2s ease;
+      --grad-brand: linear-gradient(135deg, var(--primary), var(--primary-light));
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg-soft);
+      line-height: 1.5;
+      font-size: 1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { width: min(1280px, calc(100% - 2rem)); margin: 0 auto; }
+
+    /* Top bar */
+    .top-bar { background: var(--primary-dark); color: white; font-size: 0.85rem; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .top-bar-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .top-bar-links { display: flex; gap: 1.5rem; list-style: none; }
+    .top-bar-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-weight: 500; font-size: 0.85rem; transition: var(--transition); }
+    .top-bar-links a:hover { color: white; }
+    .top-bar-actions { display: flex; gap: 1rem; }
+    .top-btn { padding: 0.4rem 1rem; border-radius: 40px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: var(--transition); display: inline-flex; align-items: center; gap: 0.5rem; }
+    .top-btn.report { background: var(--accent); color: white; }
+    .top-btn.report:hover { background: #d35400; transform: translateY(-1px); }
+    .top-btn.donate { background: white; color: var(--primary); }
+    .top-btn.donate:hover { background: #f1f5f9; }
+
+    /* Navbar */
+    .navbar { position: sticky; top: 0; z-index: 1000; background: rgba(255,255,255,0.98); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); transition: var(--transition); }
+    .navbar.scrolled { box-shadow: var(--shadow-sm); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 0; gap: 1.5rem; }
+    .brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .brand img { height: 48px; width: auto; object-fit: contain; border-radius: 10px; }
+    .brand-text p { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); letter-spacing: 0.5px; }
+    .nav-menu { list-style: none; display: flex; align-items: center; gap: 0.25rem; }
+    .nav-menu a { text-decoration: none; color: var(--text-light); font-weight: 600; font-size: 0.95rem; padding: 0.6rem 1.1rem; border-radius: 40px; transition: var(--transition); }
+    .nav-menu a:hover, .nav-menu a.active { background: var(--bg-light); color: var(--primary); }
+    .mobile-toggle { display: none; background: none; border: 1px solid var(--border); padding: 0.6rem; border-radius: 10px; cursor: pointer; background: white; }
+
+    /* Hero */
+    .page-hero { padding: 4rem 0 3rem; position: relative; overflow: hidden; min-height: 320px; background: linear-gradient(135deg, var(--primary-dark), var(--primary)); }
+    .hero-bg { position: absolute; inset: 0; background-image: url('images/ngo2.jpg'); background-size: cover; background-position: center; opacity: 0.25; z-index: 0; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(13,27,62,0.7), rgba(30,58,138,0.6)); z-index: 1; }
+    .page-hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; margin: 0 auto; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 40px; background: rgba(212,160,23,0.2); border: 1px solid rgba(212,160,23,0.4); color: #fcd34d; font-size: 0.7rem; font-weight: 700; margin-bottom: 1rem; }
+    .page-hero h1 { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: clamp(1.8rem, 5vw, 2.5rem); color: white; margin-bottom: 0.8rem; }
+    .page-hero p { font-size: 1rem; color: rgba(255,255,255,0.9); line-height: 1.6; max-width: 650px; margin: 0 auto; }
+    .breadcrumb { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1rem; color: rgba(255,255,255,0.7); font-size: 0.8rem; }
+
+    /* Stats Strip */
+    .stats-strip { background: var(--primary); }
+    .stats-inner { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .stat-cell { padding: 1rem; border-right: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.8rem; }
+    .stat-cell:last-child { border-right: none; }
+    .stat-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,0.1); display: grid; place-items: center; color: #fcd34d; font-size: 0.9rem; }
+    .stat-label { font-size: 0.65rem; color: rgba(255,255,255,0.6); font-weight: 600; margin-bottom: 0.1rem; }
+    .stat-value { font-family: 'Outfit', sans-serif; font-size: 1.3rem; color: white; font-weight: 700; line-height: 1.2; }
+
+    /* Main Layout */
+    .main-layout { display: grid; grid-template-columns: 280px 1fr; gap: 2rem; padding: 3rem 0; align-items: start; }
+    .sidebar { position: sticky; top: 90px; }
+    .sidebar-card { background: white; border-radius: var(--radius-lg); border: 1px solid var(--border); overflow: hidden; margin-bottom: 1rem; }
+    .sidebar-card-header { padding: 0.8rem 1rem; border-bottom: 1px solid var(--border); background: var(--bg-soft); display: flex; align-items: center; gap: 0.6rem; font-weight: 700; font-size: 0.85rem; }
+    .sidebar-card-body { padding: 1rem; }
+    .search-box { position: relative; }
+    .search-box input { width: 100%; padding: 0.7rem 1rem 0.7rem 2.3rem; border: 1px solid var(--border); border-radius: 40px; font-size: 0.85rem; outline: none; }
+    .search-box i { position: absolute; left: 0.8rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.8rem; }
+    .cat-list { list-style: none; }
+    .cat-item { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.7rem; border-radius: 10px; cursor: pointer; transition: var(--transition); font-size: 0.85rem; }
+    .cat-item:hover { background: rgba(30, 58, 138, 0.05); color: var(--primary); }
+    .cat-item.active { background: rgba(30, 58, 138, 0.08); color: var(--primary); font-weight: 700; }
+    .cat-count { font-size: 0.7rem; padding: 0.2rem 0.5rem; border-radius: 40px; background: var(--bg-soft); }
+    .upload-zone { border: 2px dashed var(--border); border-radius: var(--radius); padding: 1rem; text-align: center; cursor: pointer; transition: var(--transition); }
+    .upload-zone:hover { border-color: var(--primary-light); background: rgba(59,130,246,0.05); }
+    .upload-zone i { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 0.3rem; display: block; }
+    .upload-zone p { font-size: 0.7rem; color: var(--text-muted); }
+    #fileInput { display: none; }
+
+    /* Content Area */
+    .content-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .result-count { font-size: 0.85rem; color: var(--text-muted); }
+    .sort-select { padding: 0.5rem 0.8rem; border-radius: 40px; border: 1px solid var(--border); font-size: 0.8rem; background: white; }
+    .view-toggle { display: flex; gap: 0.3rem; }
+    .view-btn { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--border); background: white; cursor: pointer; display: grid; place-items: center; color: var(--text-muted); }
+    .view-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+    /* Document Grid */
+    .doc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.2rem; }
+    .doc-grid.list-view { grid-template-columns: 1fr; }
+    .doc-card { background: white; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: var(--transition); cursor: pointer; }
+    .doc-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .doc-thumbnail { position: relative; height: 140px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); display: flex; align-items: center; justify-content: center; }
+    .doc-file-icon { width: 56px; height: 70px; background: white; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+    .doc-file-icon i { font-size: 1.4rem; color: #e53e3e; }
+    .doc-ext { font-size: 0.55rem; font-weight: 600; background: #fff5f5; color: #e53e3e; padding: 0.1rem 0.35rem; border-radius: 3px; margin-top: 0.2rem; }
+    .doc-badge { position: absolute; top: 0.6rem; left: 0.6rem; padding: 0.2rem 0.6rem; border-radius: 40px; font-size: 0.6rem; font-weight: 700; backdrop-filter: blur(6px); }
+    .badge-public { background: rgba(16,185,129,0.2); border: 1px solid rgba(16,185,129,0.4); color: #d1fae5; }
+    .badge-submission { background: rgba(212,160,23,0.2); border: 1px solid rgba(212,160,23,0.4); color: #fcd34d; }
+    .doc-actions-overlay { position: absolute; inset: 0; background: rgba(13,27,62,0.75); display: flex; align-items: center; justify-content: center; gap: 0.6rem; opacity: 0; transition: var(--transition); }
+    .doc-card:hover .doc-actions-overlay { opacity: 1; }
+    .overlay-btn { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); color: white; cursor: pointer; display: grid; place-items: center; }
+    .doc-body { padding: 1rem; }
+    .doc-category-tag { font-size: 0.65rem; font-weight: 700; color: var(--primary-light); margin-bottom: 0.3rem; }
+    .doc-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.4rem; line-height: 1.3; }
+    .doc-desc { color: var(--text-muted); font-size: 0.75rem; line-height: 1.5; margin-bottom: 0.6rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .doc-meta { display: flex; gap: 0.4rem; flex-wrap: wrap; padding-top: 0.5rem; border-top: 1px solid var(--border); }
+    .doc-meta-item { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.65rem; color: var(--text-muted); }
+    .doc-footer { padding: 0.6rem 1rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); background: var(--bg-soft); }
+    .doc-size-badge { font-size: 0.65rem; color: var(--text-muted); }
+    .doc-btn { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.3rem 0.7rem; border-radius: 40px; font-size: 0.7rem; font-weight: 600; cursor: pointer; background: white; border: 1px solid var(--border); }
+    .doc-btn.view { background: var(--grad-brand); color: white; border: none; }
+
+    /* Modal */
+    .modal-overlay { position: fixed; inset: 0; z-index: 9000; background: rgba(0,0,0,0.88); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; padding: 1rem; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal { background: white; border-radius: var(--radius-lg); width: 100%; max-width: 900px; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; }
+    .modal-header { padding: 0.8rem 1rem; background: var(--grad-brand); display: flex; align-items: center; gap: 0.8rem; }
+    .modal-doc-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,0.15); display: grid; place-items: center; font-size: 1rem; }
+    .modal-title-group { flex: 1; }
+    .modal-title { font-weight: 700; font-size: 0.9rem; color: white; }
+    .modal-subtitle { font-size: 0.7rem; color: rgba(255,255,255,0.7); }
+    .modal-close-btn { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.1); color: white; cursor: pointer; display: grid; place-items: center; border: none; }
+    .modal-body { flex: 1; overflow: auto; background: #1a1f2e; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-body iframe { width: 100%; height: 100%; border: none; background: white; min-height: 400px; }
+    .modal-meta-strip { padding: 0.6rem 1rem; border-top: 1px solid var(--border); background: var(--bg-soft); display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.7rem; color: var(--text-muted); }
+
+    /* Footer */
+    .footer { background: #0a1628; color: white; padding: 3rem 0 1.5rem; margin-top: 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .footer-brand { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
+    .footer-brand img { height: 52px; background: white; padding: 8px; border-radius: 12px; }
+    .footer-brand-text h4 { font-family: 'Outfit', sans-serif; font-size: 1rem; margin-bottom: 0.2rem; }
+    .footer-brand-text p { font-size: 0.7rem; color: rgba(255,255,255,0.7); }
+    .footer h5 { font-size: 0.9rem; font-weight: 700; margin-bottom: 1rem; }
+    .footer ul li { margin-bottom: 0.5rem; list-style: none; }
+    .footer a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: var(--transition); display: inline-flex; align-items: center; gap: 0.4rem; }
+    .footer a:hover { color: white; transform: translateX(3px); }
+    .footer-contact li { display: flex; align-items: start; gap: 0.6rem; color: rgba(255,255,255,0.75); margin-bottom: 0.7rem; font-size: 0.85rem; }
+    .footer-contact i { color: var(--primary-light); margin-top: 0.15rem; }
+    .social-links { display: flex; gap: 0.8rem; margin-top: 1rem; }
+    .social-links a { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); display: grid; place-items: center; color: white; transition: var(--transition); }
+    .social-links a:hover { background: var(--primary-light); transform: translateY(-2px); }
+    .footer-bottom { text-align: center; padding-top: 1rem; font-size: 0.75rem; border-top: 1px solid rgba(255,255,255,0.08); }
+
+    .wa-fab { position: fixed; right: 1.5rem; bottom: 1.5rem; width: 52px; height: 52px; border-radius: 50%; background: #25D366; color: white; display: grid; place-items: center; font-size: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.25); z-index: 999; transition: var(--transition); text-decoration: none; }
+    .wa-fab:hover { transform: scale(1.05); }
+
+    @media (max-width: 1024px) {
+      .top-bar { display: none; }
+      .mobile-toggle { display: flex; }
+      .nav-menu { position: fixed; top: 72px; left: 0; right: 0; background: white; flex-direction: column; gap: 0.5rem; padding: 1rem; transform: translateY(-150%); transition: 0.25s ease; box-shadow: var(--shadow-lg); border-bottom: 1px solid var(--border); z-index: 999; }
+      .nav-menu.active { transform: translateY(0); }
+      .nav-menu a { width: 100%; text-align: center; }
+      .main-layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+    @media (max-width: 640px) {
+      .stats-inner { grid-template-columns: 1fr 1fr; }
+    }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .toast-container { position: fixed; bottom: 5rem; right: 1rem; z-index: 9999; }
+    .toast { padding: 0.6rem 1rem; border-radius: 10px; background: var(--primary); color: white; font-size: 0.8rem; box-shadow: var(--shadow-md); animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.5s forwards; }
+    @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    @keyframes fadeOut { to { opacity: 0; transform: translateX(20px); } }
+  </style>
+</head>
+
+<body>
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-inner">
+        <ul class="top-bar-links"><li><a href="contactus.html">Contact Us</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="aboutus.html#faqs">FAQs</a></li></ul>
+        <div class="top-bar-actions"><a href="contactus.html#report" class="top-btn report"><i class="fas fa-exclamation-triangle"></i> Report Corruption</a><a href="donation.html" class="top-btn donate"><i class="fas fa-heart"></i> Support Our Work</a></div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="index.html"><img src="images/logo.png" alt="WeCare CBO Logo" /><div class="brand-text"><p>ENGAGE • INFLUENCE • EMPOWER</p></div></a>
+        <ul class="nav-menu" id="navMenu"><li><a href="index.html">Home</a></li><li><a href="aboutus.html">Who We Are</a></li><li><a href="projects.html" class="active">Our Work</a></li><li><a href="volunteers.html">Get Involved</a></li><li><a href="contactus.html">Contact</a></li></ul>
+        <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="container"><div class="page-hero-content"><div class="hero-eyebrow"><i class="fas fa-file-alt"></i> Policy Engagement</div><h1>Our Memoranda &<br>Public Submissions</h1><p>Access WeCare's official memoranda, public participation submissions, recommendations, and policy engagement documents.</p><div class="breadcrumb"><a href="index.html">Home</a> <i class="fas fa-chevron-right"></i> <a href="projects.html">Our Work</a> <i class="fas fa-chevron-right"></i> <span>Memoranda</span></div></div></div>
+  </section>
+
+  <div class="stats-strip"><div class="container" style="padding:0;"><div class="stats-inner"><div class="stat-cell"><div class="stat-icon"><i class="fas fa-file-alt"></i></div><div><div class="stat-label">Documents</div><div class="stat-value" id="totalDocs">0</div></div></div><div class="stat-cell"><div class="stat-icon"><i class="fas fa-tags"></i></div><div><div class="stat-label">Categories</div><div class="stat-value" id="totalCats">0</div></div></div><div class="stat-cell"><div class="stat-icon"><i class="fas fa-eye"></i></div><div><div class="stat-label">Views</div><div class="stat-value" id="viewCount">0</div></div></div><div class="stat-cell"><div class="stat-icon"><i class="fas fa-download"></i></div><div><div class="stat-label">Downloads</div><div class="stat-value" id="dlCount">0</div></div></div></div></div></div>
+
+  <div class="container"><div class="main-layout">
+    <aside class="sidebar"><div class="sidebar-card"><div class="sidebar-card-header"><i class="fas fa-search"></i> Search Documents</div><div class="sidebar-card-body"><div class="search-box"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Search title, category..." autocomplete="off" /></div></div></div><div class="sidebar-card"><div class="sidebar-card-header"><i class="fas fa-layer-group"></i> Categories</div><div class="sidebar-card-body"><ul class="cat-list" id="catList"></ul></div></div><div class="sidebar-card"><div class="sidebar-card-header"><i class="fas fa-cloud-upload-alt"></i> Add Document</div><div class="sidebar-card-body"><div class="upload-zone" id="uploadZone"><i class="fas fa-file-upload"></i><p>Drag & drop files<br>or <strong>click to browse</strong></p></div><input type="file" id="fileInput" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx" multiple /></div></div></aside>
+
+    <div class="content-area"><div class="content-toolbar"><div class="result-count"><strong id="visibleCount">0</strong> document(s)</div><div class="toolbar-right"><select class="sort-select" id="sortSelect"><option value="date-desc">Newest First</option><option value="date-asc">Oldest First</option><option value="title-asc">Title A–Z</option></select><div class="view-toggle"><button class="view-btn active" id="gridBtn"><i class="fas fa-th-large"></i></button><button class="view-btn" id="listBtn"><i class="fas fa-list"></i></button></div></div></div><div class="doc-grid" id="docGrid"></div></div>
+  </div></div>
+
+  <div class="modal-overlay" id="modalOverlay"><div class="modal"><div class="modal-header"><div class="modal-doc-icon" id="modalDocIcon"><i class="fas fa-file"></i></div><div class="modal-title-group"><div class="modal-title" id="modalTitle">Document</div><div class="modal-subtitle" id="modalSubtitle"></div></div><button class="modal-close-btn" id="modalCloseBtn"><i class="fas fa-times"></i></button></div><div class="modal-body"><iframe id="docFrame" title="Document viewer"></iframe></div><div class="modal-meta-strip" id="modalMetaStrip"></div></div></div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <footer class="footer"><div class="container"><div class="footer-grid"><div><div class="footer-brand"><img src="images/logo.png" alt="WeCare CBO" /><div><h5 style="margin:0;">WeCare CBO</h5><p style="font-size:0.75rem;">Engage · Influence · Empower</p></div></div><p style="font-size:0.85rem; line-height:1.6;">Strengthening accountability, promoting public participation, and monitoring public contracts to ensure transparency and integrity in governance across Kenya.</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-x-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="https://wa.me/254797680921" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div><div><h5>Quick Links</h5><ul><li><a href="index.html">Home</a></li><li><a href="aboutus.html">About Us</a></li><li><a href="projects.html">Our Work</a></li><li><a href="volunteers.html">Get Involved</a></li><li><a href="contactus.html">Contact</a></li></ul></div><div><h5>Resources</h5><ul><li><a href="projects.html">Our Projects</a></li><li><a href="volunteers.html">Volunteer</a></li><li><a href="donation.html">Donate</a></li><li><a href="privacy.html">Privacy Policy</a></li></ul></div><div><h5>Contact</h5><ul class="footer-contact"><li><i class="fas fa-envelope"></i><span>wecare518@gmail.com</span></li><li><i class="fas fa-phone"></i><span>+254 797 680921<br>+254 792 594021</span></li><li><i class="fas fa-map-marker-alt"></i><span>Kisumu, Kenya</span></li></ul></div></div><div class="footer-bottom"><p>&copy; <span id="year"></span> WeCare Youth-Based Organization (WeCare CBO). All Rights Reserved.</p></div></div></footer>
+
+  <a href="https://wa.me/254797680921?text=Hello%20WeCare%20CBO" class="wa-fab" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    let documents = [
+      { id: 1, title: "Public Participation Memorandum — 2024", description: "WeCare's formal memorandum on public participation rights, submitted to the County Assembly of Kisumu.", category: "Public Participation", type: "pdf", badge: "public", date: "2024-09-15", size: "1.2 MB", pages: 18, author: "WeCare CBO", url: "", demo: true },
+      { id: 2, title: "Transparency & Accountability Submission — County Budget 2024/25", description: "Structured submission calling for enhanced transparency in public procurement.", category: "Accountability", type: "pdf", badge: "submission", date: "2024-07-03", size: "870 KB", pages: 12, author: "WeCare CBO", url: "", demo: true },
+      { id: 3, title: "Digital Rights & Access to Information Policy Brief", description: "Policy brief outlining recommendations for open government data and access-to-information reforms.", category: "Digital Rights", type: "docx", badge: "policy", date: "2024-05-20", size: "540 KB", pages: 9, author: "WeCare CBO", url: "", demo: true },
+      { id: 4, title: "Anti-Corruption Watchdog Report — Q1 2024", description: "Quarterly monitoring report on public contracts and procurement irregularities.", category: "Anti-Corruption", type: "pdf", badge: "report", date: "2024-04-10", size: "2.1 MB", pages: 24, author: "WeCare CBO", url: "", demo: true },
+      { id: 5, title: "Youth Civic Engagement Strategy 2024–2026", description: "Strategic framework for mobilising youth for civic participation and accountability.", category: "Youth Engagement", type: "pdf", badge: "policy", date: "2024-03-01", size: "1.5 MB", pages: 30, author: "WeCare CBO", url: "", demo: true }
+    ];
+    let filteredDocs = [], activeCategory = 'all', currentSort = 'date-desc', viewCount = parseInt(localStorage.getItem('wc_memo_views') || '0'), dlCount = parseInt(localStorage.getItem('wc_memo_dls') || '0');
+    document.getElementById('viewCount').textContent = viewCount; document.getElementById('dlCount').textContent = dlCount;
+
+    function getCategories() { const cats = {}; documents.forEach(d => { cats[d.category] = (cats[d.category] || 0) + 1; }); return cats; }
+    function renderCategories() { const cats = getCategories(); const total = documents.length; let html = `<li class="cat-item ${activeCategory==='all'?'active':''}" data-cat="all"><span>All Documents</span><span class="cat-count">${total}</span></li>`; Object.entries(cats).forEach(([cat, count]) => { html += `<li class="cat-item ${activeCategory===cat?'active':''}" data-cat="${cat}"><span>${cat}</span><span class="cat-count">${count}</span></li>`; }); document.getElementById('catList').innerHTML = html; document.querySelectorAll('.cat-item').forEach(item => { item.addEventListener('click', () => { activeCategory = item.dataset.cat; renderCategories(); applyFilters(); }); }); }
+    function applyFilters() { const q = document.getElementById('searchInput').value.toLowerCase(); filteredDocs = documents.filter(d => (activeCategory === 'all' || d.category === activeCategory) && (!q || d.title.toLowerCase().includes(q) || d.category.toLowerCase().includes(q) || d.description.toLowerCase().includes(q))); sortDocs(); renderDocs(); updateStats(); }
+    function sortDocs() { filteredDocs.sort((a, b) => { if (currentSort === 'date-asc') return new Date(a.date) - new Date(b.date); if (currentSort === 'date-desc') return new Date(b.date) - new Date(a.date); if (currentSort === 'title-asc') return a.title.localeCompare(b.title); return 0; }); }
+    function updateStats() { document.getElementById('totalDocs').textContent = documents.length; document.getElementById('totalCats').textContent = Object.keys(getCategories()).length; }
+    const badgeLabels = { public: 'Public', submission: 'Submission', report: 'Report', policy: 'Policy' };
+    function renderDocs() { const grid = document.getElementById('docGrid'); document.getElementById('visibleCount').textContent = filteredDocs.length; if (!filteredDocs.length) { grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;text-align:center;padding:2rem;">No documents found</div>`; return; } grid.innerHTML = filteredDocs.map(d => `<div class="doc-card" data-id="${d.id}"><div class="doc-thumbnail"><div class="doc-file-icon"><i class="fas fa-file-pdf"></i><span class="doc-ext">PDF</span></div><div class="doc-badge badge-${d.badge}">${badgeLabels[d.badge]||d.badge}</div><div class="doc-actions-overlay"><button class="overlay-btn view-doc" data-id="${d.id}"><i class="fas fa-eye"></i></button><button class="overlay-btn dl-doc" data-id="${d.id}"><i class="fas fa-download"></i></button></div></div><div class="doc-body"><div class="doc-category-tag"><i class="fas fa-tag"></i> ${d.category}</div><h3 class="doc-title">${d.title}</h3><p class="doc-desc">${d.description}</p><div class="doc-meta"><span class="doc-meta-item"><i class="fas fa-calendar-alt"></i> ${new Date(d.date).toLocaleDateString()}</span><span class="doc-meta-item"><i class="fas fa-file-alt"></i> ${d.pages} pages</span></div></div><div class="doc-footer"><span class="doc-size-badge">${d.size}</span><div class="doc-btn-group"><button class="doc-btn view view-doc" data-id="${d.id}"><i class="fas fa-eye"></i> View</button><button class="doc-btn dl-doc" data-id="${d.id}"><i class="fas fa-download"></i></button></div></div></div>`).join(''); document.querySelectorAll('.view-doc').forEach(b => b.addEventListener('click', e => { e.stopPropagation(); openDoc(+b.dataset.id); })); document.querySelectorAll('.dl-doc').forEach(b => b.addEventListener('click', e => { e.stopPropagation(); downloadDoc(+b.dataset.id); })); document.querySelectorAll('.doc-card').forEach(c => c.addEventListener('click', () => openDoc(+c.dataset.id))); }
+    function downloadDoc(id) { const doc = documents.find(d => d.id === id); if (!doc || doc.demo) { showToast("Demo document — add real file to enable download.", 'error'); return; } if (doc.url) { const a = document.createElement('a'); a.href = doc.url; a.download = doc.title.replace(/[^a-z0-9]/gi, '_') + '.' + doc.type; a.click(); dlCount++; localStorage.setItem('wc_memo_dls', dlCount); document.getElementById('dlCount').textContent = dlCount; showToast('Download started.', 'success'); } else { showToast('No file URL set.', 'error'); } }
+    function openDoc(id) { const doc = documents.find(d => d.id === id); if (!doc) return; viewCount++; localStorage.setItem('wc_memo_views', viewCount); document.getElementById('viewCount').textContent = viewCount; document.getElementById('modalTitle').textContent = doc.title; document.getElementById('modalSubtitle').textContent = `${doc.category} · ${doc.date} · ${doc.size}`; document.getElementById('modalMetaStrip').innerHTML = `<span><i class="fas fa-user-edit"></i> ${doc.author}</span><span><i class="fas fa-calendar-alt"></i> ${doc.date}</span><span><i class="fas fa-file-alt"></i> ${doc.pages} pages</span><span><i class="fas fa-hdd"></i> ${doc.size}</span>`; const frame = document.getElementById('docFrame'); if (doc.url && !doc.demo) { frame.src = doc.url; } else { frame.srcdoc = `<html><body style="display:flex;align-items:center;justify-content:center;height:100%;font-family:sans-serif;color:#666;"><div style="text-align:center;"><i class="fas fa-file-pdf" style="font-size:3rem;color:#ef4444;"></i><p style="margin-top:1rem;">Demo document — add your PDF file to enable viewer.</p><code style="display:block;margin-top:1rem;font-size:0.8rem;">url: "documents/${doc.title.toLowerCase().replace(/[^a-z0-9]+/g,'-')}.pdf"</code></div></body></html>`; } document.getElementById('modalOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow = ''; document.getElementById('docFrame').src = ''; }
+    document.getElementById('modalCloseBtn').addEventListener('click', closeModal); document.getElementById('modalOverlay').addEventListener('click', e => { if (e.target === document.getElementById('modalOverlay')) closeModal(); });
+    document.getElementById('searchInput').addEventListener('input', applyFilters); document.getElementById('sortSelect').addEventListener('change', e => { currentSort = e.target.value; applyFilters(); });
+    document.getElementById('gridBtn').addEventListener('click', () => { document.getElementById('docGrid').classList.remove('list-view'); document.getElementById('gridBtn').classList.add('active'); document.getElementById('listBtn').classList.remove('active'); });
+    document.getElementById('listBtn').addEventListener('click', () => { document.getElementById('docGrid').classList.add('list-view'); document.getElementById('listBtn').classList.add('active'); document.getElementById('gridBtn').classList.remove('active'); });
+    const uploadZone = document.getElementById('uploadZone'), fileInput = document.getElementById('fileInput'); function showToast(msg, type = '') { const tc = document.getElementById('toastContainer'); const t = document.createElement('div'); t.className = 'toast'; t.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-info-circle'}"></i> ${msg}`; tc.appendChild(t); setTimeout(() => t.remove(), 3000); }
+    uploadZone.addEventListener('click', () => fileInput.click()); uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('drag-over'); }); uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('drag-over')); uploadZone.addEventListener('drop', e => { e.preventDefault(); uploadZone.classList.remove('drag-over'); handleFiles(e.dataTransfer.files); }); fileInput.addEventListener('change', () => handleFiles(fileInput.files));
+    function handleFiles(files) { Array.from(files).forEach((file, i) => { const ext = file.name.split('.').pop().toLowerCase(); const typeMap = { pdf:'pdf', doc:'docx', docx:'docx', xls:'xlsx', xlsx:'xlsx', ppt:'pptx', pptx:'pptx' }; const type = typeMap[ext] || 'pdf'; const url = URL.createObjectURL(file); setTimeout(() => { documents.unshift({ id: Date.now() + i, title: file.name.replace(/\.[^.]+$/, '').replace(/[_-]/g,' '), description: 'Uploaded document. Add a description.', category: 'Uploaded', type, badge: 'public', date: new Date().toISOString().split('T')[0], size: (file.size / 1024 > 1024 ? (file.size / 1048576).toFixed(1) + ' MB' : (file.size / 1024).toFixed(0) + ' KB'), pages: 1, author: 'WeCare CBO', url, demo: false }); renderCategories(); applyFilters(); showToast(`Added: ${file.name}`, 'success'); }, i * 200); }); fileInput.value = ''; }
+    const mobileToggle = document.getElementById('mobileToggle'), navMenu = document.getElementById('navMenu'), navbar = document.getElementById('navbar');
+    mobileToggle.addEventListener('click', () => { navMenu.classList.toggle('active'); const icon = mobileToggle.querySelector('i'); icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-times'); });
+    document.addEventListener('click', (e) => { if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) navMenu.classList.remove('active'); });
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }); }, { threshold: 0.1 });
+    revealElements.forEach(el => observer.observe(el));
+    renderCategories(); applyFilters();
+  </script>
+</body>
+</html>

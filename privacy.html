@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Privacy Policy - WeCare CBO | Your Data & Privacy</title>
+  <meta name="description" content="WeCare CBO privacy policy: how we collect, use, store and protect personal information, cookies, and third-party services." />
+  <link rel="icon" href="images/logo.png" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --primary-dark: #1e40af;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --text: #1e293b;
+      --text-light: #334155;
+      --text-muted: #475569;
+      --bg: #ffffff;
+      --bg-soft: #f8fafc;
+      --border: #e2e8f0;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+      --radius: 16px;
+      --radius-lg: 24px;
+      --transition: all 0.2s ease;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.5;
+      font-size: 1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { width: min(1280px, calc(100% - 2rem)); margin: 0 auto; }
+
+    /* Top bar */
+    .top-bar { background: var(--primary-dark); color: white; font-size: 0.85rem; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .top-bar-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .top-bar-links { display: flex; gap: 1.5rem; list-style: none; }
+    .top-bar-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-weight: 500; font-size: 0.85rem; transition: var(--transition); }
+    .top-bar-links a:hover { color: white; }
+    .top-bar-actions { display: flex; gap: 1rem; }
+    .top-btn { padding: 0.4rem 1rem; border-radius: 40px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: var(--transition); display: inline-flex; align-items: center; gap: 0.5rem; }
+    .top-btn.report { background: var(--accent); color: white; }
+    .top-btn.report:hover { background: #d35400; transform: translateY(-1px); }
+    .top-btn.donate { background: white; color: var(--primary); }
+    .top-btn.donate:hover { background: #f1f5f9; }
+
+    /* Navbar */
+    .navbar { position: sticky; top: 0; z-index: 1000; background: rgba(255,255,255,0.98); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); transition: var(--transition); }
+    .navbar.scrolled { box-shadow: var(--shadow-sm); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 0; gap: 1.5rem; }
+    .brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .brand img { height: 48px; width: auto; object-fit: contain; border-radius: 10px; }
+    .brand-text p { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); letter-spacing: 0.5px; }
+    .nav-menu { list-style: none; display: flex; align-items: center; gap: 0.25rem; }
+    .nav-menu a { text-decoration: none; color: var(--text-light); font-weight: 600; font-size: 0.95rem; padding: 0.6rem 1.1rem; border-radius: 40px; transition: var(--transition); }
+    .nav-menu a:hover, .nav-menu a.active { background: var(--bg-light); color: var(--primary); }
+    .mobile-toggle { display: none; background: none; border: 1px solid var(--border); padding: 0.6rem; border-radius: 10px; cursor: pointer; background: white; }
+
+    /* Page Hero */
+    .page-hero { padding: 4rem 0 3rem; position: relative; overflow: hidden; min-height: 320px; }
+    .page-hero-bg { position: absolute; inset: 0; background-image: url('images/ngo.jpg'); background-size: cover; background-position: center; z-index: 0; }
+    .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(30, 58, 138, 0.82) 0%, rgba(30, 64, 175, 0.78) 50%, rgba(59, 130, 246, 0.72) 100%); z-index: 1; }
+    .page-hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; margin: 0 auto; }
+    .page-hero h1 { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: clamp(1.8rem, 5vw, 2.5rem); color: white; margin-bottom: 1rem; text-shadow: 0 2px 12px rgba(0,0,0,0.2); }
+    .page-hero p { font-size: 1rem; color: rgba(255,255,255,0.92); line-height: 1.6; max-width: 650px; margin: 0 auto; }
+    .hero-badges { display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.2rem; }
+    .badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 40px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); color: white; font-weight: 600; font-size: 0.8rem; backdrop-filter: blur(8px); }
+
+    /* Content Layout */
+    .section { padding: 3rem 0; background: var(--bg-soft); }
+    .policy-layout { display: grid; grid-template-columns: 280px 1fr; gap: 2rem; align-items: start; }
+    .toc { position: sticky; top: 100px; background: white; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.2rem; box-shadow: var(--shadow-sm); }
+    .toc h3 { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 1rem; }
+    .toc a { display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0.8rem; border-radius: 10px; text-decoration: none; color: var(--text-light); font-weight: 500; font-size: 0.85rem; transition: var(--transition); }
+    .toc a:hover { background: rgba(30, 58, 138, 0.05); color: var(--primary); transform: translateX(3px); }
+    .toc a i { width: 20px; color: var(--primary); font-size: 0.8rem; }
+    .policy-card { background: white; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
+    .policy-top { padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .policy-top h3 { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.1rem; }
+    .updated { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.8rem; border-radius: 40px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); color: var(--primary-dark); font-weight: 600; font-size: 0.75rem; }
+    .policy-body { padding: 1.5rem; }
+    .block { border: 1px solid var(--border); border-radius: var(--radius); padding: 1.2rem; margin-bottom: 1rem; scroll-margin-top: 100px; transition: var(--transition); }
+    .block:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); border-color: rgba(30, 58, 138, 0.15); }
+    .block h4 { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.6rem; color: var(--text); }
+    .block p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; margin: 0.5rem 0; }
+    .block ul { padding-left: 1.2rem; margin: 0.5rem 0; }
+    .block li { color: var(--text-muted); font-size: 0.85rem; margin: 0.3rem 0; line-height: 1.5; }
+    .callout { display: flex; gap: 0.7rem; align-items: flex-start; padding: 0.8rem 1rem; border-radius: 12px; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.2); color: #065f46; font-size: 0.85rem; margin-top: 0.8rem; }
+    .callout i { margin-top: 0.1rem; }
+
+    /* Footer */
+    .footer { background: #0a1628; color: white; padding: 3rem 0 1.5rem; margin-top: 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .footer-brand { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
+    .footer-brand img { height: 52px; background: white; padding: 8px; border-radius: 12px; }
+    .footer-brand-text h4 { font-family: 'Outfit', sans-serif; font-size: 1rem; margin-bottom: 0.2rem; }
+    .footer-brand-text p { font-size: 0.7rem; color: rgba(255,255,255,0.7); }
+    .footer h5 { font-size: 0.9rem; font-weight: 700; margin-bottom: 1rem; }
+    .footer ul li { margin-bottom: 0.5rem; list-style: none; }
+    .footer a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: var(--transition); display: inline-flex; align-items: center; gap: 0.4rem; }
+    .footer a:hover { color: white; transform: translateX(3px); }
+    .footer-contact li { display: flex; align-items: start; gap: 0.6rem; color: rgba(255,255,255,0.75); margin-bottom: 0.7rem; font-size: 0.85rem; }
+    .footer-contact i { color: var(--primary-light); margin-top: 0.15rem; }
+    .social-links { display: flex; gap: 0.8rem; margin-top: 1rem; }
+    .social-links a { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); display: grid; place-items: center; color: white; transition: var(--transition); }
+    .social-links a:hover { background: var(--primary-light); transform: translateY(-2px); }
+    .footer-bottom { text-align: center; padding-top: 1rem; font-size: 0.75rem; border-top: 1px solid rgba(255,255,255,0.08); }
+
+    /* WhatsApp FAB */
+    .wa-fab { position: fixed; right: 1.5rem; bottom: 1.5rem; width: 52px; height: 52px; border-radius: 50%; background: #25D366; color: white; display: grid; place-items: center; font-size: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.25); z-index: 999; transition: var(--transition); text-decoration: none; }
+    .wa-fab:hover { transform: scale(1.05); }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .top-bar { display: none; }
+      .mobile-toggle { display: flex; }
+      .nav-menu { position: fixed; top: 72px; left: 0; right: 0; background: white; flex-direction: column; gap: 0.5rem; padding: 1rem; transform: translateY(-150%); transition: 0.25s ease; box-shadow: var(--shadow-lg); border-bottom: 1px solid var(--border); z-index: 999; }
+      .nav-menu.active { transform: translateY(0); }
+      .nav-menu a { width: 100%; text-align: center; }
+      .policy-layout { grid-template-columns: 1fr; }
+      .toc { position: relative; top: 0; }
+      .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+
+<body>
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-inner">
+        <ul class="top-bar-links"><li><a href="contactus.html">Contact Us</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="aboutus.html#faqs">FAQs</a></li></ul>
+        <div class="top-bar-actions"><a href="contactus.html#report" class="top-btn report"><i class="fas fa-exclamation-triangle"></i> Report Corruption</a><a href="donation.html" class="top-btn donate"><i class="fas fa-heart"></i> Support Our Work</a></div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="index.html"><img src="images/logo.png" alt="WeCare CBO Logo" /><div class="brand-text"><p>ENGAGE • INFLUENCE • EMPOWER</p></div></a>
+        <ul class="nav-menu" id="navMenu"><li><a href="index.html">Home</a></li><li><a href="aboutus.html">Who We Are</a></li><li><a href="projects.html">Our Work</a></li><li><a href="volunteers.html">Get Involved</a></li><li><a href="contactus.html">Contact</a></li><li><a href="privacy.html" class="active">Privacy</a></li></ul>
+        <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="page-hero-bg" aria-hidden="true"></div>
+    <div class="page-hero-overlay" aria-hidden="true"></div>
+    <div class="container"><div class="page-hero-content"><h1>Privacy Policy</h1><p>WeCare CBO respects your privacy. This policy explains what we collect, why we collect it, and how we protect it when you use our website or support our work.</p><div class="hero-badges"><span class="badge"><i class="fas fa-shield-halved"></i> Data Protection</span><span class="badge"><i class="fas fa-cookie-bite"></i> Cookies</span><span class="badge"><i class="fas fa-user-shield"></i> Your Rights</span></div></div></div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="policy-layout">
+        <aside class="toc reveal"><h3>On this page</h3><a href="#info"><i class="fas fa-database"></i> Information We Collect</a><a href="#use"><i class="fas fa-gear"></i> How We Use It</a><a href="#share"><i class="fas fa-user-shield"></i> Sharing & Disclosure</a><a href="#cookies"><i class="fas fa-cookie-bite"></i> Cookies</a><a href="#payments"><i class="fas fa-credit-card"></i> Payments</a><a href="#third"><i class="fas fa-globe"></i> Third-Party Services</a><a href="#rights"><i class="fas fa-id-card"></i> Your Rights</a><a href="#changes"><i class="fas fa-rotate"></i> Updates</a><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></aside>
+        <article class="policy-card reveal"><div class="policy-top"><div><h3>WeCare CBO Privacy Policy</h3><p>Clear, practical information about privacy and data use.</p></div><div class="updated"><i class="fas fa-calendar-check"></i> Last updated: <span id="lastUpdated">Feb 2026</span></div></div><div class="policy-body">
+          <div class="block" id="info"><h4>1) Information We Collect</h4><p>We may collect information when you:</p><ul><li>Make a donation or support our activities</li><li>Register as a volunteer or apply for an internship</li><li>Submit a contact form or request information</li><li>Subscribe to updates or join a campaign</li></ul><p>Depending on what you do on the site, we may collect:</p><ul><li>Your name and contact details (email, phone)</li><li>Optional profile details you submit (e.g., skills, county, interests)</li><li>Donation references (e.g., M-Pesa code or bank transfer reference)</li><li>Basic technical data (IP address, device type, browser) for security and analytics</li></ul><div class="callout"><i class="fas fa-circle-check"></i><div>We do not collect sensitive personal information unless you choose to provide it for a clear purpose.</div></div></div>
+          <div class="block" id="use"><h4>2) How We Use Personal Information</h4><p>We use your information to:</p><ul><li>Process and confirm donations and keep accurate records</li><li>Respond to inquiries and provide requested support or information</li><li>Send updates or newsletters (you can opt out anytime)</li><li>Improve website performance, security, and user experience</li><li>Understand general engagement trends (aggregated, not personal profiling)</li></ul><p>General browsing of our website is mostly anonymous. We may log basic visit details for diagnostics and security.</p></div>
+          <div class="block" id="share"><h4>3) Sharing & Disclosure</h4><p>WeCare CBO treats your information as confidential. We do not sell, rent, or trade your personal data.</p><p>We may share data only when necessary:</p><ul><li>With payment providers to complete a transaction</li><li>With trusted service providers supporting our website operations (hosting, email delivery)</li><li>If required by law or to protect our rights, safety, and community</li></ul></div>
+          <div class="block" id="cookies"><h4>4) Cookie Policy</h4><p>Cookies are small files stored on your device. They help websites remember your preferences and improve performance.</p><ul><li>You can accept, reject, or delete cookies through your browser settings</li><li>Disabling cookies may affect how some site features work</li></ul></div>
+          <div class="block" id="payments"><h4>5) Payments & Security</h4><p>We use recognized payment channels and security practices. Where online payments are used, your data is transmitted securely (e.g., SSL/TLS).</p><ul><li>We do not store full card details on our servers</li><li>Transaction references (like M-Pesa codes) may be stored for verification and accounting</li><li>We apply reasonable technical and organizational safeguards to protect information</li></ul></div>
+          <div class="block" id="third"><h4>6) Third-Party Services</h4><p>Our website may embed or link to third-party services (e.g., YouTube, Google Maps, social media). These services may collect usage data according to their own policies. WeCare CBO is not responsible for third-party privacy practices.</p></div>
+          <div class="block" id="rights"><h4>7) Your Rights & Data Requests</h4><p>You may request to:</p><ul><li>Access your personal information we hold</li><li>Correct inaccurate information</li><li>Delete information where applicable</li><li>Unsubscribe from newsletters or updates</li></ul><p>To make a request, contact us using the details below. We aim to respond within a reasonable time.</p></div>
+          <div class="block" id="changes"><h4>8) Updates to This Policy</h4><p>We may update this policy to reflect changes in our practices, services, or legal requirements. When we do, we will update the "Last updated" date on this page.</p></div>
+          <div class="block" id="contact"><h4>9) Contact</h4><p>If you have questions about this policy, please contact:</p><ul><li><b>Email:</b> wecare518@gmail.com</li><li><b>Phone:</b> +254 797 680921 / +254 792 594021</li><li><b>Location:</b> Kisumu, Kenya</li></ul></div>
+        </div></article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container"><div class="footer-grid"><div><div class="footer-brand"><img src="images/logo.png" alt="WeCare CBO" /><div><h5 style="margin:0;">WeCare CBO</h5><p style="font-size:0.75rem;">Engage · Influence · Empower</p></div></div><p style="font-size:0.85rem; line-height:1.6;">Strengthening accountability, promoting public participation, and monitoring public contracts to ensure transparency and integrity in governance across Kenya.</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-x-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="https://wa.me/254797680921" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div><div><h5>Quick Links</h5><ul><li><a href="index.html">Home</a></li><li><a href="aboutus.html">About Us</a></li><li><a href="projects.html">Our Work</a></li><li><a href="volunteers.html">Get Involved</a></li><li><a href="contactus.html">Contact</a></li></ul></div><div><h5>Get Involved</h5><ul><li><a href="volunteersForm.html">Volunteer Form</a></li><li><a href="donation.html">Donate</a></li><li><a href="contactus.html">Contact</a></li><li><a href="privacy.html">Privacy Policy</a></li></ul></div><div><h5>Contact</h5><ul class="footer-contact"><li><i class="fas fa-envelope"></i><span>wecare518@gmail.com</span></li><li><i class="fas fa-phone"></i><span>+254 797 680921<br>+254 792 594021</span></li><li><i class="fas fa-map-marker-alt"></i><span>Kisumu, Kenya</span></li></ul></div></div><div class="footer-bottom"><p>&copy; <span id="year"></span> WeCare Youth-Based Organization (WeCare CBO). All Rights Reserved.</p></div></div></footer>
+
+  <a href="https://wa.me/254797680921?text=Hello%20WeCare%20CBO" class="wa-fab" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const d = new Date();
+    document.getElementById('lastUpdated').textContent = d.toLocaleString('en-US', { month: 'short', year: 'numeric' });
+    const mobileToggle = document.getElementById('mobileToggle'), navMenu = document.getElementById('navMenu'), navbar = document.getElementById('navbar');
+    mobileToggle.addEventListener('click', () => { navMenu.classList.toggle('active'); const icon = mobileToggle.querySelector('i'); icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-times'); });
+    document.addEventListener('click', (e) => { if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) navMenu.classList.remove('active'); });
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }); }, { threshold: 0.1 });
+    revealElements.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

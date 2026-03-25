@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>WeCare CBO | Our Impact</title>
+  <meta name="description" content="Explore WeCare CBO impact across Kenya. Read participant stories, outcomes, and download verified impact PDFs." />
+  <link rel="icon" href="images/logo.png" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --primary-dark: #1e40af;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --text: #1e293b;
+      --text-light: #334155;
+      --text-muted: #475569;
+      --bg: #ffffff;
+      --bg-soft: #f8fafc;
+      --border: #e2e8f0;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+      --radius: 16px;
+      --radius-lg: 24px;
+      --transition: all 0.2s ease;
+      --grad-brand: linear-gradient(135deg, var(--primary), var(--primary-light));
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.5;
+      font-size: 1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { width: min(1280px, calc(100% - 2rem)); margin: 0 auto; }
+
+    /* Top bar */
+    .top-bar { background: var(--primary-dark); color: white; font-size: 0.85rem; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .top-bar-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .top-bar-links { display: flex; gap: 1.5rem; list-style: none; }
+    .top-bar-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-weight: 500; font-size: 0.85rem; transition: var(--transition); }
+    .top-bar-links a:hover { color: white; }
+    .top-bar-actions { display: flex; gap: 1rem; }
+    .top-btn { padding: 0.4rem 1rem; border-radius: 40px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: var(--transition); display: inline-flex; align-items: center; gap: 0.5rem; }
+    .top-btn.report { background: var(--accent); color: white; }
+    .top-btn.report:hover { background: #d35400; transform: translateY(-1px); }
+    .top-btn.donate { background: white; color: var(--primary); }
+    .top-btn.donate:hover { background: #f1f5f9; }
+
+    /* Navbar */
+    .navbar { position: sticky; top: 0; z-index: 1000; background: rgba(255,255,255,0.98); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); transition: var(--transition); }
+    .navbar.scrolled { box-shadow: var(--shadow-sm); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 0; gap: 1.5rem; }
+    .brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .brand img { height: 48px; width: auto; object-fit: contain; border-radius: 10px; }
+    .brand-text p { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); letter-spacing: 0.5px; }
+    .nav-menu { list-style: none; display: flex; align-items: center; gap: 0.25rem; }
+    .nav-menu a { text-decoration: none; color: var(--text-light); font-weight: 600; font-size: 0.95rem; padding: 0.6rem 1.1rem; border-radius: 40px; transition: var(--transition); }
+    .nav-menu a:hover, .nav-menu a.active { background: var(--bg-light); color: var(--primary); }
+    .mobile-toggle { display: none; background: none; border: 1px solid var(--border); padding: 0.6rem; border-radius: 10px; cursor: pointer; background: white; }
+
+    /* Hero */
+    .hero { padding: 4rem 0 3rem; position: relative; overflow: hidden; min-height: 340px; background: var(--grad-brand); }
+    .hero .inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2rem; align-items: center; max-width: 1200px; margin: 0 auto; }
+    .hero h1 { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: clamp(1.8rem, 4vw, 2.5rem); color: white; margin-bottom: 1rem; }
+    .hero p { font-size: 1rem; color: rgba(255,255,255,0.9); line-height: 1.6; max-width: 90%; }
+    .hero-card { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: var(--radius); padding: 1rem; backdrop-filter: blur(10px); }
+    .hero-card .mini { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .hero-card .mini:last-child { border-bottom: none; }
+    .hero-card .kpi { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.2rem; color: white; }
+    .hero-card .label { color: rgba(255,255,255,0.8); font-size: 0.8rem; }
+    .chip { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0.7rem; border-radius: 40px; background: rgba(16,185,129,0.2); border: 1px solid rgba(16,185,129,0.3); color: #d1fae5; font-size: 0.7rem; font-weight: 600; }
+
+    /* Sections */
+    .section { padding: 3rem 0; }
+    .section.white { background: white; }
+    .section-header { text-align: center; max-width: 750px; margin: 0 auto 2rem; }
+    .section-header h2 { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: clamp(1.6rem, 4vw, 2rem); margin-bottom: 0.8rem; }
+    .section-header p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+    /* Stats */
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1rem; }
+    .stat { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 1.2rem; transition: var(--transition); }
+    .stat:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .stat .icon { width: 44px; height: 44px; border-radius: 12px; background: var(--grad-brand); display: grid; place-items: center; color: white; margin-bottom: 0.8rem; font-size: 1rem; }
+    .stat .num { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.5rem; margin-bottom: 0.2rem; color: var(--text); }
+    .stat .desc { color: var(--text-muted); font-size: 0.8rem; font-weight: 500; }
+
+    /* Stories */
+    .stories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 1rem; }
+    .story { background: white; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.2rem; transition: var(--transition); }
+    .story:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .quote { width: 40px; height: 40px; border-radius: 10px; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); display: grid; place-items: center; color: #b45309; margin-bottom: 0.8rem; font-size: 0.9rem; }
+    .story p { color: var(--text-light); font-size: 0.85rem; line-height: 1.6; margin-bottom: 0.8rem; }
+    .story .who { display: flex; justify-content: space-between; align-items: center; gap: 0.8rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .who strong { font-weight: 700; font-size: 0.85rem; }
+    .pill { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.25rem 0.6rem; border-radius: 40px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); color: var(--primary-dark); font-weight: 600; font-size: 0.7rem; }
+
+    /* Measurement */
+    .measure { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 1rem; }
+    .panel { background: white; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.2rem; }
+    .panel h3 { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.8rem; }
+    .panel ul { list-style: none; }
+    .panel li { display: flex; gap: 0.6rem; padding: 0.5rem 0; border-bottom: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem; }
+    .panel li:last-child { border-bottom: none; }
+    .panel i { color: var(--success); margin-top: 0.1rem; font-size: 0.8rem; }
+
+    /* Library */
+    .toolbar { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: space-between; align-items: center; margin: 1rem 0 1.2rem; }
+    .search { flex: 1; min-width: 240px; display: flex; gap: 0.7rem; align-items: center; padding: 0.7rem 1rem; border-radius: 40px; background: white; border: 1px solid var(--border); }
+    .search i { color: var(--text-muted); }
+    .search input { border: none; outline: none; width: 100%; font-size: 0.9rem; background: transparent; }
+    .hint { background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.15); padding: 0.8rem; border-radius: var(--radius); font-size: 0.8rem; color: #92400E; margin-bottom: 1rem; }
+    .library { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 1rem; }
+    .card { background: white; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: var(--transition); display: flex; flex-direction: column; }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .card-top { padding: 1rem; display: flex; gap: 0.8rem; align-items: flex-start; }
+    .pdf-badge { width: 48px; height: 48px; border-radius: 12px; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2); display: grid; place-items: center; color: #4f46e5; font-size: 1rem; flex-shrink: 0; }
+    .card h3 { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.3rem; line-height: 1.3; }
+    .meta { color: var(--text-muted); font-size: 0.7rem; display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.3rem; }
+    .tag { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.2rem 0.5rem; border-radius: 40px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); color: var(--primary-dark); font-size: 0.65rem; font-weight: 600; }
+    .card p { padding: 0 1rem 0.8rem; color: var(--text-muted); font-size: 0.8rem; line-height: 1.5; flex: 1; }
+    .card-actions { padding: 0.8rem 1rem 1rem; display: flex; gap: 0.6rem; flex-wrap: wrap; border-top: 1px solid var(--border); }
+    .btn { border: none; cursor: pointer; font-weight: 600; border-radius: 40px; padding: 0.5rem 1rem; display: inline-flex; align-items: center; gap: 0.4rem; transition: var(--transition); text-decoration: none; font-size: 0.8rem; }
+    .btn.primary { background: var(--grad-brand); color: white; }
+    .btn.primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+    .btn.ghost { background: white; color: var(--text); border: 1px solid var(--border); }
+    .btn.ghost:hover { border-color: var(--primary-light); color: var(--primary); transform: translateY(-2px); }
+
+    /* Modal */
+    .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 1rem; }
+    .modal.active { display: flex; }
+    .modal-box { width: min(1000px, 100%); height: min(85vh, 800px); background: white; border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; }
+    .modal-head { padding: 0.8rem 1rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--border); background: var(--bg-soft); }
+    .modal-title { font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 0.6rem; }
+    .modal-controls { display: flex; gap: 0.5rem; }
+    .icon-btn { width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); background: white; cursor: pointer; display: grid; place-items: center; transition: var(--transition); }
+    .icon-btn:hover { border-color: var(--primary-light); color: var(--primary); }
+    .modal-body { flex: 1; background: #1a1f2e; display: flex; align-items: center; justify-content: center; }
+    .modal-body iframe { width: 100%; height: 100%; border: none; background: white; }
+
+    /* Footer */
+    .footer { background: #0a1628; color: white; padding: 3rem 0 1.5rem; margin-top: 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .footer-brand { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
+    .footer-brand img { height: 52px; background: white; padding: 8px; border-radius: 12px; }
+    .footer-brand-text h4 { font-family: 'Outfit', sans-serif; font-size: 1rem; margin-bottom: 0.2rem; }
+    .footer-brand-text p { font-size: 0.7rem; color: rgba(255,255,255,0.7); }
+    .footer h5 { font-size: 0.9rem; font-weight: 700; margin-bottom: 1rem; }
+    .footer ul li { margin-bottom: 0.5rem; list-style: none; }
+    .footer a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: var(--transition); display: inline-flex; align-items: center; gap: 0.4rem; }
+    .footer a:hover { color: white; transform: translateX(3px); }
+    .footer-contact li { display: flex; align-items: start; gap: 0.6rem; color: rgba(255,255,255,0.75); margin-bottom: 0.7rem; font-size: 0.85rem; }
+    .footer-contact i { color: var(--primary-light); margin-top: 0.15rem; }
+    .social-links { display: flex; gap: 0.8rem; margin-top: 1rem; }
+    .social-links a { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); display: grid; place-items: center; color: white; transition: var(--transition); }
+    .social-links a:hover { background: var(--primary-light); transform: translateY(-2px); }
+    .footer-bottom { text-align: center; padding-top: 1rem; font-size: 0.75rem; border-top: 1px solid rgba(255,255,255,0.08); }
+
+    /* WhatsApp FAB */
+    .wa-fab { position: fixed; right: 1.5rem; bottom: 1.5rem; width: 52px; height: 52px; border-radius: 50%; background: #25D366; color: white; display: grid; place-items: center; font-size: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.25); z-index: 999; transition: var(--transition); text-decoration: none; }
+    .wa-fab:hover { transform: scale(1.05); }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .top-bar { display: none; }
+      .mobile-toggle { display: flex; }
+      .nav-menu { position: fixed; top: 72px; left: 0; right: 0; background: white; flex-direction: column; gap: 0.5rem; padding: 1rem; transform: translateY(-150%); transition: 0.25s ease; box-shadow: var(--shadow-lg); border-bottom: 1px solid var(--border); z-index: 999; }
+      .nav-menu.active { transform: translateY(0); }
+      .nav-menu a { width: 100%; text-align: center; }
+      .hero .inner { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .stories { grid-template-columns: repeat(2, 1fr); }
+      .library { grid-template-columns: repeat(2, 1fr); }
+      .measure { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+    @media (max-width: 640px) {
+      .stats { grid-template-columns: 1fr; }
+      .stories { grid-template-columns: 1fr; }
+      .library { grid-template-columns: 1fr; }
+    }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+
+<body>
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-inner">
+        <ul class="top-bar-links"><li><a href="contactus.html">Contact Us</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="aboutus.html#faqs">FAQs</a></li></ul>
+        <div class="top-bar-actions"><a href="contactus.html#report" class="top-btn report"><i class="fas fa-exclamation-triangle"></i> Report Corruption</a><a href="donation.html" class="top-btn donate"><i class="fas fa-heart"></i> Support Our Work</a></div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="index.html"><img src="images/logo.png" alt="WeCare CBO Logo" /><div class="brand-text"><p>ENGAGE • INFLUENCE • EMPOWER</p></div></a>
+        <ul class="nav-menu" id="navMenu"><li><a href="index.html">Home</a></li><li><a href="aboutus.html">About Us</a></li><li><a href="projects.html">Programs</a></li><li><a href="impact.html" class="active">Impact</a></li><li><a href="volunteers.html">Get Involved</a></li><li><a href="contactus.html">Contact</a></li><li><a href="donation.html" class="donate"><i class="fas fa-heart"></i> Donate</a></li><li><a href="privacy.html">Privacy</a></li></ul>
+        <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container"><div class="inner"><div><h1>Our Impact</h1><p>WeCare CBO works with communities to strengthen accountability, transparency, and public participation. Our impact is measured through community feedback, action plans, follow-up tracking, and evidence reports.</p></div><div class="hero-card"><div class="mini"><div><div class="kpi">Citizen Voice</div><div class="label">Public participation strengthened</div></div><span class="chip"><i class="fas fa-circle-check"></i> Evidence-based</span></div><div class="mini"><div><div class="kpi">Accountability Tracking</div><div class="label">Projects & public funds followed up</div></div><span class="chip">Ongoing</span></div><div class="mini"><div><div class="kpi">Youth Leadership</div><div class="label">Skills, civic action & organizing</div></div><span class="chip">Growing</span></div></div></div></div>
+  </section>
+
+  <section class="section white">
+    <div class="container"><div class="section-header"><h2>Impact at a Glance</h2><p>Update these numbers anytime. They are simple text inside this file.</p></div><div class="stats"><div class="stat"><div class="icon"><i class="fas fa-people-group"></i></div><div class="num">1,200+</div><div class="desc">Citizens engaged in forums & dialogues</div></div><div class="stat"><div class="icon"><i class="fas fa-map-location-dot"></i></div><div class="num">6+</div><div class="desc">Counties reached through programs</div></div><div class="stat"><div class="icon"><i class="fas fa-shield-halved"></i></div><div class="num">45+</div><div class="desc">Accountability forums & trainings held</div></div><div class="stat"><div class="icon"><i class="fas fa-file-circle-check"></i></div><div class="num">30+</div><div class="desc">Reports, briefs & impact stories published</div></div></div></div>
+  </section>
+
+  <section class="section">
+    <div class="container"><div class="section-header"><h2>Stories From Participants</h2><p>Real change is best explained by the people who experience it. Below are sample story formats. Replace names/quotes with your actual participant stories.</p></div><div class="stories" id="stories"></div></div>
+  </section>
+
+  <section class="section white">
+    <div class="container"><div class="section-header"><h2>How We Measure Impact</h2><p>WeCare tracks results before, during, and after engagement sessions, combining community feedback with documented evidence and follow-up actions.</p></div><div class="measure"><div class="panel"><h3>Our Evidence Approach</h3><ul><li><i class="fas fa-check-circle"></i> Pre/post session feedback from participants</li><li><i class="fas fa-check-circle"></i> Action plans with responsibilities and timelines</li><li><i class="fas fa-check-circle"></i> Follow-up tracking on commitments and resolutions</li><li><i class="fas fa-check-circle"></i> Documentation: attendance, photos, minutes, reports</li><li><i class="fas fa-check-circle"></i> Community validation of outcomes</li></ul></div><div class="panel"><h3>Common Outcome Areas</h3><ul><li><i class="fas fa-check-circle"></i> Increased public participation and civic confidence</li><li><i class="fas fa-check-circle"></i> Better access to information on public projects</li><li><i class="fas fa-check-circle"></i> Improved responsiveness from duty bearers</li><li><i class="fas fa-check-circle"></i> Stronger youth leadership and community organizing</li><li><i class="fas fa-check-circle"></i> Reduced gaps in service delivery through follow-up</li></ul></div></div></div>
+  </section>
+
+  <section class="section">
+    <div class="container"><div class="section-header"><h2>Impact Evidence Library (PDF)</h2><p>Verified reports, impact stories, and briefs. Add PDFs in a folder like <b>/pdfs</b> and list them in the script below.</p></div><div class="toolbar"><div class="search"><i class="fas fa-search"></i><input id="searchInput" type="text" placeholder="Search PDFs by title, county, tag..." /></div></div><div class="hint"><i class="fas fa-lightbulb"></i> Add PDFs to your website folder (example: <b>pdfs/</b>), then edit the <b>preloadedStories</b> list in the script.</div><div class="library" id="library"></div><p class="muted" id="emptyState" style="text-align:center; margin-top:1rem; display:none; font-weight:600;">No PDFs found. Try a different keyword.</p></div>
+  </section>
+
+  <section class="section white">
+    <div class="container"><div class="section-header"><h2>Want to Support This Work?</h2><p>Partner with us, volunteer, or donate to scale accountability and public participation across Kenya.</p></div><div style="display:flex; gap:0.8rem; flex-wrap:wrap; justify-content:center;"><a href="volunteersForm.html" class="btn primary"><i class="fas fa-handshake-angle"></i> Become a Volunteer</a><a href="donation.html" class="btn ghost"><i class="fas fa-heart"></i> Donate</a><a href="contactus.html" class="btn ghost"><i class="fas fa-envelope"></i> Partner With Us</a></div></div>
+  </section>
+
+  <footer class="footer"><div class="container"><div class="footer-grid"><div><div class="footer-brand"><img src="images/logo.png" alt="WeCare CBO" /><div><h5 style="margin:0;">WeCare CBO</h5><p style="font-size:0.75rem;">Engage · Influence · Empower</p></div></div><p style="font-size:0.85rem; line-height:1.6;">Strengthening accountability, promoting public participation, and monitoring public contracts to ensure transparency and integrity in governance across Kenya.</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-x-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="https://wa.me/254797680921" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div><div><h5>Quick Links</h5><ul><li><a href="index.html">Home</a></li><li><a href="aboutus.html">About Us</a></li><li><a href="projects.html">Programs</a></li><li><a href="impact.html">Impact</a></li></ul></div><div><h5>Get Involved</h5><ul><li><a href="volunteers.html">Volunteer</a></li><li><a href="donation.html">Donate</a></li><li><a href="contactus.html">Contact</a></li><li><a href="privacy.html">Privacy Policy</a></li></ul></div><div><h5>Contact</h5><ul><li><i class="fas fa-envelope"></i> wecare518@gmail.com</li><li><i class="fas fa-phone"></i> +254 797 680921 / +254 792 594021</li><li><i class="fas fa-map-marker-alt"></i> Kisumu, Kenya</li></ul></div></div><div class="footer-bottom"><p>&copy; <span id="year"></span> WeCare Youth-Based Organization (WeCare CBO) | All rights reserved</p></div></div></footer>
+
+  <a href="https://wa.me/254797680921?text=Hello%20WeCare%20CBO" class="wa-fab" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+  <div class="modal" id="pdfModal"><div class="modal-box"><div class="modal-head"><div class="modal-title"><i class="fas fa-file-pdf" style="color:#ef4444;"></i> <span id="modalTitle">PDF Viewer</span></div><div class="modal-controls"><a class="icon-btn" id="downloadBtn" href="#" download><i class="fas fa-download"></i></a><button class="icon-btn" id="closeModal"><i class="fas fa-times"></i></button></div></div><div class="modal-body"><iframe id="pdfFrame" title="PDF Preview"></iframe></div></div></div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const participantStories = [
+      { quote: "Before the forum, we didn't know how to raise issues officially. Now we understand the public participation process and we are confident to speak with evidence.", name: "Participant (Community Member)", location: "Kisumu County", program: "Public Participation Forum" },
+      { quote: "After the training, our youth group started tracking the local project site and sharing updates. It made leaders respond faster because the community had clear facts.", name: "Youth Leader", location: "Siaya County", program: "Youth Civic Engagement" },
+      { quote: "We learned how budgets affect service delivery. We also agreed on an action plan, and the follow-up meeting helped confirm what changed and what still needs work.", name: "Women's Group Representative", location: "Homa Bay County", program: "Budget Literacy & Social Accountability" },
+      { quote: "WeCare helped us organize feedback from residents into one clear report. That report became a tool for follow-up instead of complaints that get ignored.", name: "Community Volunteer", location: "Kakamega County", program: "Citizen Monitoring & Reporting" },
+      { quote: "The sessions were practical. We didn't just talk. We documented issues, assigned responsibilities, and set timelines for what should happen next.", name: "Local CSO Partner", location: "Busia County", program: "Accountability Dialogue" },
+      { quote: "I used to think governance was for offices only. Now I see citizens can influence decisions when we follow the right steps and keep records.", name: "Participant (Trader)", location: "Migori County", program: "Civic Education" }
+    ];
+
+    const preloadedStories = [];
+
+    const storiesEl = document.getElementById("stories");
+    function renderStories() { storiesEl.innerHTML = participantStories.map(s => `<div class="story"><div class="quote"><i class="fas fa-quote-left"></i></div><p>${escapeHtml(s.quote)}</p><div class="who"><div><strong>${escapeHtml(s.name)}</strong><br/><span class="muted" style="font-size:0.7rem;">${escapeHtml(s.location)}</span></div><span class="pill"><i class="fas fa-tag"></i> ${escapeHtml(s.program)}</span></div></div>`).join(''); }
+
+    const libraryEl = document.getElementById('library');
+    const searchInput = document.getElementById('searchInput');
+    const emptyState = document.getElementById('emptyState');
+    const modal = document.getElementById('pdfModal');
+    const pdfFrame = document.getElementById('pdfFrame');
+    const modalTitle = document.getElementById('modalTitle');
+    const closeModalBtn = document.getElementById('closeModal');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    function escapeHtml(str) { return String(str || "").replace(/[&<>"']/g, s => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[s])); }
+    function matchesQuery(story, q) { if (!q) return true; const hay = [story.title, story.county, story.tag, story.date, story.summary].map(s => String(s || "").toLowerCase()).join(" "); return hay.includes(q.toLowerCase()); }
+    function renderLibrary() { const q = searchInput.value.trim(); const items = preloadedStories.filter(s => matchesQuery(s, q)); libraryEl.innerHTML = ""; emptyState.style.display = items.length ? "none" : "block"; items.forEach((s) => { const card = document.createElement('div'); card.className = "card"; card.innerHTML = `<div class="card-top"><div class="pdf-badge"><i class="fas fa-file-pdf"></i></div><div><h3>${escapeHtml(s.title || "Impact Evidence PDF")}</h3><div class="meta">${s.county ? `<span class="tag"><i class="fas fa-map-marker-alt"></i> ${escapeHtml(s.county)}</span>` : ""}${s.tag ? `<span class="tag"><i class="fas fa-hashtag"></i> ${escapeHtml(s.tag)}</span>` : ""}${s.date ? `<span class="tag"><i class="fas fa-calendar"></i> ${escapeHtml(s.date)}</span>` : ""}</div></div></div><p>${escapeHtml(s.summary || "Open to view the full PDF document.")}</p><div class="card-actions"><button class="btn primary view-pdf" data-url="${escapeAttr(s.url)}" data-title="${escapeAttr(s.title)}"><i class="fas fa-eye"></i> View PDF</button><a class="btn ghost" href="${escapeAttr(s.url)}" download><i class="fas fa-download"></i> Download</a></div>`; const viewBtn = card.querySelector('.view-pdf'); viewBtn.addEventListener('click', () => openPdf(s.url, s.title)); libraryEl.appendChild(card); }); }
+    function openPdf(url, title) { modalTitle.textContent = title || "Impact Evidence PDF"; pdfFrame.src = url; downloadBtn.href = url; modal.classList.add('active'); document.body.style.overflow = "hidden"; }
+    function closePdf() { modal.classList.remove('active'); pdfFrame.src = ""; document.body.style.overflow = ""; }
+    closeModalBtn.addEventListener('click', closePdf); modal.addEventListener('click', (e) => { if (e.target === modal) closePdf(); }); document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closePdf(); });
+    searchInput.addEventListener('input', renderLibrary);
+
+    const mobileToggle = document.getElementById('mobileToggle'), navMenu = document.getElementById('navMenu'), navbar = document.getElementById('navbar');
+    mobileToggle.addEventListener('click', () => { navMenu.classList.toggle('active'); const icon = mobileToggle.querySelector('i'); icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-times'); });
+    document.addEventListener('click', (e) => { if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) navMenu.classList.remove('active'); });
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+    function escapeAttr(str) { return String(str || "").replace(/"/g, "&quot;"); }
+
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }); }, { threshold: 0.1 });
+    revealElements.forEach(el => observer.observe(el));
+    renderStories(); renderLibrary();
+  </script>
+</body>
+</html>
