@@ -27,6 +27,7 @@
       --primary-dark: #1e40af;
       --accent: #f59e0b;
       --success: #10b981;
+      --danger: #dc2626;
       --text: #1e293b;
       --text-light: #334155;
       --text-muted: #475569;
@@ -55,7 +56,6 @@
       margin: 0 auto;
     }
 
-    /* Top bar – EACC style */
     .top-bar {
       background: var(--primary-dark);
       color: white;
@@ -113,7 +113,7 @@
     }
 
     .top-btn.report:hover {
-      background: #d35400;
+      background: #d97706;
       transform: translateY(-1px);
     }
 
@@ -126,7 +126,6 @@
       background: #f1f5f9;
     }
 
-    /* Navbar – EACC style */
     .navbar {
       position: sticky;
       top: 0;
@@ -203,7 +202,6 @@
       background: white;
     }
 
-    /* Hero – balanced size */
     .page-hero {
       padding: 4rem 0 3rem;
       position: relative;
@@ -263,7 +261,6 @@
       margin: 0 auto;
     }
 
-    /* sections */
     .section {
       padding: 3rem 0;
     }
@@ -295,7 +292,6 @@
       color: var(--text);
     }
 
-    /* stats strip */
     .stats-strip {
       background: var(--primary);
     }
@@ -346,7 +342,168 @@
       line-height: 1.2;
     }
 
-    /* year tabs */
+    .upload-panel {
+      background: linear-gradient(135deg, #eff6ff, #f8fafc);
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .upload-panel-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .upload-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 0.3rem;
+    }
+
+    .upload-note {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 760px;
+    }
+
+    .upload-controls {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 1rem;
+    }
+
+    .file-input {
+      display: none;
+    }
+
+    .upload-btn,
+    .clear-btn {
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      border-radius: 60px;
+      padding: 0.8rem 1.3rem;
+      font-weight: 700;
+      font-size: 0.92rem;
+      transition: var(--transition);
+    }
+
+    .upload-btn {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.18);
+    }
+
+    .upload-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .clear-btn {
+      background: white;
+      color: var(--danger);
+      border: 1px solid #fecaca;
+    }
+
+    .clear-btn:hover {
+      background: #fff5f5;
+    }
+
+    .folder-hint {
+      margin-top: 0.9rem;
+      padding: 0.95rem 1rem;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px dashed #93c5fd;
+      border-radius: 12px;
+      font-size: 0.88rem;
+      color: var(--text-light);
+    }
+
+    .upload-list {
+      margin-top: 1rem;
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .upload-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.9rem 1rem;
+    }
+
+    .upload-item-left {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      min-width: 0;
+    }
+
+    .upload-item-left i {
+      color: #dc2626;
+      font-size: 1.3rem;
+    }
+
+    .upload-item-name {
+      font-weight: 600;
+      color: var(--text);
+      word-break: break-word;
+    }
+
+    .upload-item-meta {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+    }
+
+    .upload-item-right {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .small-btn {
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--text-light);
+      border-radius: 8px;
+      padding: 0.45rem 0.8rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .small-btn:hover {
+      border-color: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .small-btn.delete {
+      border-color: #fecaca;
+      color: var(--danger);
+    }
+
+    .small-btn.delete:hover {
+      background: #fff5f5;
+    }
+
     .year-tabs {
       display: flex;
       gap: 0.75rem;
@@ -374,7 +531,6 @@
       box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
     }
 
-    /* search bar */
     .search-bar-wrap {
       max-width: 480px;
       margin: 0 auto 2rem;
@@ -407,7 +563,6 @@
       font-size: 1rem;
     }
 
-    /* toolbar */
     .toolbar {
       display: flex;
       align-items: center;
@@ -459,7 +614,6 @@
       color: white;
     }
 
-    /* report grid */
     .reports-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -577,6 +731,12 @@
       background: rgba(245, 158, 11, 0.2);
       border: 1px solid rgba(245, 158, 11, 0.5);
       color: #fde68a;
+    }
+
+    .badge-local {
+      background: rgba(139, 92, 246, 0.2);
+      border: 1px solid rgba(139, 92, 246, 0.5);
+      color: #e9d5ff;
     }
 
     .report-hover-overlay {
@@ -697,6 +857,8 @@
       justify-content: space-between;
       border-top: 1px solid var(--border);
       background: var(--bg-soft);
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
     .report-size {
@@ -742,7 +904,6 @@
       color: var(--primary);
     }
 
-    /* impact section */
     .impact-section {
       background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
       padding: 4rem 0;
@@ -792,7 +953,6 @@
       font-size: 0.9rem;
     }
 
-    /* CTA */
     .cta-section {
       padding: 3rem 0;
     }
@@ -852,7 +1012,6 @@
       transform: translateY(-2px);
     }
 
-    /* footer */
     .footer {
       background: #0a1628;
       color: white;
@@ -928,7 +1087,6 @@
       border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    /* modal */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -977,6 +1135,7 @@
       display: grid;
       place-items: center;
       font-size: 1.2rem;
+      color: white;
     }
 
     .modal-title-group {
@@ -1067,7 +1226,40 @@
       max-width: 100%;
     }
 
-    /* responsive */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 255, 255, 0.2);
+      border-top-color: var(--accent);
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .viewer-loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
     @media (max-width: 1024px) {
       .top-bar {
         display: none;
@@ -1112,10 +1304,7 @@
     }
 
     @media (max-width: 640px) {
-      .impact-grid {
-        grid-template-columns: 1fr;
-      }
-
+      .impact-grid,
       .reports-grid {
         grid-template-columns: 1fr;
       }
@@ -1127,40 +1316,15 @@
       .stat-value {
         font-size: 1.3rem;
       }
-    }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .spinner {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: 3px solid rgba(255, 255, 255, 0.2);
-      border-top-color: var(--accent);
-      animation: spin 0.8s linear infinite;
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
+      .upload-item {
+        flex-direction: column;
+        align-items: flex-start;
       }
-    }
 
-    .viewer-loading {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      color: rgba(255, 255, 255, 0.7);
+      .upload-item-right {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -1169,8 +1333,15 @@
   <div class="top-bar">
     <div class="container">
       <div class="top-bar-inner">
-        <ul class="top-bar-links"><li><a href="contactus.html">Contact Us</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="#faqs">FAQs</a></li></ul>
-        <div class="top-bar-actions"><a href="contactus.html#report" class="top-btn report"><i class="fas fa-exclamation-triangle"></i> Report Corruption</a><a href="donation.html" class="top-btn donate"><i class="fas fa-heart"></i> Support Our Work</a></div>
+        <ul class="top-bar-links">
+          <li><a href="contactus.html">Contact Us</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="#faqs">FAQs</a></li>
+        </ul>
+        <div class="top-bar-actions">
+          <a href="contactus.html#report" class="top-btn report"><i class="fas fa-exclamation-triangle"></i> Report Corruption</a>
+          <a href="donation.html" class="top-btn donate"><i class="fas fa-heart"></i> Support Our Work</a>
+        </div>
       </div>
     </div>
   </div>
@@ -1178,80 +1349,843 @@
   <nav class="navbar" id="navbar">
     <div class="container">
       <div class="nav-inner">
-        <a class="brand" href="index.html"><img src="images/logo.png" alt="WeCare CBO Logo" /><div class="brand-text"><p>ENGAGE • INFLUENCE • EMPOWER</p></div></a>
-        <ul class="nav-menu" id="navMenu"><li><a href="index.html">Home</a></li><li><a href="aboutus.html">Who We Are</a></li><li><a href="projects.html">Our Work</a></li><li><a href="volunteers.html">Get Involved</a></li><li><a href="contactus.html">Contact</a></li></ul>
+        <a class="brand" href="index.html">
+          <img src="images/logo.png" alt="WeCare CBO Logo" />
+          <div class="brand-text"><p>ENGAGE • INFLUENCE • EMPOWER</p></div>
+        </a>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="aboutus.html">Who We Are</a></li>
+          <li><a href="projects.html">Our Work</a></li>
+          <li><a href="volunteers.html">Get Involved</a></li>
+          <li><a href="contactus.html">Contact</a></li>
+        </ul>
         <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
       </div>
     </div>
   </nav>
 
   <section class="page-hero">
-    <div class="page-hero-slideshow"><div class="page-hero-slide active" style="background-image: url('images/ngo.jpg');"></div><div class="page-hero-slide" style="background-image: url('images/ngo2.jpg');"></div></div>
+    <div class="page-hero-slideshow">
+      <div class="page-hero-slide active" style="background-image: url('images/ngo.jpg');"></div>
+      <div class="page-hero-slide" style="background-image: url('images/ngo2.jpg');"></div>
+    </div>
     <div class="page-hero-overlay"></div>
-    <div class="container"><div class="page-hero-content"><h1>Annual Reports</h1><p>Explore WeCare's annual reports, accountability summaries, and year-by-year organizational documentation — all viewable and downloadable in one place.</p></div></div>
+    <div class="container">
+      <div class="page-hero-content">
+        <h1>Annual Reports</h1>
+        <p>Explore WeCare's annual reports, accountability summaries, and year-by-year organizational documentation — all viewable and downloadable in one place.</p>
+      </div>
+    </div>
   </section>
 
   <div class="stats-strip">
     <div class="container" style="padding:0;">
       <div class="stats-inner">
-        <div class="stat-cell"><div class="stat-icon"><i class="fas fa-file-alt"></i></div><div><div class="stat-label">Total Reports</div><div class="stat-value" id="totalReports">0</div></div></div>
-        <div class="stat-cell"><div class="stat-icon"><i class="fas fa-calendar-check"></i></div><div><div class="stat-label">Years Covered</div><div class="stat-value" id="yearsCovered">0</div></div></div>
-        <div class="stat-cell"><div class="stat-icon"><i class="fas fa-eye"></i></div><div><div class="stat-label">Views</div><div class="stat-value" id="viewCount">0</div></div></div>
-        <div class="stat-cell"><div class="stat-icon"><i class="fas fa-download"></i></div><div><div class="stat-label">Downloads</div><div class="stat-value" id="dlCount">0</div></div></div>
+        <div class="stat-cell">
+          <div class="stat-icon"><i class="fas fa-file-alt"></i></div>
+          <div><div class="stat-label">Total Reports</div><div class="stat-value" id="totalReports">0</div></div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+          <div><div class="stat-label">Years Covered</div><div class="stat-value" id="yearsCovered">0</div></div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-icon"><i class="fas fa-eye"></i></div>
+          <div><div class="stat-label">Views</div><div class="stat-value" id="viewCount">0</div></div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-icon"><i class="fas fa-download"></i></div>
+          <div><div class="stat-label">Downloads</div><div class="stat-value" id="dlCount">0</div></div>
+        </div>
       </div>
     </div>
   </div>
 
   <section class="section">
     <div class="container">
-      <div class="section-header"><div class="section-kicker"><i class="fas fa-book-open"></i> Reports Library</div><h2 class="section-title">Annual Report Archive</h2></div>
-      <div class="search-bar-wrap"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Search by year, title, or keyword..." autocomplete="off" /></div>
+      <div class="section-header">
+        <div class="section-kicker"><i class="fas fa-book-open"></i> Reports Library</div>
+        <h2 class="section-title">Annual Report Archive</h2>
+      </div>
+
+      <div class="upload-panel reveal">
+        <div class="upload-panel-top">
+          <div>
+            <div class="upload-title"><i class="fas fa-cloud-upload-alt"></i> Upload Annual Reports</div>
+            <div class="upload-note">
+              Select PDF annual reports and they will instantly appear in the report archive below. These uploaded items are saved in this browser using local storage.
+            </div>
+          </div>
+        </div>
+
+        <div class="upload-controls">
+          <label for="reportUpload" class="upload-btn">
+            <i class="fas fa-file-upload"></i> Choose PDF Reports
+          </label>
+          <input type="file" id="reportUpload" class="file-input" accept=".pdf,application/pdf" multiple />
+
+          <button type="button" class="clear-btn" id="clearUploadedReports">
+            <i class="fas fa-trash-alt"></i> Clear Browser Uploads
+          </button>
+        </div>
+
+        <div class="folder-hint">
+          <strong>Permanent website files:</strong> put your PDFs inside the <strong>documents</strong> folder, for example:
+          <br />
+          <code>documents/wecare-annual-report-2025.pdf</code>
+          <br /><br />
+          This page can preview browser-selected files immediately, but plain HTML alone cannot save files directly into the server folder.
+        </div>
+
+        <div class="upload-list" id="uploadList"></div>
+      </div>
+
+      <div class="search-bar-wrap">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Search by year, title, or keyword..." autocomplete="off" />
+      </div>
+
       <div class="year-tabs" id="yearTabs"></div>
-      <div class="toolbar"><div class="result-count"><strong id="visibleCount">0</strong> report(s) shown</div><select class="sort-select" id="sortSelect"><option value="year-desc">Newest First</option><option value="year-asc">Oldest First</option><option value="title-asc">Title A–Z</option></select><div class="view-toggle"><button class="vt-btn active" id="gridBtn"><i class="fas fa-th-large"></i></button><button class="vt-btn" id="listBtn"><i class="fas fa-list"></i></button></div></div>
+
+      <div class="toolbar">
+        <div class="result-count"><strong id="visibleCount">0</strong> report(s) shown</div>
+        <select class="sort-select" id="sortSelect">
+          <option value="year-desc">Newest First</option>
+          <option value="year-asc">Oldest First</option>
+          <option value="title-asc">Title A–Z</option>
+        </select>
+        <div class="view-toggle">
+          <button class="vt-btn active" id="gridBtn"><i class="fas fa-th-large"></i></button>
+          <button class="vt-btn" id="listBtn"><i class="fas fa-list"></i></button>
+        </div>
+      </div>
+
       <div class="reports-grid" id="reportsGrid"></div>
     </div>
   </section>
 
-  <section class="impact-section"><div class="container"><div class="section-header"><div class="section-kicker">Our Track Record</div><h2 class="section-title">Impact Over the Years</h2><p style="color: rgba(255,255,255,0.85);">A snapshot of WeCare's cumulative impact across all reported years.</p></div><div class="impact-grid"><div class="impact-stat"><div class="impact-stat-number">5,000+</div><div class="impact-stat-label">Citizens Reached</div></div><div class="impact-stat"><div class="impact-stat-number">120+</div><div class="impact-stat-label">Projects Monitored</div></div><div class="impact-stat"><div class="impact-stat-number">38</div><div class="impact-stat-label">Policy Submissions</div></div><div class="impact-stat"><div class="impact-stat-number">15+</div><div class="impact-stat-label">Partner Organizations</div></div></div></div></section>
+  <section class="impact-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-kicker">Our Track Record</div>
+        <h2 class="section-title">Impact Over the Years</h2>
+        <p style="color: rgba(255,255,255,0.85);">A snapshot of WeCare's cumulative impact across all reported years.</p>
+      </div>
+      <div class="impact-grid">
+        <div class="impact-stat"><div class="impact-stat-number">5,000+</div><div class="impact-stat-label">Citizens Reached</div></div>
+        <div class="impact-stat"><div class="impact-stat-number">120+</div><div class="impact-stat-label">Projects Monitored</div></div>
+        <div class="impact-stat"><div class="impact-stat-number">38</div><div class="impact-stat-label">Policy Submissions</div></div>
+        <div class="impact-stat"><div class="impact-stat-number">15+</div><div class="impact-stat-label">Partner Organizations</div></div>
+      </div>
+    </div>
+  </section>
 
-  <section class="cta-section"><div class="container"><div class="cta-box reveal"><h3>Support Our Accountability Work</h3><p>Your support helps WeCare continue producing transparent, independent accountability reports that empower communities across Kenya.</p><div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;"><a href="donation.html" class="btn white"><i class="fas fa-heart"></i> Donate Now</a><a href="contactus.html" class="btn ghost"><i class="fas fa-envelope"></i> Contact Us</a></div></div></div></section>
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box reveal">
+        <h3>Support Our Accountability Work</h3>
+        <p>Your support helps WeCare continue producing transparent, independent accountability reports that empower communities across Kenya.</p>
+        <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+          <a href="donation.html" class="btn white"><i class="fas fa-heart"></i> Donate Now</a>
+          <a href="contactus.html" class="btn ghost"><i class="fas fa-envelope"></i> Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <footer class="footer"><div class="container"><div class="footer-grid"><div><div class="footer-brand"><img src="images/logo.png" alt="WeCare CBO" /><div><h5 style="margin:0;">WeCare CBO</h5><p style="font-size:0.8rem; color:rgba(255,255,255,0.7);">Engage · Influence · Empower</p></div></div><p style="font-size:0.85rem; line-height:1.6; color:rgba(255,255,255,0.75);">Strengthening accountability, promoting public participation, and monitoring public contracts to ensure transparency and integrity in governance across Kenya.</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-x-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div><div><h5>Quick Links</h5><ul><li><a href="index.html">Home</a></li><li><a href="aboutus.html">About Us</a></li><li><a href="projects.html">Our Work</a></li><li><a href="volunteers.html">Get Involved</a></li></ul></div><div><h5>Resources</h5><ul><li><a href="annual-reports.html">Annual Reports</a></li><li><a href="memoranda.html">Memoranda</a></li><li><a href="donation.html">Donate</a></li><li><a href="privacy.html">Privacy Policy</a></li></ul></div><div><h5>Contact</h5><ul><li><i class="fas fa-envelope"></i> wecare518@gmail.com</li><li><i class="fas fa-phone"></i> +254 797 680921</li><li><i class="fas fa-map-marker-alt"></i> Kisumu, Kenya</li></ul></div></div><div class="footer-bottom"><p>&copy; 2026 WeCare Youth-Based Organization (WeCare CBO). All Rights Reserved.</p></div></div></footer>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <img src="images/logo.png" alt="WeCare CBO" />
+            <div>
+              <h5 style="margin:0;">WeCare CBO</h5>
+              <p style="font-size:0.8rem; color:rgba(255,255,255,0.7);">Engage · Influence · Empower</p>
+            </div>
+          </div>
+          <p style="font-size:0.85rem; line-height:1.6; color:rgba(255,255,255,0.75);">
+            Strengthening accountability, promoting public participation, and monitoring public contracts to ensure transparency and integrity in governance across Kenya.
+          </p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div>
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="projects.html">Our Work</a></li>
+            <li><a href="volunteers.html">Get Involved</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="annual-reports.html">Annual Reports</a></li>
+            <li><a href="memoranda.html">Memoranda</a></li>
+            <li><a href="donation.html">Donate</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Contact</h5>
+          <ul>
+            <li><i class="fas fa-envelope"></i> wecare518@gmail.com</li>
+            <li><i class="fas fa-phone"></i> +254 797 680921</li>
+            <li><i class="fas fa-map-marker-alt"></i> Kisumu, Kenya</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 WeCare Youth-Based Organization (WeCare CBO). All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
 
-  <div class="modal-overlay" id="modalOverlay"><div class="modal"><div class="modal-header"><div class="modal-icon"><i class="fas fa-file-pdf"></i></div><div class="modal-title-group"><div class="modal-title" id="modalTitle"></div><div class="modal-sub" id="modalSub"></div></div><button class="modal-close" id="closeModal"><i class="fas fa-times"></i></button></div><div class="viewer-toolbar"><button class="vtb-btn" id="prevPage"><i class="fas fa-chevron-left"></i></button><span class="page-info" id="pageInfo">Page 1 / 1</span><button class="vtb-btn" id="nextPage"><i class="fas fa-chevron-right"></i></button><div style="width:1px; height:24px; background:var(--border);"></div><button class="vtb-btn" id="zoomOut"><i class="fas fa-search-minus"></i></button><span id="zoomLevel" style="font-size:0.85rem; min-width:50px; text-align:center;">100%</span><button class="vtb-btn" id="zoomIn"><i class="fas fa-search-plus"></i></button><button class="vtb-btn" id="rotateBtn"><i class="fas fa-redo"></i></button></div><div class="modal-body" id="modalBody"><div class="viewer-loading"><div class="spinner"></div><span>Loading PDF…</span></div></div></div></div>
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-icon"><i class="fas fa-file-pdf"></i></div>
+        <div class="modal-title-group">
+          <div class="modal-title" id="modalTitle"></div>
+          <div class="modal-sub" id="modalSub"></div>
+        </div>
+        <button class="modal-close" id="closeModal"><i class="fas fa-times"></i></button>
+      </div>
+
+      <div class="viewer-toolbar">
+        <button class="vtb-btn" id="prevPage"><i class="fas fa-chevron-left"></i></button>
+        <span class="page-info" id="pageInfo">Page 1 / 1</span>
+        <button class="vtb-btn" id="nextPage"><i class="fas fa-chevron-right"></i></button>
+        <div style="width:1px; height:24px; background:var(--border);"></div>
+        <button class="vtb-btn" id="zoomOut"><i class="fas fa-search-minus"></i></button>
+        <span id="zoomLevel" style="font-size:0.85rem; min-width:50px; text-align:center;">100%</span>
+        <button class="vtb-btn" id="zoomIn"><i class="fas fa-search-plus"></i></button>
+        <button class="vtb-btn" id="rotateBtn"><i class="fas fa-redo"></i></button>
+      </div>
+
+      <div class="modal-body" id="modalBody">
+        <div class="viewer-loading">
+          <div class="spinner"></div>
+          <span>Loading PDF…</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script>
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-    let reports = [
-      { id: 1, year: 2026, title: "WeCare Annual Report 2026", desc: "Our most recent organizational report highlighting key milestones, program outcomes, governance updates, and financial accountability for the year 2026.", highlights: ["Youth civic engagement programs expanded to 3 new wards", "120+ public contracts monitored", "38 policy submissions filed"], badge: "coming", pages: 0, size: "—", url: "", demo: true, type: "pdf" },
-      { id: 2, year: 2025, title: "WeCare Annual Report 2025", desc: "A comprehensive account of WeCare's accountability and civic engagement activities in 2025, including financial summaries, project outcomes, and community impact data.", highlights: ["4,200 citizens reached through civic forums", "Partnered with 12 organizations", "Launched digital rights campaign"], badge: "latest", pages: 36, size: "2.8 MB", url: "", demo: true, type: "pdf" },
-      { id: 3, year: 2024, title: "WeCare Annual Report 2024", desc: "Documenting WeCare's third year of operation — covering public participation advocacy, anti-corruption monitoring activities, and strategic partnerships established across Kisumu County.", highlights: ["3,000+ citizens engaged", "15 corruption cases flagged", "First youth policy summit organized"], badge: "published", pages: 28, size: "1.9 MB", url: "", demo: true, type: "pdf" },
-      { id: 4, year: 2023, title: "WeCare Annual Report 2023", desc: "WeCare's second year report covering the foundation of our core programs, initial community outreach, and the establishment of our transparency monitoring framework.", highlights: ["1,800 citizens reached", "Launched accountability helpdesk", "5 ward-level forums held"], badge: "published", pages: 22, size: "1.4 MB", url: "", demo: true, type: "pdf" },
-      { id: 5, year: 2022, title: "WeCare Inaugural Report 2022", desc: "Our founding year report — charting WeCare's establishment, mission definition, initial stakeholder mapping, and the first community accountability activities in Kisumu.", highlights: ["Organization officially registered", "800 citizens reached in pilot phase", "3 memoranda submitted"], badge: "published", pages: 16, size: "980 KB", url: "", demo: true, type: "pdf" }
+
+    const STORAGE_KEY = 'wc_uploaded_reports_v2';
+
+    const staticReports = [
+      {
+        id: 1,
+        year: 2026,
+        title: "WeCare Annual Report 2026",
+        desc: "Our most recent organizational report highlighting key milestones, program outcomes, governance updates, and financial accountability for the year 2026.",
+        highlights: ["Youth civic engagement programs expanded to 3 new wards", "120+ public contracts monitored", "38 policy submissions filed"],
+        badge: "coming",
+        pages: 0,
+        size: "—",
+        url: "",
+        demo: true,
+        type: "pdf",
+        source: "static"
+      },
+      {
+        id: 2,
+        year: 2025,
+        title: "WeCare Annual Report 2025",
+        desc: "A comprehensive account of WeCare's accountability and civic engagement activities in 2025, including financial summaries, project outcomes, and community impact data.",
+        highlights: ["4,200 citizens reached through civic forums", "Partnered with 12 organizations", "Launched digital rights campaign"],
+        badge: "latest",
+        pages: 36,
+        size: "2.8 MB",
+        url: "documents/wecare-annual-report-2025.pdf",
+        demo: false,
+        type: "pdf",
+        source: "documents"
+      },
+      {
+        id: 3,
+        year: 2024,
+        title: "WeCare Annual Report 2024",
+        desc: "Documenting WeCare's third year of operation — covering public participation advocacy, anti-corruption monitoring activities, and strategic partnerships established across Kisumu County.",
+        highlights: ["3,000+ citizens engaged", "15 corruption cases flagged", "First youth policy summit organized"],
+        badge: "published",
+        pages: 28,
+        size: "1.9 MB",
+        url: "documents/wecare-annual-report-2024.pdf",
+        demo: false,
+        type: "pdf",
+        source: "documents"
+      },
+      {
+        id: 4,
+        year: 2023,
+        title: "WeCare Annual Report 2023",
+        desc: "WeCare's second year report covering the foundation of our core programs, initial community outreach, and the establishment of our transparency monitoring framework.",
+        highlights: ["1,800 citizens reached", "Launched accountability helpdesk", "5 ward-level forums held"],
+        badge: "published",
+        pages: 22,
+        size: "1.4 MB",
+        url: "documents/wecare-annual-report-2023.pdf",
+        demo: false,
+        type: "pdf",
+        source: "documents"
+      },
+      {
+        id: 5,
+        year: 2022,
+        title: "WeCare Inaugural Report 2022",
+        desc: "Our founding year report — charting WeCare's establishment, mission definition, initial stakeholder mapping, and the first community accountability activities in Kisumu.",
+        highlights: ["Organization officially registered", "800 citizens reached in pilot phase", "3 memoranda submitted"],
+        badge: "published",
+        pages: 16,
+        size: "980 KB",
+        url: "documents/wecare-annual-report-2022.pdf",
+        demo: false,
+        type: "pdf",
+        source: "documents"
+      }
     ];
-    let filtered = [], activeYear = 'all', currentSort = 'year-desc', viewCount = parseInt(localStorage.getItem('wc_ar_views') || '0'), dlCount = parseInt(localStorage.getItem('wc_ar_dls') || '0');
-    document.getElementById('viewCount').textContent = viewCount; document.getElementById('dlCount').textContent = dlCount;
-    function getYears() { return [...new Set(reports.map(r => r.year))].sort((a,b)=>b-a); }
-    function renderYearTabs() { const years = getYears(); let html = `<button class="year-tab ${activeYear==='all'?'active':''}" data-year="all">All Years</button>` + years.map(y=>`<button class="year-tab ${activeYear===y?'active':''}" data-year="${y}">${y}</button>`).join(''); document.getElementById('yearTabs').innerHTML = html; document.querySelectorAll('.year-tab').forEach(t=>t.addEventListener('click',()=>{ activeYear = t.dataset.year === 'all' ? 'all' : parseInt(t.dataset.year); renderYearTabs(); applyFilters(); })); }
-    function applyFilters() { const q = document.getElementById('searchInput').value.toLowerCase(); filtered = reports.filter(r => (activeYear === 'all' || r.year === activeYear) && (!q || r.title.toLowerCase().includes(q) || String(r.year).includes(q) || r.desc.toLowerCase().includes(q))); sortReports(); renderReports(); updateStats(); }
-    function sortReports() { filtered.sort((a,b)=>{ if(currentSort === 'year-asc') return a.year - b.year; if(currentSort === 'year-desc') return b.year - a.year; if(currentSort === 'title-asc') return a.title.localeCompare(b.title); return 0; }); }
-    function updateStats() { document.getElementById('totalReports').textContent = reports.length; document.getElementById('yearsCovered').textContent = getYears().length; }
-    const badgeLabel = { latest:'Latest', published:'Published', coming:'Coming Soon' };
-    function renderReports() { const grid = document.getElementById('reportsGrid'); document.getElementById('visibleCount').textContent = filtered.length; if(!filtered.length){ grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-muted);"><i class="fas fa-folder-open" style="font-size:2rem; margin-bottom:1rem; display:block;"></i><h3 style="font-size:1.1rem;">No reports found</h3><p>Try a different year or search term.</p></div>`; return; } grid.innerHTML = filtered.map(r=>`<div class="report-card" data-id="${r.id}"><div class="report-card-banner"><div class="report-year-bg">${r.year}</div><div class="report-file-mock"><i class="fas fa-file-pdf"></i><span class="file-ext">PDF</span></div><div class="report-badge badge-${r.badge}">${badgeLabel[r.badge]}</div>${r.badge !== 'coming' ? `<div class="report-hover-overlay"><button class="overlay-action-btn view-btn" data-id="${r.id}"><i class="fas fa-eye"></i></button><button class="overlay-action-btn dl-btn" data-id="${r.id}"><i class="fas fa-download"></i></button></div>` : ''}</div><div class="report-body"><div class="report-year-tag"><i class="fas fa-calendar-alt"></i> ${r.year} Annual Report</div><h3 class="report-title">${r.title}</h3><p class="report-desc">${r.desc}</p><div class="report-highlights">${r.highlights.map(h=>`<div class="report-highlight"><i class="fas fa-check-circle"></i>${h}</div>`).join('')}</div><div class="report-meta">${r.pages ? `<span class="meta-pill"><i class="fas fa-file-alt"></i>${r.pages} pages</span>` : ''}${r.size !== '—' ? `<span class="meta-pill"><i class="fas fa-hdd"></i>${r.size}</span>` : ''}<span class="meta-pill"><i class="fas fa-building"></i>WeCare CBO</span></div></div><div class="report-footer"><span class="report-size">${r.size}</span><div class="report-actions">${r.badge !== 'coming' ? `<button class="r-btn primary view-btn" data-id="${r.id}"><i class="fas fa-eye"></i> View</button><button class="r-btn secondary dl-btn" data-id="${r.id}"><i class="fas fa-download"></i></button>` : `<button class="r-btn secondary" disabled style="opacity:0.6;"><i class="fas fa-clock"></i> Coming Soon</button>`}</div></div></div>`).join(''); document.querySelectorAll('.view-btn').forEach(b=>b.addEventListener('click',e=>{ e.stopPropagation(); openReport(+b.dataset.id); })); document.querySelectorAll('.dl-btn').forEach(b=>b.addEventListener('click',e=>{ e.stopPropagation(); downloadReport(+b.dataset.id); })); document.querySelectorAll('.report-card').forEach(c=>c.addEventListener('click',()=>openReport(+c.dataset.id))); }
-    function downloadReport(id){ let r = reports.find(x=>x.id===id); if(!r || r.badge==='coming') return; if(r.url) { let a=document.createElement('a'); a.href=r.url; a.download=`wecare-annual-report-${r.year}.pdf`; a.click(); dlCount++; localStorage.setItem('wc_ar_dls', dlCount); document.getElementById('dlCount').textContent = dlCount; alert('Download started.'); } else { alert("Demo document — set url field to enable actual download."); } }
-    let pdfDoc=null, currentPage=1, totalPages=1, zoom=1.0, rotation=0, currentReport=null;
-    function openReport(id){ let r=reports.find(x=>x.id===id); if(!r || r.badge==='coming') return; currentReport=r; viewCount++; localStorage.setItem('wc_ar_views',viewCount); document.getElementById('viewCount').textContent=viewCount; document.getElementById('modalTitle').textContent=r.title; document.getElementById('modalSub').textContent=`${r.year} · ${r.size} · ${r.pages||'—'} pages`; document.getElementById('modalOverlay').classList.add('open'); document.body.style.overflow='hidden'; if(r.url && r.type==='pdf') loadPDF(r.url); else showDemoPlaceholder(r); }
-    function showDemoPlaceholder(r){ document.getElementById('modalBody').innerHTML=`<div style="color:white;text-align:center;max-width:400px;"><i class="fas fa-file-pdf" style="font-size:3rem;opacity:0.6;margin-bottom:1rem;display:block;"></i><h3 style="font-size:1.2rem;margin-bottom:0.5rem;">${r.title}</h3><p style="font-size:0.9rem;">This is a sample entry. Upload your actual PDF to enable the full inline viewer with page navigation, zoom, rotation, and print support.</p><div style="margin-top:1.5rem;padding:1rem;background:rgba(0,0,0,0.3);border-radius:8px;font-family:monospace;font-size:0.8rem;">url: "documents/wecare-annual-report-${r.year}.pdf"</div></div>`; }
-    async function loadPDF(url){ document.getElementById('modalBody').innerHTML=`<div class="viewer-loading"><div class="spinner"></div><span>Loading PDF…</span></div>`; try{ pdfDoc=await pdfjsLib.getDocument(url).promise; totalPages=pdfDoc.numPages; updatePageInfo(); renderPDFPage(1); } catch(e){ document.getElementById('modalBody').innerHTML=`<div style="color:white;text-align:center;"><i class="fas fa-exclamation-triangle" style="font-size:2rem;"></i><p style="margin-top:1rem;">Could not load PDF. Ensure the file path is correct.</p></div>`; } }
-    async function renderPDFPage(num){ if(!pdfDoc) return; let page=await pdfDoc.getPage(num); let viewport=page.getViewport({scale:zoom, rotation}); let canvas=document.createElement('canvas'); canvas.id='pdfCanvas'; let ctx=canvas.getContext('2d'); canvas.height=viewport.height; canvas.width=viewport.width; let wrap=document.createElement('div'); wrap.className='viewer-canvas-wrap'; wrap.appendChild(canvas); document.getElementById('modalBody').innerHTML=''; document.getElementById('modalBody').appendChild(wrap); await page.render({canvasContext:ctx, viewport}).promise; currentPage=num; updatePageInfo(); }
-    function updatePageInfo(){ document.getElementById('pageInfo').textContent=`Page ${currentPage} / ${totalPages}`; document.getElementById('prevPage').disabled=currentPage<=1; document.getElementById('nextPage').disabled=currentPage>=totalPages; }
-    function updateZoomDisplay(){ document.getElementById('zoomLevel').textContent=Math.round(zoom*100)+'%'; }
-    document.getElementById('prevPage').addEventListener('click',()=>{if(currentPage>1) renderPDFPage(currentPage-1);}); document.getElementById('nextPage').addEventListener('click',()=>{if(currentPage<totalPages) renderPDFPage(currentPage+1);}); document.getElementById('zoomIn').addEventListener('click',()=>{zoom=Math.min(zoom+0.25,3); updateZoomDisplay(); if(pdfDoc) renderPDFPage(currentPage);}); document.getElementById('zoomOut').addEventListener('click',()=>{zoom=Math.max(zoom-0.25,0.25); updateZoomDisplay(); if(pdfDoc) renderPDFPage(currentPage);}); document.getElementById('rotateBtn').addEventListener('click',()=>{rotation=(rotation+90)%360; if(pdfDoc) renderPDFPage(currentPage);}); document.getElementById('closeModal').addEventListener('click',()=>{document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow=''; pdfDoc=null;}); document.getElementById('modalOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('modalOverlay')) document.getElementById('closeModal').click();});
-    document.getElementById('searchInput').addEventListener('input', applyFilters); document.getElementById('sortSelect').addEventListener('change',e=>{currentSort=e.target.value; applyFilters();}); document.getElementById('gridBtn').addEventListener('click',()=>{document.getElementById('reportsGrid').classList.remove('list-mode'); document.getElementById('gridBtn').classList.add('active'); document.getElementById('listBtn').classList.remove('active');}); document.getElementById('listBtn').addEventListener('click',()=>{document.getElementById('reportsGrid').classList.add('list-mode'); document.getElementById('listBtn').classList.add('active'); document.getElementById('gridBtn').classList.remove('active');});
-    const mobileToggle=document.getElementById('mobileToggle'), navMenu=document.getElementById('navMenu'); mobileToggle.addEventListener('click',()=>{navMenu.classList.toggle('active'); const icon=mobileToggle.querySelector('i'); icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-times');}); document.addEventListener('click',e=>{if(!navMenu.contains(e.target)&&!mobileToggle.contains(e.target)) navMenu.classList.remove('active');}); window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>30)); let slide=0,heroSlides=document.querySelectorAll('.page-hero-slide'); if(heroSlides.length>1) setInterval(()=>{heroSlides[slide].classList.remove('active'); slide=(slide+1)%heroSlides.length; heroSlides[slide].classList.add('active');},5000);
-    const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('active');});},{threshold:0.1}); document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-    renderYearTabs(); applyFilters();
+
+    let uploadedReports = loadUploadedReports();
+    let reports = [...staticReports, ...uploadedReports];
+
+    let filtered = [];
+    let activeYear = 'all';
+    let currentSort = 'year-desc';
+    let viewCount = parseInt(localStorage.getItem('wc_ar_views') || '0');
+    let dlCount = parseInt(localStorage.getItem('wc_ar_dls') || '0');
+
+    document.getElementById('viewCount').textContent = viewCount;
+    document.getElementById('dlCount').textContent = dlCount;
+
+    function loadUploadedReports() {
+      try {
+        const raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        return Array.isArray(raw) ? raw : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function saveUploadedReports() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(uploadedReports));
+    }
+
+    function rebuildReports() {
+      reports = [...staticReports, ...uploadedReports];
+      renderYearTabs();
+      applyFilters();
+      renderUploadList();
+    }
+
+    function formatBytes(bytes) {
+      if (!bytes || bytes === 0) return '—';
+      const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(1024));
+      return `${parseFloat((bytes / Math.pow(1024, i)).toFixed(2))} ${sizes[i]}`;
+    }
+
+    function extractYearFromName(fileName) {
+      const match = fileName.match(/(20\d{2})/);
+      return match ? parseInt(match[1], 10) : new Date().getFullYear();
+    }
+
+    function makeTitleFromFilename(name) {
+      const base = name.replace(/\.pdf$/i, '').replace(/[-_]/g, ' ').trim();
+      return base.replace(/\b\w/g, char => char.toUpperCase());
+    }
+
+    function getYears() {
+      return [...new Set(reports.map(r => r.year))].sort((a, b) => b - a);
+    }
+
+    function renderYearTabs() {
+      const years = getYears();
+      const html =
+        `<button class="year-tab ${activeYear === 'all' ? 'active' : ''}" data-year="all">All Years</button>` +
+        years.map(y => `<button class="year-tab ${activeYear === y ? 'active' : ''}" data-year="${y}">${y}</button>`).join('');
+
+      document.getElementById('yearTabs').innerHTML = html;
+
+      document.querySelectorAll('.year-tab').forEach(t => {
+        t.addEventListener('click', () => {
+          activeYear = t.dataset.year === 'all' ? 'all' : parseInt(t.dataset.year, 10);
+          renderYearTabs();
+          applyFilters();
+        });
+      });
+    }
+
+    function sortReports() {
+      filtered.sort((a, b) => {
+        if (currentSort === 'year-asc') return a.year - b.year;
+        if (currentSort === 'year-desc') return b.year - a.year;
+        if (currentSort === 'title-asc') return a.title.localeCompare(b.title);
+        return 0;
+      });
+    }
+
+    function updateStats() {
+      document.getElementById('totalReports').textContent = reports.length;
+      document.getElementById('yearsCovered').textContent = getYears().length;
+    }
+
+    function applyFilters() {
+      const q = document.getElementById('searchInput').value.toLowerCase().trim();
+
+      filtered = reports.filter(r =>
+        (activeYear === 'all' || r.year === activeYear) &&
+        (
+          !q ||
+          r.title.toLowerCase().includes(q) ||
+          String(r.year).includes(q) ||
+          r.desc.toLowerCase().includes(q) ||
+          (r.highlights || []).some(h => h.toLowerCase().includes(q))
+        )
+      );
+
+      sortReports();
+      renderReports();
+      updateStats();
+    }
+
+    const badgeLabel = {
+      latest: 'Latest',
+      published: 'Published',
+      coming: 'Coming Soon',
+      local: 'Uploaded'
+    };
+
+    function renderReports() {
+      const grid = document.getElementById('reportsGrid');
+      document.getElementById('visibleCount').textContent = filtered.length;
+
+      if (!filtered.length) {
+        grid.innerHTML = `
+          <div class="empty-state" style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-muted);">
+            <i class="fas fa-folder-open" style="font-size:2rem; margin-bottom:1rem; display:block;"></i>
+            <h3 style="font-size:1.1rem;">No reports found</h3>
+            <p>Try a different year or search term.</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(r => `
+        <div class="report-card" data-id="${r.id}">
+          <div class="report-card-banner">
+            <div class="report-year-bg">${r.year}</div>
+            <div class="report-file-mock">
+              <i class="fas fa-file-pdf"></i>
+              <span class="file-ext">PDF</span>
+            </div>
+            <div class="report-badge badge-${r.badge}">${badgeLabel[r.badge] || 'Published'}</div>
+
+            ${r.badge !== 'coming' ? `
+              <div class="report-hover-overlay">
+                <button class="overlay-action-btn view-btn" data-id="${r.id}"><i class="fas fa-eye"></i></button>
+                <button class="overlay-action-btn dl-btn" data-id="${r.id}"><i class="fas fa-download"></i></button>
+              </div>
+            ` : ''}
+          </div>
+
+          <div class="report-body">
+            <div class="report-year-tag"><i class="fas fa-calendar-alt"></i> ${r.year} Annual Report</div>
+            <h3 class="report-title">${r.title}</h3>
+            <p class="report-desc">${r.desc}</p>
+
+            <div class="report-highlights">
+              ${(r.highlights || []).map(h => `<div class="report-highlight"><i class="fas fa-check-circle"></i>${h}</div>`).join('')}
+            </div>
+
+            <div class="report-meta">
+              ${r.pages ? `<span class="meta-pill"><i class="fas fa-file-alt"></i>${r.pages} pages</span>` : ''}
+              ${r.size !== '—' ? `<span class="meta-pill"><i class="fas fa-hdd"></i>${r.size}</span>` : ''}
+              <span class="meta-pill"><i class="fas fa-building"></i>WeCare CBO</span>
+              ${r.source === 'local' ? `<span class="meta-pill"><i class="fas fa-laptop"></i>Browser Upload</span>` : ''}
+              ${r.source === 'documents' ? `<span class="meta-pill"><i class="fas fa-folder"></i>documents/</span>` : ''}
+            </div>
+          </div>
+
+          <div class="report-footer">
+            <span class="report-size">${r.size}</span>
+            <div class="report-actions">
+              ${r.badge !== 'coming'
+                ? `<button class="r-btn primary view-btn" data-id="${r.id}"><i class="fas fa-eye"></i> View</button>
+                   <button class="r-btn secondary dl-btn" data-id="${r.id}"><i class="fas fa-download"></i></button>`
+                : `<button class="r-btn secondary" disabled style="opacity:0.6;"><i class="fas fa-clock"></i> Coming Soon</button>`
+              }
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      document.querySelectorAll('.view-btn').forEach(b => {
+        b.addEventListener('click', e => {
+          e.stopPropagation();
+          openReport(+b.dataset.id);
+        });
+      });
+
+      document.querySelectorAll('.dl-btn').forEach(b => {
+        b.addEventListener('click', e => {
+          e.stopPropagation();
+          downloadReport(+b.dataset.id);
+        });
+      });
+
+      document.querySelectorAll('.report-card').forEach(c => {
+        c.addEventListener('click', () => openReport(+c.dataset.id));
+      });
+    }
+
+    function renderUploadList() {
+      const list = document.getElementById('uploadList');
+
+      if (!uploadedReports.length) {
+        list.innerHTML = `
+          <div style="padding:1rem; background:white; border:1px dashed var(--border); border-radius:12px; color:var(--text-muted);">
+            No browser-uploaded reports yet.
+          </div>
+        `;
+        return;
+      }
+
+      list.innerHTML = uploadedReports.map(item => `
+        <div class="upload-item">
+          <div class="upload-item-left">
+            <i class="fas fa-file-pdf"></i>
+            <div>
+              <div class="upload-item-name">${item.title}</div>
+              <div class="upload-item-meta">${item.year} • ${item.size} • ${item.fileName}</div>
+            </div>
+          </div>
+          <div class="upload-item-right">
+            <button class="small-btn preview-upload" data-id="${item.id}"><i class="fas fa-eye"></i> Preview</button>
+            <button class="small-btn delete remove-upload" data-id="${item.id}"><i class="fas fa-trash"></i> Remove</button>
+          </div>
+        </div>
+      `).join('');
+
+      document.querySelectorAll('.preview-upload').forEach(btn => {
+        btn.addEventListener('click', () => openReport(+btn.dataset.id));
+      });
+
+      document.querySelectorAll('.remove-upload').forEach(btn => {
+        btn.addEventListener('click', () => removeUploadedReport(+btn.dataset.id));
+      });
+    }
+
+    function removeUploadedReport(id) {
+      const report = uploadedReports.find(r => r.id === id);
+      if (!report) return;
+
+      if (report.url && report.url.startsWith('blob:')) {
+        URL.revokeObjectURL(report.url);
+      }
+
+      uploadedReports = uploadedReports.filter(r => r.id !== id);
+      saveUploadedReports();
+      rebuildReports();
+    }
+
+    function clearUploadedReports() {
+      uploadedReports.forEach(report => {
+        if (report.url && report.url.startsWith('blob:')) {
+          URL.revokeObjectURL(report.url);
+        }
+      });
+
+      uploadedReports = [];
+      saveUploadedReports();
+      rebuildReports();
+    }
+
+    function handleFiles(files) {
+      const validFiles = [...files].filter(file => file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf'));
+
+      if (!validFiles.length) {
+        alert('Please upload PDF files only.');
+        return;
+      }
+
+      const newItems = validFiles.map(file => {
+        const year = extractYearFromName(file.name);
+        const title = makeTitleFromFilename(file.name);
+        const objectUrl = URL.createObjectURL(file);
+
+        return {
+          id: Date.now() + Math.floor(Math.random() * 100000),
+          year,
+          title,
+          desc: `Uploaded annual report for ${year}. This file was selected from your computer and added to the archive.`,
+          highlights: ["Uploaded from local device", "Visible in report archive", "Can be previewed and downloaded"],
+          badge: "local",
+          pages: 0,
+          size: formatBytes(file.size),
+          url: objectUrl,
+          demo: false,
+          type: "pdf",
+          source: "local",
+          fileName: file.name
+        };
+      });
+
+      uploadedReports = [...newItems, ...uploadedReports];
+      saveUploadedReports();
+      rebuildReports();
+    }
+
+    function downloadReport(id) {
+      const r = reports.find(x => x.id === id);
+      if (!r || r.badge === 'coming') return;
+
+      if (r.url) {
+        const a = document.createElement('a');
+        a.href = r.url;
+        a.download = `${r.title.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+
+        dlCount++;
+        localStorage.setItem('wc_ar_dls', dlCount);
+        document.getElementById('dlCount').textContent = dlCount;
+      } else {
+        alert("This report has no file path yet. Add the PDF inside the documents folder and set its URL.");
+      }
+    }
+
+    let pdfDoc = null;
+    let currentPage = 1;
+    let totalPages = 1;
+    let zoom = 1.0;
+    let rotation = 0;
+    let currentReport = null;
+
+    function openReport(id) {
+      const r = reports.find(x => x.id === id);
+      if (!r || r.badge === 'coming') return;
+
+      currentReport = r;
+      viewCount++;
+      localStorage.setItem('wc_ar_views', viewCount);
+      document.getElementById('viewCount').textContent = viewCount;
+
+      document.getElementById('modalTitle').textContent = r.title;
+      document.getElementById('modalSub').textContent = `${r.year} · ${r.size} · ${r.pages || 'Unknown'} pages`;
+
+      document.getElementById('modalOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+
+      zoom = 1.0;
+      rotation = 0;
+      updateZoomDisplay();
+
+      if (r.url && r.type === 'pdf') {
+        loadPDF(r.url);
+      } else {
+        showDemoPlaceholder(r);
+      }
+    }
+
+    function showDemoPlaceholder(r) {
+      document.getElementById('modalBody').innerHTML = `
+        <div style="color:white;text-align:center;max-width:500px;">
+          <i class="fas fa-file-pdf" style="font-size:3rem;opacity:0.6;margin-bottom:1rem;display:block;"></i>
+          <h3 style="font-size:1.2rem;margin-bottom:0.5rem;">${r.title}</h3>
+          <p style="font-size:0.9rem;">
+            This entry has no active PDF path yet. Put the real file in the documents folder and set the URL correctly.
+          </p>
+          <div style="margin-top:1.5rem;padding:1rem;background:rgba(0,0,0,0.3);border-radius:8px;font-family:monospace;font-size:0.8rem;">
+            Example: documents/wecare-annual-report-${r.year}.pdf
+          </div>
+        </div>
+      `;
+    }
+
+    async function loadPDF(url) {
+      document.getElementById('modalBody').innerHTML = `
+        <div class="viewer-loading">
+          <div class="spinner"></div>
+          <span>Loading PDF…</span>
+        </div>
+      `;
+
+      try {
+        pdfDoc = await pdfjsLib.getDocument(url).promise;
+        totalPages = pdfDoc.numPages;
+        currentPage = 1;
+        updatePageInfo();
+        renderPDFPage(1);
+      } catch (e) {
+        document.getElementById('modalBody').innerHTML = `
+          <div style="color:white;text-align:center;">
+            <i class="fas fa-exclamation-triangle" style="font-size:2rem;"></i>
+            <p style="margin-top:1rem;">Could not load PDF. Ensure the file path is correct and the file exists.</p>
+          </div>
+        `;
+      }
+    }
+
+    async function renderPDFPage(num) {
+      if (!pdfDoc) return;
+
+      const page = await pdfDoc.getPage(num);
+      const viewport = page.getViewport({ scale: zoom, rotation });
+      const canvas = document.createElement('canvas');
+      canvas.id = 'pdfCanvas';
+
+      const ctx = canvas.getContext('2d');
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+
+      const wrap = document.createElement('div');
+      wrap.className = 'viewer-canvas-wrap';
+      wrap.appendChild(canvas);
+
+      document.getElementById('modalBody').innerHTML = '';
+      document.getElementById('modalBody').appendChild(wrap);
+
+      await page.render({ canvasContext: ctx, viewport }).promise;
+
+      currentPage = num;
+      updatePageInfo();
+    }
+
+    function updatePageInfo() {
+      document.getElementById('pageInfo').textContent = `Page ${currentPage} / ${totalPages}`;
+      document.getElementById('prevPage').disabled = currentPage <= 1;
+      document.getElementById('nextPage').disabled = currentPage >= totalPages;
+    }
+
+    function updateZoomDisplay() {
+      document.getElementById('zoomLevel').textContent = Math.round(zoom * 100) + '%';
+    }
+
+    document.getElementById('prevPage').addEventListener('click', () => {
+      if (currentPage > 1) renderPDFPage(currentPage - 1);
+    });
+
+    document.getElementById('nextPage').addEventListener('click', () => {
+      if (currentPage < totalPages) renderPDFPage(currentPage + 1);
+    });
+
+    document.getElementById('zoomIn').addEventListener('click', () => {
+      zoom = Math.min(zoom + 0.25, 3);
+      updateZoomDisplay();
+      if (pdfDoc) renderPDFPage(currentPage);
+    });
+
+    document.getElementById('zoomOut').addEventListener('click', () => {
+      zoom = Math.max(zoom - 0.25, 0.25);
+      updateZoomDisplay();
+      if (pdfDoc) renderPDFPage(currentPage);
+    });
+
+    document.getElementById('rotateBtn').addEventListener('click', () => {
+      rotation = (rotation + 90) % 360;
+      if (pdfDoc) renderPDFPage(currentPage);
+    });
+
+    document.getElementById('closeModal').addEventListener('click', () => {
+      document.getElementById('modalOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+      pdfDoc = null;
+      currentReport = null;
+    });
+
+    document.getElementById('modalOverlay').addEventListener('click', e => {
+      if (e.target === document.getElementById('modalOverlay')) {
+        document.getElementById('closeModal').click();
+      }
+    });
+
+    document.getElementById('searchInput').addEventListener('input', applyFilters);
+
+    document.getElementById('sortSelect').addEventListener('change', e => {
+      currentSort = e.target.value;
+      applyFilters();
+    });
+
+    document.getElementById('gridBtn').addEventListener('click', () => {
+      document.getElementById('reportsGrid').classList.remove('list-mode');
+      document.getElementById('gridBtn').classList.add('active');
+      document.getElementById('listBtn').classList.remove('active');
+    });
+
+    document.getElementById('listBtn').addEventListener('click', () => {
+      document.getElementById('reportsGrid').classList.add('list-mode');
+      document.getElementById('listBtn').classList.add('active');
+      document.getElementById('gridBtn').classList.remove('active');
+    });
+
+    document.getElementById('reportUpload').addEventListener('change', function () {
+      if (this.files && this.files.length) {
+        handleFiles(this.files);
+        this.value = '';
+      }
+    });
+
+    document.getElementById('clearUploadedReports').addEventListener('click', () => {
+      const okay = confirm('Clear all browser-uploaded reports from this device?');
+      if (okay) clearUploadedReports();
+    });
+
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      const icon = mobileToggle.querySelector('i');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+
+    document.addEventListener('click', e => {
+      if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+        navMenu.classList.remove('active');
+      }
+    });
+
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
+    });
+
+    let slide = 0;
+    const heroSlides = document.querySelectorAll('.page-hero-slide');
+
+    if (heroSlides.length > 1) {
+      setInterval(() => {
+        heroSlides[slide].classList.remove('active');
+        slide = (slide + 1) % heroSlides.length;
+        heroSlides[slide].classList.add('active');
+      }, 5000);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('active');
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    renderYearTabs();
+    renderUploadList();
+    applyFilters();
   </script>
 </body>
 </html>
