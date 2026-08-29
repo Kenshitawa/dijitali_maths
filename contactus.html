@@ -3,1042 +3,315 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Contact Us - WeCare CBO | Get in Touch</title>
-  <meta name="description" content="Contact WeCare CBO for partnerships, volunteering, or support. We strengthen accountability, public participation, and transparency in governance." />
-  <link rel="icon" href="images/logo.png" />
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    :root {
-      --primary: #1e3a8a;
-      --primary-light: #3b82f6;
-      --primary-dark: #1e40af;
-      --accent: #f59e0b;
-      --success: #10b981;
-      --text: #1e293b;
-      --text-light: #334155;
-      --text-muted: #475569;
-      --bg: #ffffff;
-      --bg-soft: #f8fafc;
-      --border: #e2e8f0;
-      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
-      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
-      --radius: 16px;
-      --radius-lg: 24px;
-      --transition: all 0.2s ease;
-    }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      color: var(--text);
-      line-height: 1.5;
-      background: var(--bg);
-      overflow-x: hidden;
-      font-size: 1rem;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .container {
-      width: min(1280px, calc(100% - 2rem));
-      margin: 0 auto;
-    }
-
-    .top-bar {
-      background: var(--primary-dark);
-      color: white;
-      font-size: 0.85rem;
-      padding: 0.6rem 0;
-    }
-
-    .top-bar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .top-bar-links {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-    }
-
-    .top-bar-links a {
-      color: rgba(255,255,255,0.85);
-      text-decoration: none;
-      transition: var(--transition);
-      font-weight: 500;
-      font-size: 0.85rem;
-    }
-
-    .top-bar-links a:hover { color: white; }
-
-    .top-bar-actions {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .top-btn {
-      padding: 0.4rem 1rem;
-      border-radius: 40px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.85rem;
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .top-btn.report {
-      background: var(--accent);
-      color: white;
-    }
-
-    .top-btn.report:hover {
-      background: #d97706;
-      transform: translateY(-1px);
-    }
-
-    .top-btn.donate {
-      background: white;
-      color: var(--primary);
-    }
-
-    .top-btn.donate:hover {
-      background: #f1f5f9;
-    }
-
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(255,255,255,0.98);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-      transition: var(--transition);
-    }
-
-    .navbar.scrolled {
-      box-shadow: var(--shadow-sm);
-    }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.9rem 0;
-      gap: 1.5rem;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-    }
-
-    .brand img {
-      height: 48px;
-      width: auto;
-      object-fit: contain;
-    }
-
-    .brand-text p {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-
-    .nav-menu {
-      list-style: none;
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    .nav-menu a {
-      text-decoration: none;
-      color: var(--text-light);
-      font-weight: 600;
-      font-size: 0.95rem;
-      padding: 0.6rem 1.1rem;
-      border-radius: 40px;
-      transition: var(--transition);
-    }
-
-    .nav-menu a:hover {
-      color: var(--primary);
-      background: rgba(30, 58, 138, 0.05);
-    }
-
-    .nav-menu a.active {
-      color: var(--primary);
-      background: rgba(30, 58, 138, 0.08);
-    }
-
-    .mobile-toggle {
-      display: none;
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: white;
-      cursor: pointer;
-      align-items: center;
-      justify-content: center;
-      color: var(--text);
-      transition: var(--transition);
-    }
-
-    .mobile-toggle:hover {
-      background: var(--bg-soft);
-      border-color: var(--primary);
-    }
-
-    .page-hero {
-      padding: 4rem 0 3rem;
-      position: relative;
-      overflow: hidden;
-      min-height: 340px;
-    }
-
-    .page-hero-slideshow {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-
-    .page-hero-slide {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 1.5s ease-in-out;
-      background-size: cover;
-      background-position: center;
-    }
-
-    .page-hero-slide.active {
-      opacity: 1;
-    }
-
-    .page-hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(30, 58, 138, 0.82) 0%, rgba(30, 64, 175, 0.78) 50%, rgba(59, 130, 246, 0.72) 100%);
-      z-index: 1;
-    }
-
-    .page-hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .page-hero h1 {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      color: white;
-      font-size: clamp(1.8rem, 5vw, 2.5rem);
-      line-height: 1.2;
-      margin-bottom: 1rem;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.2);
-    }
-
-    .page-hero p {
-      color: rgba(255,255,255,0.92);
-      font-size: 1rem;
-      line-height: 1.6;
-      max-width: 650px;
-      margin: 0 auto;
-    }
-
-    .section {
-      padding: 3rem 0;
-      background: var(--bg-soft);
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 2rem;
-      align-items: start;
-    }
-
-    .contact-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-    }
-
-    .contact-card:hover {
-      box-shadow: var(--shadow-md);
-      border-color: rgba(30, 58, 138, 0.15);
-    }
-
-    .contact-card h2 {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 1.3rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .contact-card > p {
-      color: var(--text-muted);
-      line-height: 1.6;
-      font-size: 0.9rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .info-list {
-      display: grid;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .info-item {
-      display: flex;
-      align-items: start;
-      gap: 1rem;
-      padding: 1rem;
-      border-radius: var(--radius);
-      background: var(--bg-soft);
-      border: 1px solid var(--border);
-      transition: var(--transition);
-    }
-
-    .info-item:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-sm);
-      background: white;
-    }
-
-    .info-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-light));
-      display: grid;
-      place-items: center;
-      color: white;
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-
-    .info-content h4 {
-      font-weight: 700;
-      font-size: 0.95rem;
-      margin-bottom: 0.2rem;
-    }
-
-    .info-content p {
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      line-height: 1.5;
-    }
-
-    .quick-contact {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .quick-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1rem;
-      border-radius: var(--radius);
-      background: var(--bg-soft);
-      border: 1px solid var(--border);
-      color: var(--text-light);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.85rem;
-      transition: var(--transition);
-    }
-
-    .quick-btn:hover {
-      background: linear-gradient(135deg, var(--primary), var(--primary-light));
-      color: white;
-      border-color: transparent;
-      transform: translateY(-2px);
-    }
-
-    .quick-btn i {
-      font-size: 0.9rem;
-    }
-
-    .map-container {
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--border);
-      background: #fff;
-    }
-
-    .map-container iframe {
-      width: 100%;
-      height: 280px;
-      border: 0;
-      display: block;
-    }
-
-    .contact-form {
-      display: grid;
-      gap: 1.2rem;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .form-group label {
-      display: block;
-      font-weight: 600;
-      color: var(--text);
-      font-size: 0.85rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .form-group label span {
-      color: var(--primary);
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 0.8rem 1rem;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background: var(--bg-soft);
-      font-family: inherit;
-      font-size: 0.9rem;
-      color: var(--text);
-      transition: var(--transition);
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--primary);
-      background: white;
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-    }
-
-    .form-group textarea {
-      min-height: 140px;
-      resize: vertical;
-    }
-
-    .form-hint {
-      color: var(--text-muted);
-      font-size: 0.75rem;
-      margin-top: 0.4rem;
-      line-height: 1.4;
-    }
-
-    .alert {
-      display: none;
-      padding: 0.8rem 1rem;
-      border-radius: var(--radius);
-      font-weight: 600;
-      margin-bottom: 1rem;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .alert.show {
-      display: flex;
-    }
-
-    .alert.success {
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      color: #065f46;
-    }
-
-    .alert.error {
-      background: rgba(239, 68, 68, 0.1);
-      border: 1px solid rgba(239, 68, 68, 0.3);
-      color: #b91c1c;
-    }
-
-    .submit-btn {
-      border: none;
-      cursor: pointer;
-      padding: 0.9rem 1.5rem;
-      border-radius: var(--radius);
-      background: linear-gradient(135deg, var(--primary), var(--primary-light));
-      color: white;
-      font-weight: 700;
-      font-size: 0.9rem;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      transition: var(--transition);
-      width: 100%;
-    }
-
-    .submit-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .submit-btn:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .footer {
-      background: #0a1628;
-      color: white;
-      padding: 3rem 0 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 2rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin-bottom: 1rem;
-    }
-
-    .footer-brand img {
-      height: 52px;
-      background: white;
-      padding: 8px;
-      border-radius: 12px;
-    }
-
-    .footer-brand-text h4 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1rem;
-      margin-bottom: 0.2rem;
-    }
-
-    .footer-brand-text p {
-      font-size: 0.7rem;
-      color: rgba(255,255,255,0.7);
-    }
-
-    .footer h5 {
-      font-size: 0.9rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-
-    .footer ul li {
-      margin-bottom: 0.5rem;
-      list-style: none;
-    }
-
-    .footer a {
-      color: rgba(255,255,255,0.7);
-      text-decoration: none;
-      font-size: 0.85rem;
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .footer a:hover {
-      color: white;
-      transform: translateX(3px);
-    }
-
-    .footer-contact li {
-      display: flex;
-      align-items: start;
-      gap: 0.6rem;
-      color: rgba(255,255,255,0.75);
-      margin-bottom: 0.7rem;
-      font-size: 0.85rem;
-    }
-
-    .footer-contact i {
-      color: var(--primary-light);
-      margin-top: 0.15rem;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 0.8rem;
-      margin-top: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .social-links a {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      background: rgba(255,255,255,0.08);
-      display: grid;
-      place-items: center;
-      color: white;
-      transition: var(--transition);
-    }
-
-    .social-links a:hover {
-      background: var(--primary-light);
-      transform: translateY(-2px);
-    }
-
-    .footer-bottom {
-      text-align: center;
-      padding-top: 1rem;
-      color: rgba(255,255,255,0.6);
-      font-size: 0.75rem;
-    }
-
-    .wa-fab {
-      position: fixed;
-      right: 1.5rem;
-      bottom: 1.5rem;
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: #25D366;
-      color: white;
-      display: grid;
-      place-items: center;
-      font-size: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-      z-index: 999;
-      transition: var(--transition);
-      text-decoration: none;
-    }
-
-    .wa-fab:hover {
-      transform: scale(1.05);
-    }
-
-    @media (max-width: 1024px) {
-      .top-bar { display: none; }
-
-      .mobile-toggle { display: inline-flex; }
-
-      .nav-menu {
-        position: fixed;
-        top: 72px;
-        left: 0;
-        right: 0;
-        background: white;
-        border-bottom: 1px solid var(--border);
-        box-shadow: var(--shadow-lg);
-        padding: 1rem;
-        flex-direction: column;
-        gap: 0.5rem;
-        transform: translateY(-150%);
-        transition: var(--transition);
-        z-index: 999;
-      }
-
-      .nav-menu.active {
-        transform: translateY(0);
-      }
-
-      .nav-menu a {
-        width: 100%;
-        text-align: center;
-      }
-
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .contact-card {
-        padding: 1.5rem;
-      }
-    }
-
-    a:focus-visible,
-    button:focus-visible,
-    input:focus-visible,
-    textarea:focus-visible {
-      outline: 3px solid var(--primary-light);
-      outline-offset: 3px;
-      border-radius: 8px;
-    }
-  </style>
+  <title>Contact Us — Dijitali Maths | Nairobi, Kenya</title>
+  <meta name="description" content="Get in touch with Dijitali Maths in Nairobi, Kenya. Contact us for school partnerships, learner sessions, volunteering, or general inquiries." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg" />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="top-bar">
-    <div class="container">
-      <div class="top-bar-inner">
-        <ul class="top-bar-links">
-          <li><a href="contactus.html">Contact Us</a></li>
-          <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="aboutus.html#faqs">FAQs</a></li>
+
+  <!-- WHATSAPP FLOATING BUTTON -->
+  <a href="https://wa.me/254714447988?text=Hello%20Dijitali%20Maths!%20I%20would%20like%20to%20learn%20more%20about%20your%20programmes." target="_blank" class="wa-float-btn" title="Chat with Dijitali Maths on WhatsApp" aria-label="WhatsApp Us">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="wa-text">Chat on WhatsApp</span>
+    <span class="wa-online-dot" title="Online now"></span>
+  </a>
+
+  <!-- STICKY NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <div class="brand-symbol"><img src="images/logo.jpeg" alt="Dijitali Maths Logo"></div>
+        <div class="brand-text">
+          <h1>DIJITALI <span>MATHS</span></h1>
+          <p>Every Learner Can Do Maths</p>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="aboutus.html" class="nav-link">About</a></li>
+          <li><a href="projects.html" class="nav-link">What We Do</a></li>
+          <li><a href="impact.html" class="nav-link">Impact</a></li>
+          <li><a href="events.html" class="nav-link">Events</a></li>
+          <li><a href="photos.html" class="nav-link">Gallery</a></li>
+          <li><a href="volunteers.html" class="nav-link">Get Involved</a></li>
+          <li><a href="contactus.html" class="nav-link active">Contact</a></li>
         </ul>
-        <div class="top-bar-actions">
-          <a href="https://eacc.go.ke/en/default/report-corruption/" class="top-btn report">
-            <i class="fas fa-exclamation-triangle"></i> Report Corruption
-          </a>
-          <a href="donation.html" class="top-btn donate">
-            <i class="fas fa-heart"></i> Support Our Work
-          </a>
+      </nav>
+
+      <div class="nav-cta">
+        <a href="donation.html" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-handshake"></i> Partner With Us
+        </a>
+      </div>
+
+      <button class="mobile-toggle" aria-label="Open Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE DRAWER -->
+  <div class="drawer-overlay"></div>
+  <aside class="mobile-drawer">
+    <div class="drawer-header">
+      <div class="brand">
+        <div class="brand-symbol"><img src="images/logo.jpeg" alt="Dijitali Maths Logo"></div>
+        <div class="brand-text">
+          <h2 style="font-size: 1.2rem; margin:0;">DIJITALI <span>MATHS</span></h2>
         </div>
       </div>
+      <button class="drawer-close" aria-label="Close Menu"><i class="fa-solid fa-xmark"></i></button>
     </div>
-  </div>
+    <ul class="drawer-links">
+      <li><a href="index.html"><span>Home</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="aboutus.html"><span>About Us</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="projects.html"><span>What We Do</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="impact.html"><span>Our Impact</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="events.html"><span>Events & Camps</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="photos.html"><span>Gallery in Action</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="volunteers.html"><span>Get Involved</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="volunteersForm.html"><span>Volunteer Application</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="donation.html"><span>Support & Partner</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="contactus.html" class="active"><span>Contact Us</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+    </ul>
+  </aside>
 
-  <nav class="navbar" id="navbar">
-    <div class="container">
-      <div class="nav-inner">
-        <a class="brand" href="index.html">
-          <img src="images/logo.png" alt="WeCare CBO Logo" />
-          <div class="brand-text">
-            <p>ENGAGE • INFLUENCE • EMPOWER</p>
-          </div>
-        </a>
-
-        <ul class="nav-menu" id="navMenu">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="aboutus.html">Who We Are</a></li>
-          <li><a href="projects.html">Our Work</a></li>
-          <li><a href="volunteers.html">Get Involved</a></li>
-          <li><a href="contactus.html" class="active">Contact</a></li>
-        </ul>
-
-        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
-          <i class="fas fa-bars"></i>
-        </button>
-      </div>
-    </div>
-  </nav>
-
+  <!-- PAGE HERO -->
   <section class="page-hero">
-    <div class="page-hero-slideshow">
-      <div class="page-hero-slide active" style="background-image: url('images/ngo.jpg');"></div>
-      <div class="page-hero-slide" style="background-image: url('images/24.jpg');"></div>
-      <div class="page-hero-slide" style="background-image: url('images/ngo2.jpg');"></div>
+    <div class="hero-shapes">
+      <span class="shape shape-1">∑</span>
+      <span class="shape shape-2">π</span>
+      <span class="shape shape-3">√</span>
     </div>
-    <div class="page-hero-overlay"></div>
+    <div class="container page-hero-content">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a> <span>/</span> <span>Contact Us</span>
+      </div>
+      <h1>Let's Make Maths A Different Experience</h1>
+      <p>
+        For programme enquiries, school partnerships, volunteering, collaborations, sponsorship or general questions—we'd love to hear from you.
+      </p>
+    </div>
+  </section>
 
+  <!-- CONTACT CHANNELS & FORM GRID -->
+  <section class="section">
     <div class="container">
-      <div class="page-hero-content">
-        <h1>Contact WeCare CBO</h1>
-        <p>Partnerships, volunteering, support, or general inquiries. Send us a message and we'll respond as soon as possible.</p>
+      <div class="hero-grid" style="align-items: flex-start; gap: 3.5rem;">
+        
+        <!-- Left: Contact Information Cards -->
+        <div>
+          <span class="section-kicker">Get In Touch</span>
+          <h2 class="section-title">Reach Our Team</h2>
+          <p style="font-size: 1rem; color: var(--slate-600); line-height: 1.7; margin-bottom: 2rem;">
+            Whether you want to bring a holiday bootcamp to your community, host a teacher workshop, or support our learning aids, reach out through any channel below.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 2.5rem;">
+            <!-- Email -->
+            <div class="door-card">
+              <div class="door-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div class="door-info">
+                <h4>Email Us</h4>
+                <p><a href="mailto:digitalimathsfoundation@gmail.com" style="color: var(--primary-600); font-weight: 600;">digitalimathsfoundation@gmail.com</a></p>
+              </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="door-card">
+              <div class="door-icon" style="background: #fffbeb; color: #d97706;"><i class="fa-solid fa-phone"></i></div>
+              <div class="door-info">
+                <h4>Call / WhatsApp</h4>
+                <p><a href="tel:0714447988" style="color: var(--slate-800); font-weight: 600;">0714 447 988</a> (Kenya)</p>
+              </div>
+            </div>
+
+            <!-- Location -->
+            <div class="door-card">
+              <div class="door-icon" style="background: #ecfdf5; color: #059669;"><i class="fa-solid fa-location-dot"></i></div>
+              <div class="door-info">
+                <h4>Main Location</h4>
+                <p>Nairobi, Kenya (Operating across Nairobi & Nakuru Counties)</p>
+              </div>
+            </div>
+
+            <!-- LinkedIn -->
+            <div class="door-card">
+              <div class="door-icon" style="background: #f0f9ff; color: #0284c7;"><i class="fa-brands fa-linkedin-in"></i></div>
+              <div class="door-info">
+                <h4>Founder LinkedIn</h4>
+                <p><a href="https://www.linkedin.com/in/brenda-atieno-380b80185" target="_blank" style="color: var(--primary-600); font-weight: 600;">Brenda Atieno Odhiambo</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Contact Form -->
+        <div class="form-card">
+          <h3 style="font-size: 1.35rem; margin-bottom: 0.5rem; color: var(--slate-900);">Send A Direct Message</h3>
+          <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 1.5rem;">
+            Fill out the form below and we will respond within 24 hours.
+          </p>
+
+          <form id="contactForm">
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" class="form-control" placeholder="Your full name" required />
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label">Email Address *</label>
+                <input type="email" class="form-control" placeholder="name@domain.com" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone Number *</label>
+                <input type="tel" class="form-control" placeholder="e.g. 0712 345 678" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Reason for Enquiry *</label>
+              <select class="form-control" required>
+                <option value="Learner Programme / Holiday Bootcamp">Learner Programme / Holiday Bootcamp</option>
+                <option value="School Partnership / In-School Sessions">School Partnership / In-School Sessions</option>
+                <option value="Teacher Training Workshop">Teacher Training Workshop</option>
+                <option value="Volunteering Enquiry">Volunteering Enquiry</option>
+                <option value="Sponsorship & Partnership">Sponsorship & Partnership</option>
+                <option value="General Question">General Question</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Your Message *</label>
+              <textarea class="form-control" placeholder="How can Dijitali Maths support your learners or organization?" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+              <i class="fa-solid fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="contact-grid">
-        <div class="contact-card">
-          <h2>Contact Information</h2>
-          <p>Reach out through any channel below. We're happy to connect.</p>
+  <!-- FAQS ACCORDION -->
+  <section class="section section-soft">
+    <div class="container" style="max-width: 860px;">
+      <div class="section-header">
+        <span class="section-kicker">Common Questions</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
 
-          <div class="info-list">
-            <div class="info-item">
-              <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-              <div class="info-content">
-                <h4>Location</h4>
-                <p>Kisumu, Kenya</p>
-              </div>
-            </div>
-
-            <div class="info-item">
-              <div class="info-icon"><i class="fas fa-phone"></i></div>
-              <div class="info-content">
-                <h4>Phone</h4>
-                <p>+254 797 680921 / +254 792 594021</p>
-              </div>
-            </div>
-
-            <div class="info-item">
-              <div class="info-icon"><i class="fas fa-envelope"></i></div>
-              <div class="info-content">
-                <h4>Email</h4>
-                <p>wecare518@gmail.com</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="quick-contact">
-            <a href="mailto:wecare518@gmail.com" class="quick-btn">
-              <i class="fas fa-envelope"></i> Email Us
-            </a>
-            <a href="tel:+254797680921" class="quick-btn">
-              <i class="fas fa-phone"></i> Call
-            </a>
-            <a href="https://wa.me/254797680921?text=Hello%20WeCare%20CBO" target="_blank" class="quick-btn">
-              <i class="fab fa-whatsapp"></i> WhatsApp
-            </a>
-          </div>
-
-          <div class="map-container">
-            <iframe
-              src="https://www.google.com/maps?q=Kisumu,Kenya&output=embed"
-              width="100%"
-              height="280"
-              style="border:0;"
-              loading="lazy"
-              allowfullscreen
-              referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+      <div class="faq-list">
+        <div class="faq-item active">
+          <button type="button" class="faq-question">
+            <span>What makes Dijitali Maths different from traditional tutoring?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer" style="max-height: 200px; padding-bottom: 1.2rem;">
+            Rather than drilling formula memorization, we follow our 3-step rhythm (Discover → Practice → Believe). Learners encounter concepts first through tangible games, binary bead crafts, and problem-solving puzzles before procedural formulas are introduced.
           </div>
         </div>
 
-        <div class="contact-card">
-          <h2>Send Us a Message</h2>
-          <p>Fill in the form and we'll get back to you shortly.</p>
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>Do you have to be a certified mathematics teacher to volunteer?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            No! Dijitali Maths welcomes individuals with backgrounds in STEM, graphic design, photography, event logistics, community outreach, and communications. If you love working with young people and fostering curiosity, there is a role for you.
+          </div>
+        </div>
 
-          <div id="alertMessage" class="alert"></div>
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>How can our school host a Dijitali Teacher Workshop or Maths Camp?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            Simply reach out via our contact form or call us at 0714 447 988. We collaborate with school heads to customize holiday sessions, math clubs, and hands-on teacher resource training using low-cost materials like counting cups.
+          </div>
+        </div>
 
-          <form id="contactForm" class="contact-form" novalidate>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="firstName">First Name <span>*</span></label>
-                <input type="text" id="firstName" placeholder="e.g. Amina" required />
-              </div>
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>Where do your programmes currently operate?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            Dijitali Maths currently conducts active learner sessions, camps, and teacher training across Nairobi and Nakuru Counties in Kenya, with expanding partnerships across the region.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-              <div class="form-group">
-                <label for="lastName">Last Name <span>*</span></label>
-                <input type="text" id="lastName" placeholder="e.g. Otieno" required />
-              </div>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand" style="margin-bottom: 1rem;">
+            <div class="brand-symbol"><img src="images/logo.jpeg" alt="Dijitali Maths Logo"></div>
+            <div class="brand-text">
+              <h2 style="color: #fff; margin:0;">DIJITALI <span style="color: var(--accent-cyan-light);">MATHS</span></h2>
             </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="email">Email <span>*</span></label>
-                <input type="email" id="email" placeholder="name@example.com" required />
-              </div>
-
-              <div class="form-group">
-                <label for="phone">Phone (optional)</label>
-                <input type="tel" id="phone" placeholder="+254..." />
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="subject">Subject <span>*</span></label>
-              <input type="text" id="subject" placeholder="Partnership / Volunteer / Inquiry..." required />
-            </div>
-
-            <div class="form-group">
-              <label for="message">Message <span>*</span></label>
-              <textarea id="message" placeholder="Tell us how we can help..." required></textarea>
-              <div class="form-hint">Include your organization name and what support you need.</div>
-            </div>
-
-            <button type="submit" class="submit-btn" id="submitBtn">
-              <span>Send Message</span>
-              <i class="fas fa-paper-plane"></i>
+          </div>
+          <p>"Every learner can do maths. Sometimes they just need the right way in."</p>
+        </div>
+        <div>
+          <h4 class="footer-heading">Quick Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutus.html">About Our Story</a></li>
+            <li><a href="projects.html">What We Do</a></li>
+            <li><a href="impact.html">Our Impact</a></li>
+            <li><a href="events.html">Events & Festivals</a></li>
+            <li><a href="photos.html">Photo Gallery</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Get Involved</h4>
+          <ul class="footer-links">
+            <li><a href="volunteers.html">Volunteer Roles</a></li>
+            <li><a href="volunteersForm.html">Volunteer Application</a></li>
+            <li><a href="donation.html">Support & Partnerships</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Stay Connected</h4>
+          <form class="footer-newsletter-form">
+            <input type="email" class="footer-input" placeholder="Your email address..." required />
+            <button type="submit" class="btn btn-accent btn-sm" style="padding: 0.75rem 1.2rem;">
+              <i class="fa-solid fa-paper-plane"></i>
             </button>
           </form>
         </div>
       </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <div class="footer-brand">
-            <img src="images/logo.png" alt="WeCare CBO" />
-            <div class="footer-brand-text">
-              <h4>WeCare CBO</h4>
-              <p>Engage · Influence · Empower</p>
-            </div>
-          </div>
-
-          <p style="font-size:0.85rem; line-height:1.6;">
-            Strengthening accountability, promoting public participation, and monitoring public contracts to ensure transparency and integrity in governance across Kenya.
-          </p>
-
-          <div class="social-links">
-            <a href="https://www.facebook.com/wecareyouthke/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.instagram.com/wecareyouthorg/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://ke.linkedin.com/company/wecare-youth-organization" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://wa.me/254797680921" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-              <i class="fab fa-whatsapp"></i>
-            </a>
-          </div>
-        </div>
-
-        <div>
-          <h5>Quick Links</h5>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="aboutus.html">About Us</a></li>
-            <li><a href="projects.html">Our Work</a></li>
-            <li><a href="volunteers.html">Get Involved</a></li>
-            <li><a href="contactus.html">Contact</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h5>Get Involved</h5>
-          <ul>
-            <li><a href="volunteersForm.html">Volunteer Form</a></li>
-            <li><a href="annual-reports.html">Annual Reports</a></li>
-            <li><a href="memoranda.html">Memoranda</a></li>
-            <li><a href="donation.html">Donate</a></li>
-            <li><a href="privacy.html">Privacy Policy</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h5>Contact</h5>
-          <ul class="footer-contact">
-            <li><i class="fas fa-envelope"></i><span>wecare518@gmail.com</span></li>
-            <li><i class="fas fa-phone"></i><span>+254 797 680921<br>+254 792 594021</span></li>
-            <li><i class="fas fa-map-marker-alt"></i><span>Kisumu, Kenya</span></li>
-          </ul>
-        </div>
-      </div>
-
       <div class="footer-bottom">
-        <p>&copy; <span id="year"></span> WeCare Youth-Based Organization (WeCare CBO). All Rights Reserved.</p>
+        <div>© 2026 Dijitali Maths. All rights reserved.</div>
+        <div><a href="privacy.html" style="color: rgba(255,255,255,0.7);">Privacy Policy</a></div>
       </div>
     </div>
   </footer>
 
-  <a href="https://wa.me/254797680921?text=Hello%20WeCare%20CBO" class="wa-fab" target="_blank" aria-label="Chat on WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.page-hero-slide');
-
-    if (slides.length > 1) {
-      setInterval(() => {
-        slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add('active');
-      }, 5000);
-    }
-
-    const mobileToggle = document.getElementById('mobileToggle');
-    const navMenu = document.getElementById('navMenu');
-    const navbar = document.getElementById('navbar');
-
-    mobileToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-      const icon = mobileToggle.querySelector('i');
-      icon.classList.toggle('fa-bars');
-      icon.classList.toggle('fa-times');
-    });
-
-    document.addEventListener('click', (e) => {
-      if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
-        navMenu.classList.remove('active');
-        const icon = mobileToggle.querySelector('i');
-        icon.classList.add('fa-bars');
-        icon.classList.remove('fa-times');
-      }
-    });
-
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 50);
-    });
-
-    const form = document.getElementById('contactForm');
-    const alertDiv = document.getElementById('alertMessage');
-    const submitBtn = document.getElementById('submitBtn');
-
-    function showAlert(type, message) {
-      alertDiv.className = `alert show ${type}`;
-      alertDiv.innerHTML = type === 'success'
-        ? `<i class="fas fa-check-circle"></i> ${message}`
-        : `<i class="fas fa-exclamation-circle"></i> ${message}`;
-
-      setTimeout(() => {
-        alertDiv.classList.remove('show');
-      }, 5000);
-    }
-
-    function isValidEmail(val) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
-    }
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const firstName = document.getElementById('firstName').value.trim();
-      const lastName = document.getElementById('lastName').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const subject = document.getElementById('subject').value.trim();
-      const message = document.getElementById('message').value.trim();
-
-      if (!firstName || !lastName || !email || !subject || !message) {
-        showAlert('error', 'Please fill in all required fields.');
-        return;
-      }
-
-      if (!isValidEmail(email)) {
-        showAlert('error', 'Please enter a valid email address.');
-        return;
-      }
-
-      const fullName = `${firstName} ${lastName}`;
-      const to = 'wecare518@gmail.com';
-      const body = `Name: ${fullName}\nEmail: ${email}\nPhone: ${phone || '-'}\nSubject: ${subject}\n\nMessage:\n${message}`;
-
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Preparing...`;
-
-      window.location.href = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent('Website Contact: ' + subject)}&body=${encodeURIComponent(body)}`;
-
-      setTimeout(() => {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = `<span>Send Message</span><i class="fas fa-paper-plane"></i>`;
-        showAlert('success', 'Your email app has been opened. Press Send to deliver your message.');
-        form.reset();
-      }, 800);
-    });
-  </script>
+  <script src="custom.js"></script>
 </body>
 </html>
