@@ -1,33 +1,117 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Support Dijitali Maths & Strategic Partnerships</title>
-  <meta name="description" content="Help more learners discover that they can do mathematics. Partner with Dijitali Maths to support learning materials, learner sessions, and math innovation." />
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="images/logo.svg" />
-
-  <!-- Fonts & Icons -->
+  <title>Support Dijitali Maths - Make Maths Possible for Every Child</title>
+  <meta name="description" content="Help more learners discover that they can do mathematics. Donate, sponsor, or partner with Dijitali Maths to support learning materials and math innovation in Kenya." />
+  <link rel="icon" href="images/logo.jpeg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-  <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .donate-hero{position:relative;background:linear-gradient(135deg,#06112d 0%,#0c1e4a 50%,#1a2f6e 100%);color:#fff;padding:3.5rem 0 5rem;overflow:hidden}
+    .donate-hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+    .donate-hero-text h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:1.2rem}
+    .donate-hero-text h1 .hl{background:linear-gradient(135deg,#67e8f9 0%,#60a5fa 60%,#fde68a 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .donate-hero-text p{font-size:1.1rem;color:rgba(255,255,255,0.88);line-height:1.7;margin-bottom:2rem}
+    .donate-hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+    .donate-hero-img{position:relative;border-radius:32px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.4);border:2px solid rgba(255,255,255,0.15)}
+    .donate-hero-img img{width:100%;height:380px;object-fit:cover;display:block}
+    .donate-hero-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,17,45,0.7) 0%,transparent 55%)}
+    .donate-hero-img-stat{position:absolute;bottom:1.4rem;left:1.4rem;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-radius:16px;padding:0.9rem 1.3rem;box-shadow:0 12px 28px rgba(0,0,0,0.2)}
+    .donate-hero-img-stat h4{font-size:1.4rem;font-weight:900;color:#1d4ed8;margin-bottom:0.1rem}
+    .donate-hero-img-stat p{font-size:0.8rem;font-weight:600;color:#475569;margin:0}
+    .quick-donate-bar{background:linear-gradient(90deg,#1e3a8a,#2563eb);padding:2.5rem 0}
+    .quick-donate-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .quick-donate-label h3{color:#fff;font-size:1.5rem;font-weight:800;margin-bottom:0.2rem}
+    .quick-donate-label p{color:rgba(255,255,255,0.85);font-size:0.95rem;margin:0}
+    .quick-amounts{display:flex;gap:0.7rem;flex-wrap:wrap;align-items:center}
+    .amount-chip{padding:0.65rem 1.4rem;background:rgba(255,255,255,0.12);border:2px solid rgba(255,255,255,0.3);border-radius:9999px;color:#fff;font-weight:700;font-size:1rem;cursor:pointer;transition:all 0.3s;font-family:inherit}
+    .amount-chip:hover,.amount-chip.selected{background:#fff;color:#1e3a8a;border-color:#fff;transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.2)}
+    .amount-chip.featured{background:#f59e0b;border-color:#f59e0b;color:#0f172a;font-weight:800}
+    .impact-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .impact-trio-card{background:#fff;border-radius:24px;padding:2rem 1.5rem;text-align:center;border:1px solid #e2e8f0;box-shadow:0 6px 18px rgba(0,0,0,0.06);transition:transform 0.3s,box-shadow 0.3s}
+    .impact-trio-card:hover{transform:translateY(-4px);box-shadow:0 24px 48px rgba(30,58,138,0.16)}
+    .impact-trio-icon{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:0 auto 1rem}
+    .impact-trio-icon.blue{background:rgba(37,99,235,0.1);color:#2563eb}
+    .impact-trio-icon.amber{background:rgba(245,158,11,0.12);color:#b45309}
+    .impact-trio-icon.emerald{background:rgba(16,185,129,0.12);color:#047857}
+    .impact-trio-num{font-size:2.4rem;font-weight:900;color:#1d4ed8;line-height:1;margin-bottom:0.4rem}
+    .impact-trio-label{font-size:0.88rem;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:0.04em}
+    .impact-trio-desc{font-size:0.82rem;color:#64748b;margin-top:0.4rem}
+    .tiers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.8rem}
+    .tier-card{border-radius:32px;padding:2rem;border:2px solid #e2e8f0;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,0.06);transition:all 0.3s;position:relative;overflow:hidden}
+    .tier-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px}
+    .tier-card.tier-seed::before{background:linear-gradient(90deg,#10b981,#6ee7b7)}
+    .tier-card.tier-sprout::before{background:linear-gradient(90deg,#2563eb,#60a5fa)}
+    .tier-card.tier-champion::before{background:linear-gradient(90deg,#f59e0b,#fde68a)}
+    .tier-card.tier-founder::before{background:linear-gradient(90deg,#8b5cf6,#c4b5fd)}
+    .tier-card:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(30,58,138,0.16);border-color:#bfdbfe}
+    .tier-card.featured-tier{border-color:#93c5fd;background:linear-gradient(180deg,#eff6ff 0%,#fff 100%)}
+    .tier-badge-popular{display:inline-block;background:#2563eb;color:#fff;font-size:0.72rem;font-weight:800;padding:0.2rem 0.7rem;border-radius:9999px;margin-bottom:0.8rem;letter-spacing:0.05em;text-transform:uppercase}
+    .tier-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1rem}
+    .tier-icon.green{background:rgba(16,185,129,0.12);color:#047857}
+    .tier-icon.blue{background:rgba(37,99,235,0.1);color:#2563eb}
+    .tier-icon.amber{background:rgba(245,158,11,0.12);color:#b45309}
+    .tier-icon.purple{background:rgba(139,92,246,0.12);color:#7c3aed}
+    .tier-amount{font-size:2rem;font-weight:900;color:#0f172a;margin-bottom:0.3rem;line-height:1}
+    .tier-amount span{font-size:1rem;font-weight:600;color:#64748b}
+    .tier-title{font-size:1.1rem;font-weight:700;color:#1e293b;margin-bottom:0.8rem}
+    .tier-desc{font-size:0.9rem;color:#475569;line-height:1.6;margin-bottom:1.2rem}
+    .tier-features{list-style:none;margin-bottom:1.6rem}
+    .tier-features li{font-size:0.87rem;color:#334155;padding:0.3rem 0;display:flex;align-items:center;gap:0.5rem}
+    .tier-features li i{color:#10b981;font-size:0.8rem;flex-shrink:0}
+    .money-impact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.4rem}
+    .money-item{background:#fff;border-radius:24px;padding:1.6rem;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.06);display:flex;gap:1rem;align-items:flex-start;transition:all 0.3s}
+    .money-item:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+    .money-item-amount{min-width:72px;text-align:center;background:#eff6ff;border-radius:10px;padding:0.6rem 0.3rem}
+    .money-item-amount .amt{font-size:0.98rem;font-weight:900;color:#1d4ed8;display:block}
+    .money-item-amount .cur{font-size:0.7rem;font-weight:600;color:#64748b;display:block}
+    .money-item-text h4{font-size:0.95rem;font-weight:700;color:#0f172a;margin-bottom:0.3rem}
+    .money-item-text p{font-size:0.83rem;color:#475569;margin:0;line-height:1.5}
+    .quote-band{background:linear-gradient(135deg,#0c1e4a 0%,#1e3a8a 100%);padding:4rem 0;position:relative;overflow:hidden}
+    .quote-band-inner{position:relative;z-index:2;max-width:800px;margin:0 auto;text-align:center}
+    .quote-band-text{font-size:clamp(1.2rem,2.5vw,1.6rem);color:#fff;font-weight:600;line-height:1.6;font-style:italic;margin-bottom:1.5rem}
+    .quote-band-attr{display:flex;align-items:center;justify-content:center;gap:0.8rem;color:rgba(255,255,255,0.75);font-size:0.9rem;font-weight:600}
+    .quote-band-attr img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.4)}
+    .partner-logos-row{display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;justify-content:center}
+    .partner-logo-pill{display:flex;align-items:center;gap:0.6rem;padding:0.75rem 1.4rem;background:#fff;border:1.5px solid #e2e8f0;border-radius:9999px;box-shadow:0 1px 3px rgba(0,0,0,0.06);font-weight:700;font-size:0.9rem;color:#334155;transition:all 0.3s}
+    .partner-logo-pill:hover{border-color:#93c5fd;box-shadow:0 6px 18px rgba(0,0,0,0.08);transform:translateY(-2px)}
+    .partner-logo-pill img{height:28px;width:auto;object-fit:contain}
+    .partner-form-wrap{background:#fff;border-radius:32px;padding:3rem;box-shadow:0 24px 48px rgba(30,58,138,0.16);border:1px solid #e2e8f0}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+    .form-group{margin-bottom:1.2rem}
+    .form-label{display:block;font-size:0.88rem;font-weight:700;color:#334155;margin-bottom:0.45rem}
+    .form-control{width:100%;padding:0.85rem 1.1rem;border:1.5px solid #e2e8f0;border-radius:10px;font-size:0.95rem;font-family:inherit;color:#0f172a;background:#f8fafc;transition:border-color 0.18s,box-shadow 0.18s;outline:none}
+    .form-control:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(37,99,235,0.12);background:#fff}
+    textarea.form-control{min-height:130px;resize:vertical}
+    select.form-control{cursor:pointer}
+    .ways-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.6rem}
+    .way-card{background:#fff;border-radius:32px;border:1.5px solid #e2e8f0;box-shadow:0 6px 18px rgba(0,0,0,0.06);padding:2rem;transition:all 0.3s}
+    .way-card:hover{transform:translateY(-5px);box-shadow:0 24px 48px rgba(30,58,138,0.16);border-color:#bfdbfe}
+    .way-icon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1.1rem}
+    .way-icon.blue{background:rgba(37,99,235,0.1);color:#2563eb}
+    .way-icon.amber{background:rgba(245,158,11,0.12);color:#b45309}
+    .way-icon.emerald{background:rgba(16,185,129,0.12);color:#047857}
+    .way-icon.cyan{background:rgba(6,182,212,0.12);color:#0891b2}
+    .way-icon.purple{background:rgba(139,92,246,0.12);color:#7c3aed}
+    .way-card h3{font-size:1.1rem;font-weight:700;color:#0f172a;margin-bottom:0.7rem}
+    .way-card p{font-size:0.9rem;color:#475569;line-height:1.6}
+    @media(max-width:768px){.donate-hero-inner{grid-template-columns:1fr}.donate-hero-img{display:none}.impact-trio{grid-template-columns:1fr 1fr}.form-row{grid-template-columns:1fr}.quick-donate-inner{flex-direction:column;align-items:flex-start}.partner-form-wrap{padding:1.8rem}}
+    @media(max-width:560px){.impact-trio{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
 
-  <!-- WHATSAPP FLOATING BUTTON -->
-  <a href="https://wa.me/254714447988?text=Hello%20Dijitali%20Maths!%20I%20would%20like%20to%20learn%20more%20about%20your%20programmes." target="_blank" class="wa-float-btn" title="Chat with Dijitali Maths on WhatsApp" aria-label="WhatsApp Us">
+  <a href="https://wa.me/254714447988?text=Hello%20Dijitali%20Maths!%20I%20would%20like%20to%20support%20your%20mission." target="_blank" class="wa-float-btn" title="Chat with Dijitali Maths on WhatsApp" aria-label="WhatsApp Us">
     <i class="fa-brands fa-whatsapp"></i>
     <span class="wa-text">Chat on WhatsApp</span>
     <span class="wa-online-dot" title="Online now"></span>
   </a>
 
-  <!-- STICKY NAVBAR -->
   <header class="navbar">
     <div class="container nav-container">
       <a href="index.html" class="brand">
@@ -37,7 +121,6 @@
           <p>Every Learner Can Do Maths</p>
         </div>
       </a>
-
       <nav>
         <ul class="nav-menu">
           <li><a href="index.html" class="nav-link">Home</a></li>
@@ -50,28 +133,19 @@
           <li><a href="contactus.html" class="nav-link">Contact</a></li>
         </ul>
       </nav>
-
       <div class="nav-cta">
-        <a href="donation.html" class="btn btn-primary btn-sm">
-          <i class="fa-solid fa-handshake"></i> Partner With Us
-        </a>
+        <a href="donation.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-handshake"></i> Partner With Us</a>
       </div>
-
-      <button class="mobile-toggle" aria-label="Open Menu">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+      <button class="mobile-toggle" aria-label="Open Menu"><i class="fa-solid fa-bars"></i></button>
     </div>
   </header>
 
-  <!-- MOBILE DRAWER -->
   <div class="drawer-overlay"></div>
   <aside class="mobile-drawer">
     <div class="drawer-header">
       <div class="brand">
         <div class="brand-symbol"><img src="images/logo.jpeg" alt="Dijitali Maths Logo"></div>
-        <div class="brand-text">
-          <h2 style="font-size: 1.2rem; margin:0;">DIJITALI <span>MATHS</span></h2>
-        </div>
+        <div class="brand-text"><h2 style="font-size:1.2rem;margin:0;">DIJITALI <span>MATHS</span></h2></div>
       </div>
       <button class="drawer-close" aria-label="Close Menu"><i class="fa-solid fa-xmark"></i></button>
     </div>
@@ -80,168 +154,301 @@
       <li><a href="aboutus.html"><span>About Us</span> <i class="fa-solid fa-chevron-right"></i></a></li>
       <li><a href="projects.html"><span>What We Do</span> <i class="fa-solid fa-chevron-right"></i></a></li>
       <li><a href="impact.html"><span>Our Impact</span> <i class="fa-solid fa-chevron-right"></i></a></li>
-      <li><a href="events.html"><span>Events & Camps</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="events.html"><span>Events &amp; Camps</span> <i class="fa-solid fa-chevron-right"></i></a></li>
       <li><a href="photos.html"><span>Gallery in Action</span> <i class="fa-solid fa-chevron-right"></i></a></li>
       <li><a href="volunteers.html"><span>Get Involved</span> <i class="fa-solid fa-chevron-right"></i></a></li>
       <li><a href="volunteersForm.html"><span>Volunteer Application</span> <i class="fa-solid fa-chevron-right"></i></a></li>
-      <li><a href="donation.html" class="active"><span>Support & Partner</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="donation.html" class="active"><span>Support &amp; Partner</span> <i class="fa-solid fa-chevron-right"></i></a></li>
       <li><a href="contactus.html"><span>Contact Us</span> <i class="fa-solid fa-chevron-right"></i></a></li>
     </ul>
   </aside>
 
-  <!-- PAGE HERO -->
-  <section class="page-hero">
+  <!-- HERO -->
+  <section class="donate-hero">
     <div class="hero-shapes">
-      <span class="shape shape-1">∑</span>
-      <span class="shape shape-2">π</span>
-      <span class="shape shape-3">√</span>
+      <span class="shape shape-1">&#x2211;</span>
+      <span class="shape shape-2">&#x3c0;</span>
+      <span class="shape shape-3">&#x221a;</span>
+      <span class="shape shape-4">&#x221e;</span>
     </div>
-    <div class="container page-hero-content">
-      <div class="breadcrumb">
-        <a href="index.html">Home</a> <span>/</span> <span>Support & Partnerships</span>
+    <div class="container">
+      <div class="donate-hero-inner">
+        <div class="donate-hero-text">
+          <div class="hero-tag" style="margin-bottom:1.2rem;"><i class="fa-solid fa-heart-pulse"></i> Support the Mission</div>
+          <h1>Help Every Child Discover the <span class="hl">Joy of Mathematics</span></h1>
+          <p>Dijitali Maths is building a Kenya where no child is left behind in mathematics. Your donation funds hands-on learning materials, learner sessions, teacher workshops, and community maths festivals that transform how children experience mathematics.</p>
+          <div class="donate-hero-actions">
+            <a href="#donate-now" class="btn btn-glow btn-lg"><i class="fa-solid fa-heart"></i> Donate Today</a>
+            <a href="#partner-form" class="btn btn-outline-white btn-lg"><i class="fa-solid fa-handshake"></i> Partner With Us</a>
+          </div>
+        </div>
+        <div class="donate-hero-img">
+          <img src="images/community_math_fest.jpg" alt="Children learning mathematics joyfully at Dijitali Maths" />
+          <div class="donate-hero-img-overlay"></div>
+          <div class="donate-hero-img-stat"><h4>1,000+</h4><p>Learners Reached Across Kenya</p></div>
+        </div>
       </div>
-      <h1>Help More Learners Discover That They Can Do Maths</h1>
-      <p>
-        Dijitali is building mathematics learning experiences that help learners develop understanding, confidence, and curiosity. Partner with us to scale this transformation.
-      </p>
     </div>
   </section>
 
-  <!-- WAYS TO SUPPORT GRID -->
+  <!-- QUICK DONATE -->
+  <section class="quick-donate-bar" id="donate-now">
+    <div class="container">
+      <div class="quick-donate-inner">
+        <div class="quick-donate-label">
+          <h3><i class="fa-solid fa-bolt" style="color:#fde68a;margin-right:0.4rem;"></i> Give Today</h3>
+          <p>Every shilling directly impacts a learner&#x2019;s mathematical journey.</p>
+        </div>
+        <div class="quick-amounts">
+          <span class="amount-chip">KES 500</span>
+          <span class="amount-chip">KES 1,000</span>
+          <span class="amount-chip featured">KES 2,500</span>
+          <span class="amount-chip">KES 5,000</span>
+          <span class="amount-chip">KES 10,000</span>
+          <a href="https://wa.me/254714447988?text=Hello!%20I%20would%20like%20to%20donate%20to%20Dijitali%20Maths." target="_blank" class="btn btn-accent btn-lg" style="margin-left:0.5rem;"><i class="fa-brands fa-whatsapp"></i> Give via WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT NUMBERS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">Our Reach So Far</span>
+        <h2 class="section-title">The Impact You&#x2019;re Making Possible</h2>
+        <p class="section-subtitle">With your support, we continue to grow. Here is what we have achieved together.</p>
+      </div>
+      <div class="impact-trio">
+        <div class="impact-trio-card">
+          <div class="impact-trio-icon blue"><i class="fa-solid fa-child-reaching"></i></div>
+          <div class="impact-trio-num">1,000+</div>
+          <div class="impact-trio-label">Learners Reached</div>
+          <div class="impact-trio-desc">Children across Nairobi &amp; Nakuru counties who now engage with mathematics confidently.</div>
+        </div>
+        <div class="impact-trio-card">
+          <div class="impact-trio-icon amber"><i class="fa-solid fa-chalkboard-user"></i></div>
+          <div class="impact-trio-num">400+</div>
+          <div class="impact-trio-label">Teachers Empowered</div>
+          <div class="impact-trio-desc">Educators equipped with practical low-cost teaching aids and innovative pedagogical tools.</div>
+        </div>
+        <div class="impact-trio-card">
+          <div class="impact-trio-icon emerald"><i class="fa-solid fa-school"></i></div>
+          <div class="impact-trio-num">2</div>
+          <div class="impact-trio-label">Counties Active</div>
+          <div class="impact-trio-desc">Programme delivery across Nairobi and Nakuru, with more counties in our expansion plan.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOUR DONATION DOES -->
+  <section class="section section-soft">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">Your Gift in Action</span>
+        <h2 class="section-title">See Exactly What Your Donation Does</h2>
+        <p class="section-subtitle">No amount is too small. Every contribution directly funds a learner&#x2019;s mathematical transformation.</p>
+      </div>
+      <div class="money-impact-grid">
+        <div class="money-item"><div class="money-item-amount"><span class="amt">KES 500</span><span class="cur">per gift</span></div><div class="money-item-text"><h4>Math Games Kit</h4><p>Funds a set of reusable mathematical board game cards for one learner group.</p></div></div>
+        <div class="money-item"><div class="money-item-amount"><span class="amt">KES 1,000</span><span class="cur">per gift</span></div><div class="money-item-text"><h4>Counting Cups Set</h4><p>Provides hand-painted counting cups manipulatives that a whole classroom can use.</p></div></div>
+        <div class="money-item"><div class="money-item-amount"><span class="amt">KES 2,500</span><span class="cur">per gift</span></div><div class="money-item-text"><h4>Learner Session</h4><p>Sponsors a child&#x2019;s full participation in one of our structured holiday discovery sessions.</p></div></div>
+        <div class="money-item"><div class="money-item-amount"><span class="amt">KES 5,000</span><span class="cur">per gift</span></div><div class="money-item-text"><h4>Teacher Workshop</h4><p>Enables one teacher to attend our hands-on professional development workshop.</p></div></div>
+        <div class="money-item"><div class="money-item-amount"><span class="amt">KES 10,000</span><span class="cur">per gift</span></div><div class="money-item-text"><h4>Community Event</h4><p>Contributes significantly toward a community maths festival reaching 100+ learners.</p></div></div>
+        <div class="money-item"><div class="money-item-amount"><span class="amt">Any</span><span class="cur">amount</span></div><div class="money-item-text"><h4>Your Chosen Impact</h4><p>Any gift contributes to our general fund supporting materials, sessions, and innovation.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DONATION TIERS -->
   <section class="section">
     <div class="container">
       <div class="section-header">
         <span class="section-kicker">Support Pathways</span>
-        <h2 class="section-title">How You Can Back Our Mission</h2>
-        <p class="section-subtitle">Choose the area where your support can make the deepest difference.</p>
+        <h2 class="section-title">Choose Your Level of Impact</h2>
+        <p class="section-subtitle">From a one-time gift to a transformational partnership &mdash; find the giving level that works for you.</p>
       </div>
-
-      <div class="doors-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
-        <!-- 1. Sponsor a learner experience -->
-        <div class="rhythm-card">
-          <div class="rhythm-icon blue"><i class="fa-solid fa-graduation-cap"></i></div>
-          <span class="badge badge-blue" style="margin-bottom: 0.8rem;">Direct Impact</span>
-          <h3>Sponsor a Learner Experience</h3>
-          <p>
-            Support a child's participation in structured mathematics sessions, holiday discovery bootcamps, or STEM enrichment challenges.
-          </p>
+      <div class="tiers-grid">
+        <div class="tier-card tier-seed">
+          <div class="tier-icon green"><i class="fa-solid fa-seedling"></i></div>
+          <div class="tier-amount">KES 500 <span>/ month</span></div>
+          <div class="tier-title">&#x1F331; Seed Supporter</div>
+          <div class="tier-desc">Plant the seed of mathematical confidence in a learner&#x2019;s life with a small monthly gift.</div>
+          <ul class="tier-features">
+            <li><i class="fa-solid fa-check"></i> Contributes to learning materials fund</li>
+            <li><i class="fa-solid fa-check"></i> Newsletter with programme updates</li>
+            <li><i class="fa-solid fa-check"></i> Annual impact report</li>
+          </ul>
+          <a href="https://wa.me/254714447988?text=Hi!%20I%20want%20to%20be%20a%20Seed%20Supporter." target="_blank" class="btn btn-outline-primary" style="width:100%;">Become a Seed Supporter <i class="fa-solid fa-arrow-right"></i></a>
         </div>
-
-        <!-- 2. Support learning materials -->
-        <div class="rhythm-card step-2">
-          <div class="rhythm-icon amber"><i class="fa-solid fa-cubes-stacked"></i></div>
-          <span class="badge badge-amber" style="margin-bottom: 0.8rem;">Hands-On Aids</span>
-          <h3>Support Learning Materials</h3>
-          <p>
-            Help us create and distribute reusable hands-on manipulatives, math games, and low-cost counting cups to underserved classrooms.
-          </p>
+        <div class="tier-card tier-sprout featured-tier">
+          <span class="tier-badge-popular">Most Popular</span>
+          <div class="tier-icon blue"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div class="tier-amount">KES 2,500 <span>/ month</span></div>
+          <div class="tier-title">&#x1F393; Learning Champion</div>
+          <div class="tier-desc">Sponsor a learner&#x2019;s complete monthly learning journey &mdash; sessions, materials, and mentorship.</div>
+          <ul class="tier-features">
+            <li><i class="fa-solid fa-check"></i> Sponsors one learner&#x2019;s full session participation</li>
+            <li><i class="fa-solid fa-check"></i> Named acknowledgement in our reports</li>
+            <li><i class="fa-solid fa-check"></i> Quarterly progress story from a sponsored learner</li>
+            <li><i class="fa-solid fa-check"></i> Certificate of support</li>
+          </ul>
+          <a href="https://wa.me/254714447988?text=Hi!%20I%20want%20to%20be%20a%20Learning%20Champion." target="_blank" class="btn btn-primary" style="width:100%;">Sponsor a Learner <i class="fa-solid fa-arrow-right"></i></a>
         </div>
-
-        <!-- 3. Support a mathematics club -->
-        <div class="rhythm-card step-3">
-          <div class="rhythm-icon emerald"><i class="fa-solid fa-users-gear"></i></div>
-          <span class="badge badge-emerald" style="margin-bottom: 0.8rem;">Ecosystem Growth</span>
-          <h3>Support a Mathematics Club</h3>
-          <p>
-            Fund the setup of recurring after-school mathematics club pilots where children explore problem solving and collaborative math projects.
-          </p>
+        <div class="tier-card tier-champion">
+          <div class="tier-icon amber"><i class="fa-solid fa-trophy"></i></div>
+          <div class="tier-amount">KES 10,000 <span>/ month</span></div>
+          <div class="tier-title">&#x1F3C6; Class Champion</div>
+          <div class="tier-desc">Fund a full mathematics club or sponsor a classroom&#x2019;s worth of learners for the month.</div>
+          <ul class="tier-features">
+            <li><i class="fa-solid fa-check"></i> Funds a full maths club session</li>
+            <li><i class="fa-solid fa-check"></i> Branded mention at community events</li>
+            <li><i class="fa-solid fa-check"></i> Monthly impact story with photos</li>
+            <li><i class="fa-solid fa-check"></i> Tax-deductible donation receipt</li>
+          </ul>
+          <a href="https://wa.me/254714447988?text=Hi!%20I%20want%20to%20be%20a%20Class%20Champion." target="_blank" class="btn btn-outline-primary" style="width:100%;">Fund a Maths Club <i class="fa-solid fa-arrow-right"></i></a>
         </div>
-
-        <!-- 4. Support innovation -->
-        <div class="rhythm-card" style="border-top: 6px solid var(--accent-cyan);">
-          <div class="rhythm-icon blue" style="background: rgba(6,182,212,0.15); color: #0891b2;"><i class="fa-solid fa-lightbulb"></i></div>
-          <span class="badge badge-cyan" style="margin-bottom: 0.8rem;">Research & Pedagogy</span>
-          <h3>Support Math Innovation</h3>
-          <p>
-            Help us pilot and rigorously evaluate new approaches to mathematics instruction, digital tools, and learner anxiety reduction.
-          </p>
-        </div>
-
-        <!-- 5. Become a strategic partner -->
-        <div class="rhythm-card" style="border-top: 6px solid var(--primary-800);">
-          <div class="rhythm-icon blue"><i class="fa-solid fa-building-ngo"></i></div>
-          <span class="badge badge-blue" style="margin-bottom: 0.8rem;">Institutional Alliances</span>
-          <h3>Strategic Partnership</h3>
-          <p>
-            Organizations can collaborate through multi-year funding, venue access, educational technology, research partnerships, or corporate volunteering.
-          </p>
+        <div class="tier-card tier-founder">
+          <div class="tier-icon purple"><i class="fa-solid fa-building-ngo"></i></div>
+          <div class="tier-amount">KES 50,000 <span>/ year</span></div>
+          <div class="tier-title">&#x1F48E; Founding Partner</div>
+          <div class="tier-desc">A transformational institutional partnership that powers an entire programme pillar for a year.</div>
+          <ul class="tier-features">
+            <li><i class="fa-solid fa-check"></i> Named partnership programme</li>
+            <li><i class="fa-solid fa-check"></i> Co-branding at all events and materials</li>
+            <li><i class="fa-solid fa-check"></i> Quarterly site visits and impact reporting</li>
+            <li><i class="fa-solid fa-check"></i> Board recognition and advisory input</li>
+          </ul>
+          <a href="#partner-form" class="btn btn-outline-primary" style="width:100%;">Inquire About Partnership <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PARTNERSHIP ENQUIRY FORM -->
-  <section class="section section-soft" id="partner-form-section">
-    <div class="container" style="max-width: 800px;">
-      <div class="section-header" style="margin-bottom: 2rem;">
+  <!-- QUOTE BAND -->
+  <div class="quote-band">
+    <div class="container">
+      <div class="quote-band-inner">
+        <p class="quote-band-text">&#x201C;I used to think maths was not for me. Then Dijitali Maths came to our school. Now I help my friends solve problems. It is the best thing that has happened in our class.&#x201D;</p>
+        <div class="quote-band-attr">
+          <img src="images/sege.jpg" alt="Learner" />
+          <div><span style="color:#fff;font-weight:700;display:block;">A Dijitali Maths Learner</span><span>Nairobi, Kenya &middot; Grade 6</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WAYS TO SUPPORT -->
+  <section class="section section-soft">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">How You Can Help</span>
+        <h2 class="section-title">More Ways to Back Our Mission</h2>
+        <p class="section-subtitle">Beyond financial donations, there are many ways to support Dijitali Maths and the children we serve.</p>
+      </div>
+      <div class="ways-grid">
+        <div class="way-card"><div class="way-icon blue"><i class="fa-solid fa-graduation-cap"></i></div><span class="badge badge-blue" style="margin-bottom:0.8rem;">Direct Impact</span><h3>Sponsor a Learner Experience</h3><p>Support a child&#x2019;s participation in structured mathematics sessions, holiday discovery bootcamps, and STEM enrichment challenges.</p></div>
+        <div class="way-card"><div class="way-icon amber"><i class="fa-solid fa-cubes-stacked"></i></div><span class="badge badge-amber" style="margin-bottom:0.8rem;">Hands-On Aids</span><h3>Fund Learning Materials</h3><p>Help us create and distribute reusable hands-on manipulatives, math games, and low-cost counting cups to underserved classrooms.</p></div>
+        <div class="way-card"><div class="way-icon emerald"><i class="fa-solid fa-users-gear"></i></div><span class="badge badge-emerald" style="margin-bottom:0.8rem;">Ecosystem Growth</span><h3>Support a Maths Club</h3><p>Fund the setup of recurring after-school mathematics club pilots where children explore problem solving and collaborative mathematics projects.</p></div>
+        <div class="way-card"><div class="way-icon cyan"><i class="fa-solid fa-lightbulb"></i></div><span class="badge badge-cyan" style="margin-bottom:0.8rem;">Research &amp; Pedagogy</span><h3>Back Math Innovation</h3><p>Help us pilot and evaluate new approaches to mathematics instruction, digital tools, and learner anxiety reduction strategies.</p></div>
+        <div class="way-card"><div class="way-icon purple"><i class="fa-solid fa-building-ngo"></i></div><span class="badge badge-blue" style="margin-bottom:0.8rem;">Institutional Alliance</span><h3>Strategic Partnership</h3><p>Organizations can collaborate through multi-year funding, venue access, educational technology, research partnerships, or corporate volunteering.</p></div>
+        <div class="way-card"><div class="way-icon blue"><i class="fa-solid fa-share-nodes"></i></div><span class="badge badge-blue" style="margin-bottom:0.8rem;">Amplify</span><h3>Spread the Word</h3><p>Share our story with friends, family, schools, and employers. Your network could be a learner&#x2019;s biggest breakthrough.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRATEGIC PARTNERS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">Our Strategic Partners</span>
+        <h2 class="section-title">Powered By Partnership</h2>
+        <p class="section-subtitle">We are grateful to the organizations and institutions who walk alongside us in this mission.</p>
+      </div>
+      <div class="partner-logos-row">
+        <div class="partner-logo-pill"><img src="images/teach for kenya.png" alt="Teach For Kenya" /><span>Teach For Kenya</span></div>
+        <div class="partner-logo-pill"><img src="images/ishara digital afrique.png" alt="Ishara Digital" /><span>Ishara Digital</span></div>
+        <div class="partner-logo-pill"><img src="images/stem impact kenya.png" alt="Stem Impact Center" /><span>Stem Impact Center</span></div>
+        <div class="partner-logo-pill"><i class="fa-solid fa-school" style="color:#2563eb;font-size:1.2rem;"></i><span>&#x1F1F0;&#x1F1EA; Kayole 1 School</span></div>
+        <div class="partner-logo-pill"><i class="fa-solid fa-map-location-dot" style="color:#f59e0b;font-size:1.2rem;"></i><span>Nairobi County</span></div>
+        <div class="partner-logo-pill"><i class="fa-solid fa-map-location-dot" style="color:#10b981;font-size:1.2rem;"></i><span>Nakuru County</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNER FORM -->
+  <section class="section section-soft" id="partner-form">
+    <div class="container" style="max-width:860px;">
+      <div class="section-header" style="margin-bottom:2.5rem;">
         <span class="section-kicker">Collaboration</span>
         <h2 class="section-title">Partner With Dijitali Maths</h2>
-        <p class="section-subtitle">
-          Submit your partnership inquiry or support interest below, and our leadership team will reach out directly.
-        </p>
+        <p class="section-subtitle">Submit your partnership inquiry or donation interest below. Our leadership team will reach out within 48 hours.</p>
       </div>
-
-      <div class="form-card">
+      <div class="partner-form-wrap">
+        <div style="background:linear-gradient(135deg,rgba(37,99,235,0.08),rgba(6,182,212,0.06));border:1.5px solid rgba(37,99,235,0.2);border-radius:16px;padding:1.2rem 1.5rem;margin-bottom:2rem;display:flex;gap:1rem;align-items:flex-start;">
+          <i class="fa-solid fa-circle-info" style="color:#2563eb;font-size:1.2rem;flex-shrink:0;margin-top:0.1rem;"></i>
+          <div>
+            <strong style="color:#1d4ed8;font-size:0.95rem;">M-Pesa &amp; Direct Donations</strong><br>
+            <span style="font-size:0.88rem;color:#475569;">For immediate M-Pesa donations, WhatsApp us at <strong>+254 714 447 988</strong> or email <strong>digitalimathsfoundation@gmail.com</strong> for banking details. Use the form below for partnership inquiries.</span>
+          </div>
+        </div>
         <form id="partnerForm">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;">
-            <div class="form-group">
-              <label class="form-label">Your Name / Representative *</label>
-              <input type="text" class="form-control" placeholder="e.g. Samuel Mutua" required />
-            </div>
-            <div class="form-group">
-              <label class="form-label">Organization / Foundation (Optional)</label>
-              <input type="text" class="form-control" placeholder="e.g. STEM Education Africa" />
-            </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Your Name / Representative *</label><input type="text" class="form-control" placeholder="e.g. Jane Kamau" required /></div>
+            <div class="form-group"><label class="form-label">Organization / Foundation</label><input type="text" class="form-control" placeholder="e.g. STEM Education Africa (optional)" /></div>
           </div>
-
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;">
-            <div class="form-group">
-              <label class="form-label">Email Address *</label>
-              <input type="email" class="form-control" placeholder="e.g. samuel@organization.org" required />
-            </div>
-            <div class="form-group">
-              <label class="form-label">Phone / WhatsApp *</label>
-              <input type="tel" class="form-control" placeholder="e.g. +254 700 000 000" required />
-            </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Email Address *</label><input type="email" class="form-control" placeholder="e.g. jane@organization.org" required /></div>
+            <div class="form-group"><label class="form-label">Phone / WhatsApp *</label><input type="tel" class="form-control" placeholder="e.g. +254 700 000 000" required /></div>
           </div>
-
           <div class="form-group">
-            <label class="form-label">Type of Partnership / Support Interest *</label>
+            <label class="form-label">Type of Support / Partnership Interest *</label>
             <select class="form-control" required>
-              <option value="Sponsoring Learner Experiences / Bootcamps">Sponsoring Learner Experiences / Bootcamps</option>
-              <option value="Funding Reusable Learning Materials & Games">Funding Reusable Learning Materials & Games</option>
-              <option value="Supporting Mathematics Club Pilot">Supporting Mathematics Club Pilot</option>
-              <option value="Strategic / Institutional Partnership">Strategic / Institutional Partnership</option>
-              <option value="Providing Venues / Hardware / Tech Tools">Providing Venues / Hardware / Tech Tools</option>
-              <option value="Research & Educational Collaboration">Research & Educational Collaboration</option>
+              <option value="">Select an option...</option>
+              <option>One-time Donation</option>
+              <option>Monthly Giving / Sponsorship</option>
+              <option>Sponsoring Learner Experiences / Bootcamps</option>
+              <option>Funding Reusable Learning Materials &amp; Games</option>
+              <option>Supporting Mathematics Club Pilot</option>
+              <option>Strategic / Institutional Partnership</option>
+              <option>Providing Venues / Hardware / Tech Tools</option>
+              <option>Research &amp; Educational Collaboration</option>
             </select>
           </div>
-
-          <div class="form-group">
-            <label class="form-label">Message / Details of Your Interest *</label>
-            <textarea class="form-control" placeholder="Share how you or your organization would like to partner with Dijitali Maths..." required></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
-            <i class="fa-solid fa-handshake"></i> Send Partnership Inquiry
-          </button>
+          <div class="form-group"><label class="form-label">Preferred Giving Amount (if donating)</label><input type="text" class="form-control" placeholder="e.g. KES 5,000 or USD 50" /></div>
+          <div class="form-group"><label class="form-label">Message / Details of Your Interest *</label><textarea class="form-control" placeholder="Share how you or your organization would like to partner with or support Dijitali Maths..." required></textarea></div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;" id="submitPartnerForm"><i class="fa-solid fa-paper-plane"></i> Send Inquiry</button>
+          <p style="text-align:center;margin-top:1rem;font-size:0.83rem;color:#64748b;"><i class="fa-solid fa-lock" style="color:#10b981;"></i> Your information is safe and will only be used to follow up on your inquiry.</p>
         </form>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- CTA BAND -->
+  <section class="section section-blue" style="text-align:center;">
+    <div class="container">
+      <div style="max-width:720px;margin:0 auto;">
+        <span class="badge badge-pill-glow" style="margin-bottom:1.2rem;">Together We Can</span>
+        <h2 style="font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-bottom:1rem;color:#fff;">Mathematics is a right, not a privilege.</h2>
+        <p style="font-size:1.1rem;color:rgba(255,255,255,0.9);margin-bottom:2rem;line-height:1.7;">When you support Dijitali Maths, you are investing in a generation of confident, curious mathematical thinkers who will change Kenya&#x2019;s future.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <a href="https://wa.me/254714447988?text=Hello!%20I%20want%20to%20support%20Dijitali%20Maths." target="_blank" class="btn btn-accent btn-lg"><i class="fa-brands fa-whatsapp"></i> Give via WhatsApp</a>
+          <a href="#partner-form" class="btn btn-outline-white btn-lg"><i class="fa-solid fa-handshake"></i> Partnership Inquiry</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <div class="brand" style="margin-bottom: 1rem;">
+          <div class="brand" style="margin-bottom:1rem;">
             <div class="brand-symbol"><img src="images/logo.jpeg" alt="Dijitali Maths Logo"></div>
-            <div class="brand-text">
-              <h2 style="color: #fff; margin:0;">DIJITALI <span style="color: var(--accent-cyan-light);">MATHS</span></h2>
-            </div>
+            <div class="brand-text"><h2 style="color:#fff;margin:0;">DIJITALI <span style="color:#67e8f9;">MATHS</span></h2></div>
           </div>
-          <p>"Every learner can do maths. Sometimes they just need the right way in."</p>
+          <p>&#x201C;Every learner can do maths. Sometimes they just need the right way in.&#x201D;</p>
         </div>
         <div>
           <h4 class="footer-heading">Quick Navigation</h4>
@@ -250,7 +457,7 @@
             <li><a href="aboutus.html">About Our Story</a></li>
             <li><a href="projects.html">What We Do</a></li>
             <li><a href="impact.html">Our Impact</a></li>
-            <li><a href="events.html">Events & Festivals</a></li>
+            <li><a href="events.html">Events &amp; Festivals</a></li>
             <li><a href="photos.html">Photo Gallery</a></li>
           </ul>
         </div>
@@ -259,7 +466,7 @@
           <ul class="footer-links">
             <li><a href="volunteers.html">Volunteer Roles</a></li>
             <li><a href="volunteersForm.html">Volunteer Application</a></li>
-            <li><a href="donation.html">Support & Partnerships</a></li>
+            <li><a href="donation.html">Support &amp; Partnerships</a></li>
             <li><a href="contactus.html">Contact Us</a></li>
           </ul>
         </div>
@@ -267,19 +474,27 @@
           <h4 class="footer-heading">Stay Connected</h4>
           <form class="footer-newsletter-form">
             <input type="email" class="footer-input" placeholder="Your email address..." required />
-            <button type="submit" class="btn btn-accent btn-sm" style="padding: 0.75rem 1.2rem;">
-              <i class="fa-solid fa-paper-plane"></i>
-            </button>
+            <button type="submit" class="btn btn-accent btn-sm" style="padding:0.75rem 1.2rem;"><i class="fa-solid fa-paper-plane"></i></button>
           </form>
         </div>
       </div>
       <div class="footer-bottom">
-        <div>© 2026 Dijitali Maths. All rights reserved.</div>
-        <div><a href="privacy.html" style="color: rgba(255,255,255,0.7);">Privacy Policy</a></div>
+        <div>&copy; 2026 Dijitali Maths. All rights reserved.</div>
+        <div><a href="privacy.html" style="color:rgba(255,255,255,0.7);">Privacy Policy</a></div>
       </div>
     </div>
   </footer>
 
   <script src="custom.js"></script>
+  <script>
+    document.querySelectorAll('.amount-chip').forEach(function(chip){
+      chip.addEventListener('click',function(){
+        document.querySelectorAll('.amount-chip').forEach(function(c){c.classList.remove('selected');});
+        this.classList.add('selected');
+      });
+    });
+    var pf=document.getElementById('partnerForm');
+    if(pf){pf.addEventListener('submit',function(e){e.preventDefault();var b=document.getElementById('submitPartnerForm');b.innerHTML='<i class="fa-solid fa-check"></i> Inquiry Sent!';b.style.background='linear-gradient(135deg,#10b981,#059669)';b.disabled=true;});}
+  </script>
 </body>
 </html>
