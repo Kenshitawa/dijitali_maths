@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Gallery — Dijitali Maths in Action</title>
+  <meta name="description" content="Explore photos of Dijitali Maths in action: hands-on learner experiences, teacher workshops, community math festivals, and creative math projects in Kenya." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="images/logo.jpeg" />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ===== GALLERY PAGE — MODERN PURE-PHOTO MASONRY ===== */
+    .gallery-hero {
+      position: relative;
+      background: linear-gradient(135deg, #06112d 0%, #0c1e4a 50%, #1a2f6e 100%);
+      padding: 5rem 0 4rem;
+      overflow: hidden;
+      color: #fff;
+      text-align: center;
+    }
+    .gallery-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 60%, rgba(99,179,237,0.13) 0%, transparent 70%);
+    }
+    .gallery-hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .gallery-hero-inner h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.8rem;
+    }
+    .gallery-hero-inner h1 span {
+      background: linear-gradient(135deg, #67e8f9, #60a5fa, #fde68a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gallery-hero-inner p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+    }
+
+    /* Filter Tabs */
+    .gallery-filter-bar {
+      position: sticky;
+      top: 80px;
+      z-index: 90;
+      background: rgba(248,250,252,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid #e2e8f0;
+      padding: 0.8rem 0;
+    }
+    .gallery-filter-bar .container {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 2px;
+      align-items: center;
+    }
+    .gallery-filter-bar .container::-webkit-scrollbar { display: none; }
+    .gfb-btn {
+      flex-shrink: 0;
+      padding: 0.5rem 1.1rem;
+      border-radius: 9999px;
+      border: 1.5px solid #e2e8f0;
+      background: #fff;
+      color: #475569;
+      font-size: 0.87rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.22s;
+      white-space: nowrap;
+    }
+    .gfb-btn:hover { border-color: #93c5fd; color: #2563eb; background: #eff6ff; }
+    .gfb-btn.active { background: #2563eb; border-color: #2563eb; color: #fff; box-shadow: 0 4px 12px rgba(37,99,235,0.3); }
+
+    /* Masonry Grid */
+    .photo-masonry {
+      columns: 4;
+      column-gap: 12px;
+      padding: 2.5rem 0;
+    }
+    @media (max-width: 1100px) { .photo-masonry { columns: 3; } }
+    @media (max-width: 720px)  { .photo-masonry { columns: 2; column-gap: 8px; } }
+    @media (max-width: 420px)  { .photo-masonry { columns: 1; } }
+
+    .photo-item {
+      break-inside: avoid;
+      margin-bottom: 12px;
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: zoom-in;
+      display: block;
+      background: #e2e8f0;
+    }
+    .photo-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s;
+    }
+    .photo-item:hover img {
+      transform: scale(1.05);
+      filter: brightness(0.85);
+    }
+    .photo-item .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15,23,42,0.55) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 1.2rem;
+    }
+    .photo-item:hover .photo-overlay { opacity: 1; }
+    .photo-overlay-icon {
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      color: #1d4ed8;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      transform: translateY(8px);
+      transition: transform 0.3s;
+    }
+    .photo-item:hover .photo-overlay-icon { transform: translateY(0); }
+
+    /* Hidden items (filtered) */
+    .photo-item.hidden {
+      display: none;
+    }
+
+    /* Lightbox */
+    .lightbox-wrap {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .lightbox-wrap.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .lb-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(5, 12, 35, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .lb-box {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .lb-img-wrap {
+      width: 100%;
+      max-height: 82vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+    }
+    .lb-img-wrap img {
+      max-width: 100%;
+      max-height: 82vh;
+      object-fit: contain;
+      display: block;
+    }
+    .lb-close {
+      position: fixed;
+      top: 1.2rem; right: 1.4rem;
+      width: 42px; height: 42px;
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      z-index: 10001;
+    }
+    .lb-close:hover { background: rgba(255,255,255,0.25); }
+
+    .lb-nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 46px; height: 46px;
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      z-index: 10001;
+    }
+    .lb-nav:hover { background: rgba(255,255,255,0.25); }
+    .lb-prev { left: 1rem; }
+    .lb-next { right: 1rem; }
+
+    /* Count badge */
+    .lb-counter {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 9999px;
+      padding: 0.4rem 1.1rem;
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      z-index: 10001;
+    }
+
+    /* Stats strip */
+    .gallery-stats-strip {
+      background: linear-gradient(90deg, #1e3a8a, #2563eb);
+      padding: 1.4rem 0;
+      text-align: center;
+    }
+    .gallery-stats-strip .strip-inner {
+      display: flex;
+      gap: 2.5rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .gss-item { color: #fff; font-size: 0.9rem; }
+    .gss-item strong { font-size: 1.3rem; font-weight: 900; display: block; }
+    .gss-sep { width: 1px; height: 36px; background: rgba(255,255,255,0.25); }
+  </style>
+</head>
+<body>
+
+  <!-- WHATSAPP FLOATING BUTTON -->
+  <a href="https://wa.me/254714447988?text=Hello%20Dijitali%20Maths!%20I%20would%20like%20to%20learn%20more%20about%20your%20programmes." target="_blank" class="wa-float-btn" title="Chat with Dijitali Maths on WhatsApp" aria-label="WhatsApp Us">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="wa-text">Chat on WhatsApp</span>
+    <span class="wa-online-dot" title="Online now"></span>
+  </a>
+
+  <!-- STICKY NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <div class="brand-symbol"><img src="images/logo.jpeg" alt="Dijitali Maths Logo"></div>
+        <div class="brand-text">
+          <h1>DIJITALI <span>MATHS</span></h1>
+          <p>Every Learner Can Do Maths</p>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="aboutus.html" class="nav-link">About</a></li>
+          <li><a href="projects.html" class="nav-link">What We Do</a></li>
+          <li><a href="impact.html" class="nav-link">Impact</a></li>
+          <li><a href="events.html" class="nav-link">Events</a></li>
+          <li><a href="photos.html" class="nav-link active">Gallery</a></li>
+          <li><a href="volunteers.html" class="nav-link">Get Involved</a></li>
+          <li><a href="contactus.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta">
+        <a href="donation.html" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-handshake"></i> Partner With Us
+        </a>
+      </div>
+
+      <button class="mobile-toggle" aria-label="Open Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE DRAWER -->
+  <div class="drawer-overlay"></div>
+  <aside class="mobile-drawer">
+    <div class="drawer-header">
+      <div class="brand">
+        <div class="brand-symbol"><img src="images/logo.jpeg" alt="Dijitali Maths Logo"></div>
+        <div class="brand-text">
+          <h2 style="font-size: 1.2rem; margin:0;">DIJITALI <span>MATHS</span></h2>
+        </div>
+      </div>
+      <button class="drawer-close" aria-label="Close Menu"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="drawer-links">
+      <li><a href="index.html"><span>Home</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="aboutus.html"><span>About Us</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="projects.html"><span>What We Do</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="impact.html"><span>Our Impact</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="events.html"><span>Events &amp; Camps</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="photos.html" class="active"><span>Gallery</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="volunteers.html"><span>Get Involved</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="volunteersForm.html"><span>Volunteer Application</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="donation.html"><span>Support &amp; Partner</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="contactus.html"><span>Contact Us</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+    </ul>
+  </aside>
+
+  <!-- GALLERY HERO -->
+  <section class="gallery-hero">
+    <div class="hero-shapes">
+      <span class="shape shape-1">∑</span>
+      <span class="shape shape-2">π</span>
+      <span class="shape shape-3">√</span>
+      <span class="shape shape-4">∞</span>
+    </div>
+    <div class="container gallery-hero-inner">
+      <div class="breadcrumb" style="justify-content:center; margin-bottom:1.2rem;">
+        <a href="index.html" style="color:rgba(255,255,255,0.65);">Home</a>
+        <span>/</span><span>Gallery</span>
+      </div>
+      <div class="hero-tag"><i class="fa-solid fa-images"></i> Moments in Action</div>
+      <h1>Dijitali Maths <span>in Action</span></h1>
+      <p style="margin-top: 0.8rem;">Real moments — classrooms, festivals, workshops & maths celebrations across Kenya.</p>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <div class="gallery-stats-strip">
+    <div class="container strip-inner">
+      <div class="gss-item"><strong id="photoCount">28</strong>Photos</div>
+      <div class="gss-sep"></div>
+      <div class="gss-item"><strong>2</strong>Counties</div>
+      <div class="gss-sep"></div>
+      <div class="gss-item"><strong>1,000+</strong>Learners</div>
+      <div class="gss-sep"></div>
+      <div class="gss-item"><strong>400+</strong>Teachers</div>
+    </div>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="gallery-filter-bar">
+    <div class="container">
+      <button class="gfb-btn active" data-filter="all"><i class="fa-solid fa-border-all"></i> All</button>
+      <button class="gfb-btn" data-filter="learners"><i class="fa-solid fa-child-reaching"></i> Learners</button>
+      <button class="gfb-btn" data-filter="teachers"><i class="fa-solid fa-chalkboard-user"></i> Teachers</button>
+      <button class="gfb-btn" data-filter="community"><i class="fa-solid fa-people-group"></i> Community</button>
+      <button class="gfb-btn" data-filter="action"><i class="fa-solid fa-bolt"></i> Maths in Action</button>
+      <button class="gfb-btn" data-filter="partners"><i class="fa-solid fa-handshake"></i> Partners</button>
+    </div>
+  </div>
+
+  <!-- MASONRY PHOTO GALLERY (no captions - pure pictures) -->
+  <section class="section" style="background: #f1f5f9;">
+    <div class="container">
+      <div class="photo-masonry" id="photoMasonry">
+
+        <div class="photo-item" data-cat="learners" data-src="images/1.jpg" data-alt="Dijitali Maths learners in a hands-on session, Nairobi">
+          <img src="images/1.jpg" alt="Dijitali Maths learners" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="learners" data-src="images/2.jpg" data-alt="Students discovering mathematics through games">
+          <img src="images/2.jpg" alt="Discovery through games" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="community" data-src="images/3.jpg" data-alt="Community mathematics festival Nakuru">
+          <img src="images/3.jpg" alt="Community maths festival" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="action" data-src="images/4.jpg" data-alt="Hands-on maths activity with manipulatives">
+          <img src="images/4.jpg" alt="Manipulatives activity" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="teachers" data-src="images/5.jpg" data-alt="Teacher professional development workshop">
+          <img src="images/5.jpg" alt="Teacher development" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="learners" data-src="images/6.jpg" data-alt="Children celebrating maths success">
+          <img src="images/6.jpg" alt="Celebrating success" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="action" data-src="images/7.jpg" data-alt="Maths challenge session with students">
+          <img src="images/7.jpg" alt="Maths challenge" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="learners" data-src="images/8.jpg" data-alt="Group learning session in Nairobi">
+          <img src="images/8.jpg" alt="Group learning" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="learners" data-src="images/9.jpg" data-alt="Nakuru learners in a maths session">
+          <img src="images/9.jpg" alt="Nakuru maths session" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="action" data-src="images/10.jpg" data-alt="Binary code bead necklace activity">
+          <img src="images/10.jpg" alt="Binary bead activity" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="community" data-src="images/11.jpg" data-alt="Community celebration of maths learning">
+          <img src="images/11.jpg" alt="Community celebration" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="teachers" data-src="images/12.jpg" data-alt="Teacher workshop practical activity">
+          <img src="images/12.jpg" alt="Teacher workshop" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="action" data-src="images/13.jpg" data-alt="Creative problem solving session">
+          <img src="images/13.jpg" alt="Problem solving" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="community" data-src="images/14.jpg" data-alt="Outdoor maths festival Kenya">
+          <img src="images/14.jpg" alt="Outdoor festival" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="learners" data-src="images/15.jpg" data-alt="Children engaged in maths activities">
+          <img src="images/15.jpg" alt="Children engaged" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="teachers" data-src="images/16.jpg" data-alt="Teachers collaborating in workshop">
+          <img src="images/16.jpg" alt="Teachers collaborating" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="action" data-src="images/18.JPG" data-alt="Maths demonstration and activity">
+          <img src="images/18.JPG" alt="Maths demonstration" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="community" data-src="images/19.JPG" data-alt="Community maths engagement session">
+          <img src="images/19.JPG" alt="Community engagement" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="community" data-src="images/20.JPG" data-alt="Large community maths event Kenya">
+          <img src="images/20.JPG" alt="Large community event" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="learners" data-src="images/21.jpg" data-alt="Young learner exploring maths concepts">
+          <img src="images/21.jpg" alt="Young explorer" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="action" data-src="images/22.jpg" data-alt="Interactive maths board game session">
+          <img src="images/22.jpg" alt="Board game maths" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="action" data-src="images/binary_code_activity.jpg" data-alt="Binary Code Necklace Activity">
+          <img src="images/binary_code_activity.jpg" alt="Binary code necklace" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="teachers" data-src="images/teacher_workshop.jpg" data-alt="Low-Cost Counting Cups Teacher Workshop">
+          <img src="images/teacher_workshop.jpg" alt="Counting cups workshop" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="community" data-src="images/community_math_fest.jpg" data-alt="Community Mathematics Festival — Giant Floor Tangram">
+          <img src="images/community_math_fest.jpg" alt="Giant tangram festival" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="partners" data-src="images/ngo2.jpg" data-alt="NGO partnership visit and collaboration">
+          <img src="images/ngo2.jpg" alt="NGO partnership" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="partners" data-src="images/Certificate.jpg" data-alt="Dijitali Maths recognition certificate">
+          <img src="images/Certificate.jpg" alt="Recognition certificate" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="learners" data-src="images/sege.jpg" data-alt="Learners participating in a maths activity">
+          <img src="images/sege.jpg" alt="Active participation" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="community" data-src="images/bng.jpg" data-alt="Large group outdoor maths session">
+          <img src="images/bng.jpg" alt="Outdoor group session" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+        <div class="photo-item" data-cat="partners" data-src="images/ronald.jpg" data-alt="Volunteer and partner engagement">
+          <img src="images/ronald.jpg" alt="Volunteer engagement" loading="lazy" />
+          <div class="photo-overlay"><div class="photo-overlay-icon"><i class="fa-solid fa-expand"></i></div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="section section-blue" style="text-align: center;">
+    <div class="container">
+      <div style="max-width: 680px; margin: 0 auto;">
+        <span class="badge badge-pill-glow" style="margin-bottom: 1.2rem;">Be Part of the Story</span>
+        <h2 style="font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 900; color: #fff; margin-bottom: 1rem;">
+          Want to Capture or Create These Moments?
+        </h2>
+        <p style="font-size: 1.05rem; color: rgba(255,255,255,0.88); margin-bottom: 2rem; line-height: 1.7;">
+          Join our volunteer team or partner with us to bring mathematics to life in even more communities across Kenya.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="volunteers.html" class="btn btn-accent btn-lg"><i class="fa-solid fa-user-plus"></i> Volunteer With Us</a>
+          <a href="donation.html" class="btn btn-outline-white btn-lg"><i class="fa-solid fa-handshake"></i> Partner With Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox-wrap" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <div class="lb-backdrop" id="lbBackdrop"></div>
+    <div class="lb-box">
+      <div class="lb-img-wrap">
+        <img src="" alt="" id="lbImg" />
+      </div>
+    </div>
+    <button class="lb-close" id="lbClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous photo"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Next photo"><i class="fa-solid fa-chevron-right"></i></button>
+    <div class="lb-counter" id="lbCounter">1 / 28</div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand" style="margin-bottom: 1rem;">
+            <div class="brand-symbol"><img src="images/logo.jpeg" alt="Dijitali Maths Logo"></div>
+            <div class="brand-text">
+              <h2 style="color: #fff; margin:0;">DIJITALI <span style="color: var(--accent-cyan-light);">MATHS</span></h2>
+            </div>
+          </div>
+          <p>"Every learner can do maths. Sometimes they just need the right way in."</p>
+        </div>
+        <div>
+          <h4 class="footer-heading">Quick Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutus.html">About Our Story</a></li>
+            <li><a href="projects.html">What We Do</a></li>
+            <li><a href="impact.html">Our Impact</a></li>
+            <li><a href="events.html">Events &amp; Festivals</a></li>
+            <li><a href="photos.html">Photo Gallery</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Get Involved</h4>
+          <ul class="footer-links">
+            <li><a href="volunteers.html">Volunteer Roles</a></li>
+            <li><a href="volunteersForm.html">Volunteer Application</a></li>
+            <li><a href="donation.html">Support &amp; Partnerships</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Stay Connected</h4>
+          <div style="margin-top: 0.6rem; font-size: 0.85rem; color: rgba(255,255,255,0.7);">
+            <div><i class="fa-solid fa-envelope" style="color: var(--accent-cyan); width: 20px;"></i> dijitalimaths@gmail.com</div>
+            <div style="margin-top: 0.3rem;"><i class="fa-brands fa-whatsapp" style="color: #25D366; width: 20px;"></i>
+              <a href="https://wa.me/254714447988" target="_blank" style="color: inherit; text-decoration: underline;">+254 714 447 988</a></div>
+            <div style="margin-top: 0.3rem;"><i class="fa-solid fa-location-dot" style="color: var(--accent-cyan); width: 20px;"></i> Nairobi &amp; Nakuru, Kenya</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 Dijitali Maths. All rights reserved.</div>
+        <div><a href="privacy.html" style="color: rgba(255,255,255,0.7);">Privacy Policy</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="custom.js"></script>
+  <script>
+    // ===== FILTER =====
+    const filterBtns = document.querySelectorAll('.gfb-btn');
+    const photoItems = document.querySelectorAll('.photo-item');
+    const photoCountEl = document.getElementById('photoCount');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        let count = 0;
+        photoItems.forEach(item => {
+          if (filter === 'all' || item.dataset.cat === filter) {
+            item.classList.remove('hidden');
+            count++;
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+        if (photoCountEl) photoCountEl.textContent = count;
+      });
+    });
+
+    // ===== LIGHTBOX =====
+    const lightbox = document.getElementById('lightbox');
+    const lbImg    = document.getElementById('lbImg');
+    const lbClose  = document.getElementById('lbClose');
+    const lbPrev   = document.getElementById('lbPrev');
+    const lbNext   = document.getElementById('lbNext');
+    const lbCounter= document.getElementById('lbCounter');
+    const lbBackdrop = document.getElementById('lbBackdrop');
+
+    let currentIndex = 0;
+    let visibleItems = [];
+
+    function getVisible() {
+      return Array.from(photoItems).filter(i => !i.classList.contains('hidden'));
+    }
+
+    function openLightbox(index) {
+      visibleItems = getVisible();
+      currentIndex = index;
+      const item = visibleItems[currentIndex];
+      lbImg.src = item.dataset.src;
+      lbImg.alt = item.dataset.alt || '';
+      lbCounter.textContent = `${currentIndex + 1} / ${visibleItems.length}`;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+      lbImg.src = '';
+    }
+
+    function navigateLightbox(dir) {
+      currentIndex = (currentIndex + dir + visibleItems.length) % visibleItems.length;
+      const item = visibleItems[currentIndex];
+      lbImg.style.opacity = '0';
+      setTimeout(() => {
+        lbImg.src = item.dataset.src;
+        lbImg.alt = item.dataset.alt || '';
+        lbImg.style.opacity = '1';
+        lbCounter.textContent = `${currentIndex + 1} / ${visibleItems.length}`;
+      }, 150);
+    }
+
+    lbImg.style.transition = 'opacity 0.15s';
+
+    photoItems.forEach((item, i) => {
+      item.addEventListener('click', () => {
+        visibleItems = getVisible();
+        const idx = visibleItems.indexOf(item);
+        if (idx !== -1) openLightbox(idx);
+      });
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+    lbBackdrop.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', () => navigateLightbox(-1));
+    lbNext.addEventListener('click', () => navigateLightbox(1));
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') navigateLightbox(-1);
+      if (e.key === 'ArrowRight') navigateLightbox(1);
+    });
+
+    // Touch swipe
+    let touchStartX = 0;
+    lightbox.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 50) navigateLightbox(dx < 0 ? 1 : -1);
+    }, { passive: true });
+  </script>
+</body>
+</html>

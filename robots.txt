@@ -1,0 +1,10 @@
+# User-agent directives for Googlebot & search engine crawlers
+User-agent: *
+Allow: /
+
+# Disallow internal files or hidden system assets
+Disallow: /scratch/
+Disallow: /.git/
+
+# Sitemap XML URL for search engine indexing
+Sitemap: https://dijitalimaths.com/sitemap.xml

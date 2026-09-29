@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Contact Us — Dijitali Maths | Nairobi, Kenya</title>
+  <meta name="description" content="Get in touch with Dijitali Maths in Nairobi, Kenya. Contact us for school partnerships, learner sessions, volunteering, or general inquiries." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="images/logo.jpeg" />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ===== CONTACT PAGE MODERN ENHANCEMENTS ===== */
+    .contact-hero {
+      position: relative;
+      background: linear-gradient(135deg, #06112d 0%, #0c1e4a 40%, #1a2f6e 80%, #1d4ed8 100%);
+      padding: 5rem 0 6rem;
+      overflow: hidden;
+      color: #fff;
+    }
+    .contact-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 60% 50%, rgba(99,179,237,0.12) 0%, transparent 70%);
+    }
+    .contact-hero-inner {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .contact-hero-inner h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .contact-hero-inner h1 .hl {
+      background: linear-gradient(135deg, #67e8f9, #60a5fa, #fde68a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .contact-hero-inner p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.7;
+    }
+
+    /* Info cards row */
+    .contact-info-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .contact-info-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+      border: 1.5px solid #e2e8f0;
+      box-shadow: 0 6px 24px rgba(15,23,42,0.07);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .contact-info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 40px rgba(30,58,138,0.14);
+      border-color: #93c5fd;
+    }
+    .contact-info-card .ic-icon {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      margin: 0 auto 1rem;
+    }
+    .ic-icon.blue  { background: rgba(37,99,235,0.1);  color: #2563eb; }
+    .ic-icon.amber { background: rgba(245,158,11,0.1); color: #b45309; }
+    .ic-icon.green { background: rgba(16,185,129,0.1); color: #047857; }
+    .ic-icon.wa    { background: rgba(37,211,102,0.12); color: #16a34a; }
+    .contact-info-card h4 { font-size: 0.88rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+    .contact-info-card p, .contact-info-card a { font-size: 0.97rem; color: #1e293b; font-weight: 600; line-height: 1.4; text-decoration: none; }
+    .contact-info-card a:hover { color: #2563eb; }
+
+    /* Form card */
+    .contact-form-card {
+      background: #fff;
+      border-radius: 28px;
+      padding: 3rem;
+      box-shadow: 0 24px 64px rgba(30,58,138,0.12);
+      border: 1.5px solid #e2e8f0;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .contact-form-card h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 0.4rem;
+    }
+    .contact-form-card > p {
+      color: #64748b;
+      margin-bottom: 2rem;
+    }
+
+    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-label { display: block; font-size: 0.87rem; font-weight: 700; color: #334155; margin-bottom: 0.45rem; letter-spacing: 0.01em; }
+    .form-control {
+      width: 100%; padding: 0.9rem 1.1rem;
+      border: 1.5px solid #e2e8f0; border-radius: 12px;
+      font-size: 0.95rem; font-family: inherit; color: #0f172a;
+      background: #f8fafc; transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+    }
+    .form-control:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.14);
+      background: #fff;
+    }
+    textarea.form-control { min-height: 140px; resize: vertical; }
+    select.form-control { cursor: pointer; }
+
+    .form-submit-btn {
+      width: 100%; padding: 1rem 2rem;
+      background: linear-gradient(135deg, #1d4ed8, #2563eb);
+      color: #fff; border: none; border-radius: 12px;
+      font-size: 1.05rem; font-weight: 700; font-family: inherit;
+      cursor: pointer; transition: all 0.3s;
+      display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+      box-shadow: 0 8px 20px rgba(37,99,235,0.35);
+    }
+    .form-submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(37,99,235,0.45);
+      background: linear-gradient(135deg, #1e40af, #1d4ed8);
+    }
+    .form-submit-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+
+    .success-banner {
+      display: none;
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      border: 1.5px solid #6ee7b7;
+      border-radius: 14px;
+      padding: 1.2rem 1.5rem;
+      color: #047857;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.97rem;
+    }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 1rem; }
+    .faq-item { background: #fff; border: 1.5px solid #e2e8f0; border-radius: 16px; overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s; }
+    .faq-item.active { border-color: #93c5fd; box-shadow: 0 4px 16px rgba(37,99,235,0.08); }
+    .faq-question {
+      width: 100%; padding: 1.2rem 1.5rem;
+      background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      text-align: left; font-family: inherit; font-size: 1rem; font-weight: 700; color: #1e293b;
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: #2563eb; }
+    .faq-question i { transition: transform 0.3s; color: #94a3b8; font-size: 0.85rem; flex-shrink: 0; }
+    .faq-item.active .faq-question i { transform: rotate(180deg); color: #2563eb; }
+    .faq-answer { max-height: 0; overflow: hidden; padding: 0 1.5rem; font-size: 0.95rem; color: #475569; line-height: 1.7; transition: max-height 0.35s ease, padding 0.35s ease; }
+    .faq-item.active .faq-answer { max-height: 300px; padding-bottom: 1.4rem; }
+
+    @media (max-width: 640px) {
+      .form-grid-2 { grid-template-columns: 1fr; }
+      .contact-form-card { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- WHATSAPP FLOATING BUTTON -->
+  <a href="https://wa.me/254714447988?text=Hello%20Dijitali%20Maths!%20I%20would%20like%20to%20learn%20more%20about%20your%20programmes." target="_blank" class="wa-float-btn" title="Chat with Dijitali Maths on WhatsApp" aria-label="WhatsApp Us">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="wa-text">Chat on WhatsApp</span>
+    <span class="wa-online-dot" title="Online now"></span>
+  </a>
+
+  <!-- STICKY NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <div class="brand-symbol"><img src="images/logo.jpeg" alt="Dijitali Maths Logo"></div>
+        <div class="brand-text">
+          <h1>DIJITALI <span>MATHS</span></h1>
+          <p>Every Learner Can Do Maths</p>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="aboutus.html" class="nav-link">About</a></li>
+          <li><a href="projects.html" class="nav-link">What We Do</a></li>
+          <li><a href="impact.html" class="nav-link">Impact</a></li>
+          <li><a href="events.html" class="nav-link">Events</a></li>
+          <li><a href="photos.html" class="nav-link">Gallery</a></li>
+          <li><a href="volunteers.html" class="nav-link">Get Involved</a></li>
+          <li><a href="contactus.html" class="nav-link active">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta">
+        <a href="donation.html" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-handshake"></i> Partner With Us
+        </a>
+      </div>
+
+      <button class="mobile-toggle" aria-label="Open Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE DRAWER -->
+  <div class="drawer-overlay"></div>
+  <aside class="mobile-drawer">
+    <div class="drawer-header">
+      <div class="brand">
+        <div class="brand-symbol"><img src="images/logo.jpeg" alt="Dijitali Maths Logo"></div>
+        <div class="brand-text">
+          <h2 style="font-size: 1.2rem; margin:0;">DIJITALI <span>MATHS</span></h2>
+        </div>
+      </div>
+      <button class="drawer-close" aria-label="Close Menu"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="drawer-links">
+      <li><a href="index.html"><span>Home</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="aboutus.html"><span>About Us</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="projects.html"><span>What We Do</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="impact.html"><span>Our Impact</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="events.html"><span>Events & Camps</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="photos.html"><span>Gallery in Action</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="volunteers.html"><span>Get Involved</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="volunteersForm.html"><span>Volunteer Application</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="donation.html"><span>Support & Partner</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="contactus.html" class="active"><span>Contact Us</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+    </ul>
+  </aside>
+
+  <!-- CONTACT HERO -->
+  <section class="contact-hero">
+    <div class="hero-shapes">
+      <span class="shape shape-1">∑</span>
+      <span class="shape shape-2">π</span>
+      <span class="shape shape-3">√</span>
+    </div>
+    <div class="container contact-hero-inner">
+      <div class="breadcrumb" style="justify-content: center; margin-bottom: 1.5rem;">
+        <a href="index.html" style="color: rgba(255,255,255,0.7);">Home</a> <span>/</span> <span>Contact Us</span>
+      </div>
+      <div class="hero-tag" style="margin-bottom: 1.2rem;">
+        <i class="fa-solid fa-envelope-open-text"></i> Let's Connect
+      </div>
+      <h1>Let's Make Maths A <span class="hl">Different Experience</span></h1>
+      <p style="margin-top: 1rem;">For programme enquiries, school partnerships, volunteering, collaborations, sponsorship or general questions — we'd love to hear from you.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT INFO CARDS -->
+  <section class="section" style="padding-bottom: 0;">
+    <div class="container">
+      <div class="contact-info-row">
+        <div class="contact-info-card">
+          <div class="ic-icon blue"><i class="fa-solid fa-envelope"></i></div>
+          <h4>Email Us</h4>
+          <a href="mailto:dijitalimaths@gmail.com">dijitalimaths@gmail.com</a>
+        </div>
+        <div class="contact-info-card">
+          <div class="ic-icon amber"><i class="fa-solid fa-phone"></i></div>
+          <h4>Call Us</h4>
+          <a href="tel:0714447988">+254 714 447 988</a>
+        </div>
+        <div class="contact-info-card">
+          <div class="ic-icon wa"><i class="fa-brands fa-whatsapp"></i></div>
+          <h4>WhatsApp</h4>
+          <a href="https://wa.me/254714447988" target="_blank">+254 714 447 988</a>
+        </div>
+        <div class="contact-info-card">
+          <div class="ic-icon green"><i class="fa-solid fa-location-dot"></i></div>
+          <h4>Location</h4>
+          <p>Nairobi & Nakuru, Kenya</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM (FormSubmit powered — sends to dijitalimaths@gmail.com) -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-form-card">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <span class="section-kicker">Get In Touch</span>
+          <h2 style="font-size: 2rem; font-weight: 900; color: #0f172a; margin: 0.5rem 0 0.4rem;">Send Us a Message</h2>
+          <p style="color: #64748b;">Fill out the form below and we'll respond within 24 hours.</p>
+        </div>
+
+        <!--
+          FormSubmit: free service that emails form data to any Gmail address.
+          To activate: submit once → check dijitalimaths@gmail.com for a
+          confirmation email from FormSubmit → click the Activate button.
+          After that, every submission sends you an email automatically.
+        -->
+        <form
+          id="contactForm"
+          action="https://formsubmit.co/dijitalimaths@gmail.com"
+          method="POST"
+          novalidate
+        >
+          <!-- FormSubmit hidden config fields -->
+          <input type="hidden" name="_subject" value="New Message from Dijitali Maths Website" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <!-- After submission, redirect back to a thank-you note on the same page -->
+          <input type="hidden" name="_next" value="https://dijitalimaths.com/contactus.html?sent=1" />
+          <!-- Honeypot spam protection -->
+          <input type="text" name="_honey" style="display:none" />
+
+          <div class="form-group">
+            <label class="form-label" for="cf-name">Full Name *</label>
+            <input id="cf-name" type="text" name="name" class="form-control" placeholder="Your full name" required />
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="cf-email">Email Address *</label>
+              <input id="cf-email" type="email" name="email" class="form-control" placeholder="name@domain.com" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cf-phone">Phone Number</label>
+              <input id="cf-phone" type="tel" name="phone" class="form-control" placeholder="e.g. 0712 345 678" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="cf-reason">Reason for Enquiry *</label>
+            <select id="cf-reason" name="enquiry_type" class="form-control" required>
+              <option value="">Select a reason...</option>
+              <option value="Learner Programme / Holiday Bootcamp">Learner Programme / Holiday Bootcamp</option>
+              <option value="School Partnership / In-School Sessions">School Partnership / In-School Sessions</option>
+              <option value="Teacher Training Workshop">Teacher Training Workshop</option>
+              <option value="Volunteering Enquiry">Volunteering Enquiry</option>
+              <option value="Sponsorship & Partnership">Sponsorship &amp; Partnership</option>
+              <option value="General Question">General Question</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="cf-message">Your Message *</label>
+            <textarea id="cf-message" name="message" class="form-control" placeholder="How can Dijitali Maths support your learners or organization?" required></textarea>
+          </div>
+
+          <button type="submit" class="form-submit-btn" id="cfSubmitBtn">
+            <i class="fa-solid fa-paper-plane"></i> Send Message
+          </button>
+
+          <div class="success-banner" id="cfSuccessBanner">
+            <i class="fa-solid fa-circle-check"></i> &nbsp;Message sent! We'll get back to you within 24 hours.
+          </div>
+
+          <p style="text-align:center; margin-top: 1rem; font-size: 0.82rem; color: #94a3b8;">
+            <i class="fa-solid fa-lock" style="color: #10b981;"></i> Your details are safe and only used to respond to your enquiry.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQS ACCORDION -->
+  <section class="section section-soft">
+    <div class="container" style="max-width: 860px;">
+      <div class="section-header">
+        <span class="section-kicker">Common Questions</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item active">
+          <button type="button" class="faq-question">
+            <span>What makes Dijitali Maths different from traditional tutoring?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            Rather than drilling formula memorization, we follow our 3-step rhythm (Discover → Practice → Believe). Learners encounter concepts first through tangible games, binary bead crafts, and problem-solving puzzles before procedural formulas are introduced.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>How can I make a donation to support Dijitali Maths?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            You can donate directly via <strong>M-Pesa Paybill: 174379</strong> (Account Name: <em>Dijitali Maths</em>) or by direct bank transfer to <strong>Equity Bank Kenya</strong> (Account No: <em>0770297986368</em>). After payment, email us at <a href="mailto:dijitalimaths@gmail.com">dijitalimaths@gmail.com</a> so we can send a receipt and impact report!
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>Do you have to be a certified mathematics teacher to volunteer?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            No! Dijitali Maths welcomes individuals with backgrounds in STEM, graphic design, photography, event logistics, community outreach, and communications. If you love working with young people and fostering curiosity, there is a role for you.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>How can our school host a Dijitali Teacher Workshop or Maths Camp?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            Simply reach out via our contact form or call us at 0714 447 988. We collaborate with school heads to customize holiday sessions, math clubs, and hands-on teacher resource training using low-cost materials like counting cups.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>Where do your programmes currently operate?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            Dijitali Maths currently conducts active learner sessions, camps, and teacher training across Nairobi and Nakuru Counties in Kenya, with expanding partnerships across the region.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>How long does it take to get a response?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            We aim to respond to all messages within 24 hours on business days. For urgent matters, WhatsApp is the fastest way to reach us at +254 714 447 988.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand" style="margin-bottom: 1rem;">
+            <div class="brand-symbol"><img src="images/logo.jpeg" alt="Dijitali Maths Logo"></div>
+            <div class="brand-text">
+              <h2 style="color: #fff; margin:0;">DIJITALI <span style="color: var(--accent-cyan-light);">MATHS</span></h2>
+            </div>
+          </div>
+          <p>"Every learner can do maths. Sometimes they just need the right way in."</p>
+        </div>
+        <div>
+          <h4 class="footer-heading">Quick Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutus.html">About Our Story</a></li>
+            <li><a href="projects.html">What We Do</a></li>
+            <li><a href="impact.html">Our Impact</a></li>
+            <li><a href="events.html">Events & Festivals</a></li>
+            <li><a href="photos.html">Photo Gallery</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Get Involved</h4>
+          <ul class="footer-links">
+            <li><a href="volunteers.html">Volunteer Roles</a></li>
+            <li><a href="volunteersForm.html">Volunteer Application</a></li>
+            <li><a href="donation.html">Support & Partnerships</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Stay Connected</h4>
+          <p style="font-size: 0.88rem; color: rgba(255,255,255,0.7); margin-bottom: 0.8rem;">
+            Subscribe to our newsletter for math challenges, festival updates, and learning resources.
+          </p>
+          <form class="footer-newsletter-form" action="https://formsubmit.co/dijitalimaths@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Newsletter Subscription - Dijitali Maths" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="email" name="email" class="footer-input" placeholder="Your email address..." required />
+            <button type="submit" class="btn btn-accent btn-sm" style="padding: 0.75rem 1.2rem;">
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </form>
+          <div style="margin-top: 1.4rem; font-size: 0.85rem; color: rgba(255,255,255,0.7);">
+            <div><i class="fa-solid fa-envelope" style="color: var(--accent-cyan); width: 20px;"></i>
+              dijitalimaths@gmail.com</div>
+            <div style="margin-top: 0.3rem;"><i class="fa-brands fa-whatsapp" style="color: #25D366; width: 20px;"></i>
+              <a href="https://wa.me/254714447988" target="_blank" style="color: inherit; text-decoration: underline;">+254 714 447 988 (WhatsApp)</a></div>
+            <div style="margin-top: 0.3rem;"><i class="fa-solid fa-location-dot" style="color: var(--accent-cyan); width: 20px;"></i> Nairobi & Nakuru, Kenya</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 Dijitali Maths. All rights reserved. Founded in Nairobi, Kenya.
+        </div>
+        <div style="display: flex; gap: 1.2rem;">
+          <a href="https://www.linkedin.com/in/brenda-atieno-380b80185" target="_blank" style="color: rgba(255,255,255,0.7);"><i class="fa-brands fa-linkedin"></i> Founder LinkedIn</a>
+          <a href="privacy.html" style="color: rgba(255,255,255,0.7);">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="custom.js"></script>
+  <script>
+    // Show success banner if redirected back with ?sent=1
+    if (new URLSearchParams(window.location.search).get('sent') === '1') {
+      const banner = document.getElementById('cfSuccessBanner');
+      if (banner) { banner.style.display = 'block'; }
+    }
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        if (!isActive) item.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
