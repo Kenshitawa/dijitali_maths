@@ -1,0 +1,33 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/dijitali/public_html/
+    - /bin/cp -R aboutus.html $DEPLOYPATH
+    - /bin/cp -R annual-reports.html $DEPLOYPATH
+    - /bin/cp -R contactus.html $DEPLOYPATH
+    - /bin/cp -R corona.html $DEPLOYPATH
+    - /bin/cp -R custom.js $DEPLOYPATH
+    - /bin/cp -R donation.css $DEPLOYPATH
+    - /bin/cp -R donation.html $DEPLOYPATH
+    - /bin/cp -R donation_test.html $DEPLOYPATH
+    - /bin/cp -R events.html $DEPLOYPATH
+    - /bin/cp -R home.css $DEPLOYPATH
+    - /bin/cp -R impact.html $DEPLOYPATH
+    - /bin/cp -R index.html $DEPLOYPATH
+    - /bin/cp -R memoranda.html $DEPLOYPATH
+    - /bin/cp -R MINIMAL-UPDATE-NOTES.txt $DEPLOYPATH
+    - /bin/cp -R photos.html $DEPLOYPATH
+    - /bin/cp -R privacy.html $DEPLOYPATH
+    - /bin/cp -R projects.html $DEPLOYPATH
+    - /bin/cp -R README.md $DEPLOYPATH
+    - /bin/cp -R robots.txt $DEPLOYPATH
+    - /bin/cp -R sitemap.xml $DEPLOYPATH
+    - /bin/cp -R style.css $DEPLOYPATH
+    - /bin/cp -R style2.css $DEPLOYPATH
+    - /bin/cp -R style3.css $DEPLOYPATH
+    - /bin/cp -R videos.html $DEPLOYPATH
+    - /bin/cp -R volunteer.css $DEPLOYPATH
+    - /bin/cp -R volunteers.html $DEPLOYPATH
+    - /bin/cp -R volunteersForm.html $DEPLOYPATH
+    - /bin/cp -R images $DEPLOYPATH
+    - /bin/cp -R documents $DEPLOYPATH
