@@ -136,7 +136,7 @@ async function main() {
     fs.readFile(path.join(partialsDir, 'widgets.html'), 'utf8'),
   ]);
 
-  const today = new Date().toISOString().slice(0, 10);
+  const today = (process.env.BUILD_DATE || new Date().toISOString()).slice(0, 10);
   const sitemapUrls: string[] = [];
 
   for (const page of PAGES) {

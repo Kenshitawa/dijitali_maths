@@ -7,7 +7,7 @@ export const env = {
   isProd: process.env.NODE_ENV === 'production',
   port: Number(process.env.PORT || 3000),
   appOrigin: process.env.APP_ORIGIN || 'http://localhost:3000',
-  siteUrl: (process.env.SITE_URL || 'https://dijitalimaths.com').replace(/\/+$/, ''),
+  siteUrl: (process.env.SITE_URL || 'https://dijitalimaths.org').replace(/\/+$/, ''),
   databaseUrl: process.env.DATABASE_URL || 'file:./dev.db',
   sessionSecret: process.env.SESSION_SECRET || 'dev-only-session-secret-change-me-in-prod-32chars',
   analyticsSaltSecret: process.env.ANALYTICS_SALT_SECRET || 'dev-only-analytics-salt-change-me',

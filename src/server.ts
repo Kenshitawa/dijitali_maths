@@ -7,6 +7,8 @@ if (env.isProd) {
     SESSION_SECRET: process.env.SESSION_SECRET || '',
     ANALYTICS_SALT_SECRET: process.env.ANALYTICS_SALT_SECRET || '',
     DATABASE_URL: process.env.DATABASE_URL || '',
+    SITE_URL: process.env.SITE_URL || '',
+    UPLOAD_DIR: process.env.UPLOAD_DIR || '',
     SMTP_HOST: process.env.SMTP_HOST || '',
     SMTP_USER: process.env.SMTP_USER || '',
     SMTP_PASS: process.env.SMTP_PASS || '',
@@ -26,6 +28,14 @@ if (env.isProd) {
   }
   if (!env.appOrigin.startsWith('https://')) {
     console.error('Refusing to start in production. APP_ORIGIN must use HTTPS.');
+    process.exit(1);
+  }
+  if (!env.siteUrl.startsWith('https://')) {
+    console.error('Refusing to start in production. SITE_URL must use HTTPS.');
+    process.exit(1);
+  }
+  if (!env.uploadDir.startsWith('/')) {
+    console.error('Refusing to start in production. UPLOAD_DIR must be an absolute persistent path.');
     process.exit(1);
   }
 }

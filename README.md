@@ -78,12 +78,17 @@ HTTP 503 if it is not.
 ## Deployment
 
 ### Option A: cPanel ("Setup Node.js App")
-1. In cPanel, open **Setup Node.js App**, choose Node.js 20+, set Application Startup File to `dist/src/server.js`, and configure your `.env` variables (including PostgreSQL `DATABASE_URL` and SMTP settings).
-2. Run `npm run db:generate:pg && npx prisma db push --schema=prisma/schema.postgresql.prisma` and `npm run seed`.
-3. `.cpanel.yml` copies `dist/`, `public/`, `prisma/`, `images/`, `documents/`, installs production dependencies, and touches `tmp/restart.txt`.
+
+The cPanel Git repository path and Node.js application's **Application root must both be** `/home/dijitali/dijitalimaths-app`. Keep this directory outside `public_html`; Express serves only the configured public assets. Select Node.js 22, set the startup file to `dist/src/server.js`, and point the application URL at a dedicated HTTPS host such as `admin.dijitalimaths.org` so the current primary-domain website remains in place. The deployment hook activates the corresponding CloudLinux environment at `/home/dijitali/nodevenv/dijitalimaths-app/22/bin/activate`.
+
+Create an untracked `.env` file in the repository/application root before the first deployment. Set `NODE_ENV=production`, `APP_ORIGIN` to the exact HTTPS admin URL, `SITE_URL=https://dijitalimaths.org`, a Supabase PostgreSQL `DATABASE_URL`, unique random `SESSION_SECRET` and `ANALYTICS_SALT_SECRET` values (at least 32 characters each), SMTP host/user/password, and an absolute persistent `UPLOAD_DIR` outside the Git checkout. Do not commit `.env`. Use URL-encoded credentials in `DATABASE_URL` and quote values containing shell-special characters.
+
+The checked-in `.cpanel.yml` activates the Node 22 environment and runs `scripts/deploy-cpanel.mjs`. It validates production settings before installing dependencies, generates the PostgreSQL Prisma client, builds the server and static pages, applies checked-in PostgreSQL migrations, removes development dependencies, restarts Passenger, and waits for the database readiness probe. The initial migration expects a new/empty Supabase database. If the database already contains these tables, stop and baseline it before deploying; do not run `db push` against production. Do not run `npm run seed` on an existing database without reviewing its deletes and upserts.
+
+The current cPanel account has a 500 MB disk quota and about 238 MB free. The repository checkout includes roughly 184 MB of media; the full local dependency tree is about 545 MB during the build, and the trimmed production dependency tree is still about 262 MB. This account needs a substantial storage increase (or the application must move to a Node host with adequate disk) before this deploy hook can complete. cPanel's Node.js feature is available, but the app is not live until the repository is created at the configured path, the Node app and environment are configured, and `/api/health/ready` returns HTTP 200.
 
 ### Option B: Render / Railway / Docker
-- **Render / Railway**: Set Build Command to `npm ci && npm run db:generate:pg && npm run build` and Start Command to `npx prisma db push --schema=prisma/schema.postgresql.prisma && npm start`.
+- **Render / Railway**: Set Build Command to `npm ci && npm run db:generate:pg && npm run build` and Start Command to `npm run db:migrate:pg && npm start`. Add all production environment variables in the service dashboard before first start.
 - **Docker**: Run `docker compose up --build -d` (includes PostgreSQL 16 and persistent `uploads_data` volume).
 
 ## Backups

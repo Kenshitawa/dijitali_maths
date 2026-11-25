@@ -1,11 +1,4 @@
 ---
 deployment:
   tasks:
-    - export APP_PATH=/home/dijitali/dijitalimaths-app/
-    - /bin/mkdir -p $APP_PATH
-    - /bin/cp -R dist public prisma package.json package-lock.json images documents $APP_PATH
-    - cd $APP_PATH && npm ci --include=dev
-    - cd $APP_PATH && npx prisma generate --schema=prisma/schema.postgresql.prisma
-    - cd $APP_PATH && npx prisma migrate deploy --schema=prisma/schema.postgresql.prisma
-    - cd $APP_PATH && npm prune --omit=dev
-    - /bin/mkdir -p $APP_PATH/tmp && /usr/bin/touch $APP_PATH/tmp/restart.txt
+    - /bin/bash -lc 'source /home/dijitali/nodevenv/dijitalimaths-app/22/bin/activate && cd /home/dijitali/dijitalimaths-app && npm run deploy:cpanel'
