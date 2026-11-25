@@ -880,7 +880,16 @@ body.dark-mode #adminModalClose { color: var(--text-body); }
 #adminShell #adminContent .inbox-shell a { max-width: 100%; }
 #adminShell #adminContent .inbox-shell .message-bubble { font-size: var(--admin-font-body); border-radius: var(--admin-radius-card); }
 #adminShell #adminContent .inbox-client-name { font-size: var(--admin-font-meta) !important; line-height: 1.4; font-weight: 600; }
-#adminShell #adminContent .inbox-client-heading { font-size: 1rem !important; line-height: 1.4; font-weight: 600; }
+#adminShell #adminContent .inbox-client-heading { font-size: 1.125rem !important; line-height: 1.4; font-weight: 600; }
+#adminShell #adminContent .inbox-message-card { width: fit-content; max-width: min(100%, 48rem); }
+#adminShell #adminContent .conversation-panel { min-width: 0; }
+#adminShell #adminContent .conversation-header a { overflow-wrap: anywhere; }
+@media (max-width: 1023px) {
+  #adminShell #adminContent .inbox-shell.inbox-has-selection {
+    height: calc(100dvh - 7rem);
+    min-height: 28rem;
+  }
+}
 #adminShell #adminContent .table-wrap { max-width: 100%; overflow-x: auto; }
 .logout-confirmation h2,
 .logout-confirmation p { color: var(--color-text-white) !important; }

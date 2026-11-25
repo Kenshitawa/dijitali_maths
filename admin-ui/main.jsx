@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { Component, useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
+  RiArrowLeftLine,
   RiArrowRightUpLine,
   RiBellLine,
   RiCalendarEventLine,
@@ -341,6 +342,29 @@ const INBOX_TABS = [
 
 const STATUS_ORDER = ['new', 'read', 'replied', 'archived'];
 
+class InboxErrorBoundary extends Component {
+  state = { error: null };
+
+  static getDerivedStateFromError(error) {
+    return { error };
+  }
+
+  componentDidCatch(error) {
+    console.error('Inbox conversation render failed:', error);
+  }
+
+  render() {
+    if (!this.state.error) return this.props.children;
+    return (
+      <div role="alert" className="rounded-xl border border-border-button-default bg-background-primary-default p-5 text-text-primary">
+        <h2 className="text-title-3-semibold">This conversation could not open</h2>
+        <p className="mt-2 text-body-2-regular text-text-secondary">Reload the Inbox and try again. Your message is still saved.</p>
+        <Button type="button" onClick={() => window.location.reload()} className="mt-4">Reload Inbox</Button>
+      </div>
+    );
+  }
+}
+
 function messageBody(item, type) {
   if (type === 'contact') return [item.enquiryType, item.message].filter(Boolean).join(' — ');
   if (type === 'volunteers') return [item.county, item.availability, item.skillsJson, item.motivation].filter(Boolean).join(' · ');
@@ -494,7 +518,7 @@ function InboxScreen() {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">
+      <div className={cx('flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between', selected && 'max-lg:hidden')}>
         <div className="flex flex-wrap items-center gap-1.5 rounded-xl bg-background-secondary-default p-1">
           {INBOX_TABS.map(([key, label]) => (
             <button
@@ -535,7 +559,7 @@ function InboxScreen() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+      <div className={cx('grid grid-cols-2 gap-2 sm:grid-cols-4', selected && 'max-lg:hidden')}>
         {[
           ['Total', allItems.length, 'bg-chart-4'],
           ['New', counts.new, 'bg-chart-1'],
@@ -556,7 +580,7 @@ function InboxScreen() {
         <p className="rounded-lg bg-background-secondary-default px-3 py-1.5 text-body-2-regular text-text-secondary">{notice}</p>
       ) : null}
 
-      <div className="inbox-shell grid min-h-[560px] grid-cols-1 overflow-hidden rounded-3xl border border-border-button-default bg-background-primary-default shadow-xs lg:h-[calc(100vh-16rem)] lg:min-h-[560px] lg:grid-cols-[280px_minmax(0,1fr)]">
+      <div className={cx('inbox-shell grid min-h-[560px] grid-cols-1 overflow-hidden rounded-3xl border border-border-button-default bg-background-primary-default shadow-xs lg:h-[calc(100vh-16rem)] lg:min-h-[560px] lg:grid-cols-[280px_minmax(0,1fr)]', selected && 'inbox-has-selection')}>
         <section className={cx('flex min-h-0 flex-col border-e border-separator-border max-lg:border-e-0', selected && 'max-lg:hidden')}>
           <div className="flex items-center justify-between gap-2 border-b border-separator-border px-4 py-3">
             <div>
@@ -623,29 +647,31 @@ function InboxScreen() {
           </div>
         </section>
 
-        <section className={cx('flex min-h-0 flex-col bg-background-full', !selected && 'max-lg:hidden')}>
+        <section
+          aria-label={selected ? `Conversation with ${selected.name}` : 'Conversation detail'}
+          className={cx('conversation-panel flex min-h-0 flex-col bg-background-primary-default', !selected && 'max-lg:hidden')}
+        >
           {selected ? (
             <>
-              <div className="border-b border-separator-border bg-background-primary-default px-4 py-3">
-                <div className="flex items-start gap-3">
+              <div className="conversation-header border-b border-separator-border bg-background-primary-default px-4 py-4">
+                <div className="flex items-center gap-3">
                   <button
                     type="button"
                     onClick={() => setSelectedId(null)}
                     aria-label="Back to conversations"
-                    className="mt-0.5 rounded-lg p-1 text-foreground-icon-secondary hover:bg-background-secondary-hover lg:hidden"
+                    className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-border-button-default text-foreground-icon-secondary outline-none hover:bg-background-secondary-hover focus-visible:ring-2 focus-visible:ring-border-focus-ring"
                   >
-                    <RiArrowLeftLine className="size-4" aria-hidden />
+                    <RiArrowLeftLine className="size-5" aria-hidden />
                   </button>
                   <Avatar size="lg" color="lime" initials={(selected.name || '?').slice(0, 1).toUpperCase()} />
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <h2 className="inbox-client-heading truncate text-title-3-semibold text-text-primary">{selected.name}</h2>
+                      <h2 className="inbox-client-heading truncate text-title-2-semibold text-text-primary">{selected.name}</h2>
                       <StatusPill status={selected.status} />
                     </div>
-                    <div className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-caption-1-regular text-text-tertiary">
+                    <div className="mt-1 flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1 text-caption-1-regular text-text-tertiary">
                       <a href={`mailto:${selected.email}`} className="truncate hover:text-text-primary">{selected.email}</a>
                       {selected.phone ? <span>{selected.phone}</span> : null}
-                      <span>{new Date(selected.createdAt).toLocaleString()}</span>
                     </div>
                   </div>
                   <div className="flex shrink-0 items-center gap-1.5">
@@ -664,9 +690,9 @@ function InboxScreen() {
                     ) : null}
                     <a
                       href={`mailto:${selected.email}?subject=${encodeURIComponent('Re: Dijitali Maths')}`}
-                      className="inline-flex h-8 min-w-max shrink-0 items-center gap-1 whitespace-nowrap rounded-lg border border-border-button-default px-2.5 text-caption-1-medium text-text-secondary hover:bg-background-secondary-hover"
+                      className="inline-flex h-9 min-w-max shrink-0 items-center gap-1.5 whitespace-nowrap rounded-lg border border-border-button-default px-3 text-caption-1-medium text-text-secondary outline-none hover:bg-background-secondary-hover focus-visible:ring-2 focus-visible:ring-border-focus-ring"
                     >
-                      <RiMailLine className="size-3.5" aria-hidden /> Email
+                      <RiMailLine className="size-4" aria-hidden /> Email
                     </a>
                   </div>
                 </div>
@@ -683,49 +709,34 @@ function InboxScreen() {
                 ) : null}
               </div>
 
-              {canEdit ? (
-                <div className="border-b border-separator-border bg-background-primary-default px-3 py-2">
-                  <div className="flex flex-wrap gap-1.5">
-                    {[
-                      'Thanks for reaching out — we’ll be in touch soon.',
-                      'Could you share a little more detail?',
-                      'Your application has been received.',
-                    ].map((preset) => (
-                      <button
-                        key={preset}
-                        type="button"
-                        onClick={() => setReply(preset)}
-                        className="max-w-full rounded-xl border border-border-button-default bg-background-secondary-default px-3 py-1.5 text-start text-caption-1-medium leading-snug text-text-secondary transition-colors hover:bg-background-tertiary-default hover:text-text-primary"
-                      >
-                        {preset}
-                      </button>
-                    ))}
+              <div className="conversation-thread min-h-0 flex-1 overflow-y-auto bg-background-full px-4 py-5 sm:px-6">
+                <div className="mx-auto flex w-full max-w-3xl flex-col gap-5">
+                  <div className="flex items-center justify-center">
+                    <span className="rounded-full border border-border-button-default bg-background-primary-default px-3 py-1 text-caption-1-medium text-text-tertiary">
+                      {new Date(selected.createdAt).toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })}
+                    </span>
                   </div>
-                </div>
-              ) : null}
 
-              <div className="conversation-thread min-h-0 flex-1 overflow-y-auto bg-background-full px-3 py-3 sm:px-5 sm:py-4">
-                <div className="mb-3 flex items-center gap-3">
-                  <span className="h-px flex-1 bg-separator-border" />
-                  <span className="rounded-full bg-background-secondary-default px-2.5 py-0.5 text-caption-2-medium text-text-tertiary">
-                    {new Date(selected.createdAt).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })}
-                  </span>
-                  <span className="h-px flex-1 bg-separator-border" />
-                </div>
-
-                <motion.div {...messageEntrance} className="flex max-w-[88%] flex-col gap-1 sm:max-w-[76%]">
-                  <div className="flex items-end gap-2">
-                    <Avatar size="sm" color="lime" initials={(selected.name || '?').slice(0, 1).toUpperCase()} />
-                    <div className="message-bubble message-bubble-in rounded-[1.125rem] rounded-es-md border border-border-button-default bg-background-primary-default px-4 py-3 text-body-regular leading-relaxed text-text-primary shadow-xs">
-                      {messageBody(selected, type)}
+                  <motion.div {...messageEntrance} className="flex max-w-full flex-col gap-2 self-start">
+                    <div className="flex items-center gap-2.5">
+                      <Avatar size="sm" color="lime" initials={(selected.name || '?').slice(0, 1).toUpperCase()} />
+                      <div className="min-w-0">
+                        <p className="truncate text-body-2-semibold text-text-primary">{selected.name}</p>
+                        <p className="text-caption-1-regular text-text-tertiary">{new Date(selected.createdAt).toLocaleTimeString()}</p>
+                      </div>
                     </div>
-                  </div>
-                  <span className="ps-8 text-caption-2-medium text-text-tertiary">
-                    {selected.name} · {new Date(selected.createdAt).toLocaleTimeString()}
-                  </span>
-                </motion.div>
+                    <div className="inbox-message-card rounded-xl border border-border-button-default bg-background-primary-default px-4 py-4 text-body-regular leading-relaxed text-text-primary shadow-xs sm:px-5">
+                      <p className="mb-2 text-caption-2-semibold uppercase tracking-wider text-text-tertiary">{INBOX_TABS.find(([value]) => value === type)?.[1] || 'Message'}</p>
+                      <p className="whitespace-pre-wrap break-words">{messageBody(selected, type) || 'No message text was provided.'}</p>
+                    </div>
+                  </motion.div>
 
-                {internalNote ? <aside className="internal-note-card mt-4 rounded-xl border border-dashed border-border-button-default bg-background-secondary-default px-4 py-3"><span className="text-caption-2-semibold uppercase tracking-wider text-text-tertiary">Internal, not sent</span><p className="mt-1 whitespace-pre-wrap break-words text-body-2-regular text-text-secondary">{internalNote}</p></aside> : null}
+                  {internalNote ? (
+                    <aside className="internal-note-card rounded-xl border border-dashed border-border-button-default bg-background-secondary-default px-4 py-3 sm:ms-8">
+                      <span className="text-caption-2-semibold uppercase tracking-wider text-text-tertiary">Internal note</span>
+                      <p className="mt-1 whitespace-pre-wrap break-words text-body-2-regular text-text-secondary">{internalNote}</p>
+                    </aside>
+                  ) : null}
 
                 {replies.map((text, index) => (
                   <motion.div
@@ -733,23 +744,40 @@ function InboxScreen() {
                     initial={{ opacity: 0, y: 8, filter: 'blur(4px)' }}
                     animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     transition={{ duration: 0.35, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
-                    className="mt-3 flex max-w-[88%] flex-col gap-1 self-end ms-auto sm:max-w-[76%]"
+                    className="flex max-w-[92%] flex-col gap-2 self-end ms-auto sm:max-w-[78%]"
                   >
-                    <div className="flex items-end justify-end gap-2">
-                      <div className="message-bubble message-bubble-out rounded-[1.125rem] rounded-ee-md bg-accent-600 px-4 py-3 text-body-regular leading-relaxed text-text-white shadow-sm">
-                        {text}
+                    <div className="flex items-center justify-end gap-2.5">
+                      <div className="min-w-0 text-end">
+                        <p className="text-body-2-semibold text-text-primary">Dijitali Maths</p>
+                        <p className="text-caption-1-regular text-text-tertiary">Saved reply</p>
                       </div>
-                      <Avatar size="sm" color="lime" initials="You" />
+                      <Avatar size="sm" color="blue" initials="DM" />
                     </div>
-                    <span className="pe-8 text-end text-caption-2-medium text-text-tertiary">You · Reply</span>
+                    <div className="message-bubble message-bubble-out rounded-xl border border-border-button-default bg-background-primary-default px-4 py-3 text-body-regular leading-relaxed text-text-primary shadow-xs">
+                        {text}
+                    </div>
                   </motion.div>
                 ))}
+                </div>
               </div>
 
-              <div className="inbox-composer border-t border-separator-border bg-background-primary-default p-3">
-                {canEdit ? null : null}
-                <div className="composer-glow">
-                  <div className="flex items-end gap-2 rounded-2xl bg-background-primary-default p-1.5">
+              <div className="inbox-composer border-t border-separator-border bg-background-primary-default px-4 py-3 sm:px-6">
+                <div className="mx-auto w-full max-w-3xl">
+                  {canEdit ? (
+                    <div className="mb-2 flex gap-2 overflow-x-auto pb-1">
+                      {[
+                        'Thanks for reaching out — we’ll be in touch soon.',
+                        'Could you share a little more detail?',
+                        'Your application has been received.',
+                      ].map((preset) => (
+                        <button key={preset} type="button" onClick={() => setReply(preset)} className="shrink-0 rounded-full border border-border-button-default px-3 py-1.5 text-caption-1-medium text-text-secondary outline-none hover:bg-background-secondary-hover focus-visible:ring-2 focus-visible:ring-border-focus-ring">
+                          {preset}
+                        </button>
+                      ))}
+                    </div>
+                  ) : null}
+                  <div className="composer-glow">
+                  <div className="flex items-end gap-2 rounded-xl bg-background-primary-default p-1.5">
                     <Textarea
                       aria-label="Write a reply"
                       placeholder={canEdit ? 'Write a reply…' : 'Read-only access'}
@@ -772,9 +800,8 @@ function InboxScreen() {
                     </Button>
                   </div>
                 </div>
-                <p className="mt-1.5 text-caption-2-medium text-text-tertiary">
-                  Replies are saved on this conversation and mark it as replied.
-                </p>
+                <p className="mt-1.5 text-caption-2-medium text-text-tertiary">Your reply is saved to this conversation and marks it as replied.</p>
+                </div>
               </div>
             </>
           ) : (
@@ -1277,7 +1304,9 @@ function AdminApp() {
       inboxRoot = createRoot(container);
       inboxRoot.render(
         <DirectionProvider locale="en-US">
-          <InboxScreen />
+          <InboxErrorBoundary>
+            <InboxScreen />
+          </InboxErrorBoundary>
         </DirectionProvider>
       );
     };
@@ -1463,9 +1492,9 @@ function AdminApp() {
               aria-label="Open admin menu"
               aria-expanded={drawerOpen}
               onClick={() => setDrawerOpen(true)}
-              className="rounded-xl p-2 text-foreground-icon-primary outline-none transition-colors hover:bg-background-secondary-hover focus-visible:ring-2 focus-visible:ring-border-focus-ring lg:hidden"
+              className="flex size-11 shrink-0 items-center justify-center rounded-xl p-2.5 text-foreground-icon-primary outline-none transition-colors hover:bg-background-secondary-hover focus-visible:ring-2 focus-visible:ring-border-focus-ring lg:hidden"
             >
-              <RiMenuLine className="size-5" aria-hidden />
+              <RiMenuLine className="size-6" aria-hidden />
             </button>
             <div className="min-w-0">
               <div className="flex items-center gap-2">
