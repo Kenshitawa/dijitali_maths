@@ -16,6 +16,14 @@ npm start
 
 Put the app behind an HTTPS reverse proxy and set `APP_ORIGIN` and `SITE_URL` to its canonical HTTPS URL. The server trusts one proxy hop and redirects HTTP requests to `SITE_URL` in production. Check `GET /healthz` for process health and `GET /readyz` for database readiness.
 
+## cPanel backend with Supabase Postgres
+
+Keep the Express API and public site on cPanel, and use Supabase as the managed PostgreSQL database. This avoids rewriting the existing backend. Create a Supabase project, then set `DATABASE_URL` in the cPanel Node.js application's environment settings to its PostgreSQL session-pooler connection string (port `5432`) with `sslmode=require`. Do not put the real connection string in Git. The cPanel host must allow outbound PostgreSQL connections and support the Node.js version required by this app.
+
+The cPanel deployment uses `prisma/schema.postgresql.prisma`, generates the matching Prisma client, and applies checked-in migrations. The initial migration creates tables in an empty Supabase database. If production already contains data, back it up and migrate/import that data before switching `DATABASE_URL`; do not point this initial migration at a populated database. After deployment, verify `/readyz`, admin sign-in, public forms, and media URLs.
+
+Supabase's direct connection may require IPv6 support on the cPanel host. If it does not support IPv6, use the session pooler connection string supplied by Supabase. For a long-running Node backend, session mode is appropriate; transaction pooling is mainly for short-lived/serverless connections.
+
 ## Backups
 
 For PostgreSQL, make a consistent database backup with `pg_dump "$DATABASE_URL" --format=custom --file=backup.dump`. Archive uploads with `tar -czf uploads.tar.gz uploads/`. Restore into an isolated database using `pg_restore --clean --if-exists --dbname="$RESTORE_DATABASE_URL" backup.dump`, restore the upload archive into a temporary directory, then verify `/readyz` and representative media URLs against the isolated restore before promoting it.
