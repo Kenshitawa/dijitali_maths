@@ -880,6 +880,7 @@ body.dark-mode #adminModalClose { color: var(--text-body); }
 #adminShell #adminContent .inbox-shell a { max-width: 100%; }
 #adminShell #adminContent .inbox-shell .message-bubble { font-size: var(--admin-font-body); border-radius: var(--admin-radius-card); }
 #adminShell #adminContent .inbox-client-name { font-size: var(--admin-font-meta) !important; line-height: 1.4; font-weight: 600; }
+#adminShell #adminContent .inbox-client-heading { font-size: 1rem !important; line-height: 1.4; font-weight: 600; }
 #adminShell #adminContent .table-wrap { max-width: 100%; overflow-x: auto; }
 .logout-confirmation h2,
 .logout-confirmation p { color: var(--color-text-white) !important; }

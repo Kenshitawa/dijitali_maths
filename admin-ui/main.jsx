@@ -441,7 +441,9 @@ function InboxScreen() {
     return accumulator;
   }, {});
 
-  const selected = items.find((item) => item.id === selectedId) || null;
+  // Keep the opened thread backed by the full data set. Filtering the list (or
+  // changing the selected record's status) must not unmount the conversation.
+  const selected = allItems.find((item) => item.id === selectedId) || null;
   const notesParts = (selected?.notes || '').split(/\n(?=Reply: )/);
   const replies = notesParts.filter((part) => part.startsWith('Reply: ')).map((part) => part.slice(7));
   const internalNote = notesParts.filter((part) => !part.startsWith('Reply: ')).join('\n').trim();
@@ -637,7 +639,7 @@ function InboxScreen() {
                   <Avatar size="lg" color="lime" initials={(selected.name || '?').slice(0, 1).toUpperCase()} />
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <h2 className="inbox-client-name truncate text-title-3-semibold text-text-primary">{selected.name}</h2>
+                      <h2 className="inbox-client-heading truncate text-title-3-semibold text-text-primary">{selected.name}</h2>
                       <StatusPill status={selected.status} />
                     </div>
                     <div className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-caption-1-regular text-text-tertiary">

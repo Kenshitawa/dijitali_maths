@@ -45903,7 +45903,7 @@ function Hye() {
   const D = c.filter((V) => r === "all" || V.status === r).filter((V) => {
     const G = l.trim().toLowerCase();
     return G ? JSON.stringify(V).toLowerCase().includes(G) : !0;
-  }), P = Ib.reduce((V, G) => (V[G] = c.filter((oe) => oe.status === G).length, V), {}), $ = D.find((V) => V.id === h) || null, j = ($?.notes || "").split(/\n(?=Reply: )/), I = j.filter((V) => V.startsWith("Reply: ")).map((V) => V.slice(7)), R = j.filter((V) => !V.startsWith("Reply: ")).join(`
+  }), P = Ib.reduce((V, G) => (V[G] = c.filter((oe) => oe.status === G).length, V), {}), $ = c.find((V) => V.id === h) || null, j = ($?.notes || "").split(/\n(?=Reply: )/), I = j.filter((V) => V.startsWith("Reply: ")).map((V) => V.slice(7)), R = j.filter((V) => !V.startsWith("Reply: ")).join(`
 `).trim(), q = $ ? Bye($, t) : [], B = async (V) => {
     if ($) {
       x(!0);
@@ -46060,7 +46060,7 @@ function Hye() {
             /* @__PURE__ */ A.jsx(Nl, { size: "lg", color: "lime", initials: ($.name || "?").slice(0, 1).toUpperCase() }),
             /* @__PURE__ */ A.jsxs("div", { className: "min-w-0 flex-1", children: [
               /* @__PURE__ */ A.jsxs("div", { className: "flex flex-wrap items-center gap-2", children: [
-                /* @__PURE__ */ A.jsx("h2", { className: "inbox-client-name truncate text-title-3-semibold text-text-primary", children: $.name }),
+                /* @__PURE__ */ A.jsx("h2", { className: "inbox-client-heading truncate text-title-3-semibold text-text-primary", children: $.name }),
                 /* @__PURE__ */ A.jsx(k9, { status: $.status })
               ] }),
               /* @__PURE__ */ A.jsxs("div", { className: "mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-caption-1-regular text-text-tertiary", children: [
