@@ -1,0 +1,43 @@
+<main id="main-content">
+  <section class="hero hero-subpage">
+    <div class="container">
+      <div class="hero-tag">Home / Gallery</div>
+      <h1>Dijitali Maths <span>in Action</span></h1>
+      <p class="lead">
+        Real moments — classrooms, festivals, workshops &amp; maths celebrations across Kenya.
+        (<strong id="photoCount">28</strong> photos across Nairobi &amp; Nakuru)
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="filter-bar" id="galleryFilterBar">
+        <button type="button" class="filter-btn active" data-filter="all">All</button>
+        <button type="button" class="filter-btn" data-filter="learners">Learners</button>
+        <button type="button" class="filter-btn" data-filter="teachers">Teachers</button>
+        <button type="button" class="filter-btn" data-filter="community">Community</button>
+        <button type="button" class="filter-btn" data-filter="action">Maths in Action</button>
+        <button type="button" class="filter-btn" data-filter="partners">Partners</button>
+      </div>
+
+      <div class="gallery-grid" id="dynamicGalleryGrid"></div>
+    </div>
+  </section>
+
+  <div class="lightbox" id="galleryLightbox" role="dialog" aria-modal="true" aria-label="Photo Lightbox" aria-hidden="true">
+    <button type="button" class="lightbox-btn lightbox-close" id="lbClose" aria-label="Close lightbox">
+      <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="lightbox-btn lightbox-prev" id="lbPrev" aria-label="Previous photo">
+      <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+    </button>
+    <div class="lightbox-content">
+      <img id="lbImg" src="" alt="" />
+      <div class="lightbox-caption" id="lbCaption"></div>
+    </div>
+    <button type="button" class="lightbox-btn lightbox-next" id="lbNext" aria-label="Next photo">
+      <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+    </button>
+  </div>
+</main>

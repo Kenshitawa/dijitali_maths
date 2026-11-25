@@ -1,0 +1,78 @@
+<main id="main-content">
+  <section class="hero hero-subpage">
+    <div class="container">
+      <div class="hero-tag">Home / Events</div>
+      <h1>Upcoming Events &amp; <span>Mathematics Festivals</span></h1>
+      <p class="lead">
+        Join our holiday programmes, educator workshops, and community math festivals across Nairobi and Nakuru.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="filter-bar" id="eventFilterBar">
+        <button type="button" class="filter-btn active" data-filter="all">All Events</button>
+        <button type="button" class="filter-btn" data-filter="festival">Math Festivals</button>
+        <button type="button" class="filter-btn" data-filter="camp">Holiday Programmes</button>
+        <button type="button" class="filter-btn" data-filter="workshop">Teacher Workshops</button>
+        <button type="button" class="filter-btn" data-filter="webinar">Webinars</button>
+      </div>
+
+      <div class="grid-2" id="dynamicEventsGrid">
+        <article class="card">
+          <div class="card-body">
+            <span class="badge badge-cyan">Festival</span>
+            <h3 style="margin-top:0.5rem;">Nakuru Community Maths Fest</h3>
+            <p>Nakuru County Grounds, Nakuru &bull; 9:00 AM – 4:00 PM</p>
+            <button type="button" class="btn btn-primary btn-sm" style="margin-top:0.75rem;" data-register-event="Nakuru Community Maths Fest">Register Now</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal-backdrop" id="eventRegisterModal" role="dialog" aria-modal="true" aria-labelledby="eventModalTitle">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h2 id="eventModalTitle" style="font-size:1.35rem;">Reserve Your Spot</h2>
+        <button type="button" data-close-modal aria-label="Close registration modal" style="background:none;border:0;font-size:1.2rem;cursor:pointer;">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
+      <form id="eventRegForm">
+        <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <input type="hidden" name="event_id" id="modalEventId" />
+        <div class="form-group">
+          <label for="modalEventName" class="form-label">Selected Event</label>
+          <input type="text" id="modalEventName" name="event_title" class="form-control" readonly required />
+        </div>
+        <div class="form-group">
+          <label for="evName" class="form-label">Your Full Name *</label>
+          <input type="text" id="evName" name="name" class="form-control" placeholder="e.g. John Kamau" required />
+        </div>
+        <div class="form-group">
+          <label for="evEmail" class="form-label">Email Address *</label>
+          <input type="email" id="evEmail" name="email" class="form-control" placeholder="e.g. kamau@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="evPhone" class="form-label">Phone / WhatsApp Number *</label>
+          <input type="tel" id="evPhone" name="phone" class="form-control" placeholder="e.g. 0712 345 678" required />
+        </div>
+        <div class="form-group">
+          <label for="evRole" class="form-label">I am registering as *</label>
+          <select id="evRole" name="role_type" class="form-control" required>
+            <option value="">Select role...</option>
+            <option value="Learner / Student">Learner / Student</option>
+            <option value="Parent / Guardian">Parent / Guardian</option>
+            <option value="Teacher / Educator">Teacher / Educator</option>
+            <option value="School Leader">School Leader</option>
+            <option value="Volunteer / Partner">Volunteer / Partner</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Complete Registration</button>
+        <div class="form-status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</main>

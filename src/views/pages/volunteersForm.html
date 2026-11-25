@@ -1,0 +1,79 @@
+<main id="main-content">
+  <section class="hero hero-subpage">
+    <div class="container">
+      <div class="hero-tag">Home / Get Involved / Volunteer Application</div>
+      <h1>Dijitali <span>Volunteer Application Form</span></h1>
+      <p class="lead">
+        You don't need to be a certified maths teacher. We welcome creators, technologists, event coordinators, photographers, and passionate youth advocates!
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:780px;">
+      <form id="volunteerAppForm" class="form-card">
+        <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <h2 style="margin-bottom:1.25rem;">1. Personal &amp; Contact Details</h2>
+        <div class="form-group">
+          <label for="volName" class="form-label">Full Name *</label>
+          <input type="text" id="volName" name="name" class="form-control" placeholder="e.g. Brenda Mwangi" required />
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="volEmail" class="form-label">Email Address *</label>
+            <input type="email" id="volEmail" name="email" class="form-control" placeholder="e.g. brenda@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="volPhone" class="form-label">Phone / WhatsApp Number *</label>
+            <input type="tel" id="volPhone" name="phone" class="form-control" placeholder="e.g. 0712 345 678" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="volCounty" class="form-label">Location / County *</label>
+          <select id="volCounty" name="county" class="form-control" required>
+            <option value="">Select your location</option>
+            <option value="Nairobi County">Nairobi County</option>
+            <option value="Nakuru County">Nakuru County</option>
+            <option value="Other County in Kenya">Other County in Kenya</option>
+            <option value="International / Remote">International / Remote</option>
+          </select>
+        </div>
+
+        <h2 style="margin:1.75rem 0 0.75rem;">2. Your Skills &amp; Interests</h2>
+        <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:0.75rem;">Select all areas where you'd like to contribute (at least one):</p>
+        <div class="checkbox-grid" style="margin-bottom:1.25rem;">
+          <label class="checkbox-item"><input type="checkbox" name="skills" value="Maths Education" /> Maths Education</label>
+          <label class="checkbox-item"><input type="checkbox" name="skills" value="Teaching / Tutoring" /> Teaching / Tutoring</label>
+          <label class="checkbox-item"><input type="checkbox" name="skills" value="Learning Design" /> Learning Design</label>
+          <label class="checkbox-item"><input type="checkbox" name="skills" value="STEM & Robotics" /> STEM &amp; Robotics</label>
+          <label class="checkbox-item"><input type="checkbox" name="skills" value="Technology & IT" /> Technology &amp; IT</label>
+          <label class="checkbox-item"><input type="checkbox" name="skills" value="Graphic Design" /> Graphic Design</label>
+          <label class="checkbox-item"><input type="checkbox" name="skills" value="Photo & Video" /> Photo &amp; Video</label>
+          <label class="checkbox-item"><input type="checkbox" name="skills" value="Event Coordination" /> Event Coordination</label>
+          <label class="checkbox-item"><input type="checkbox" name="skills" value="Community Outreach" /> Community Outreach</label>
+          <label class="checkbox-item"><input type="checkbox" name="skills" value="Comms & PR" /> Comms &amp; PR</label>
+          <label class="checkbox-item"><input type="checkbox" name="skills" value="Research & M&E" /> Research &amp; M&amp;E</label>
+          <label class="checkbox-item"><input type="checkbox" name="skills" value="Content Creation" /> Content Creation</label>
+        </div>
+
+        <h2 style="margin:1.5rem 0 0.75rem;">3. Availability &amp; Motivation</h2>
+        <div class="form-group">
+          <label for="volAvail" class="form-label">General Availability *</label>
+          <select id="volAvail" name="availability" class="form-control" required>
+            <option value="">Select availability...</option>
+            <option value="Weekends (Saturdays/Sundays)">Weekends (Saturdays/Sundays)</option>
+            <option value="School Holiday Seasons (April/August/December)">School Holiday Seasons (April/August/December)</option>
+            <option value="Weekdays (Flexible hours)">Weekdays (Flexible hours)</option>
+            <option value="Remote / Asynchronous Project Work">Remote / Asynchronous Project Work</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="volMotivation" class="form-label">Why would you like to volunteer with Dijitali Maths? *</label>
+          <textarea id="volMotivation" name="motivation" class="form-control" placeholder="Share a few words about your background and why making maths accessible matters to you..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Submit Volunteer Application</button>
+        <div class="form-status" aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
+</main>

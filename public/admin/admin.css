@@ -1,0 +1,915 @@
+/* BoardUI shell overrides — these come last so the React-owned auth screen and
+   app shell are not constrained by the legacy login card styles. */
+:root {
+  --font-inter: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+
+  /* Admin brand: the logo's lime-on-navy palette instead of the default blue.
+     The whole BoardUI accent ramp is remapped here, so buttons, focus rings,
+     chips and selection states all follow the maths brand in light and dark
+     mode. The navy side of the palette is used for brand panels (below). */
+  --color-accent-50: #f3fce4;
+  --color-accent-100: #e2f8c2;
+  --color-accent-200: #c8f18b;
+  --color-accent-300: #a8e64f;
+  --color-accent-400: #8bd724;
+  --color-accent-500: #6dbb0f;
+  --color-accent-600: #559a09;
+  --color-accent-700: #427a0c;
+  --color-accent-800: #386411;
+  --color-accent-900: #305414;
+  --color-accent-950: #162d05;
+  --color-admin-maths-amber: var(--color-brand-amber-400);
+
+  /* Data colours follow the logo's circuitry: lime, cyan, pink, amber,
+     orange. Chart cards, donuts and mini bars all read from these. */
+  --color-chart-1: var(--color-brand-lime-500);
+  --color-chart-1-active: var(--color-brand-lime-600);
+  --color-chart-2: var(--color-brand-cyan-500);
+  --color-chart-2-active: #1687cc;
+  --color-chart-3: var(--color-brand-pink-500);
+  --color-chart-3-active: #e0226f;
+  --color-chart-4: var(--color-brand-amber-400);
+  --color-chart-4-active: #e0a705;
+  --color-chart-5: var(--color-brand-orange-500);
+  --color-chart-5-active: #e06b0c;
+  --color-chart-6: #6f8cff;
+  --color-chart-6-active: #4f6fe0;
+  --color-chart-7: #2fc98a;
+  --color-chart-7-active: #1ea870;
+  --color-chart-8: #a78bfa;
+  --color-chart-8-active: #8b5cf6;
+}
+
+/* Navy ground with lime, cyan and pink glows — the logo backdrop, applied to
+   the login brand panel and the dashboard welcome banner. */
+.brand-gradient {
+  background-image:
+    radial-gradient(ellipse at 10% 0%, rgba(122, 214, 44, 0.24), transparent 55%),
+    radial-gradient(ellipse at 88% 4%, rgba(41, 169, 240, 0.2), transparent 52%),
+    radial-gradient(ellipse at 62% 120%, rgba(255, 61, 139, 0.16), transparent 58%),
+    linear-gradient(142deg, var(--color-brand-navy-950) 0%, var(--color-brand-navy-900) 52%, var(--color-brand-navy-800) 100%);
+}
+
+/* New/unread status pill. Tokens only, so dark mode flips it automatically. */
+.pill-new {
+  background-color: var(--color-accent-100);
+  color: var(--color-accent-700);
+}
+.dark .pill-new {
+  background-color: color-mix(in srgb, var(--color-accent-500) 24%, transparent);
+  color: var(--color-accent-300);
+}
+
+/* Soft square grid behind the maths brand panel and dashboard banner. */
+.auth-maths-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(ellipse at 18% 0%, black 12%, transparent 72%);
+  mask-image: radial-gradient(ellipse at 18% 0%, black 12%, transparent 72%);
+}
+
+/* Compact type scale: a 100% browser zoom shows more content and keeps icon
+   rows from wrapping on desktops and phones. Overriding the BoardUI text
+   tokens here scales every composite text utility in the admin area at once,
+   in both light and dark mode. */
+/* Comfortable type scale: generated admin screens are also used on phones. */
+#authView,
+#adminShell {
+  font-family: var(--font-sans);
+  --text-display-3-semibold: 1.875rem;
+  --text-display-3-semibold--line-height: 2.25rem;
+  --text-title-1-medium: 1.375rem;
+  --text-title-1-medium--line-height: 1.5rem;
+  --text-title-1-semibold: 1.125rem;
+  --text-title-1-semibold--line-height: 1.5rem;
+  --text-title-2-medium: 1rem;
+  --text-title-2-medium--line-height: 1.375rem;
+  --text-title-3-medium: 0.875rem;
+  --text-title-3-medium--line-height: 1.25rem;
+  --text-title-3-semibold: 0.875rem;
+  --text-title-3-semibold--line-height: 1.25rem;
+  --text-headline-semibold: 0.8125rem;
+  --text-headline-semibold--line-height: 1.125rem;
+  --text-body-regular: 0.9375rem;
+  --text-body-regular--line-height: 1.125rem;
+  --text-body-medium: 0.9375rem;
+  --text-body-medium--line-height: 1.125rem;
+  --text-body-2-regular: 0.9375rem;
+  --text-body-2-regular--line-height: 1.375rem;
+  --text-body-2-medium: 0.9375rem;
+  --text-body-2-medium--line-height: 1.375rem;
+  --text-body-2-semibold: 0.9375rem;
+  --text-body-2-semibold--line-height: 1.375rem;
+  --text-caption-1-regular: 0.65625rem;
+  --text-caption-1-regular--line-height: 0.875rem;
+  --text-caption-1-medium: 0.65625rem;
+  --text-caption-1-medium--line-height: 0.875rem;
+  --text-caption-1-semibold: 0.65625rem;
+  --text-caption-1-semibold--line-height: 0.875rem;
+  --text-caption-2-medium: 0.59375rem;
+  --text-caption-2-medium--line-height: 0.8125rem;
+  --text-caption-2-semibold: 0.59375rem;
+  --text-caption-2-semibold--line-height: 0.8125rem;
+}
+#authView .auth-card h1,
+#authView .auth-card h2,
+#authView .auth-card h3 {
+  color: inherit;
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+#authView .auth-card form {
+  gap: 1.5rem;
+}
+#authView .auth-card > section:last-child > div:nth-child(2) {
+  margin-inline: auto;
+}
+@media (min-width: 1024px) {
+  .admin-main-column {
+    margin-inline-start: 240px;
+  }
+}
+#authView,
+#authView.auth-shell {
+  display: block;
+  min-height: 100vh;
+  padding: 0;
+  background: none;
+}
+#authView .auth-card {
+  max-width: none;
+  background: var(--color-admin-auth-surface);
+  color: var(--color-text-primary);
+}
+#authView .password-toggle {
+  position: static;
+  inset: auto;
+  transform: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  color: var(--color-foreground-icon-tertiary);
+}
+#authView .password-toggle:hover {
+  background: var(--color-background-secondary-hover);
+  color: var(--color-foreground-icon-primary);
+}
+body.dark-mode #authView .password-toggle {
+  color: var(--text-body);
+}
+#authView .form-status {
+  margin: 0;
+  min-height: 1.25rem;
+}
+#adminShell {
+  min-height: 100vh;
+}
+/* Denser typography across the page engine's generated tables and forms. */
+#adminContent { font-size: 0.9375rem; line-height: 1.55; }
+#adminContent h1 { font-size: 1.5rem; line-height: 1.25; }
+#adminContent h2,
+#adminContent h3 { font-size: 1.125rem; line-height: 1.35; }
+#adminContent p,
+#adminContent li { font-size: 0.9375rem; line-height: 1.55; }
+#adminContent .kpi-val { font-size: 1.75rem; }
+#adminContent .kpi-lbl { font-size: 0.875rem; }
+#adminContent .form-control,
+#adminContent input,
+#adminContent select,
+#adminContent textarea { font-size: 0.8125rem; }
+#adminContent .data-table th,
+#adminContent .data-table td { font-size: 0.875rem; padding: 0.75rem 0.875rem; }
+#adminContent .data-table th { font-size: 0.8125rem; padding: 0.75rem 0.875rem; }
+#adminContent .btn { font-size: 0.875rem; }
+#adminContent .badge { font-size: 0.75rem; }
+#adminContent .badge { white-space: nowrap; min-width: max-content; line-height: 1.25; }
+.tab-pill, .badge { white-space: nowrap; }
+#adminContent code { font-size: 0.8125rem; overflow-wrap: anywhere; }
+#adminSidebar::-webkit-scrollbar {
+  width: 6px;
+}
+#adminSidebar::-webkit-scrollbar-thumb {
+  background: var(--color-border-button-default);
+  border-radius: var(--radius-full, 9999px);
+}
+
+.hidden { display: none !important; }
+
+.auth-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--primary-950), var(--primary-800));
+}
+.auth-card { width: 100%; max-width: 420px; }
+.auth-card-header,
+.auth-brand,
+.admin-topbar-actions {
+  display: flex;
+  align-items: center;
+}
+.auth-card-header {
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+.auth-brand { gap: 0.75rem; }
+.admin-topbar-actions { gap: 0.85rem; }
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-light);
+  border-radius: 50%;
+  background: var(--bg-card);
+  color: var(--text-body);
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition), border-color var(--transition);
+}
+.theme-toggle:hover {
+  color: var(--primary-700);
+  background: var(--primary-50);
+}
+
+.password-field { position: relative; }
+.password-field .form-control { padding-right: 3.25rem; }
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 0.55rem;
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  transform: translateY(-50%);
+  border: 0;
+  border-radius: var(--radius-xs);
+  background: transparent;
+  color: var(--slate-600);
+  cursor: pointer;
+}
+.password-toggle:hover {
+  color: var(--primary-700);
+  background: var(--primary-50);
+}
+
+.link-btn {
+  background: none;
+  border: 0;
+  color: var(--primary-700);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.admin-shell {
+  display: flex;
+  min-height: 100vh;
+}
+.admin-sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 250px;
+  background: var(--primary-950);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  padding: 1.25rem 0.9rem;
+  overflow-y: auto;
+}
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 0.5rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: 1rem;
+}
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+.sidebar-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.side-link {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  padding: 0.62rem 0.85rem;
+  border-radius: var(--radius-xs);
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: none;
+}
+.side-link:hover, .side-link.active {
+  background: rgba(37, 99, 235, 0.35);
+  color: var(--white);
+}
+
+.admin-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  margin-left: 250px;
+}
+.admin-topbar {
+  background: var(--white);
+  border-bottom: 1px solid var(--border-light);
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.admin-content {
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.kpi-card {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.15rem;
+  box-shadow: var(--shadow-sm);
+}
+.kpi-val {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--primary-700);
+}
+.kpi-lbl { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
+
+.panel {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.25rem;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.tab-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tab-pill {
+  padding: 0.45rem 0.95rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-light);
+  background: var(--slate-50);
+  font-weight: 600;
+  font-size: 0.86rem;
+  cursor: pointer;
+}
+.tab-pill.active {
+  background: var(--primary-600);
+  color: var(--white);
+  border-color: var(--primary-600);
+}
+
+.table-wrap { overflow-x: auto; }
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+table.data-table th, table.data-table td {
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid var(--border-light);
+  text-align: left;
+  vertical-align: top;
+}
+table.data-table th {
+  font-weight: 700;
+  color: var(--slate-700);
+  background: var(--slate-50);
+}
+
+.dropzone {
+  border: 2px dashed var(--primary-400);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  text-align: center;
+  background: var(--primary-50);
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+.dropzone.dragover { background: var(--primary-100); border-color: var(--primary-700); }
+
+.admin-img-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 1rem;
+}
+.admin-img-card {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--white);
+}
+.admin-img-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.chart-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 160px;
+  padding-top: 1rem;
+  border-bottom: 1px solid var(--border-light);
+}
+.chart-bar {
+  flex: 1;
+  background: var(--primary-600);
+  border-radius: 4px 4px 0 0;
+  min-width: 6px;
+}
+
+@media (max-width: 860px) {
+  .admin-sidebar {
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 980;
+    transform: translateX(-100%);
+    transition: transform 0.22s ease;
+  }
+  .admin-sidebar.open { transform: translateX(0); }
+  .admin-main { margin-left: 0; }
+}
+
+body.dark-mode {
+  color-scheme: dark;
+  --slate-900: #edf4fc;
+  --slate-800: #dce7f5;
+  --slate-700: #c5d3e6;
+  --slate-600: #a7b8cf;
+  --slate-500: #8fa3bf;
+  --slate-300: #455a77;
+  --slate-200: #2b3f5b;
+  --slate-100: #192b43;
+  --slate-50: #111f33;
+  --text-main: #f3f7fc;
+  --text-body: #d0dced;
+  --text-muted: #a7b8cf;
+  --bg-page: #091426;
+  --bg-card: #111f33;
+  --border-light: #2b3f5b;
+}
+
+body.dark-mode .auth-shell {
+  background: linear-gradient(135deg, #050c1b, #10274d);
+}
+body.dark-mode .auth-card,
+body.dark-mode .panel,
+body.dark-mode .kpi-card,
+body.dark-mode .admin-img-card,
+body.dark-mode .modal-box {
+  color: var(--text-body);
+  background: var(--bg-card);
+  border-color: var(--border-light);
+}
+body.dark-mode .admin-topbar {
+  color: var(--text-body);
+  background: var(--bg-card);
+  border-color: var(--border-light);
+}
+body.dark-mode .form-control {
+  color: var(--text-main);
+  background: #0b182a;
+  border-color: var(--slate-300);
+}
+body.dark-mode .form-control::placeholder { color: var(--slate-500); }
+body.dark-mode .tab-pill { color: var(--text-body); }
+body.dark-mode .tab-pill.active { color: var(--white); }
+body.dark-mode .data-table th {
+  color: var(--text-main);
+  background: var(--slate-100);
+}
+body.dark-mode .dropzone {
+  background: #101f33;
+  border-color: var(--primary-400);
+}
+body.dark-mode .dropzone.dragover { background: #1a3150; }
+body.dark-mode .kpi-val,
+body.dark-mode .link-btn { color: var(--primary-400); }
+body.dark-mode .theme-toggle,
+body.dark-mode .password-toggle {
+  color: var(--text-body);
+  background: #172941;
+  border-color: var(--border-light);
+}
+body.dark-mode .theme-toggle:hover,
+body.dark-mode .password-toggle:hover {
+  color: var(--accent-cyan-light);
+  background: #203956;
+}
+body.dark-mode #adminModalClose { color: var(--text-body); }
+
+:root { --font-inter: "Inter"; }
+
+.admin-content {
+  color: var(--color-text-primary);
+}
+.admin-content .panel,
+.admin-content .kpi-card,
+.admin-content .form-card {
+  color: var(--color-text-primary);
+  background: var(--color-background-primary-default);
+  border: 1px solid var(--color-border-button-default);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow-card);
+}
+.admin-content .panel h3,
+.admin-content .kpi-val,
+.admin-content .kpi-lbl,
+.admin-content .data-table {
+  color: var(--color-text-primary);
+}
+.admin-content .data-table th,
+.admin-content .data-table td {
+  border-color: var(--color-border-button-default);
+}
+.admin-content .data-table th {
+  background: var(--color-background-secondary-default);
+  color: var(--color-text-secondary);
+}
+.admin-content .data-table tr:hover td {
+  background: var(--color-background-secondary-hover);
+}
+.admin-content .form-control {
+  color: var(--color-text-primary);
+  background: var(--color-background-primary-default);
+  border-color: var(--color-border-button-default);
+}
+.settings-help {
+  margin-top: 0.4rem;
+  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+/* Every legacy table row opens the full-record dialog. */
+#adminContent .data-table tbody tr {
+  cursor: pointer;
+}
+.audit-archive summary {
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  padding: 0.25rem 0;
+  list-style-position: inside;
+}
+.audit-archive summary:hover {
+  color: var(--color-text-primary);
+}
+/* Animated colour ring around the inbox reply composer. */
+@property --composer-glow-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+.composer-glow {
+  position: relative;
+  border-radius: 1rem;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--composer-glow-angle),
+    var(--color-brand-lime-500),
+    var(--color-brand-cyan-500),
+    var(--color-brand-pink-500),
+    var(--color-brand-amber-400),
+    var(--color-brand-lime-500)
+  );
+  animation: composer-glow-spin 5s linear infinite;
+}
+@keyframes composer-glow-spin {
+  to {
+    --composer-glow-angle: 360deg;
+  }
+}
+.composer-glow > div {
+  border-radius: calc(1rem - 2px);
+}
+
+@media (max-width: 1023px) {
+  #adminSidebar {
+    transform: translateX(calc(-100% - 1rem));
+  }
+  #adminSidebar.open {
+    transform: translateX(0);
+  }
+}
+
+/* Dark-mode glow for the sign-in card. */
+.auth-card-glow { transition: box-shadow 0.3s ease; }
+.dark .auth-card-glow { box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent-500) 40%, transparent), 0 0 60px -15px color-mix(in srgb, var(--color-accent-500) 35%, transparent), 0 0 30px -10px color-mix(in srgb, var(--color-brand-cyan-500) 25%, transparent); }
+
+/* Shared admin polish: spacious cards, readable data and resilient layouts. */
+#authView .auth-card {
+  min-height: 100svh;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: radial-gradient(ellipse at top left, color-mix(in srgb, var(--color-accent-100) 60%, transparent), transparent 55%), linear-gradient(145deg, var(--color-brand-navy-950), var(--color-brand-navy-900) 55%, var(--color-accent-950));
+}
+#authView .auth-card > section:first-child { display: none; }
+#authView .auth-card > section:last-child {
+  width: min(100%, 32rem);
+  min-height: auto;
+  border: 1px solid var(--color-border-button-default);
+  border-radius: 1.5rem;
+  background: var(--color-background-primary-default);
+  box-shadow: 0 28px 80px -35px rgb(0 0 0 / 65%);
+}
+#authView .auth-card > section:last-child > div:first-child { padding: 1.25rem 1.5rem 0; }
+#authView .auth-card > section:last-child > p:last-child { padding: 0 1rem 1.25rem; }
+#authView .auth-card-glow {
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 60px -32px color-mix(in srgb, var(--color-brand-navy-950) 36%, transparent);
+}
+#authView .auth-card form { gap: 1.125rem; }
+#authView .auth-card h1 { font-size: clamp(1.75rem, 3vw, 2.25rem); line-height: 1.15; }
+#adminContent { min-width: 0; }
+#adminContent > * { min-width: 0; }
+#adminContent .panel,
+#adminContent .kpi-card,
+#adminContent .form-card {
+  border-radius: 1.25rem;
+  padding: clamp(1rem, 2.2vw, 1.5rem);
+  overflow-wrap: anywhere;
+}
+#adminContent .table-wrap { border: 1px solid var(--color-border-button-default); border-radius: 0.875rem; }
+#adminContent .data-table { min-width: 640px; }
+#adminContent .data-table th { white-space: nowrap; }
+#adminContent .data-table td { max-width: 22rem; overflow-wrap: anywhere; }
+#adminContent .table-wrap { max-width: 100%; overflow-x: auto; overscroll-behavior-inline: contain; }
+#adminContent button,
+#adminContent .tab-pill,
+#adminContent input,
+#adminContent select { min-height: 2.5rem; }
+#adminContent .tab-pill { padding-inline: 1rem; border-radius: 0.75rem; transition: background .16s, border-color .16s, color .16s; }
+#adminContent .tab-pill:focus-visible,
+#adminContent button:focus-visible,
+#adminContent a:focus-visible,
+#adminContent input:focus-visible,
+#adminContent select:focus-visible,
+#adminContent textarea:focus-visible { outline: 2px solid var(--color-border-focus-ring); outline-offset: 2px; }
+.dark-mode #authView .auth-card { background: radial-gradient(ellipse at top left, rgb(109 187 15 / 13%), transparent 55%), linear-gradient(145deg, #071021, #0d1b2e 60%, #142316); }
+.dark-mode #authView .auth-card > section:last-child { background: #111f33; border-color: #344965; box-shadow: 0 28px 80px -35px rgb(0 0 0 / 85%); }
+.dark-mode .admin-content .panel,
+.dark-mode .admin-content .kpi-card,
+.dark-mode .admin-content .form-card,
+.dark-mode #adminContent .table-wrap,
+.dark-mode #adminContent .data-table td { border-color: var(--color-border-button-default); }
+.dark-mode .admin-content .panel,
+.dark-mode .admin-content .kpi-card,
+.dark-mode .admin-content .form-card { background: var(--color-background-secondary-default); }
+.dark-mode #adminContent .data-table th { background: var(--color-background-tertiary-default); color: var(--color-text-primary); }
+.dark-mode #adminContent .data-table td { color: var(--color-text-secondary); }
+.dark-mode .modal-box { background: var(--color-background-primary-default); color: var(--color-text-primary); border: 1px solid var(--color-border-button-default); border-radius: 1.25rem; }
+.dark-mode .modal-head { border-color: var(--color-border-button-default); }
+.btn-danger { color: var(--color-text-error-primary); background: transparent; border: 1px solid var(--color-border-error-default); box-shadow: none; }
+.btn-danger:hover { background: color-mix(in srgb, var(--color-text-error-primary) 10%, transparent); }
+.dark-mode .btn-danger { color: var(--color-text-error-primary); border-color: var(--color-border-error-default); }
+.toast-container { width: min(26rem, calc(100vw - 2rem)); }
+.toast { max-width: 100%; white-space: normal; overflow-wrap: anywhere; border: 1px solid var(--color-border-button-default); border-radius: 1rem; box-shadow: 0 16px 42px -24px rgb(0 0 0 / 60%); }
+.modal-backdrop { padding: 1rem; overflow-y: auto; }
+.modal-box { width: min(100%, 48rem); max-height: min(90dvh, 56rem); overflow-y: auto; border: 1px solid var(--color-border-button-default); border-radius: 1.25rem; padding: 1.25rem; }
+.modal-head { display: flex; align-items: flex-start; gap: 1rem; padding: 0 0 1rem; border-bottom: 1px solid var(--color-border-button-default); }
+.modal-head h2 { min-width: 0; flex: 1; overflow-wrap: anywhere; }
+.modal-head button { flex: 0 0 auto; }
+.modal-box #adminModalBody { min-width: 0; padding-block: 1rem; overflow-wrap: anywhere; }
+.modal-box .modal-footer { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .75rem; }
+.inbox-shell { min-width: 0; }
+.inbox-shell > section { min-width: 0; }
+.inbox-shell .conversation-thread { overflow-wrap: anywhere; scroll-behavior: smooth; }
+.inbox-shell .message-bubble { max-width: 100%; white-space: pre-wrap; overflow-wrap: anywhere; }
+.inbox-shell .message-bubble-in { background: var(--color-background-secondary-default); }
+.inbox-shell .message-bubble-out { background: var(--color-accent-600); color: white; }
+.inbox-shell .internal-note-card { max-width: 100%; }
+.inbox-shell .composer-glow { padding: 1px; animation: none; background: var(--color-border-button-default); }
+.inbox-shell .composer-glow > div { border-radius: calc(1rem - 1px); }
+.inbox-shell textarea { min-height: 2.75rem; max-height: 8rem; line-height: 1.45; }
+.inbox-shell .inbox-composer { position: sticky; bottom: 0; z-index: 5; }
+.inbox-shell .inbox-composer button { white-space: nowrap; }
+.inbox-shell .inbox-composer p { overflow-wrap: anywhere; }
+.inbox-shell .tab-pill, .inbox-shell [data-status] { white-space: nowrap; }
+.inbox-shell .thread-list-item { min-width: 0; }
+.inbox-shell a, .inbox-shell dd { overflow-wrap: anywhere; }
+.dark-mode .inbox-shell .message-bubble-in { background: var(--color-background-tertiary-default); border-color: var(--color-border-button-default); }
+.dark-mode .inbox-shell .message-bubble-out { background: var(--color-accent-700); color: var(--color-text-primary); }
+.dark-mode .inbox-shell .composer-glow { background: var(--color-border-button-default); }
+@media (max-width: 640px) {
+  #adminContent { padding: 1rem; }
+  #adminContent .panel { padding: 1rem; }
+  #adminContent h1 { font-size: 1.375rem; }
+  #adminContent .toolbar { align-items: stretch; }
+  #adminContent .toolbar > * { max-width: 100%; }
+  #authView .auth-card { flex-direction: column; }
+  #adminContent .inbox-shell { min-height: calc(100dvh - 9rem); border-radius: 1rem; }
+  #adminContent .inbox-shell > section { max-height: calc(100dvh - 9rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+/* Login page uses a small native form; the BoardUI auth visuals are removed. */
+#authView .auth-card { display: grid; place-items: center; padding: 2rem 1rem; }
+#authView .auth-card > section:last-child { position: relative; display: flex; width: min(100%, 27rem); min-height: 0; border: 1px solid var(--color-border-button-default); border-radius: 1rem; box-shadow: 0 18px 48px -30px rgb(0 0 0 / 58%); }
+#authView .auth-card > section:last-child > div:first-child { justify-content: flex-end; padding: 1rem 1.25rem 0; }
+#authView .auth-card > section:last-child > div:nth-child(2) { width: 100%; max-width: none; padding: 1rem 1.5rem 1.5rem; }
+#authView .auth-card-glow { border-radius: .75rem; box-shadow: none; padding: 0; }
+#authView .simple-auth-brand-row { display: flex; align-items: center; gap: .75rem; margin-bottom: 1.5rem; }
+#authView .simple-auth-brand-row img { width: 2.75rem; height: 2.75rem; border-radius: .75rem; object-fit: cover; }
+#authView .simple-auth-brand-row p { color: var(--color-text-primary); font-size: 1rem; font-weight: 650; }
+#authView .auth-card p { line-height: 1.5; }
+#authView #loginForm { display: flex; flex-direction: column; gap: .875rem; margin-top: 1.5rem; }
+#authView .simple-auth-field { display: flex; flex-direction: column; gap: .5rem; color: var(--color-text-primary); font-size: .9375rem; font-weight: 600; }
+#authView .simple-auth-field input { width: 100%; min-height: 2.875rem; border: 1px solid var(--color-border-button-default); border-radius: .625rem; padding: .75rem .875rem; background: var(--color-background-primary-default); color: var(--color-text-primary); font: inherit; font-weight: 400; }
+#authView .simple-auth-field input::placeholder { color: var(--color-text-placeholder); }
+#authView .simple-auth-field input:focus-visible, #authView .simple-auth-theme:focus-visible, #authView .simple-auth-password button:focus-visible, #authView .simple-auth-submit:focus-visible, #authView .simple-auth-link:focus-visible { outline: 2px solid var(--color-border-focus-ring); outline-offset: 2px; }
+#authView .simple-auth-password { display: flex; align-items: center; gap: .5rem; }
+#authView .simple-auth-password button { display: grid; width: 2.875rem; height: 2.875rem; flex: 0 0 auto; place-items: center; border: 1px solid var(--color-border-button-default); border-radius: .625rem; background: var(--color-background-secondary-default); color: var(--color-text-secondary); }
+#authView .simple-auth-password button svg { width: 1.25rem; height: 1.25rem; }
+#authView .simple-auth-status { display: flex; gap: .5rem; min-height: 1.25rem; margin: 0; overflow-wrap: anywhere; }
+#authView .simple-auth-status svg { width: 1rem; height: 1rem; flex: 0 0 auto; }
+#authView .simple-auth-submit { width: 100%; min-height: 2.875rem; border: 0; border-radius: .625rem; background: var(--color-accent-600); color: white; font: inherit; font-weight: 650; }
+#authView .simple-auth-submit:hover { background: var(--color-accent-700); }
+#authView .simple-auth-submit:disabled { opacity: .65; }
+#authView .simple-auth-link { align-self: flex-end; border: 0; background: transparent; color: var(--color-text-secondary); text-decoration: underline; text-underline-offset: .2em; }
+#authView .simple-auth-theme { display: grid; width: 2.75rem; height: 2.75rem; place-items: center; border: 1px solid var(--color-border-button-default); border-radius: 50%; background: var(--color-background-primary-default); color: var(--color-text-primary); }
+#authView .simple-auth-theme svg { width: 1.25rem; height: 1.25rem; }
+#authView .auth-card > section:last-child > p:last-child { padding: 0 1.25rem 1rem; text-align: center; }
+.dark-mode #authView .simple-auth-field input, .dark-mode #authView .simple-auth-password button { background: var(--color-background-secondary-default); border-color: var(--color-border-button-default); }
+@media (max-width: 640px) { #authView .auth-card { padding: 1rem; } #authView .auth-card > section:last-child > div:nth-child(2) { padding-inline: 1.25rem; } }
+
+/* Simple sign-in page: a quiet, single-column staff entry point. */
+.simple-login-page { min-height: 100svh; font-size: 0.875rem; line-height: 1.5; background: linear-gradient(135deg, var(--color-background-secondary-default), var(--color-background-full)); }
+.simple-login-page > div { width: min(100%, 72rem); min-height: 100svh; margin-inline: auto; padding-inline: 32px; display: flex; flex-direction: column; }
+.simple-login-page header { display: flex; align-items: center; justify-content: space-between; padding-block: 20px; }
+.simple-login-page main { display: flex; flex: 1; align-items: center; justify-content: center; padding-block: 32px; }
+.simple-login-page footer { display: flex; align-items: center; justify-content: space-between; padding-block: 20px; }
+.simple-login-card { width: 100%; max-width: 440px; border: 1px solid var(--color-border-button-default); border-radius: 12px; padding: 24px; background: var(--color-background-primary-default); box-shadow: var(--shadow-card); }
+.simple-login-card > div:first-child { margin-block-end: 24px; }
+.simple-login-card h1,
+.simple-login-card > p + h1 { margin-block-start: 8px; }
+.simple-login-card h1 + p { margin-block-start: 8px; }
+#authView .simple-login-card #loginForm { margin-block-start: 24px; }
+.simple-login-card .simple-auth-field { font-size: 0.875rem; }
+.simple-login-card h1 { font-size: 1.25rem; line-height: 1.4; font-weight: 600; }
+.simple-login-card .simple-auth-submit { font-size: 0.8125rem; font-weight: 600; }
+@media (max-width: 640px) {
+  .simple-login-page > div { padding-inline: 16px; }
+  .simple-login-card { padding: 20px; }
+}
+
+/* Admin console radius, spacing and typography scale. Login/auth styles are excluded. */
+#adminShell {
+  --admin-radius-card: 12px;
+  --admin-radius-control: 8px;
+  --admin-font-body: 0.875rem;
+  --admin-font-meta: 0.75rem;
+  --admin-font-label: 0.75rem;
+  --admin-font-card-title: 1rem;
+  --admin-font-page-title: 1.25rem;
+  --admin-font-kpi: 1.5rem;
+  --admin-font-button: 0.8125rem;
+  font-size: var(--admin-font-body);
+  line-height: 1.5;
+}
+#adminShell [class~="rounded-3xl"] { border-radius: var(--admin-radius-card) !important; }
+#adminShell [class~="rounded-3xl"] { padding: 20px; }
+#adminShell [class~="rounded-2xl"],
+#adminShell [class~="rounded-xl"],
+#adminShell [class*="rounded-[1.125rem]"] { border-radius: var(--admin-radius-control) !important; }
+#adminShell .panel,
+#adminShell .kpi-card,
+#adminShell .form-card,
+#adminShell .chart-card,
+#adminContent section.rounded-3xl,
+#adminContent article.rounded-3xl { padding: 20px; border-radius: var(--admin-radius-card); }
+#adminShell .admin-sidebar, #adminSidebar { border-radius: var(--admin-radius-card) !important; padding: 16px !important; }
+#adminSidebar nav { gap: 1rem; }
+#adminSidebar nav p { padding-inline: 0.5rem; font-size: 0.6875rem; letter-spacing: 0.04em; }
+#adminSidebar > div:last-child { padding-inline: 0; }
+#adminShell header.sticky { padding-inline-end: 24px !important; }
+#adminShell header.sticky > div:last-child { max-width: 55%; }
+#adminShell #currentUserDisplay { max-width: 100%; }
+#adminShell #currentUserDisplay > span { max-width: clamp(5rem, 18vw, 11rem); }
+#adminShell #pageTitle, #adminContent > h1 { font-size: var(--admin-font-page-title); font-weight: 600; line-height: 1.35; }
+#adminShell #adminContent h2, #adminShell #adminContent h3 { font-size: var(--admin-font-card-title); font-weight: 600; line-height: 1.4; }
+#adminShell #adminContent,
+#adminShell #adminContent p,
+#adminShell #adminContent li,
+#adminShell #adminContent td,
+#adminShell #adminContent input,
+#adminShell #adminContent select,
+#adminShell #adminContent textarea { font-size: var(--admin-font-body); line-height: 1.5; }
+#adminShell #adminContent .text-body-regular,
+#adminShell #adminContent .text-body-medium,
+#adminShell #adminContent .text-body-2-regular,
+#adminShell #adminContent .text-body-2-medium,
+#adminShell #adminContent .text-body-2-semibold { font-size: var(--admin-font-body); line-height: 1.5; }
+#adminShell #adminContent .kpi-val,
+#adminShell #adminContent .text-title-1-medium,
+#adminShell #adminContent .text-display-4-medium { font-size: var(--admin-font-kpi); line-height: 1.3; }
+#adminShell #adminContent .data-table th,
+#adminShell #adminContent table th,
+#adminShell #adminContent label,
+#adminSidebar nav p { font-size: var(--admin-font-label); text-transform: uppercase; letter-spacing: 0.04em; }
+#adminShell #adminContent .data-table th,
+#adminShell #adminContent table th { font-weight: 600; }
+#adminShell #adminContent .text-caption-1-regular,
+#adminShell #adminContent .text-caption-1-medium,
+#adminShell #adminContent .text-caption-1-semibold,
+#adminShell #adminContent .text-caption-2-medium,
+#adminShell #adminContent .text-caption-2-semibold,
+#adminShell #adminSidebar .text-caption-1-regular,
+#adminShell #adminSidebar .text-caption-2-semibold { font-size: var(--admin-font-meta); line-height: 1.4; }
+#adminShell #adminContent button,
+#adminShell #adminContent .btn,
+#adminShell #adminSidebar button { font-size: var(--admin-font-button); font-weight: 500; }
+#adminShell #adminContent button,
+#adminShell #adminContent a,
+#adminShell #adminContent input,
+#adminShell #adminContent select { border-radius: var(--admin-radius-control); }
+#adminShell #adminContent .inbox-shell { overflow: hidden; }
+#adminShell #adminContent .inbox-shell > section { min-width: 0; padding: 0; }
+#adminShell #adminContent .inbox-shell > section > div:first-child { padding: 16px; }
+#adminShell #adminContent .thread-list-scroll { padding: 8px; }
+#adminShell #adminContent .inbox-shell .conversation-thread { padding: 16px 20px; }
+#adminShell #adminContent .inbox-shell a { max-width: 100%; }
+#adminShell #adminContent .inbox-shell .message-bubble { font-size: var(--admin-font-body); border-radius: var(--admin-radius-card); }
+#adminShell #adminContent .inbox-client-name { font-size: var(--admin-font-meta) !important; line-height: 1.4; font-weight: 600; }
+#adminShell #adminContent .table-wrap { max-width: 100%; overflow-x: auto; }
+.logout-confirmation h2,
+.logout-confirmation p { color: var(--color-text-white) !important; }
+.logout-confirmation h2 { font-size: 1rem; line-height: 1.4; }
+.logout-confirmation p { font-size: 0.875rem; line-height: 1.5; }
+.logout-confirmation {
+  max-width: 400px;
+  overflow: visible !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.logout-confirmation > div { padding-inline: 0; }
+[class*="group/modal"] [role="dialog"] { border-radius: 12px; }
+.modal-box { border-radius: 12px !important; padding: 20px; }
+.toast { border-radius: 12px !important; }
+[class*="group/modal"] [role="dialog"] button { border-radius: 8px; }
+@media (max-width: 767px) {
+  #adminShell [class~="rounded-3xl"] { padding: 16px; }
+  #adminShell .panel,
+  #adminShell .kpi-card,
+  #adminShell .form-card,
+  #adminShell .chart-card,
+  #adminContent section.rounded-3xl,
+  #adminContent article.rounded-3xl { padding: 16px; }
+  #adminShell header.sticky { padding-inline: 16px 24px; }
+  #adminShell header.sticky > div:last-child { max-width: 55%; }
+  #adminShell #currentUserDisplay > span { max-width: clamp(4rem, 24vw, 8rem); }
+  #adminShell #adminContent .inbox-shell > section > div:first-child,
+  #adminShell #adminContent .inbox-shell .conversation-thread { padding: 16px; }
+}

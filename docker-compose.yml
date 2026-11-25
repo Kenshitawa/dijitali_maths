@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: dijitali
+      POSTGRES_PASSWORD: change-me-in-prod
+      POSTGRES_DB: dijitalimaths
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dijitali -d dijitalimaths"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      APP_ORIGIN: http://localhost:3000
+      SITE_URL: https://dijitalimaths.com
+      DATABASE_URL: postgresql://dijitali:change-me-in-prod@db:5432/dijitalimaths?schema=public
+      SESSION_SECRET: replace-with-a-long-random-secret-32-chars-min
+      ANALYTICS_SALT_SECRET: replace-with-another-long-random-secret
+    volumes:
+      - uploads_data:/app/uploads
+
+volumes:
+  pgdata:
+  uploads_data:

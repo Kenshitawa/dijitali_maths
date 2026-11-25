@@ -1,0 +1,337 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String    @id @default(cuid())
+  email           String    @unique
+  name            String
+  passwordHash    String?
+  role            String    @default("editor") // admin | editor | viewer
+  isActive        Boolean   @default(true)
+  failedLogins    Int       @default(0)
+  lockedUntil     DateTime?
+  inviteTokenHash String?   @unique
+  inviteExpiresAt DateTime?
+  resetTokenHash  String?   @unique
+  resetExpiresAt  DateTime?
+  lastLoginAt     DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  sessions  Session[]
+  auditLogs AuditLog[]
+
+  @@index([email])
+  @@index([createdAt])
+  @@map("users")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  tokenHash    String   @unique
+  csrfToken    String
+  userId       String
+  expiresAt    DateTime
+  lastActiveAt DateTime @default(now())
+  userAgent    String?
+  createdAt    DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("sessions")
+}
+
+model Image {
+  id          String   @id @default(cuid())
+  title       String
+  altText     String
+  category    String   @default("action")
+  projectSlug String?
+  originalUrl String
+  webUrl      String
+  webSmallUrl String
+  thumbUrl    String
+  width       Int
+  height      Int
+  sizeBytes   Int
+  mimeType    String
+  sortOrder   Int      @default(0)
+  featured    Boolean  @default(false)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([category])
+  @@index([published, sortOrder])
+  @@index([createdAt])
+  @@map("images")
+}
+
+model Program {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  title         String
+  categoryLabel String
+  summary       String
+  description   String
+  tagsJson      String   @default("[]")
+  imageUrl      String?
+  featured      Boolean  @default(false)
+  status        String   @default("published")
+  sortOrder     Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([slug])
+  @@index([status, sortOrder])
+  @@index([createdAt])
+  @@map("programs")
+}
+
+model Event {
+  id                  String    @id @default(cuid())
+  slug                String    @unique
+  title               String
+  category            String    @default("festival")
+  eventDateLabel      String
+  eventDate           DateTime?
+  location            String
+  audience            String
+  schedule            String
+  description         String
+  imageUrl            String?
+  registrationEnabled Boolean   @default(true)
+  status              String    @default("published")
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  registrations EventRegistration[]
+
+  @@index([slug])
+  @@index([status, eventDate])
+  @@index([createdAt])
+  @@map("events")
+}
+
+model Post {
+  id            String    @id @default(cuid())
+  slug          String    @unique
+  title         String
+  excerpt       String
+  contentHtml   String
+  coverImageUrl String?
+  authorName    String    @default("Dijitali Maths Team")
+  status        String    @default("draft")
+  publishedAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([slug])
+  @@index([status, publishedAt])
+  @@index([createdAt])
+  @@map("posts")
+}
+
+model Video {
+  id           String   @id @default(cuid())
+  title        String
+  category     String   @default("Learner Session")
+  description  String
+  youtubeUrl   String?
+  videoUrl     String?
+  thumbnailUrl String?
+  status       String   @default("published")
+  sortOrder    Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([status, sortOrder])
+  @@index([createdAt])
+  @@map("videos")
+}
+
+model DonationPayment {
+  id                 String   @id @default(cuid())
+  checkoutRequestId  String   @unique
+  merchantRequestId  String
+  amount             Int
+  phoneLastFour      String
+  status             String   @default("pending")
+  resultCode         Int?
+  resultDescription  String?
+  mpesaReceiptNumber String?
+  transactionDate    DateTime?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@index([status, createdAt])
+  @@map("donation_payments")
+}
+
+model SiteSetting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  valueJson String
+  updatedBy String?
+  updatedAt DateTime @updatedAt
+
+  @@map("site_settings")
+}
+
+model SiteSettingHistory {
+  id        String   @id @default(cuid())
+  key       String
+  oldValue  String?
+  newValue  String
+  changedBy String
+  createdAt DateTime @default(now())
+
+  @@index([key, createdAt])
+  @@map("site_setting_histories")
+}
+
+model ContactMessage {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  phone       String?
+  enquiryType String
+  message     String
+  status      String   @default("new")
+  notes       String   @default("")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+  @@map("contact_messages")
+}
+
+model VolunteerApplication {
+  id           String   @id @default(cuid())
+  name         String
+  email        String
+  phone        String
+  county       String
+  skillsJson   String   @default("[]")
+  availability String
+  motivation   String
+  status       String   @default("new")
+  notes        String   @default("")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+  @@map("volunteer_applications")
+}
+
+model PartnerInquiry {
+  id              String   @id @default(cuid())
+  name            String
+  organization    String?
+  email           String
+  phone           String
+  partnershipType String
+  amountLabel     String?
+  message         String
+  status          String   @default("new")
+  notes           String   @default("")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+  @@map("partner_inquiries")
+}
+
+model EventRegistration {
+  id         String   @id @default(cuid())
+  eventTitle String
+  eventId    String?
+  name       String
+  email      String
+  phone      String
+  roleType   String
+  status     String   @default("new")
+  notes      String   @default("")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  event Event? @relation(fields: [eventId], references: [id], onDelete: SetNull)
+
+  @@index([email])
+  @@index([eventId])
+  @@index([status])
+  @@index([createdAt])
+  @@map("event_registrations")
+}
+
+model Subscriber {
+  id               String    @id @default(cuid())
+  email            String    @unique
+  status           String    @default("pending")
+  confirmTokenHash String?   @unique
+  confirmedAt      DateTime?
+  unsubscribedAt   DateTime?
+  createdAt        DateTime  @default(now())
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+  @@map("subscribers")
+}
+
+model DailyPageStat {
+  id             String @id @default(cuid())
+  date           String
+  path           String
+  referrerDomain String @default("direct")
+  deviceType     String @default("desktop")
+  browserFamily  String @default("other")
+  views          Int    @default(0)
+
+  @@unique([date, path, referrerDomain, deviceType, browserFamily])
+  @@index([date, path])
+  @@index([date])
+  @@map("page_views")
+}
+
+model DailyUniqueVisitor {
+  id          String @id @default(cuid())
+  date        String
+  visitorHash String
+
+  @@unique([date, visitorHash])
+  @@index([date])
+  @@map("daily_unique_visitors")
+}
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  userId      String?
+  userEmail   String
+  action      String
+  entityType  String?
+  entityId    String?
+  detailsJson String   @default("{}")
+  createdAt   DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([action])
+  @@index([createdAt])
+  @@map("audit_logs")
+}

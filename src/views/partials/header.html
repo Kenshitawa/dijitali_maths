@@ -1,0 +1,76 @@
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <div class="brand-symbol"><img src="/images/logo.jpeg" alt="Dijitali Maths Logo" width="44" height="44" /></div>
+        <div>
+          <div class="brand-name">DIJITALI <span>MATHS</span></div>
+          <span class="brand-sub">Every Learner Can Do Maths</span>
+        </div>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="aboutus.html">About</a></li>
+          <li><a href="projects.html">What We Do</a></li>
+          <li><a href="impact.html">Impact</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="photos.html">Gallery</a></li>
+          <li><a href="volunteers.html">Get Involved</a></li>
+          <li><a href="contactus.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="donation.html" class="btn btn-accent btn-sm nav-desktop-cta">Partner / Donate</a>
+        <button
+          type="button"
+          class="mobile-toggle"
+          id="mobileToggle"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="mobileDrawer"
+        >
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside
+    class="mobile-drawer"
+    id="mobileDrawer"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Mobile Navigation"
+    aria-hidden="true"
+  >
+    <div class="drawer-header">
+      <span class="brand-name">DIJITALI <span>MATHS</span></span>
+      <button type="button" class="drawer-close" id="drawerClose" aria-label="Close navigation menu">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+    </div>
+    <nav class="drawer-nav" aria-label="Mobile Menu Links">
+      <a href="index.html">Home</a>
+      <a href="aboutus.html">About Us</a>
+      <a href="projects.html">What We Do</a>
+      <a href="impact.html">Our Impact</a>
+      <a href="events.html">Events &amp; Camps</a>
+      <a href="photos.html">Photo Gallery</a>
+      <a href="videos.html">Videos</a>
+      <a href="volunteers.html">Get Involved</a>
+      <a href="volunteersForm.html">Volunteer Application</a>
+      <a href="donation.html">Support &amp; Partner</a>
+      <a href="contactus.html">Contact Us</a>
+      <div class="drawer-admin">
+        <span class="drawer-admin-label">For our team</span>
+        <a href="/admin/" class="drawer-admin-link">
+          <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+          <span>Admin sign in</span>
+          <i class="fa-solid fa-arrow-up-right-from-square drawer-admin-arrow" aria-hidden="true"></i>
+        </a>
+      </div>
+    </nav>
+  </aside>

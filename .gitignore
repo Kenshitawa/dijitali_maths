@@ -8,10 +8,18 @@ out/
 .vite/
 .parcel-cache/
 coverage/
+playwright-report/
+test-results/
 
 .env
 .env.*
+!.env.example
 *.log
+
+prisma/*.db
+prisma/*.db-journal
+prisma/*.db-wal
+uploads/
 
 .vscode/
 .idea/

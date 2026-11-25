@@ -1,0 +1,52 @@
+<main id="main-content">
+  <section class="hero hero-subpage">
+    <div class="container">
+      <div class="hero-tag">Home / What We Do</div>
+      <h1>What We Offer &amp; <span>How We Teach</span></h1>
+      <p class="lead">
+        From learner holiday bootcamps and mathematical challenges to practical teacher workshops and festive community maths days, discover our programmes.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid-2" id="dynamicProgramsGrid">
+        <article class="card">
+          <div class="card-media"><img src="/images/dijitali_hero.jpg" alt="Learner Sessions & Holiday Programmes" loading="lazy" /></div>
+          <div class="card-body">
+            <span class="badge badge-blue">Programme Area A</span>
+            <h3 style="margin-top:0.6rem;">Learner Sessions &amp; Holiday Programmes</h3>
+            <p style="margin-top:0.5rem;">Structured mathematics experiences designed to help children build lasting confidence and intuitive conceptual understanding.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-media"><img src="/images/binary_code_activity.jpg" alt="Mathematics Challenges & Enrichment" loading="lazy" /></div>
+          <div class="card-body">
+            <span class="badge badge-amber">Programme Area B</span>
+            <h3 style="margin-top:0.6rem;">Mathematics Challenges &amp; Enrichment</h3>
+            <p style="margin-top:0.5rem;">Signature Activity: The Binary Code Necklace Activity, where students translate letters into 8-bit binary numbers using colored beads.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">Interactive Sandbox</span>
+        <h2 class="section-title">Test Your Mathematical Reasoning</h2>
+      </div>
+      <div class="challenge-box" id="mathChallengeBox">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;">
+          <span class="badge badge-purple" id="challengeCategory">Live Challenge</span>
+          <button type="button" class="btn btn-outline-primary btn-sm" id="challengeNext">Try Another Challenge</button>
+        </div>
+        <p id="challengeQuestion" style="font-size:1.1rem;font-weight:600;color:var(--slate-900);"></p>
+        <div class="challenge-options" id="challengeOptions"></div>
+        <div class="challenge-feedback" id="challengeFeedback" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+</main>
