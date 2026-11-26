@@ -1,9 +1,10 @@
 import path from 'node:path';
+import { createRequire } from 'node:module';
 import { randomUUID } from 'node:crypto';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import express, { type NextFunction, type Request, type Response } from 'express';
-import helmet from 'helmet';
+import express, { type NextFunction, type Request, type RequestHandler, type Response } from 'express';
+import type { HelmetOptions } from 'helmet';
 import multer from 'multer';
 import { env } from './config/env.js';
 import { prisma } from './lib/prisma.js';
@@ -11,6 +12,9 @@ import { adminRouter } from './routes/admin.js';
 import { adminContentRouter } from './routes/adminContent.js';
 import { authRouter } from './routes/auth.js';
 import { publicRouter } from './routes/public.js';
+
+const require = createRequire(import.meta.url);
+const helmet = require('helmet') as (options?: Readonly<HelmetOptions>) => RequestHandler;
 
 export function createApp() {
   const app = express();
@@ -167,3 +171,4 @@ export function createApp() {
 
   return app;
 }
+
