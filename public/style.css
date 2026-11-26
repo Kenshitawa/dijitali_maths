@@ -1,0 +1,2 @@
+/* Compatibility for cached HTML that still requests /style.css. */
+@import url("/css/design-system.css");
