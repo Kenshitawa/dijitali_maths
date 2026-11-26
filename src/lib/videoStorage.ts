@@ -2,6 +2,13 @@ import { mkdir, unlink, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { env } from '../config/env.js';
 import { generateToken } from './crypto.js';
+import {
+  deleteSupabaseStorageObjects,
+  isSupabaseStorageEnabled,
+  supabaseStorageObjectPathFromUrl,
+  supabaseStoragePublicUrl,
+  uploadSupabaseStorageObject,
+} from './supabaseStorage.js';
 
 export type SupportedVideoMimeType = 'video/mp4' | 'video/webm';
 
@@ -20,16 +27,29 @@ export async function saveVideo(buffer: Buffer): Promise<{ videoUrl: string; mim
   const mimeType = detectVideoMime(buffer);
   if (!mimeType) throw new Error('Only valid MP4 and WebM video files can be uploaded.');
 
-  const directory = path.resolve(env.uploadDir, 'videos');
-  await mkdir(directory, { recursive: true });
-
   const extension = mimeType === 'video/mp4' ? 'mp4' : 'webm';
   const filename = `${Date.now()}-${generateToken(8)}.${extension}`;
+  if (isSupabaseStorageEnabled()) {
+    const objectPath = `videos/${filename}`;
+    await uploadSupabaseStorageObject(objectPath, buffer, mimeType);
+    return { videoUrl: supabaseStoragePublicUrl(objectPath), mimeType };
+  }
+
+  const directory = path.resolve(env.uploadDir, 'videos');
+  await mkdir(directory, { recursive: true });
   await writeFile(path.join(directory, filename), buffer, { flag: 'wx' });
   return { videoUrl: `/uploads/videos/${filename}`, mimeType };
 }
 
 export async function deleteStoredVideo(videoUrl: string | null | undefined): Promise<void> {
+  if (videoUrl && isSupabaseStorageEnabled()) {
+    const objectPath = supabaseStorageObjectPathFromUrl(videoUrl);
+    if (objectPath?.startsWith('videos/')) {
+      await deleteSupabaseStorageObjects([objectPath]);
+      return;
+    }
+  }
+
   if (!videoUrl?.startsWith('/uploads/videos/')) return;
 
   const filename = videoUrl.slice('/uploads/videos/'.length);

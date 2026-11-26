@@ -140,8 +140,7 @@ export function createApp() {
   app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
     if (err instanceof multer.MulterError) {
       if (err.code === 'LIMIT_FILE_SIZE') {
-        const limit = err.field === 'video' ? env.maxVideoUploadFileBytes : env.maxUploadFileBytes;
-        res.status(400).json({ error: `File exceeds the ${limit / (1024 * 1024)} MB limit.` });
+        res.status(400).json({ error: `Image exceeds the ${(env.maxUploadFileBytes / 1_000_000).toFixed(1)} MB limit.` });
         return;
       }
       if (err.code === 'LIMIT_FILE_COUNT') {

@@ -3,6 +3,13 @@ import path from 'node:path';
 import sharp from 'sharp';
 import { env } from '../config/env.js';
 import { generateToken } from './crypto.js';
+import {
+  deleteSupabaseStorageObjects,
+  isSupabaseStorageEnabled,
+  supabaseStorageObjectPathFromUrl,
+  supabaseStoragePublicUrl,
+  uploadSupabaseStorageObject,
+} from './supabaseStorage.js';
 
 export type AllowedImageMime = 'image/jpeg' | 'image/png' | 'image/webp';
 
@@ -157,4 +164,81 @@ export class LocalStorageAdapter implements StorageAdapter {
   }
 }
 
-export const storage: StorageAdapter = new LocalStorageAdapter();
+export class SupabaseStorageAdapter implements StorageAdapter {
+  async saveImage(buffer: Buffer, originalName: string): Promise<StoredImageResult> {
+    const mime = detectImageMime(buffer);
+    if (!mime) {
+      throw new Error(
+        `Rejected "${originalName}": unsupported file format. Only JPEG, PNG, and WebP images are allowed.`
+      );
+    }
+
+    const id = `${Date.now()}-${generateToken(6)}`;
+    const originalExtension = extForMime(mime);
+    const originalPipeline = sharp(buffer).rotate();
+    let original: Buffer;
+    if (mime === 'image/jpeg') original = await originalPipeline.jpeg({ quality: 92 }).toBuffer();
+    else if (mime === 'image/png') original = await originalPipeline.png({ compressionLevel: 9 }).toBuffer();
+    else original = await originalPipeline.webp({ quality: 92 }).toBuffer();
+
+    const metadata = await sharp(buffer, { failOn: 'error' }).rotate().metadata();
+    const width = metadata.width || 1200;
+    const height = metadata.height || 800;
+    const web = await sharp(buffer)
+      .rotate()
+      .resize({ width: 1600, withoutEnlargement: true })
+      .webp({ quality: 82 })
+      .toBuffer();
+    const small = await sharp(buffer)
+      .rotate()
+      .resize({ width: 800, withoutEnlargement: true })
+      .webp({ quality: 80 })
+      .toBuffer();
+    const thumb = await sharp(buffer)
+      .rotate()
+      .resize({ width: 400, withoutEnlargement: true })
+      .webp({ quality: 76 })
+      .toBuffer();
+
+    const objectPaths = {
+      original: `images/${id}/original.${originalExtension}`,
+      web: `images/${id}/web.webp`,
+      small: `images/${id}/small.webp`,
+      thumb: `images/${id}/thumb.webp`,
+    };
+    const uploads = await Promise.allSettled([
+      uploadSupabaseStorageObject(objectPaths.original, original, mime),
+      uploadSupabaseStorageObject(objectPaths.web, web, 'image/webp'),
+      uploadSupabaseStorageObject(objectPaths.small, small, 'image/webp'),
+      uploadSupabaseStorageObject(objectPaths.thumb, thumb, 'image/webp'),
+    ]);
+    const failedUpload = uploads.find((result) => result.status === 'rejected');
+    if (failedUpload?.status === 'rejected') {
+      await deleteSupabaseStorageObjects(Object.values(objectPaths)).catch(() => {});
+      throw failedUpload.reason;
+    }
+
+    const webUrl = supabaseStoragePublicUrl(objectPaths.web);
+    return {
+      originalUrl: supabaseStoragePublicUrl(objectPaths.original),
+      webUrl,
+      webSmallUrl: supabaseStoragePublicUrl(objectPaths.small),
+      thumbUrl: supabaseStoragePublicUrl(objectPaths.thumb),
+      width,
+      height,
+      sizeBytes: web.length,
+      mimeType: mime,
+    };
+  }
+
+  async deleteImageByUrls(urls: string[]): Promise<void> {
+    const objectPaths = [...new Set(urls
+      .map((url) => supabaseStorageObjectPathFromUrl(url))
+      .filter((objectPath): objectPath is string => Boolean(objectPath)))];
+    await deleteSupabaseStorageObjects(objectPaths);
+  }
+}
+
+export const storage: StorageAdapter = isSupabaseStorageEnabled()
+  ? new SupabaseStorageAdapter()
+  : new LocalStorageAdapter();

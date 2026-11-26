@@ -2,6 +2,12 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+const configuredUploadLimitMb = Number(process.env.MAX_UPLOAD_FILE_MB);
+const maxUploadFileMb =
+  Number.isFinite(configuredUploadLimitMb) && configuredUploadLimitMb > 0
+    ? Math.min(configuredUploadLimitMb, 4.25)
+    : 4.25;
+
 export const env = {
   nodeEnv: process.env.NODE_ENV || 'development',
   isProd: process.env.NODE_ENV === 'production',
@@ -9,14 +15,16 @@ export const env = {
   appOrigin: process.env.APP_ORIGIN || 'http://localhost:3000',
   siteUrl: (process.env.SITE_URL || 'https://dijitalimaths.org').replace(/\/+$/, ''),
   databaseUrl: process.env.DATABASE_URL || 'file:./dev.db',
+  supabaseUrl: process.env.SUPABASE_URL || '',
+  supabaseSecretKey: process.env.SUPABASE_SECRET_KEY || '',
+  supabaseStorageBucket: process.env.SUPABASE_STORAGE_BUCKET || 'dijitali-media',
   sessionSecret: process.env.SESSION_SECRET || 'dev-only-session-secret-change-me-in-prod-32chars',
   analyticsSaltSecret: process.env.ANALYTICS_SALT_SECRET || 'dev-only-analytics-salt-change-me',
   sessionTtlHours: Number(process.env.SESSION_TTL_HOURS || 12),
   sessionIdleMinutes: Number(process.env.SESSION_IDLE_MINUTES || 10),
   uploadDir: process.env.UPLOAD_DIR || 'uploads',
-  maxUploadFileBytes: Number(process.env.MAX_UPLOAD_FILE_MB || 10) * 1024 * 1024,
-  maxVideoUploadFileBytes: Number(process.env.MAX_VIDEO_FILE_MB || 100) * 1024 * 1024,
-  maxUploadFiles: Number(process.env.MAX_UPLOAD_FILES || 20),
+  maxUploadFileBytes: maxUploadFileMb * 1024 * 1024,
+  maxUploadFiles: process.env.VERCEL ? 1 : Number(process.env.MAX_UPLOAD_FILES || 20),
   mpesaEnvironment: process.env.MPESA_ENVIRONMENT || 'sandbox',
   mpesaConsumerKey: process.env.MPESA_CONSUMER_KEY || '',
   mpesaConsumerSecret: process.env.MPESA_CONSUMER_SECRET || '',

@@ -5,4 +5,4 @@ Disallow: /admin
 Disallow: /api/
 Disallow: /.git/
 
-Sitemap: https://dijitalimaths.org/sitemap.xml
+Sitemap: https://dijitalimaths.com/sitemap.xml

@@ -2,7 +2,7 @@ import { spawnSync } from 'node:child_process';
 import { chmod, mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, URL } from 'node:url';
 
 const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const envFile = path.join(appRoot, '.env');
@@ -41,7 +41,9 @@ async function waitForReadiness(appOrigin) {
   const readyUrl = new URL('/api/health/ready', appOrigin);
   for (let attempt = 0; attempt < 10; attempt += 1) {
     try {
-      const response = await fetch(readyUrl, { signal: AbortSignal.timeout(5_000) });
+      const response = await globalThis.fetch(readyUrl, {
+        signal: globalThis.AbortSignal.timeout(5_000),
+      });
       if (response.ok) {
         const body = await response.json();
         if (body.ok === true && body.database === 'ready') return;
@@ -49,7 +51,7 @@ async function waitForReadiness(appOrigin) {
     } catch {
       // Passenger may need a short moment to restart after restart.txt is touched.
     }
-    await new Promise((resolve) => setTimeout(resolve, 3_000));
+    await new Promise((resolve) => globalThis.setTimeout(resolve, 3_000));
   }
   throw new Error('Deployment was installed, but /api/health/ready did not become healthy within 30 seconds.');
 }

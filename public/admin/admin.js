@@ -680,7 +680,7 @@ async function renderImages(el) {
       isEditorOrAdmin()
         ? `<div class="panel">
             <div class="dropzone" id="imgDropzone">
-              <p><strong>Drag &amp; drop JPEG, PNG, or WebP images here</strong> or click to select multiple files</p>
+              <p><strong>Drag &amp; drop JPEG, PNG, or WebP images here</strong> or click to select multiple files. Maximum 4.5 MB per image.</p>
               <input type="file" id="imgFileInput" multiple accept="image/jpeg,image/png,image/webp" class="hidden" />
             </div>
             <div style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;">
@@ -739,27 +739,47 @@ async function renderImages(el) {
 
     const uploadFiles = async (fileList) => {
       if (!fileList.length) return;
-      const fd = new FormData();
-      for (const f of fileList) fd.append('files', f);
-      fd.append('category', el.querySelector('#uploadCat').value);
-      const alt = el.querySelector('#uploadAlt').value.trim();
-      if (alt) fd.append('altText', alt);
+      const maxFileBytes = 4.25 * 1024 * 1024;
+      const selectedFiles = Array.from(fileList);
+      const files = selectedFiles.filter((file) => file.size <= maxFileBytes);
+      if (files.length !== selectedFiles.length) {
+        toast('Each image must be 4.5 MB or smaller. Larger files were skipped.', 'error');
+      }
+      if (!files.length) return;
 
+      const category = el.querySelector('#uploadCat').value;
+      const alt = el.querySelector('#uploadAlt').value.trim();
       prog.classList.remove('hidden');
       const progressLabel = el.querySelector('#uploadProgressLabel');
       progressLabel.classList.remove('hidden');
       progressLabel.textContent = '0%';
       try {
-        const res = await apiWithProgress('/api/admin/images', {
-          method: 'POST',
-          body: fd,
-          onProgress: (progress) => {
-            prog.value = progress;
-            progressLabel.textContent = `${progress}%`;
-          },
-        });
-        if (res.uploaded?.length) toast(`Uploaded ${res.uploaded.length} image(s)`);
-        if (res.errors?.length) toast(res.errors.map((e) => e.error).join('; '), 'error');
+        const uploaded = [];
+        const errors = [];
+        for (const [index, file] of files.entries()) {
+          const fd = new FormData();
+          fd.append('files', file);
+          fd.append('category', category);
+          if (alt) fd.append('altText', alt);
+
+          try {
+            const res = await apiWithProgress('/api/admin/images', {
+              method: 'POST',
+              body: fd,
+              onProgress: (progress) => {
+                const overall = Math.round(((index + progress / 100) / files.length) * 100);
+                prog.value = overall;
+                progressLabel.textContent = `${overall}% (${index + 1}/${files.length})`;
+              },
+            });
+            uploaded.push(...(res.uploaded || []));
+            errors.push(...(res.errors || []));
+          } catch (error) {
+            errors.push({ error: `${file.name}: ${error.message}` });
+          }
+        }
+        if (uploaded.length) toast(`Uploaded ${uploaded.length} image(s)`);
+        if (errors.length) toast(errors.map((error) => error.error).join('; '), 'error');
         renderImages(el);
       } catch (err) {
         toast(err.message, 'error');
@@ -1076,7 +1096,7 @@ async function renderVideos(el) {
             <tr data-id="${escapeHtml(v.id)}">
               <td><strong>${escapeHtml(v.title)}</strong><br/><small>${escapeHtml(v.description)}</small></td>
               <td>${escapeHtml(v.category)}</td>
-              <td>${v.videoUrl ? 'Uploaded file' : 'YouTube'}</td>
+              <td>${v.videoUrl && !v.youtubeUrl ? 'Legacy uploaded file' : 'YouTube'}</td>
               <td><span class="badge ${v.status === 'published' ? 'badge-emerald' : 'badge-amber'}">${escapeHtml(v.status)}</span></td>
               <td>${isEditorOrAdmin() ? '<button type="button" class="btn btn-danger btn-sm vid-del">Delete</button>' : 'Read-only'}</td>
             </tr>`
@@ -1093,58 +1113,24 @@ async function renderVideos(el) {
       `<form id="newVidForm">
         <div class="form-group"><label class="form-label">Title</label><input name="title" class="form-control" required /></div>
         <div class="form-group"><label class="form-label">Category</label><input name="category" class="form-control" value="Learner Session" required /></div>
-        <div class="form-group"><label class="form-label">YouTube URL</label><input name="youtubeUrl" class="form-control" /></div>
-        <div class="form-group"><label class="form-label">Or upload MP4 / WebM</label><input name="video" type="file" class="form-control" accept=".mp4,.webm,video/mp4,video/webm" /></div>
+        <div class="form-group"><label class="form-label">YouTube video URL</label><input name="youtubeUrl" type="url" class="form-control" placeholder="https://youtu.be/..." required /></div>
         <div class="form-group"><label class="form-label">Description</label><textarea name="description" class="form-control" required></textarea></div>
         <div class="form-group"><label class="form-label">Visibility</label><select name="status" class="form-control"><option value="published">Published</option><option value="draft">Draft</option></select></div>
-        <p class="settings-help">Uploaded videos are stored in <code>uploads/videos</code>. Published videos appear on the public Videos page. Default file limit: 100 MB.</p>
-        <progress id="videoUploadProgress" value="0" max="100" class="hidden" style="width:100%;"></progress>
-        <span id="videoUploadProgressLabel" class="hidden" aria-live="polite"></span>
+        <p class="settings-help">Published videos appear on the public Videos page and autoplay muted. Viewers can turn on sound in the player.</p>
         <button type="submit" class="btn btn-primary" style="width:100%;">Save Video</button>
       </form>`
     );
     document.getElementById('newVidForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const formData = new FormData(e.target);
-      const file = formData.get('video');
-      const youtubeUrl = String(formData.get('youtubeUrl') || '').trim();
-      const isFileUpload = file instanceof File && file.size > 0;
-      if (isFileUpload && youtubeUrl) {
-        toast('Choose either a YouTube URL or a video file, not both.', 'error');
-        return;
-      }
-
-      const progress = document.getElementById('videoUploadProgress');
-      const progressLabel = document.getElementById('videoUploadProgressLabel');
       try {
-        if (isFileUpload) {
-          progress.classList.remove('hidden');
-          progressLabel.classList.remove('hidden');
-          progressLabel.textContent = '0%';
-          await apiWithProgress('/api/admin/videos/upload', {
-            method: 'POST',
-            body: formData,
-            onProgress: (percentage) => {
-              progress.value = percentage;
-              progressLabel.textContent = `${percentage}%`;
-            },
-          });
-        } else {
-          if (!youtubeUrl) {
-            toast('Enter a YouTube URL or choose an MP4/WebM video.', 'error');
-            return;
-          }
-          const payload = Object.fromEntries([...formData.entries()].filter(([key, value]) => key !== 'video' && typeof value === 'string'));
-          await api('/api/admin/videos', { method: 'POST', body: JSON.stringify(payload) });
-        }
+        const payload = Object.fromEntries([...formData.entries()].filter(([, value]) => typeof value === 'string'));
+        await api('/api/admin/videos', { method: 'POST', body: JSON.stringify(payload) });
         closeModal();
         toast('Video saved');
         renderVideos(el);
       } catch (error) {
         toast(error.message, 'error');
-      } finally {
-        progress.classList.add('hidden');
-        progressLabel.classList.add('hidden');
       }
     });
   });

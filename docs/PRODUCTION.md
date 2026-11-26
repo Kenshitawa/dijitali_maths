@@ -2,7 +2,7 @@
 
 ## Required environment
 
-Production startup requires `SESSION_SECRET` and `ANALYTICS_SALT_SECRET` (each a unique random value of at least 32 characters), `DATABASE_URL`, and SMTP host/user/password values. `APP_ORIGIN` must be HTTPS. Copy `.env.example`, then replace every example secret before deployment. Never commit `.env`.
+Production startup requires `SESSION_SECRET` and `ANALYTICS_SALT_SECRET` (each a unique random value of at least 32 characters), `DATABASE_URL`, and HTTPS `APP_ORIGIN`/`SITE_URL` values. SMTP is optional; contact and newsletter submissions remain stored without it, while email notifications are skipped. If enabled, configure `SMTP_HOST`, `SMTP_USER`, and `SMTP_PASS` together. Copy `.env.example`, then replace every example secret before deployment. Never commit `.env`.
 
 ## Build and deploy
 

@@ -129,6 +129,17 @@ async function main() {
 
   await fs.mkdir(outDir, { recursive: true });
 
+  // Vercel serves files from public/ through its CDN and ignores express.static().
+  // Copy the existing site imagery there while leaving large video files in source storage.
+  const sourceImagesDir = path.resolve('images');
+  const publicImagesDir = path.join(outDir, 'images');
+  await fs.mkdir(publicImagesDir, { recursive: true });
+  const imageExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg', '.avif']);
+  for (const entry of await fs.readdir(sourceImagesDir, { withFileTypes: true })) {
+    if (!entry.isFile() || !imageExtensions.has(path.extname(entry.name).toLowerCase())) continue;
+    await fs.copyFile(path.join(sourceImagesDir, entry.name), path.join(publicImagesDir, entry.name));
+  }
+
   const [head, header, footer, widgets] = await Promise.all([
     fs.readFile(path.join(partialsDir, 'head.html'), 'utf8'),
     fs.readFile(path.join(partialsDir, 'header.html'), 'utf8'),

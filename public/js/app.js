@@ -846,23 +846,46 @@ async function loadVideos() {
     if (!res.ok) return;
     const { items } = await res.json();
     if (!items?.length) return;
+    const parseYouTubeUrl = (value) => {
+      try {
+        const url = new URL(value);
+        if (url.protocol !== 'https:' || !['youtube.com', 'www.youtube.com', 'm.youtube.com', 'youtu.be'].includes(url.hostname.toLowerCase())) return null;
+        const segments = url.pathname.split('/').filter(Boolean);
+        const id = url.hostname.toLowerCase() === 'youtu.be'
+          ? segments[0]
+          : url.pathname === '/watch'
+            ? url.searchParams.get('v')
+            : ['embed', 'shorts', 'live'].includes(segments[0] || '')
+              ? segments[1]
+              : null;
+        return { url: url.href, id: id && /^[\w-]{11}$/.test(id) ? id : null };
+      } catch {
+        return null;
+      }
+    };
     el.innerHTML = items
       .map(
-        (v) => `
+        (v) => {
+          const youtube = v.youtubeUrl ? parseYouTubeUrl(v.youtubeUrl) : null;
+          const youtubeId = youtube?.id;
+          const videoEmbed = youtubeId
+            ? `<div class="card-media"><iframe src="https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&amp;mute=1&amp;playsinline=1&amp;rel=0" title="${escapeHtml(v.title)}" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`
+            : v.videoUrl
+              ? `<div class="card-media"><video src="${escapeHtml(v.videoUrl)}" controls preload="metadata" playsinline aria-label="${escapeHtml(v.title)}"></video></div>`
+              : v.thumbnailUrl
+                ? `<div class="card-media"><img src="${escapeHtml(v.thumbnailUrl)}" alt="${escapeHtml(v.title)}" loading="lazy" /></div>`
+                : '';
+          return `
       <article class="card">
-        ${v.thumbnailUrl ? `<div class="card-media"><img src="${escapeHtml(v.thumbnailUrl)}" alt="${escapeHtml(v.title)}" loading="lazy" /></div>` : ''}
-        ${v.videoUrl ? `<div class="card-media"><video src="${escapeHtml(v.videoUrl)}" controls preload="metadata" playsinline aria-label="${escapeHtml(v.title)}"></video></div>` : ''}
+        ${videoEmbed}
         <div class="card-body">
           <span class="badge badge-amber">${escapeHtml(v.category)}</span>
           <h3 style="margin-top:0.6rem;">${escapeHtml(v.title)}</h3>
           <p style="margin:0.5rem 0 1rem;">${escapeHtml(v.description)}</p>
-          ${
-            v.youtubeUrl
-              ? `<a href="${escapeHtml(v.youtubeUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"><i class="fa-brands fa-youtube"></i> Watch on YouTube</a>`
-              : ''
-          }
+          ${youtube && !youtubeId ? `<a href="${escapeHtml(youtube.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"><i class="fa-brands fa-youtube"></i> Watch on YouTube</a>` : ''}
         </div>
       </article>`
+        }
       )
       .join('');
   } catch {}

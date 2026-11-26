@@ -9,11 +9,27 @@ const required = [
   'ANALYTICS_SALT_SECRET',
   'APP_ORIGIN',
   'SITE_URL',
-  'SMTP_HOST',
-  'SMTP_USER',
-  'SMTP_PASS',
-  'UPLOAD_DIR',
 ];
+const smtpValues = [process.env.SMTP_HOST, process.env.SMTP_USER, process.env.SMTP_PASS];
+if (smtpValues.some(Boolean) && !smtpValues.every((value) => value?.trim())) {
+  errors.push('SMTP is partially configured. Set SMTP_HOST, SMTP_USER, and SMTP_PASS together, or leave all three unset.');
+}
+const hasSupabaseStorage = Boolean(process.env.SUPABASE_URL && process.env.SUPABASE_SECRET_KEY);
+if (!hasSupabaseStorage) required.push('UPLOAD_DIR');
+if (process.env.VERCEL && !hasSupabaseStorage) {
+  errors.push('SUPABASE_URL and SUPABASE_SECRET_KEY are required on Vercel for durable media storage.');
+}
+if (Boolean(process.env.SUPABASE_URL) !== Boolean(process.env.SUPABASE_SECRET_KEY)) {
+  errors.push('SUPABASE_URL and SUPABASE_SECRET_KEY must be configured together.');
+}
+if (hasSupabaseStorage) {
+  try {
+    const supabaseUrl = new URL(process.env.SUPABASE_URL || '');
+    if (supabaseUrl.protocol !== 'https:') errors.push('SUPABASE_URL must use HTTPS.');
+  } catch {
+    errors.push('SUPABASE_URL must be a valid HTTPS URL.');
+  }
+}
 
 if (process.env.NODE_ENV !== 'production') {
   errors.push('NODE_ENV must be production.');
@@ -54,19 +70,21 @@ try {
   errors.push('DATABASE_URL must be a valid PostgreSQL connection URL.');
 }
 
-const uploadDir = process.env.UPLOAD_DIR || '';
-const absoluteUploadDir = path.resolve(uploadDir || '.');
-const appRoot = path.resolve(process.cwd());
-const publicRoot = path.resolve(appRoot, '..', 'public_html');
-if (
-  !path.isAbsolute(uploadDir) ||
-  absoluteUploadDir === path.parse(absoluteUploadDir).root ||
-  absoluteUploadDir === appRoot ||
-  absoluteUploadDir.startsWith(`${appRoot}${path.sep}`) ||
-  absoluteUploadDir === publicRoot ||
-  absoluteUploadDir.startsWith(`${publicRoot}${path.sep}`)
-) {
-  errors.push('UPLOAD_DIR must be an absolute persistent directory outside public_html.');
+if (!hasSupabaseStorage) {
+  const uploadDir = process.env.UPLOAD_DIR || '';
+  const absoluteUploadDir = path.resolve(uploadDir || '.');
+  const appRoot = path.resolve(process.cwd());
+  const publicRoot = path.resolve(appRoot, '..', 'public_html');
+  if (
+    !path.isAbsolute(uploadDir) ||
+    absoluteUploadDir === path.parse(absoluteUploadDir).root ||
+    absoluteUploadDir === appRoot ||
+    absoluteUploadDir.startsWith(`${appRoot}${path.sep}`) ||
+    absoluteUploadDir === publicRoot ||
+    absoluteUploadDir.startsWith(`${publicRoot}${path.sep}`)
+  ) {
+    errors.push('UPLOAD_DIR must be an absolute persistent directory outside public_html.');
+  }
 }
 
 if (errors.length) {

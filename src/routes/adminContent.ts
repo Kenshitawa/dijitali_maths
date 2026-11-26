@@ -1,14 +1,11 @@
 import { Router } from 'express';
-import multer from 'multer';
 import { z } from 'zod';
-import { env } from '../config/env.js';
 import { recordAuditLog } from '../lib/audit.js';
 import { prisma } from '../lib/prisma.js';
 import { sanitizePlainText, sanitizeRichText } from '../lib/sanitize.js';
-import { deleteStoredVideo, detectVideoMime, saveVideo } from '../lib/videoStorage.js';
+import { deleteStoredVideo } from '../lib/videoStorage.js';
 import { isMpesaConfigured } from '../lib/mpesa.js';
 import { requireAuth, requireRole } from '../middleware/auth.js';
-import { uploadLimiter } from '../middleware/rateLimit.js';
 
 export const adminContentRouter = Router();
 adminContentRouter.use(requireAuth);
@@ -301,16 +298,39 @@ adminContentRouter.delete('/posts/:id', requireRole('admin', 'editor'), async (r
 
 // ==================== VIDEOS ====================
 
+function isYouTubeVideoUrl(value: string): boolean {
+  try {
+    const url = new URL(value);
+    if (url.protocol !== 'https:' || !['youtube.com', 'www.youtube.com', 'm.youtube.com', 'youtu.be'].includes(url.hostname.toLowerCase())) {
+      return false;
+    }
+
+    const segments = url.pathname.split('/').filter(Boolean);
+    const videoId = url.hostname.toLowerCase() === 'youtu.be'
+      ? segments[0]
+      : url.pathname === '/watch'
+        ? url.searchParams.get('v')
+        : ['embed', 'shorts', 'live'].includes(segments[0] || '')
+          ? segments[1]
+          : null;
+
+    return Boolean(videoId && /^[\w-]{11}$/.test(videoId));
+  } catch {
+    return false;
+  }
+}
+
 const videoSchema = z.object({
   title: z.string().trim().min(2).max(200),
   category: z.string().trim().min(2).max(80),
   description: z.string().trim().min(5).max(2000),
-  youtubeUrl: z.string().trim().max(400).nullable().optional(),
-  videoUrl: z.string().trim().max(400).nullable().optional(),
+  youtubeUrl: z.string().trim().url().max(400).refine(isYouTubeVideoUrl, 'Enter a valid YouTube video link.'),
   thumbnailUrl: z.string().trim().max(400).nullable().optional(),
   status: z.enum(['draft', 'published']).default('published'),
   sortOrder: z.number().int().min(0).default(0),
 });
+
+const videoUpdateSchema = videoSchema.partial();
 
 adminContentRouter.get('/videos', requireRole('admin', 'editor', 'viewer'), async (_req, res, next) => {
   try {
@@ -342,67 +362,9 @@ adminContentRouter.post('/videos', requireRole('admin', 'editor'), async (req, r
   }
 });
 
-const uploadVideoFile = multer({
-  storage: multer.memoryStorage(),
-  limits: { fileSize: env.maxVideoUploadFileBytes, files: 1 },
-}).single('video');
-
-const videoUploadSchema = z.object({
-  title: z.string().trim().min(2).max(200),
-  category: z.string().trim().min(2).max(80),
-  description: z.string().trim().min(5).max(2000),
-  status: z.enum(['draft', 'published']).default('published'),
-});
-
-adminContentRouter.post(
-  '/videos/upload',
-  requireRole('admin', 'editor'),
-  uploadLimiter,
-  uploadVideoFile,
-  async (req, res, next) => {
-    let storedUrl: string | undefined;
-    let videoRecordCreated = false;
-    try {
-      if (!req.file) {
-        res.status(400).json({ error: 'Choose an MP4 or WebM video to upload.' });
-        return;
-      }
-
-      const parsed = videoUploadSchema.safeParse(req.body);
-      if (!parsed.success) {
-        res.status(400).json({ error: parsed.error.issues[0]?.message || 'Invalid video details.' });
-        return;
-      }
-
-      if (!detectVideoMime(req.file.buffer)) {
-        res.status(400).json({ error: 'The selected file is not a valid MP4 or WebM video.' });
-        return;
-      }
-
-      const stored = await saveVideo(req.file.buffer);
-      storedUrl = stored.videoUrl;
-      const item = await prisma.video.create({
-        data: { ...parsed.data, videoUrl: stored.videoUrl },
-      });
-      videoRecordCreated = true;
-      await recordAuditLog({
-        userId: req.authUser!.id,
-        userEmail: req.authUser!.email,
-        action: 'videos.create',
-        entityType: 'video',
-        entityId: item.id,
-      });
-      res.status(201).json({ item });
-    } catch (err) {
-      if (storedUrl && !videoRecordCreated) await deleteStoredVideo(storedUrl);
-      next(err);
-    }
-  }
-);
-
 adminContentRouter.patch('/videos/:id', requireRole('admin', 'editor'), async (req, res, next) => {
   try {
-    const parsed = videoSchema.partial().safeParse(req.body);
+    const parsed = videoUpdateSchema.safeParse(req.body);
     if (!parsed.success) {
       res.status(400).json({ error: parsed.error.issues[0]?.message || 'Invalid video update' });
       return;

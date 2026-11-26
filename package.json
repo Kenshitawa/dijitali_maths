@@ -4,6 +4,9 @@
   "description": "Dijitali Maths NGO website, API, and admin portal",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build:pages": "tsx scripts/build-pages.ts",
