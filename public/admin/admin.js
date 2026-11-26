@@ -878,274 +878,30 @@ async function renderImages(el) {
 
 /* ==================== 5-8. PROGRAMS, EVENTS, POSTS, VIDEOS ==================== */
 
+function renderContentPage(el, tab, items) {
+  el.innerHTML = INSIGHTS_MOUNT + '<div id="boardui-content-management"></div>';
+  dispatchPageData(tab, items);
+}
+
 async function renderPrograms(el) {
   const { items } = await api('/api/admin/programs');
-  el.innerHTML = `
-    ${INSIGHTS_MOUNT}
-    <div class="panel">
-      <div class="toolbar">
-        <strong>${items.length} Programs</strong>
-        ${isEditorOrAdmin() ? '<button type="button" id="addProgBtn" class="btn btn-primary btn-sm">Add Program</button>' : ''}
-      </div>
-      <div class="table-wrap"><table class="data-table">
-        <thead><tr><th>Title</th><th>Category</th><th>Status</th><th>Actions</th></tr></thead>
-        <tbody>
-          ${items
-            .map(
-              (p) => `
-            <tr data-id="${escapeHtml(p.id)}">
-              <td><strong>${escapeHtml(p.title)}</strong><br/><small>${escapeHtml(p.slug)}</small></td>
-              <td>${escapeHtml(p.categoryLabel)}</td>
-              <td><span class="badge ${p.status === 'published' ? 'badge-emerald' : 'badge-amber'}">${escapeHtml(p.status)}</span></td>
-              <td>
-                ${
-                  isEditorOrAdmin()
-                    ? `<button type="button" class="btn btn-danger btn-sm prog-del">Delete</button>`
-                    : 'Read-only'
-                }
-              </td>
-            </tr>`
-            )
-            .join('')}
-        </tbody>
-      </table></div>
-    </div>
-  `;
-
-  el.querySelector('#addProgBtn')?.addEventListener('click', () => {
-    openModal(
-      'New Program',
-      `<form id="newProgForm">
-        <div class="form-group"><label class="form-label">Slug (lowercase-hyphens)</label><input name="slug" class="form-control" required pattern="[a-z0-9-]+" /></div>
-        <div class="form-group"><label class="form-label">Title</label><input name="title" class="form-control" required /></div>
-        <div class="form-group"><label class="form-label">Category Label</label><input name="categoryLabel" class="form-control" required /></div>
-        <div class="form-group"><label class="form-label">Summary</label><textarea name="summary" class="form-control" required></textarea></div>
-        <div class="form-group"><label class="form-label">Description</label><textarea name="description" class="form-control" required></textarea></div>
-        <div class="form-group"><label class="form-label">Status</label><select name="status" class="form-control"><option value="published">published</option><option value="draft">draft</option></select></div>
-        <button type="submit" class="btn btn-primary" style="width:100%;">Create Program</button>
-      </form>`
-    );
-    document.getElementById('newProgForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const fd = new FormData(e.target);
-      await api('/api/admin/programs', {
-        method: 'POST',
-        body: JSON.stringify(Object.fromEntries(fd.entries())),
-      });
-      closeModal();
-      toast('Program created');
-      renderPrograms(el);
-    });
-  });
-
-  el.querySelectorAll('.prog-del').forEach((b) =>
-    b.addEventListener('click', async () => {
-      if (!confirm('Delete this program?')) return;
-      await api(`/api/admin/programs/${b.closest('tr').dataset.id}`, { method: 'DELETE' });
-      toast('Program deleted');
-      renderPrograms(el);
-    })
-  );
-  dispatchPageData('programs', items);
+  renderContentPage(el, 'programs', items);
 }
 
 async function renderEvents(el) {
   const { items } = await api('/api/admin/events');
-  el.innerHTML = `
-    ${INSIGHTS_MOUNT}
-    <div class="panel">
-      <div class="toolbar">
-        <strong>${items.length} Events</strong>
-        ${isEditorOrAdmin() ? '<button type="button" id="addEvBtn" class="btn btn-primary btn-sm">Add Event</button>' : ''}
-      </div>
-      <div class="table-wrap"><table class="data-table">
-        <thead><tr><th>Event</th><th>Date &amp; Location</th><th>Status</th><th>Actions</th></tr></thead>
-        <tbody>
-          ${items
-            .map(
-              (ev) => `
-            <tr data-id="${escapeHtml(ev.id)}">
-              <td><strong>${escapeHtml(ev.title)}</strong><br/><small>${escapeHtml(ev.category)}</small></td>
-              <td>${escapeHtml(ev.eventDateLabel)} &bull; ${escapeHtml(ev.location)}</td>
-              <td><span class="badge ${ev.status === 'published' ? 'badge-emerald' : 'badge-amber'}">${escapeHtml(ev.status)}</span></td>
-              <td>${isEditorOrAdmin() ? '<button type="button" class="btn btn-danger btn-sm ev-del">Delete</button>' : 'Read-only'}</td>
-            </tr>`
-            )
-            .join('')}
-        </tbody>
-      </table></div>
-    </div>
-  `;
-
-  el.querySelector('#addEvBtn')?.addEventListener('click', () => {
-    openModal(
-      'New Event',
-      `<form id="newEvForm">
-        <div class="form-group"><label class="form-label">Slug</label><input name="slug" class="form-control" required pattern="[a-z0-9-]+" /></div>
-        <div class="form-group"><label class="form-label">Title</label><input name="title" class="form-control" required /></div>
-        <div class="form-group"><label class="form-label">Category</label><select name="category" class="form-control"><option value="festival">festival</option><option value="camp">camp</option><option value="workshop">workshop</option><option value="webinar">webinar</option></select></div>
-        <div class="form-group"><label class="form-label">Date Label (e.g. 18 Oct)</label><input name="eventDateLabel" class="form-control" required /></div>
-        <div class="form-group"><label class="form-label">Location</label><input name="location" class="form-control" required /></div>
-        <div class="form-group"><label class="form-label">Audience</label><input name="audience" class="form-control" required /></div>
-        <div class="form-group"><label class="form-label">Schedule</label><input name="schedule" class="form-control" required /></div>
-        <div class="form-group"><label class="form-label">Description</label><textarea name="description" class="form-control" required></textarea></div>
-        <button type="submit" class="btn btn-primary" style="width:100%;">Create Event</button>
-      </form>`
-    );
-    document.getElementById('newEvForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      await api('/api/admin/events', {
-        method: 'POST',
-        body: JSON.stringify(Object.fromEntries(new FormData(e.target).entries())),
-      });
-      closeModal();
-      toast('Event created');
-      renderEvents(el);
-    });
-  });
-
-  el.querySelectorAll('.ev-del').forEach((b) =>
-    b.addEventListener('click', async () => {
-      if (!confirm('Delete this event?')) return;
-      await api(`/api/admin/events/${b.closest('tr').dataset.id}`, { method: 'DELETE' });
-      toast('Event deleted');
-      renderEvents(el);
-    })
-  );
-  dispatchPageData('events', items);
+  renderContentPage(el, 'events', items);
 }
 
 async function renderPosts(el) {
   const { items } = await api('/api/admin/posts');
-  el.innerHTML = `
-    ${INSIGHTS_MOUNT}
-    <div class="panel">
-      <div class="toolbar">
-        <strong>${items.length} Posts</strong>
-        ${isEditorOrAdmin() ? '<button type="button" id="addPostBtn" class="btn btn-primary btn-sm">New Post</button>' : ''}
-      </div>
-      <div class="table-wrap"><table class="data-table">
-        <thead><tr><th>Title</th><th>Status</th><th>Author</th><th>Actions</th></tr></thead>
-        <tbody>
-          ${items
-            .map(
-              (p) => `
-            <tr data-id="${escapeHtml(p.id)}">
-              <td><strong>${escapeHtml(p.title)}</strong><br/><small>${escapeHtml(p.excerpt)}</small></td>
-              <td><span class="badge ${p.status === 'published' ? 'badge-emerald' : 'badge-amber'}">${escapeHtml(p.status)}</span></td>
-              <td>${escapeHtml(p.authorName)}</td>
-              <td>${isEditorOrAdmin() ? '<button type="button" class="btn btn-danger btn-sm post-del">Delete</button>' : 'Read-only'}</td>
-            </tr>`
-            )
-            .join('')}
-        </tbody>
-      </table></div>
-    </div>
-  `;
-
-  el.querySelector('#addPostBtn')?.addEventListener('click', () => {
-    openModal(
-      'New Post',
-      `<form id="newPostForm">
-        <div class="form-group"><label class="form-label">Slug</label><input name="slug" class="form-control" required pattern="[a-z0-9-]+" /></div>
-        <div class="form-group"><label class="form-label">Title</label><input name="title" class="form-control" required /></div>
-        <div class="form-group"><label class="form-label">Excerpt</label><textarea name="excerpt" class="form-control" required></textarea></div>
-        <div class="form-group"><label class="form-label">Content (HTML)</label><textarea name="contentHtml" class="form-control" required></textarea></div>
-        <div class="form-group"><label class="form-label">Status</label><select name="status" class="form-control"><option value="published">published</option><option value="draft">draft</option></select></div>
-        <button type="submit" class="btn btn-primary" style="width:100%;">Save Post</button>
-      </form>`
-    );
-    document.getElementById('newPostForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      await api('/api/admin/posts', {
-        method: 'POST',
-        body: JSON.stringify(Object.fromEntries(new FormData(e.target).entries())),
-      });
-      closeModal();
-      toast('Post saved');
-      renderPosts(el);
-    });
-  });
-
-  el.querySelectorAll('.post-del').forEach((b) =>
-    b.addEventListener('click', async () => {
-      if (!confirm('Delete this post?')) return;
-      await api(`/api/admin/posts/${b.closest('tr').dataset.id}`, { method: 'DELETE' });
-      toast('Post deleted');
-      renderPosts(el);
-    })
-  );
-  dispatchPageData('posts', items);
+  renderContentPage(el, 'posts', items);
 }
 
 async function renderVideos(el) {
   const { items } = await api('/api/admin/videos');
-  el.innerHTML = `
-    ${INSIGHTS_MOUNT}
-    <div class="panel">
-      <div class="toolbar">
-        <strong>${items.length} Videos</strong>
-        ${isEditorOrAdmin() ? '<button type="button" id="addVidBtn" class="btn btn-primary btn-sm">Add Video</button>' : ''}
-      </div>
-      <div class="table-wrap"><table class="data-table">
-        <thead><tr><th>Title</th><th>Category</th><th>Source</th><th>Status</th><th>Actions</th></tr></thead>
-        <tbody>
-          ${items
-            .map(
-              (v) => `
-            <tr data-id="${escapeHtml(v.id)}">
-              <td><strong>${escapeHtml(v.title)}</strong><br/><small>${escapeHtml(v.description)}</small></td>
-              <td>${escapeHtml(v.category)}</td>
-              <td>${v.videoUrl && !v.youtubeUrl ? 'Legacy uploaded file' : 'YouTube'}</td>
-              <td><span class="badge ${v.status === 'published' ? 'badge-emerald' : 'badge-amber'}">${escapeHtml(v.status)}</span></td>
-              <td>${isEditorOrAdmin() ? '<button type="button" class="btn btn-danger btn-sm vid-del">Delete</button>' : 'Read-only'}</td>
-            </tr>`
-            )
-            .join('')}
-        </tbody>
-      </table></div>
-    </div>
-  `;
-
-  el.querySelector('#addVidBtn')?.addEventListener('click', () => {
-    openModal(
-      'New Video',
-      `<form id="newVidForm">
-        <div class="form-group"><label class="form-label">Title</label><input name="title" class="form-control" required /></div>
-        <div class="form-group"><label class="form-label">Category</label><input name="category" class="form-control" value="Learner Session" required /></div>
-        <div class="form-group"><label class="form-label">YouTube video URL</label><input name="youtubeUrl" type="url" class="form-control" placeholder="https://youtu.be/..." required /></div>
-        <div class="form-group"><label class="form-label">Description</label><textarea name="description" class="form-control" required></textarea></div>
-        <div class="form-group"><label class="form-label">Visibility</label><select name="status" class="form-control"><option value="published">Published</option><option value="draft">Draft</option></select></div>
-        <p class="settings-help">Published videos appear on the public Videos page and autoplay muted. Viewers can turn on sound in the player.</p>
-        <button type="submit" class="btn btn-primary" style="width:100%;">Save Video</button>
-      </form>`
-    );
-    document.getElementById('newVidForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      try {
-        const payload = Object.fromEntries([...formData.entries()].filter(([, value]) => typeof value === 'string'));
-        await api('/api/admin/videos', { method: 'POST', body: JSON.stringify(payload) });
-        closeModal();
-        toast('Video saved');
-        renderVideos(el);
-      } catch (error) {
-        toast(error.message, 'error');
-      }
-    });
-  });
-
-  el.querySelectorAll('.vid-del').forEach((b) =>
-    b.addEventListener('click', async () => {
-      if (!confirm('Delete this video?')) return;
-      await api(`/api/admin/videos/${b.closest('tr').dataset.id}`, { method: 'DELETE' });
-      toast('Video deleted');
-      renderVideos(el);
-    })
-  );
-  dispatchPageData('videos', items);
+  renderContentPage(el, 'videos', items);
 }
-
 /* ==================== 9. VISITORS ==================== */
 
 async function renderVisitors(el) {
@@ -1431,3 +1187,4 @@ window.adminBridge = {
     return { ...state };
   },
 };
+

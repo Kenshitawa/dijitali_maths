@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import {
   RiArrowLeftLine,
   RiArrowRightUpLine,
+  RiAddLine,
   RiBellLine,
   RiCalendarEventLine,
   RiCloseLine,
@@ -48,6 +49,8 @@ import { Notification, NotificationViewport } from '@/components/base/notificati
 import { Chip } from '@/components/base/badges/chip';
 import { Modal, ModalBody, ModalFooter, ModalHeader } from '@/components/base/modal/modal';
 import { Textarea } from '@/components/base/textarea/textarea';
+import { Select, SelectItem } from '@/components/base/select/select';
+import { Switch } from '@/components/base/switch/switch';
 import { OrdersChartCard } from '@/components/application/dashboard/orders-chart-card';
 import { RevenueChartCard } from '@/components/application/dashboard/revenue-chart-card';
 import { StatCards } from '@/components/application/dashboard/stat-cards';
@@ -821,8 +824,280 @@ function InboxScreen() {
   );
 }
 
+const CONTENT_MODELS = {
+  programs: {
+    label: 'Program',
+    endpoint: '/api/admin/programs',
+    fields: [
+      { name: 'slug', label: 'Page slug', required: true },
+      { name: 'title', label: 'Title', required: true },
+      { name: 'categoryLabel', label: 'Category', required: true },
+      { name: 'summary', label: 'Short summary', kind: 'textarea', required: true },
+      { name: 'description', label: 'Description', kind: 'textarea', required: true },
+      { name: 'tags', label: 'Tags, separated by commas', kind: 'tags' },
+      { name: 'imageUrl', label: 'Image URL' },
+      { name: 'featured', label: 'Feature on the home page', kind: 'switch', defaultValue: false },
+      { name: 'status', label: 'Visibility', kind: 'select', defaultValue: 'published', options: ['published', 'draft'] },
+      { name: 'sortOrder', label: 'Display order', kind: 'number', defaultValue: '0' },
+    ],
+  },
+  events: {
+    label: 'Event',
+    endpoint: '/api/admin/events',
+    fields: [
+      { name: 'slug', label: 'Page slug', required: true },
+      { name: 'title', label: 'Title', required: true },
+      { name: 'category', label: 'Category', kind: 'select', defaultValue: 'festival', options: ['festival', 'camp', 'workshop', 'webinar'] },
+      { name: 'eventDateLabel', label: 'Date shown on the site', required: true },
+      { name: 'eventDate', label: 'Event date and time', kind: 'datetime-local' },
+      { name: 'location', label: 'Location', required: true },
+      { name: 'audience', label: 'Audience', required: true },
+      { name: 'schedule', label: 'Schedule', required: true },
+      { name: 'description', label: 'Description', kind: 'textarea', required: true },
+      { name: 'imageUrl', label: 'Image URL' },
+      { name: 'registrationEnabled', label: 'Allow registrations', kind: 'switch', defaultValue: true },
+      { name: 'status', label: 'Visibility', kind: 'select', defaultValue: 'published', options: ['published', 'draft'] },
+    ],
+  },
+  posts: {
+    label: 'Post',
+    endpoint: '/api/admin/posts',
+    fields: [
+      { name: 'slug', label: 'Page slug', required: true },
+      { name: 'title', label: 'Title', required: true },
+      { name: 'excerpt', label: 'Short summary', kind: 'textarea', required: true },
+      { name: 'contentHtml', label: 'Article content (HTML)', kind: 'textarea', required: true },
+      { name: 'coverImageUrl', label: 'Cover image URL' },
+      { name: 'authorName', label: 'Author', defaultValue: 'Dijitali Maths Team', required: true },
+      { name: 'status', label: 'Visibility', kind: 'select', defaultValue: 'draft', options: ['draft', 'published'] },
+    ],
+  },
+  videos: {
+    label: 'Video',
+    endpoint: '/api/admin/videos',
+    fields: [
+      { name: 'title', label: 'Title', required: true },
+      { name: 'category', label: 'Category', defaultValue: 'Learner Session', required: true },
+      { name: 'youtubeUrl', label: 'YouTube video URL', type: 'url', required: true },
+      { name: 'description', label: 'Description', kind: 'textarea', required: true },
+      { name: 'thumbnailUrl', label: 'Thumbnail URL' },
+      { name: 'status', label: 'Visibility', kind: 'select', defaultValue: 'published', options: ['published', 'draft'] },
+      { name: 'sortOrder', label: 'Display order', kind: 'number', defaultValue: '0' },
+    ],
+  },
+};
+
+function contentFormValues(tab, record) {
+  const model = CONTENT_MODELS[tab];
+  const values = {};
+  model.fields.forEach((field) => {
+    let value = record?.[field.name];
+    if (field.name === 'tags') {
+      try {
+        value = JSON.parse(record?.tagsJson || '[]').join(', ');
+      } catch {
+        value = '';
+      }
+    } else if (field.name === 'eventDate') {
+      if (value) {
+        const localDate = new Date(new Date(value).getTime() - new Date(value).getTimezoneOffset() * 60000);
+        value = localDate.toISOString().slice(0, 16);
+      } else {
+        value = '';
+      }
+    }
+    if (value === null || value === undefined) value = field.defaultValue ?? (field.kind === 'switch' ? false : '');
+    values[field.name] = field.kind === 'switch' ? Boolean(value) : String(value);
+  });
+  return values;
+}
+
+function contentPayload(tab, values) {
+  const model = CONTENT_MODELS[tab];
+  const payload = {};
+  model.fields.forEach((field) => {
+    const value = values[field.name];
+    if (field.kind === 'switch') payload[field.name] = Boolean(value);
+    else if (field.kind === 'number') payload[field.name] = Number(value || 0);
+    else if (field.name === 'tags') payload.tags = String(value || '').split(',').map((tag) => tag.trim()).filter(Boolean);
+    else if (field.name === 'eventDate') payload.eventDate = value ? new Date(value).toISOString() : null;
+    else payload[field.name] = value;
+  });
+  return payload;
+}
+
+function ContentManager({ tab, initialItems }) {
+  const model = CONTENT_MODELS[tab];
+  const [items, setItems] = useState(initialItems || []);
+  const [record, setRecord] = useState(null);
+  const [editorOpen, setEditorOpen] = useState(false);
+  const [values, setValues] = useState({});
+  const [busy, setBusy] = useState(false);
+  const [notice, setNotice] = useState('');
+  const canEdit = ['admin', 'editor'].includes(window.adminBridge?.getState?.()?.user?.role);
+
+  const openEditor = (item = null) => {
+    setRecord(item);
+    setValues(contentFormValues(tab, item));
+    setNotice('');
+    setEditorOpen(true);
+  };
+  const closeEditor = () => {
+    if (!busy) {
+      setRecord(null);
+      setEditorOpen(false);
+    }
+  };
+  const saveRecord = async (event) => {
+    event.preventDefault();
+    setBusy(true);
+    setNotice('');
+    try {
+      const endpoint = model.endpoint + (record?.id ? '/' + encodeURIComponent(record.id) : '');
+      const response = await adminRequest(endpoint, {
+        method: record?.id ? 'PATCH' : 'POST',
+        body: JSON.stringify(contentPayload(tab, values)),
+      });
+      const saved = response.item;
+      setItems((current) => record?.id
+        ? current.map((item) => item.id === saved.id ? saved : item)
+        : [saved, ...current]);
+      setRecord(null);
+      setEditorOpen(false);
+    } catch (error) {
+      setNotice(error.message || 'The changes could not be saved.');
+    } finally {
+      setBusy(false);
+    }
+  };
+  const deleteRecord = async (item) => {
+    if (!window.confirm('Delete this ' + model.label.toLowerCase() + '?')) return;
+    setBusy(true);
+    setNotice('');
+    try {
+      await adminRequest(model.endpoint + '/' + encodeURIComponent(item.id), { method: 'DELETE' });
+      setItems((current) => current.filter((entry) => entry.id !== item.id));
+    } catch (error) {
+      setNotice(error.message || 'The item could not be deleted.');
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <section className="flex flex-col gap-4">
+      <header className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h2 className="text-title-3-semibold text-text-primary">{model.label} content</h2>
+          <p className="mt-1 text-body-2-regular text-text-secondary">
+            Saved changes appear on the public site from the shared content database.
+          </p>
+        </div>
+        {canEdit ? <Button leadingIcon={RiAddLine} onClick={() => openEditor()}>Add {model.label.toLowerCase()}</Button> : null}
+      </header>
+
+      {notice ? <p role="status" className="text-body-2-regular text-text-error-primary">{notice}</p> : null}
+      {items.length ? (
+        <div className="grid gap-3">
+          {items.map((item) => {
+            const title = item.title || item.name || model.label;
+            const summary = item.summary || item.excerpt || item.description || item.category || '';
+            return (
+              <article key={item.id} className="flex flex-wrap items-center justify-between gap-4 rounded-3xl border border-border-button-default bg-background-primary-default p-4">
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h3 className="text-body-medium text-text-primary">{title}</h3>
+                    <Chip variant="caption" color={item.status === 'published' ? 'lime' : 'soft'}>{item.status || 'published'}</Chip>
+                  </div>
+                  <p className="mt-1 line-clamp-2 text-body-2-regular text-text-secondary">{summary}</p>
+                </div>
+                {canEdit ? (
+                  <div className="flex shrink-0 gap-2">
+                    <Button variant="secondary" size="small" onClick={() => openEditor(item)}>Edit</Button>
+                    <Button variant="danger" size="small" disabled={busy} onClick={() => deleteRecord(item)}>Delete</Button>
+                  </div>
+                ) : null}
+              </article>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="rounded-3xl border border-border-button-default bg-background-secondary-default p-6 text-body-2-regular text-text-secondary">
+          No {model.label.toLowerCase()} content yet.
+        </div>
+      )}
+
+      <Modal isOpen={editorOpen} onOpenChange={(open) => { if (!open) closeEditor(); }} size="lg">
+        <ModalHeader
+          title={(record?.id ? 'Edit ' : 'Add ') + model.label.toLowerCase()}
+          description="Save to publish the latest content on the public website."
+        />
+        <form onSubmit={saveRecord} className="flex min-h-0 flex-1 flex-col gap-2">
+          <ModalBody>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {model.fields.map((field) => {
+                const value = values[field.name];
+                const setValue = (next) => setValues((current) => ({ ...current, [field.name]: next }));
+                if (field.kind === 'switch') {
+                  return (
+                    <div key={field.name} className="flex min-h-12 items-center">
+                      <Switch isSelected={Boolean(value)} onChange={setValue}>{field.label}</Switch>
+                    </div>
+                  );
+                }
+                if (field.kind === 'select') {
+                  return (
+                    <Select
+                      key={field.name}
+                      label={field.label}
+                      selectedKey={String(value || '')}
+                      onSelectionChange={(key) => setValue(String(key))}
+                    >
+                      {field.options.map((option) => <SelectItem key={option} id={option}>{option[0].toUpperCase() + option.slice(1)}</SelectItem>)}
+                    </Select>
+                  );
+                }
+                if (field.kind === 'textarea' || field.kind === 'tags') {
+                  return (
+                    <Textarea
+                      key={field.name}
+                      label={field.label}
+                      value={String(value || '')}
+                      onChange={setValue}
+                      rows={field.kind === 'tags' ? 2 : 4}
+                      isRequired={field.required}
+                      className="sm:col-span-2"
+                    />
+                  );
+                }
+                return (
+                  <Input
+                    key={field.name}
+                    label={field.label}
+                    type={field.kind === 'number' ? 'number' : field.kind === 'datetime-local' ? 'datetime-local' : field.type || 'text'}
+                    value={String(value || '')}
+                    onChange={setValue}
+                    isRequired={field.required}
+                    min={field.kind === 'number' ? 0 : undefined}
+                    className={field.kind === 'number' ? 'sm:max-w-40' : ''}
+                  />
+                );
+              })}
+            </div>
+          </ModalBody>
+          <ModalFooter>
+            <Button type="button" variant="secondary" disabled={busy} onClick={closeEditor}>Cancel</Button>
+            <Button type="submit" disabled={busy}>{busy ? 'Saving…' : 'Save changes'}</Button>
+          </ModalFooter>
+        </form>
+      </Modal>
+    </section>
+  );
+}
+
 let inboxRoot = null;
 let pageRoot = null;
+let contentRoot = null;
 
 /* -------------------------------------------------------------------------- */
 /* Dashboard                                                                  */
@@ -1278,17 +1553,32 @@ function AdminApp() {
 
     const onPageData = (event) => {
       const mount = document.getElementById('boardui-page-insights');
-      if (!mount) return;
       if (pageRoot) {
         try { pageRoot.unmount(); } catch { /* already detached */ }
         pageRoot = null;
       }
-      pageRoot = createRoot(mount);
-      pageRoot.render(
-        <DirectionProvider locale="en-US">
-          <PageInsights tab={event.detail.tab} items={event.detail.items || []} extra={event.detail.extra} />
-        </DirectionProvider>
-      );
+      if (mount) {
+        pageRoot = createRoot(mount);
+        pageRoot.render(
+          <DirectionProvider locale="en-US">
+            <PageInsights tab={event.detail.tab} items={event.detail.items || []} extra={event.detail.extra} />
+          </DirectionProvider>
+        );
+      }
+
+      const contentMount = document.getElementById('boardui-content-management');
+      if (contentRoot) {
+        try { contentRoot.unmount(); } catch { /* already detached */ }
+        contentRoot = null;
+      }
+      if (contentMount && CONTENT_MODELS[event.detail.tab]) {
+        contentRoot = createRoot(contentMount);
+        contentRoot.render(
+          <DirectionProvider locale="en-US">
+            <ContentManager tab={event.detail.tab} initialItems={event.detail.items || []} />
+          </DirectionProvider>
+        );
+      }
     };
 
     const onInbox = () => {
@@ -1359,6 +1649,8 @@ function AdminApp() {
       dashboardRoot = null;
       try { pageRoot?.unmount(); } catch { /* already detached */ }
       pageRoot = null;
+      try { contentRoot?.unmount(); } catch { /* already detached */ }
+      contentRoot = null;
       try { inboxRoot?.unmount(); } catch { /* already detached */ }
       inboxRoot = null;
       try { visitorChartRoot?.unmount(); } catch { /* already detached */ }
@@ -1385,6 +1677,10 @@ function AdminApp() {
     if (pageRoot) {
       try { pageRoot.unmount(); } catch { /* already detached */ }
       pageRoot = null;
+    }
+    if (contentRoot) {
+      try { contentRoot.unmount(); } catch { /* already detached */ }
+      contentRoot = null;
     }
     window.dispatchEvent(new CustomEvent('admin:navigate', { detail: nextTab }));
   };
@@ -1658,3 +1954,4 @@ if (adminRoot) {
     </DirectionProvider>
   );
 }
+
