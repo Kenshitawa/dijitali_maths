@@ -6,7 +6,7 @@ import cors from 'cors';
 import express, { type NextFunction, type Request, type RequestHandler, type Response } from 'express';
 import type { HelmetOptions } from 'helmet';
 import multer from 'multer';
-import { env } from './config/env.js';
+import { env, validateProductionEnv } from './config/env.js';
 import { prisma } from './lib/prisma.js';
 import { adminRouter } from './routes/admin.js';
 import { adminContentRouter } from './routes/adminContent.js';
@@ -171,4 +171,9 @@ export function createApp() {
 
   return app;
 }
+
+validateProductionEnv();
+
+const app = createApp();
+export default app;
 
